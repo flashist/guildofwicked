@@ -1,9 +1,9 @@
-/*
-import {App} from "./App";
+import {Facade} from "./appframework/facade/Facade";
+import {GOWFacade} from "./GOWFacade";
 
-const app = new App();
-*/
-
-import {TestClass} from "./TestClass";
-
-new TestClass();
+Facade.init(
+    {
+        debug: true,
+        FacadeClass: GOWFacade
+    }
+);
