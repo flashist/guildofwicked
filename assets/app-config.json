@@ -1,0 +1,18 @@
+{
+  "assetsConfigFile": {
+    "id": "assets.json",
+    "src": "assets/assets.json",
+    "fileType": "text",
+    "loadGroup": "preload"
+  },
+
+  "localeConfigFile": {
+    "id": "texts.json",
+    "src": "assets/locales/{locale}/texts.json",
+    "fileType": "text",
+    "loadGroup": "preload"
+  },
+
+  "items": [
+  ]
+}

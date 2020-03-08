@@ -5,6 +5,7 @@ import {
 
 export interface IAppConfigVO extends IGenericObjectVO {
     locale?: string;
+    appConfigFilePath?: string;
 
     assetsConfigFile?: ILoadItemConfig;
     localeConfigFile?: ILoadItemConfig;

@@ -37,6 +37,9 @@ module.exports = {
             [
                 {
                     from: "src/index.html"
+                },
+                {
+                    from: "assets/!(sources)/**"
                 }
             ]
         )

@@ -1,6 +1,5 @@
 import {Command} from "fcore";
 import {LoadItemCommand, getInstance, GenericObjectsByTypeModel} from "fsuite";
-import {AppSettings} from "../AppSettings";
 import {IAppConfigVO} from "../data/IAppConfigVO";
 import {AppConfigModel} from "../models/AppConfigModel";
 
@@ -9,7 +8,13 @@ export class LoadAppConfigCommand extends Command {
     protected executeInternal(): void {
         super.executeInternal();
 
-        new LoadItemCommand({src: AppSettings.appConfigFilePath, id: AppSettings.appConfigFilePath})
+        const appConfigModel: AppConfigModel = getInstance(AppConfigModel);
+        new LoadItemCommand(
+            {
+                src: appConfigModel.appConfig.appConfigFilePath,
+                id: appConfigModel.appConfig.appConfigFilePath
+            }
+        )
             .execute()
             .then(
                 (data: IAppConfigVO) => {
@@ -18,8 +23,7 @@ export class LoadAppConfigCommand extends Command {
                     /*let objectsByTypeModel: GenericObjectsByTypeModel = getInstance(GenericObjectsByTypeModel);
                     objectsByTypeModel.commitItems([data]);*/
 
-                    let appConfigModel: AppConfigModel = getInstance(AppConfigModel);
-                    appConfigModel.appConfig = data;
+                    appConfigModel.changeConfig(data);
 
                     let genericObjectsByTypeModel: GenericObjectsByTypeModel = getInstance(GenericObjectsByTypeModel);
                     genericObjectsByTypeModel.commitItems(data.startDataItems);
