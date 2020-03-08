@@ -1,5 +1,5 @@
 export class TestClass {
     constructor() {
-        alert("TestClass");
+        alert("TestClass 9");
     }
 }

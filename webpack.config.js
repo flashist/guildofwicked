@@ -4,10 +4,10 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 console.log("__dirname: " + __dirname);
 const BUILD_DIR = "dist";
+const DEV = true;
 
 module.exports = {
     entry: './src/index.ts',
-    devtool: 'inline-source-map',
     module: {
         rules: [
             {
@@ -17,14 +17,14 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ['.ts'],
+        extensions: [".js", ".ts", ".json"],
     },
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, BUILD_DIR),
+        path: `${__dirname}/${BUILD_DIR}`,
+        publicPath: `/${BUILD_DIR}/`,
+        filename: 'bundle.js'
     },
     plugins: [
-        new CleanWebpackPlugin(),
         new CopyPlugin(
             [
                 {
@@ -34,3 +34,19 @@ module.exports = {
         )
     ]
 };
+
+if (DEV) {
+    module.exports.mode = "development";
+    module.exports.devtool = 'inline-source-map';
+    module.exports.devServer = {
+        contentBase: path.join(__dirname, `${BUILD_DIR}`),
+        port: 9000,
+        openPage: "index.html"
+    };
+
+} else {
+    module.exports.mode = "production";
+    module.exports.plugins.unshift(
+        new CleanWebpackPlugin()
+    );
+}
