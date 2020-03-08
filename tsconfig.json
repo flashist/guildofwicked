@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es2015",
+    "sourceMap": true,
+    "skipLibCheck": true,
+
+    "outDir": "./dist/"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "typeRoots": [
+    "./node_modules/@types"
+  ]
+}
