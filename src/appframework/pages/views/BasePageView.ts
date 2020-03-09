@@ -14,7 +14,7 @@ export class BasePageView extends BaseView {
 
     protected appConfigModel: AppConfigModel;
 
-    protected sizeArea: Rectangle = new Rectangle();
+    protected sizeArea: Rectangle;
     protected sizeAreaView: Graphics;
 
     protected contentCont: FContainer;
@@ -23,7 +23,10 @@ export class BasePageView extends BaseView {
         super.construction(args);
 
         this.appConfigModel = getInstance(AppConfigModel);
-        this.sizeArea = this.appConfigModel.appConfig.sizeArea.clone();
+        this.sizeArea = new Rectangle()
+        if (this.appConfigModel.appConfig.sizeArea) {
+            this.sizeArea = this.appConfigModel.appConfig.sizeArea.clone();
+        }
 
         this.contentCont = new FContainer();
         this.addChild(this.contentCont);
@@ -32,7 +35,7 @@ export class BasePageView extends BaseView {
         this.sizeAreaView = new Graphics();
         this.contentCont.addChild(this.sizeAreaView);
         //
-        this.sizeAreaView.beginFill(0x000000);
+        this.sizeAreaView.beginFill(0x000000, 0.5);
         this.sizeAreaView.drawRect(
             this.sizeArea.x,
             this.sizeArea.y,
@@ -40,7 +43,7 @@ export class BasePageView extends BaseView {
             this.sizeArea.height
         );
         this.sizeAreaView.endFill();
-        this.sizeAreaView.visible = false;
+        this.sizeAreaView.alpha = 0;
     }
 
     protected arrange(): void {

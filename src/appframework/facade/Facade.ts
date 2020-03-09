@@ -104,6 +104,7 @@ export class Facade extends BaseObject {
         FApp.instance.stage.addChild(this.mainContainer);
 
         this.onWindowResize();
+        this.onRendererResize();
     }
 
     protected addListeners(): void {

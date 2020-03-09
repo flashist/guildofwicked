@@ -15,6 +15,13 @@
       "src": "assets/atlases/preloader.json",
       "fileType": "spritesheet",
       "loadGroups": ["preload"]
+    },
+
+    {
+      "id": "init",
+      "src": "assets/atlases/test-init.json",
+      "fileType": "spritesheet",
+      "loadGroups": ["init"]
     }
   ]
 }
