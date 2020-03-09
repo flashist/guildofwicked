@@ -1,5 +1,7 @@
 {
   "texts": {
-    "gameName": "Guild Of Wicked"
+    "gameName": "Guild Of Wicked",
+
+    "preloaderProgress": "Loading: {0}"
   }
 }

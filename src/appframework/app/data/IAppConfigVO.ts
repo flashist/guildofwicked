@@ -1,6 +1,7 @@
 import {
     IGenericObjectVO,
-    ILoadItemConfig
+    ILoadItemConfig,
+    Rectangle
 } from "fsuite";
 
 export interface IAppConfigVO extends IGenericObjectVO {
@@ -13,4 +14,5 @@ export interface IAppConfigVO extends IGenericObjectVO {
     startDataItems?: IGenericObjectVO[];
 
     targetFps?: number;
+    sizeArea?: Rectangle;
 }

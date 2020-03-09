@@ -1,19 +1,54 @@
 import {BaseObject} from "fcore";
 import {GLobalEventDispatcherEvent} from "./GlobalEventDispatcherEvent";
 import {IGlobalDispatchEventVO} from "./IGlobalDispatchEventVO";
+import {IEventListenerCallback, StringTools} from "../../../../../fcore/src";
 
 export class GlobalEventDispatcher extends BaseObject {
 
-    dispatchEvent(event: string, ...args): void {
-        super.dispatchEvent(event, ...args);
+    dispatchEvent(type: string, ...args): void {
+        super.dispatchEvent(
+            this.getModifiedEventType(type, GLobalEventDispatcherEvent.PRE_DISPATCH_EVENT),
+            ...args
+        );
+
+        super.dispatchEvent(type, ...args);
 
         //
         super.dispatchEvent(
-            GLobalEventDispatcherEvent.DISPATCH_EVENT,
-            {
-                event: event,
-                args: args
-            } as IGlobalDispatchEventVO
+            this.getModifiedEventType(type, GLobalEventDispatcherEvent.POST_DISPATCH_EVENT),
+            ...args
         );
+    }
+
+    addPreEventListener(type: string, listener: IEventListenerCallback): void {
+        this.addEventListener(
+            this.getModifiedEventType(type, GLobalEventDispatcherEvent.PRE_DISPATCH_EVENT),
+            listener
+        );
+    }
+
+    addPostEventListener(type: string, listener: IEventListenerCallback): void {
+        this.addEventListener(
+            this.getModifiedEventType(type, GLobalEventDispatcherEvent.POST_DISPATCH_EVENT),
+            listener
+        );
+    }
+
+    removePreEventListener(type: string, listener: IEventListenerCallback): void {
+        this.removeEventListener(
+            this.getModifiedEventType(type, GLobalEventDispatcherEvent.PRE_DISPATCH_EVENT),
+            listener
+        );
+    }
+
+    removePostEventListener(type: string, listener: IEventListenerCallback): void {
+        this.removeEventListener(
+            this.getModifiedEventType(type, GLobalEventDispatcherEvent.POST_DISPATCH_EVENT),
+            listener
+        );
+    }
+
+    protected getModifiedEventType(type: string, preText: string): string {
+        return preText + type;
     }
 }

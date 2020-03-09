@@ -31,7 +31,7 @@ export class RendererManager extends BaseManager {
         Facade.instance.app.stage.interactive = true;
 
         // Renderer
-        Facade.instance.app.renderer.autoResize = true;
+        Facade.instance.app.renderer.autoDensity = true;
         // CSS settings
         Facade.instance.app.renderer.view.style.position = "absolute";
         Facade.instance.app.renderer.view.style.top = "0px";

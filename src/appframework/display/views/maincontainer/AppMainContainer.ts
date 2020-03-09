@@ -17,8 +17,8 @@ export class AppMainContainer extends ResizableContainer {
         super.arrange();
 
         this.pagesView.resize(
-            this.width,
-            this.height
+            this.resizeSize.x,
+            this.resizeSize.y
         );
     }
 }

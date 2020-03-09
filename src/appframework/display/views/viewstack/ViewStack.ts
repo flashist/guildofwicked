@@ -1,16 +1,17 @@
-import {AssociativeArray} from "fcore";
+import {
+    AssociativeArray,
+    IDatable
+} from "fcore";
 
 import {
     DisplayObject,
-    FContainer,
-    Point
+    DisplayObjectContainer
 } from "fsuite";
 
-import {IViewStackItem} from "./IViewStackItem";
 import {IResizable} from "../resize/IResizable";
 import {ResizableContainer} from "../resize/ResizableContainer";
 
-export class ViewStack<StackViewType extends DisplayObject = DisplayObject> extends ResizableContainer implements IResizable {
+export class ViewStack<StackViewType extends DisplayObjectContainer = DisplayObjectContainer> extends ResizableContainer implements IResizable {
 
     protected viewToIdMap: AssociativeArray<StackViewType>;
 
@@ -69,7 +70,8 @@ export class ViewStack<StackViewType extends DisplayObject = DisplayObject> exte
         super.commitData();
 
         if (this.selectedItem) {
-            (this.selectedItem as any as IViewStackItem).data = this.data;
+            const selectedDatableItem: IDatable = this._selectedItem as any;
+            selectedDatableItem.data = this.data;
         }
     }
 
@@ -78,9 +80,13 @@ export class ViewStack<StackViewType extends DisplayObject = DisplayObject> exte
 
         if (this._selectedItem) {
             if (this.resizeSize && this.resizeSize.x !== 0 && this.resizeSize.y !== 0) {
-                const viewStackItem = (this._selectedItem as any as IViewStackItem);
-                if (viewStackItem.resize) {
-                    viewStackItem.resize(this.resizeSize.x, this.resizeSize.y);
+                const selectedResizableItem: IResizable = this._selectedItem as any;
+                if (selectedResizableItem.resize) {
+                    selectedResizableItem.resize(this.resizeSize.x, this.resizeSize.y);
+
+                } else {
+                    this._selectedItem.width = this.resizeSize.x;
+                    this._selectedItem.height = this.resizeSize.y;
                 }
             }
         }

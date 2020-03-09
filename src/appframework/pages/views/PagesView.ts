@@ -1,14 +1,14 @@
 import {ResizableContainer} from "../../display/views/resize/ResizableContainer";
-import {ViewStackLazyCreationServiceLocator} from "../../display/views/viewstack/ViewStackLazyCreationServiceLocator";
+import {ViewLazyCreationServiceLocatorStack} from "../../display/views/viewstack/ViewLazyCreationServiceLocatorStack";
 
 export class PagesView extends ResizableContainer {
 
-    public viewStack: ViewStackLazyCreationServiceLocator;
+    public viewStack: ViewLazyCreationServiceLocatorStack;
 
     protected construction(...args): void {
         super.construction(args);
 
-        this.viewStack = new ViewStackLazyCreationServiceLocator();
+        this.viewStack = new ViewLazyCreationServiceLocatorStack();
         this.addChild(this.viewStack);
     }
 

@@ -13,5 +13,6 @@ export class ChangePageCommand extends BaseAppCommand {
 
     protected executeInternal(): void {
         this.pagesModel.pageId = this.pageId;
+        this.notifyComplete();
     }
 }

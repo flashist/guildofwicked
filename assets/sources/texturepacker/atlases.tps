@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename></filename>
+                <filename>../../atlases/preloader.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -180,9 +180,26 @@
             <false/>
         </struct>
         <key>individualSpriteSettings</key>
-        <map type="IndividualSpriteSettingsMap"/>
+        <map type="IndividualSpriteSettingsMap">
+            <key type="filename">preloader/loading_bar_grey.png</key>
+            <key type="filename">preloader/loading_bar_transparent.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>95,7,191,13</rect>
+                <key>scale9Paddings</key>
+                <rect>95,7,191,13</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+        </map>
         <key>fileList</key>
-        <array/>
+        <array>
+            <filename>preloader</filename>
+        </array>
         <key>ignoreFileList</key>
         <array/>
         <key>replaceList</key>

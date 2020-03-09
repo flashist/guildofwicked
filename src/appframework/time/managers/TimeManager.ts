@@ -1,7 +1,10 @@
+import {Ticker} from "pixi.js";
+
 import {getInstance} from "fsuite";
 
 import {BaseManager} from "../../base/managers/BaseManager";
 import {TimeModel} from "../models/TimeModel";
+
 
 export class TimeManager extends BaseManager {
 
@@ -11,13 +14,13 @@ export class TimeManager extends BaseManager {
         super.addListeners();
 
         //this is the same PIXI's ticker as it uses for its purposes (like MovieClips atc)
-        PIXI.ticker.shared.add(this.onTick, this);
+        Ticker.shared.add(this.onTick, this);
     }
 
     protected removeListeners(): void {
         super.removeListeners();
 
-        PIXI.ticker.shared.remove(this.onTick, this);
+        Ticker.shared.remove(this.onTick, this);
     }
 
     protected onTick(deltaTime: number): void {

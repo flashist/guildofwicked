@@ -1,5 +1,5 @@
-import {FContainer} from "fsuite";
+import {ResizableContainer} from "../../display/views/resize/ResizableContainer";
 
-export class BaseView extends FContainer {
+export class BaseView extends ResizableContainer {
 
 }

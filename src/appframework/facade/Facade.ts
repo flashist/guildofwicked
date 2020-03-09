@@ -1,6 +1,6 @@
 import {BaseObject} from "fcore";
 
-import {FApp, ServiceLocator} from "fsuite";
+import {FApp, ServiceLocator, getInstance} from "fsuite";
 
 import {GlobalEventDispatcherModule} from "../globaleventdispatcher/GlobalEventDispatcherModule";
 import {ModulesManager} from "../base/modules/ModulesManager";
@@ -19,12 +19,15 @@ import {LocalesModule} from "../locales/LocalesModule";
 import {StorageModule} from "../storage/StorageModule";
 import {SoundsModule} from "../sounds/SoundsModule";
 import {HTMLModule} from "../html/HTMLModule";
+import {AppMainContainer} from "../display/views/maincontainer/AppMainContainer";
 
 export class Facade extends BaseObject {
 
     protected options: IFacadeOptions;
     protected modulesManager: ModulesManager;
+
     public app: FApp;
+    public mainContainer: AppMainContainer;
 
     constructor(options: IFacadeOptions) {
         super(options);
@@ -33,13 +36,19 @@ export class Facade extends BaseObject {
     protected construction(options: IFacadeOptions): void {
         super.construction(options);
 
-        Facade._instance = this;
-
         this.options = options;
+
+        Facade._instance = this;
+        if (this.options.debug) {
+            window["Facade"] = this;
+        }
+
         ServiceLocator.options = {debug: this.options.debug};
 
         this.addModules();
         this.activateModules();
+
+        this.initView();
     }
 
     protected addModules(): void {
@@ -79,6 +88,11 @@ export class Facade extends BaseObject {
 
     public addModule(module): void {
         this.modulesManager.addModule(module);
+    }
+
+    protected initView(): void {
+        this.mainContainer = getInstance(AppMainContainer);
+        FApp.instance.stage.addChild(this.mainContainer);
     }
 
 // - - - - -
