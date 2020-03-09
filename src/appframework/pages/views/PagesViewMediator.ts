@@ -22,7 +22,8 @@ export class PagesViewMediator extends BaseMediator {
             this.activator.viewStack.addViewClass(tempPageClass, tempPageId);
         }
 
-        this.addGlobalEventListener(
+        this.eventListenerHelper.addEventListener(
+            this.globalDispatcher,
             PagesModelEvent.PAGE_ID_CHANGE,
             this.onPageIdChange
         );

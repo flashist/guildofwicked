@@ -14,5 +14,7 @@ export interface IAppConfigVO extends IGenericObjectVO {
     startDataItems?: IGenericObjectVO[];
 
     targetFps?: number;
-    sizeArea?: Rectangle;
+    sizeArea?: Partial<Rectangle>;
+
+    appSettings?: any;
 }

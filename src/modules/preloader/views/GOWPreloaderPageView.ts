@@ -1,11 +1,13 @@
-import {getInstance, FContainer, InteractiveEvent, FLabel, getText, Graphics, Sprite, Texture} from "fsuite";
-
-import {TweenLite} from "gsap";
-
 import {GOWSettings} from "../../../GOWSettings";
 import {GOWBasePageView} from "../../pages/views/GOWBasePageView";
 
 export class GOWPreloaderPageView extends GOWBasePageView {
+
+    protected construction(...args): void {
+        this.bgColor = GOWSettings.colors.white;
+
+        super.construction(...args);
+    }
 
     /*protected globalDispatcher: GlobalEventDispatcher = getInstance(GlobalEventDispatcher);
 

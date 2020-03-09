@@ -1,6 +1,6 @@
-import {BaseObject} from "fcore";
+import {BaseObject, Command} from "fcore";
 
-import {FApp, ServiceLocator, getInstance} from "fsuite";
+import {FApp, ServiceLocator, getInstance, Point, HtmlTools} from "fsuite";
 
 import {GlobalEventDispatcherModule} from "../globaleventdispatcher/GlobalEventDispatcherModule";
 import {ModulesManager} from "../base/modules/ModulesManager";
@@ -20,6 +20,10 @@ import {StorageModule} from "../storage/StorageModule";
 import {SoundsModule} from "../sounds/SoundsModule";
 import {HTMLModule} from "../html/HTMLModule";
 import {AppMainContainer} from "../display/views/maincontainer/AppMainContainer";
+import {InitApplicationCommand} from "../init/commands/InitApplicationCommand";
+import {RendererManager} from "../renderer/managers/RendererManager";
+import {GlobalEventDispatcher} from "../globaleventdispatcher/dispatcher/GlobalEventDispatcher";
+import {RendererManagerEvent} from "../renderer/events/RendererManagerEvent";
 
 export class Facade extends BaseObject {
 
@@ -28,6 +32,8 @@ export class Facade extends BaseObject {
 
     public app: FApp;
     public mainContainer: AppMainContainer;
+
+    protected resizeListener: any;
 
     constructor(options: IFacadeOptions) {
         super(options);
@@ -49,31 +55,34 @@ export class Facade extends BaseObject {
         this.activateModules();
 
         this.initView();
+
+        const initCmd: Command = getInstance(InitApplicationCommand);
+        initCmd.execute();
     }
 
     protected addModules(): void {
         this.modulesManager = new ModulesManager();
 
-        this.addModule(new DependenciesModule());
-        this.addModule(new ObjectsPoolModule());
-        this.addModule(new GlobalEventDispatcherModule());
-        this.addModule(new RendererModule());
-        this.addModule(new StorageModule());
-        this.addModule(new LoadModule());
-        this.addModule(new SoundsModule());
-        this.addModule(new HTMLModule());
-        this.addModule(new LocalesModule());
-        this.addModule(new AssetsModule());
-        this.addModule(new PagesModule());
+        this.addSingleModule(new DependenciesModule());
+        this.addSingleModule(new ObjectsPoolModule());
+        this.addSingleModule(new GlobalEventDispatcherModule());
+        this.addSingleModule(new RendererModule());
+        this.addSingleModule(new StorageModule());
+        this.addSingleModule(new LoadModule());
+        this.addSingleModule(new SoundsModule());
+        this.addSingleModule(new HTMLModule());
+        this.addSingleModule(new LocalesModule());
+        this.addSingleModule(new AssetsModule());
+        this.addSingleModule(new PagesModule());
 
-        this.addModule(new RendererModule());
+        this.addSingleModule(new RendererModule());
 
-        this.addModule(new AppModule());
-        this.addModule(new TimeModule());
-        this.addModule(new ContainersModule());
+        this.addSingleModule(new AppModule());
+        this.addSingleModule(new TimeModule());
+        this.addSingleModule(new ContainersModule());
 
         if (this.options.debug) {
-            this.addModule(new DebugModule());
+            this.addSingleModule(new DebugModule());
         }
     }
 
@@ -86,13 +95,65 @@ export class Facade extends BaseObject {
         this.modulesManager.activateModules();
     }
 
-    public addModule(module): void {
+    public addSingleModule(module): void {
         this.modulesManager.addModule(module);
     }
 
     protected initView(): void {
         this.mainContainer = getInstance(AppMainContainer);
         FApp.instance.stage.addChild(this.mainContainer);
+
+        this.onWindowResize();
+    }
+
+    protected addListeners(): void {
+        super.addListeners();
+
+        this.resizeListener = this.onWindowResize.bind(this);
+        window.addEventListener(
+            "resize",
+            this.resizeListener
+        );
+
+        const globalEventDispatcher: GlobalEventDispatcher = getInstance(GlobalEventDispatcher);
+        this.eventListenerHelper.addEventListener(
+            globalEventDispatcher,
+            RendererManagerEvent.RESIZE,
+            this.onRendererResize
+        )
+    }
+
+    protected removeListeners(): void {
+        super.removeListeners();
+
+        window.removeEventListener(
+            "resize",
+            this.resizeListener
+        );
+    }
+
+    /**
+     * Note: temporary solution, until pixi.js improvements are released in npm: https://github.com/pixijs/pixi.js/pull/6415
+     * (when they are released, the Renderer will emit resize event itself, it means
+     * that in combination with resizeTo there won't be a need to "control" resize outside)
+     */
+    protected onWindowResize(): void {
+        // this.arrange();
+        const rendererManager: RendererManager = getInstance(RendererManager);
+        const documentSize: Point = HtmlTools.getDocumentSize();
+        rendererManager.resize(documentSize.x, documentSize.y);
+    }
+
+    protected onRendererResize(): void {
+        this.arrange();
+    }
+
+    protected arrange(): void {
+        const rendererManager: RendererManager = getInstance(RendererManager);
+        this.mainContainer.resize(
+            rendererManager.rendererWidth,
+            rendererManager.rendererHeight
+        );
     }
 
 // - - - - -

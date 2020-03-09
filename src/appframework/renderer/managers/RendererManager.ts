@@ -1,10 +1,9 @@
-import {ObjectTools} from "fcore";
-import {Point, HtmlTools, FApp} from "fsuite";
+import {FApp, getInstance} from "fsuite";
 
 import {BaseManager} from "../../base/managers/BaseManager";
-import {RendererModuleConstants} from "../RendererModuleConstants";
 import {Facade} from "../../facade/Facade";
-import {RendererManagerEvents} from "../events/RendererManagerEvents";
+import {AppConfigModel} from "../../app/models/AppConfigModel";
+import {RendererManagerEvent} from "../events/RendererManagerEvent";
 
 export class RendererManager extends BaseManager {
 
@@ -17,14 +16,11 @@ export class RendererManager extends BaseManager {
             PIXI.settings.TARGET_FPMS = this.targetFps / 1000;
         }
 
-        const screenSize: Point = HtmlTools.getDocumentSize();
-        // Init the graphics app
-        let tempSettings = {
-            width: screenSize.x,
-            height: screenSize.y
-            // resolution: window.devicePixelRatio
-        };
-        ObjectTools.copyProps(tempSettings, RendererModuleConstants.appSettings);
+        const appConfigModel: AppConfigModel = getInstance(AppConfigModel);
+        let tempSettings: any = appConfigModel.appConfig.appSettings;
+        if (!tempSettings) {
+            tempSettings = {};
+        }
         Facade.instance.app = new FApp(tempSettings);
 
         // Stage
@@ -41,15 +37,16 @@ export class RendererManager extends BaseManager {
         document.body.appendChild(Facade.instance.app.view);
     }
 
-    public reside(width: number, height: number): void {
-        this.dispatchEvent(RendererManagerEvents.BEFORE_RESIZE);
-
-        Facade.instance.app.renderer.resize(
-            width,
-            height
-        );
-
-        this.dispatchEvent(RendererManagerEvents.AFTER_RESIZE);
+    public resize(width: number, height: number): void {
+        Facade.instance.app.renderer.resize(width, height);
+        this.dispatchEvent(RendererManagerEvent.RESIZE);
     }
 
+    public get rendererWidth(): number {
+        return Facade.instance.app.renderer.width;
+    }
+
+    public get rendererHeight(): number {
+        return Facade.instance.app.renderer.height;
+    }N
 }

@@ -1,4 +1,5 @@
 import {ObjectTools} from "fcore";
+import {getInstance} from "fsuite";
 
 import {IAppConfigVO} from "../data/IAppConfigVO";
 import {BaseModel} from "../../base/models/BaseModel";
@@ -11,7 +12,7 @@ export class AppConfigModel extends BaseModel {
     protected construction(): void {
         super.construction();
 
-        this.appConfig = new DefaultAppConfigVO();
+        this.appConfig = getInstance(DefaultAppConfigVO);
     }
 
     public changeConfig(changeData: Partial<IAppConfigVO>): void {

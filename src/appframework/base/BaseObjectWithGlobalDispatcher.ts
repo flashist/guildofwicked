@@ -21,19 +21,4 @@ export class BaseObjectWithGlobalDispatcher extends BaseObject {
         this.globalDispatcher.dispatchEvent(event, ...args);
     }
 
-    addGlobalEventListener(type: string, listener: IEventListenerCallback): void {
-        this.eventListenerHelper.addEventListener(
-            this.globalDispatcher,
-            type,
-            listener
-        );
-    }
-
-    removeGlobalEventListener(type: string, listener: IEventListenerCallback): void {
-        this.eventListenerHelper.removeEventListener(
-            this.globalDispatcher,
-            type,
-            listener
-        );
-    }
 }
