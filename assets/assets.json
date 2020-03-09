@@ -1,80 +1,20 @@
 {
   "files": [
     {
-      "id": "Rochester-Regular",
-      "src": "assets/fonts/rochester/Rochester-Regular.ttf",
+      "id": "Clarence",
+      "src": "assets/fonts/Clarence.ttf",
       "fileType": "font",
       "loadGroups": ["preload"],
       "fontFace": {
-        "font-family": "Rochester"
+        "font-family": "Clarence"
       }
     },
 
     {
-      "id": "PTSerif-Regular",
-      "src": "assets/fonts/ptserif/PTSerif-Regular.ttf",
-      "fileType": "font",
-      "loadGroups": ["preload"],
-      "fontFace": {
-        "font-family": "PT Serif"
-      }
-    },
-    {
-      "id": "PTSerif-Bold",
-      "src": "assets/fonts/ptserif/PTSerif-Regular.ttf",
-      "fileType": "font",
-      "loadGroups": ["preload"],
-      "fontFace": {
-        "font-family": "PT Serif",
-        "font-weight": "bold"
-      }
-    },
-
-    {
-      "id": "preloader-0",
-      "src": "assets/atlasses/preloader/xhd/atlas-0.json",
+      "id": "preloader",
+      "src": "assets/atlases/preloader.json",
       "fileType": "spritesheet",
       "loadGroups": ["preload"]
-    },
-
-    {
-      "id": "game-0",
-      "src": "assets/atlasses/game/xhd/atlas-0.json",
-      "fileType": "spritesheet",
-      "loadGroups": ["init"]
-    },
-    {
-      "id": "game-1",
-      "src": "assets/atlasses/game/xhd/atlas-1.json",
-      "fileType": "spritesheet",
-      "loadGroups": ["init"]
-    },
-    {
-      "id": "game-2",
-      "src": "assets/atlasses/game/xhd/atlas-2.json",
-      "fileType": "spritesheet",
-      "loadGroups": ["init"]
-    },
-    {
-      "id": "game-3",
-      "src": "assets/atlasses/game/xhd/atlas-3.json",
-      "fileType": "spritesheet",
-      "loadGroups": ["init"]
-    },
-
-    {
-      "id": "main_theme",
-      "src": "assets/sounds/deletris_main.{extension}",
-      "extensions": ["webm", "mp3"],
-      "fileType": "sound",
-      "loadGroups": ["init"]
-    },
-    {
-      "id": "game_over_theme",
-      "src": "assets/sounds/deletris_game_over.{extension}",
-      "extensions": ["webm", "mp3"],
-      "fileType": "sound",
-      "loadGroups": ["init"]
     }
   ]
 }

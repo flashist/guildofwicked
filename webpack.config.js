@@ -53,6 +53,9 @@ module.exports = {
                     from: "src/index.html"
                 },
                 {
+                    from: "assets/*"
+                },
+                {
                     from: "assets/!(sources)/**"
                 }
             ]

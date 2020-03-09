@@ -26,7 +26,9 @@ export class LoadAppConfigCommand extends BaseAppCommand {
                     appConfigModel.changeConfig(data);
 
                     let genericObjectsByTypeModel: GenericObjectsByTypeModel = getInstance(GenericObjectsByTypeModel);
-                    genericObjectsByTypeModel.commitItems(data.startDataItems);
+                    if (data.startDataItems) {
+                        genericObjectsByTypeModel.commitItems(data.startDataItems);
+                    }
 
                     this.notifyComplete();
                 },
