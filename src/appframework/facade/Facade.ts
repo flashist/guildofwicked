@@ -10,7 +10,6 @@ import {IFacadeOptions} from "./IFacadeOptions";
 import {AppModule} from "../app/AppModule";
 import {TimeModule} from "../time/TimeModule";
 import {DebugModule} from "../debug/DebugModule";
-import {StrategiesModule} from "../strategies/StrategiesModule";
 import {LoadModule} from "../load/LoadModule";
 import {DependenciesModule} from "../dependencies/DependenciesModule";
 import {AssetsModule} from "../assets/AssetsModule";
@@ -62,7 +61,6 @@ export class Facade extends BaseObject {
 
         this.addModule(new AppModule());
         this.addModule(new TimeModule());
-        this.addModule(new StrategiesModule());
         this.addModule(new ContainersModule());
 
         if (this.options.debug) {

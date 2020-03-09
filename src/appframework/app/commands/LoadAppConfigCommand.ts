@@ -1,13 +1,16 @@
-import {Command} from "fcore";
-import {LoadItemCommand, getInstance, GenericObjectsByTypeModel} from "fsuite";
+import {
+    LoadItemCommand,
+    getInstance,
+    GenericObjectsByTypeModel
+} from "fsuite";
+
 import {IAppConfigVO} from "../data/IAppConfigVO";
 import {AppConfigModel} from "../models/AppConfigModel";
+import {BaseAppCommand} from "../../base/commands/BaseAppCommand";
 
-export class LoadAppConfigCommand extends Command {
+export class LoadAppConfigCommand extends BaseAppCommand {
 
     protected executeInternal(): void {
-        super.executeInternal();
-
         const appConfigModel: AppConfigModel = getInstance(AppConfigModel);
         new LoadItemCommand(
             {
@@ -19,9 +22,6 @@ export class LoadAppConfigCommand extends Command {
             .then(
                 (data: IAppConfigVO) => {
                     console.log("LoadAppConfigCommand | executeInternal __ data: ", data);
-
-                    /*let objectsByTypeModel: GenericObjectsByTypeModel = getInstance(GenericObjectsByTypeModel);
-                    objectsByTypeModel.commitItems([data]);*/
 
                     appConfigModel.changeConfig(data);
 

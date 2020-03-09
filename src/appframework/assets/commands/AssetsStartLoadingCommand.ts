@@ -1,18 +1,14 @@
 import {
-    Command
-} from "fcore";
-
-import {
     getInstance,
     LoadManager
 } from "fsuite";
-import {AssetsModel} from "../models/AssetsModel";
 
-export class AssetsStartLoadingCommand extends Command {
+import {AssetsModel} from "../models/AssetsModel";
+import {BaseAppCommand} from "../../base/commands/BaseAppCommand";
+
+export class AssetsStartLoadingCommand extends BaseAppCommand {
 
     protected executeInternal(): void {
-        super.executeInternal();
-
         let loadManager: LoadManager = getInstance(LoadManager);
         let assetsModel: AssetsModel = getInstance(AssetsModel);
         const assetsCount: number = assetsModel.assetsConfig.files.length;

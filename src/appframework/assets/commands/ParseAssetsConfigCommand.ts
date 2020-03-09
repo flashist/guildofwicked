@@ -1,19 +1,14 @@
 import {
-    Command
-} from "fcore";
-
-import {
     getInstance,
     LoadManager
 } from "fsuite";
 
 import {AssetsModel} from "../models/AssetsModel";
+import {BaseAppCommand} from "../../base/commands/BaseAppCommand";
 
-export class ParseAssetsConfigCommand extends Command {
+export class ParseAssetsConfigCommand extends BaseAppCommand {
 
     protected executeInternal(): void {
-        super.executeInternal();
-
         let loadManager: LoadManager = getInstance(LoadManager);
 
         // Go through all

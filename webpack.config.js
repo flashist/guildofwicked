@@ -1,6 +1,7 @@
 const path = require('path');
+const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 // CONSTANTS
 const BUILD_DIR = "dist";
@@ -17,11 +18,20 @@ module.exports = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
+            {
+                test: /node_modules[/\\]createjs/,
+                loaders: [
+                    'imports-loader?this=>window',
+                    'exports-loader?window.createjs'
+                ]
+            }
         ],
     },
     resolve: {
         extensions: [".js", ".ts", ".json"],
         alias: {
+            "createjs": path.resolve(NODE_MODULES_DIR, 'createjs/builds/1.0.0/createjs.js'),
+
             "fcore": path.resolve(NODE_MODULES_DIR, 'fcore/'),
             "fsuite": path.resolve(NODE_MODULES_DIR, 'fsuite/'),
             "fconsole": path.resolve(NODE_MODULES_DIR, 'fconsole/')
@@ -33,6 +43,10 @@ module.exports = {
         filename: 'bundle.js'
     },
     plugins: [
+        new webpack.ProvidePlugin(
+            {
+            }
+        ),
         new CopyPlugin(
             [
                 {

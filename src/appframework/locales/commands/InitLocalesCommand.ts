@@ -13,12 +13,11 @@ import {
 } from "fsuite";
 
 import {AppConfigModel} from "../../app/models/AppConfigModel";
+import {BaseAppCommand} from "../../base/commands/BaseAppCommand";
 
-export class InitLocalesCommand extends Command {
+export class InitLocalesCommand extends BaseAppCommand {
 
     protected executeInternal(): void {
-        super.executeInternal();
-
         let appConfigModel: AppConfigModel = getInstance(AppConfigModel);
 
         const locale: string = appConfigModel.appConfig.locale;

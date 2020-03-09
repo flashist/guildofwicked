@@ -3,6 +3,7 @@ import {FApp, Point, HtmlTools} from "fsuite";
 import {Facade} from "./appframework/facade/Facade";
 import {IFacadeOptions} from "./appframework/facade/IFacadeOptions";
 import {AppMainContainer} from "./appframework/display/views/maincontainer/AppMainContainer";
+import {InitApplicationCommand} from "./modules/init/commands/InitApplicationCommand";
 
 export class GOWFacade extends Facade {
 
@@ -16,7 +17,8 @@ export class GOWFacade extends Facade {
         this.mainContainer = new AppMainContainer();
         FApp.instance.stage.addChild(this.mainContainer);
 
-        this.onResize();
+        new InitApplicationCommand()
+            .execute();
     }
 
     protected addListeners(): void {

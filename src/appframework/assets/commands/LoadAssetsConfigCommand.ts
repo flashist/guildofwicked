@@ -1,8 +1,4 @@
 import {
-    Command
-} from "fcore";
-
-import {
     getInstance,
     LoadItemCommand
 } from "fsuite";
@@ -10,12 +6,11 @@ import {
 import {AppConfigModel} from "../../app/models/AppConfigModel";
 import {IAssetsConfigVO} from "../data/IAssetsConfigVO";
 import {AssetsModel} from "../models/AssetsModel";
+import {BaseAppCommand} from "../../base/commands/BaseAppCommand";
 
-export class LoadAssetsConfigCommand extends Command {
+export class LoadAssetsConfigCommand extends BaseAppCommand {
 
     protected executeInternal(): void {
-        super.executeInternal();
-
         let appConfigModel: AppConfigModel = getInstance(AppConfigModel);
         let tempCmd = new LoadItemCommand(appConfigModel.appConfig.assetsConfigFile);
         tempCmd.execute()
