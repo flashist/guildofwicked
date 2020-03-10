@@ -4,16 +4,21 @@ import {GOWSettings} from "../../../GOWSettings";
 import {GOWBasePageView} from "../../pages/views/GOWBasePageView";
 import {GOWGamePageHeaderView} from "./header/GOWGamePageHeaderView";
 import {GOWGamePageFooterView} from "./footer/GOWGamePageFooterView";
+import {GOWGamePageVisualizationView} from "./visualization/GOWGamePageVisualizationView";
 
 export class GOWGamePageView extends GOWBasePageView {
 
     protected headerView: GOWGamePageHeaderView;
     protected footerView: GOWGamePageFooterView;
+    protected visualizationView: GOWGamePageVisualizationView;
 
     protected construction(...args): void {
         this.bgColor = GOWSettings.colors.white;
 
         super.construction(...args);
+
+        this.visualizationView = getInstance(GOWGamePageVisualizationView);
+        this.contentCont.addChild(this.visualizationView);
 
         this.headerView = getInstance(GOWGamePageHeaderView);
         this.contentCont.addChild(this.headerView);
@@ -52,5 +57,12 @@ export class GOWGamePageView extends GOWBasePageView {
         this.footerView.resize(Math.ceil(screenSizeLocal.x), 70);
         this.footerView.x = Math.floor(topLeftContentLocal.x);
         this.footerView.y = Math.ceil(topLeftContentLocal.y + screenSizeLocal.y - this.footerView.height);
+
+        this.visualizationView.resize(
+            Math.ceil(screenSizeLocal.x),
+            Math.ceil((screenSizeLocal.y / 2) - (this.headerView.y + this.headerView.height))
+        );
+        this.visualizationView.x = Math.floor(topLeftContentLocal.x);
+        this.visualizationView.y = Math.floor(this.headerView.y + this.headerView.height);
     }
 }

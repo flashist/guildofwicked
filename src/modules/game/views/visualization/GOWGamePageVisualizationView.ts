@@ -4,7 +4,7 @@ import {BaseView} from "../../../../appframework/base/views/BaseView";
 import {GOWSettings} from "../../../../GOWSettings";
 import {GOWUsersModel} from "../../../users/models/GOWUsersModel";
 
-export class GOWGamePageVisuzalizationView extends BaseView {
+export class GOWGamePageVisualizationView extends BaseView {
 
     protected bg: Graphics;
 
