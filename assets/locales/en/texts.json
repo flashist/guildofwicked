@@ -4,6 +4,7 @@
 
     "preloaderProgress": "LOADING: {progress}%",
 
-    "gamePageTest": "GAME PAGE"
+    "gamePageTest": "GAME PAGE",
+    "cityBtn": "CITY"
   }
 }

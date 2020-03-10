@@ -4,5 +4,8 @@ export const GOWSettings = {
         grey: 0x767973,
         greyLight: 0xb6b7b5,
         white: 0xeaeaea
+    },
+    layout: {
+        contentToBorderPadding: 15
     }
 };
