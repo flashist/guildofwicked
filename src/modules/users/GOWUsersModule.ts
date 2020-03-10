@@ -23,7 +23,10 @@ export class GOWUsersModule extends BaseModule {
             {
                 id: "1",
                 type: "user",
-                money: 100000000
+
+                resources: {
+                    money: 123456789
+                }
             }
         )
     }

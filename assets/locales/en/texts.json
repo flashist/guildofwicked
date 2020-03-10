@@ -5,7 +5,8 @@
     "preloaderProgress": "LOADING: {progress}%",
 
     "gamePageTest": "GAME PAGE",
-    "cityBtn": "CITY",
+    "mapBtn": "CITY",
+    "cityBtn": "MAP",
     "userMoney": "${money}",
     "premiumCurrenciesPlaceholder": "PLACE FOR PREMIUM CURRENCIES"
   }

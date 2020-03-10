@@ -1,21 +1,15 @@
-import {BaseDataVO} from "fcore";
-import {GOWUserVOEvent} from "../events/GOWUserVOEvent";
+import {BaseDataVO} from "fsuite";
+import {GOWResourceType} from "../../resources/data/GOWResourceType";
 
 export class GOWUserVO extends BaseDataVO {
 
-    private _money: number = 0;
+    resources: {[key: string]: number} = {};
 
-    get money(): number {
-        return this._money;
-    }
-    set money(value: number) {
-        if (value === this.money) {
-            return;
+    public getResource(resourceType: GOWResourceType): number {
+        let result: number = this.resources[resourceType];
+        if (!result) {
+            result = 0;
         }
-
-        this._money = value;
-
-        this.dispatchEvent(GOWUserVOEvent.MONEY_CHANGE);
+        return result;
     }
-
 }

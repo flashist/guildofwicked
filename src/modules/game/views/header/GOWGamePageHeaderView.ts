@@ -6,6 +6,7 @@ import {GOWSettings} from "../../../../GOWSettings";
 import {SimpleButtonView} from "../../../views/button/SimpleButtonView";
 import {GOWUsersModel} from "../../../users/models/GOWUsersModel";
 import {GOWUserVOEvent} from "../../../users/events/GOWUserVOEvent";
+import {GOWResourceType} from "../../../resources/data/GOWResourceType";
 
 export class GOWGamePageHeaderView extends BaseView {
 
@@ -14,7 +15,7 @@ export class GOWGamePageHeaderView extends BaseView {
     protected bg: Graphics;
 
     protected avatarPlaceholder: Graphics;
-    protected cityBtn: SimpleButtonView;
+    protected mapBtn: SimpleButtonView;
     protected moneyLabel: FLabel;
     protected premiumCurrenciesPlaceholderLabel: FLabel;
 
@@ -38,7 +39,7 @@ export class GOWGamePageHeaderView extends BaseView {
         this.avatarPlaceholder.drawRect(0, 0, 110, 110);
         this.avatarPlaceholder.endFill();
 
-        this.cityBtn = new SimpleButtonView(
+        this.mapBtn = new SimpleButtonView(
             {
                 bgConfig: {
                     bgColor: GOWSettings.colors.white,
@@ -57,10 +58,10 @@ export class GOWGamePageHeaderView extends BaseView {
                 }
             }
         );
-        this.addChild(this.cityBtn);
+        this.addChild(this.mapBtn);
         //
-        this.cityBtn.resize(110, 110);
-        this.cityBtn.text = getText("cityBtn");
+        this.mapBtn.resize(110, 110);
+        this.mapBtn.text = getText("mapBtn");
 
         this.moneyLabel = new FLabel({
             fontFamily: "Clarence",
@@ -117,13 +118,12 @@ export class GOWGamePageHeaderView extends BaseView {
         super.commitData();
 
         if (this.usersModel.curUserData) {
+            const userMoney: number = this.usersModel.curUserData.getResource(GOWResourceType.MONEY);
             this.moneyLabel.text = getText(
                 "userMoney",
                 {
                     money: StringTools.groupCharacters(
-                        this.usersModel.curUserData.money.toString(),
-                        3,
-                        ","
+                        userMoney.toString()
                     )
                 }
             );
@@ -139,12 +139,12 @@ export class GOWGamePageHeaderView extends BaseView {
         this.avatarPlaceholder.x = Math.floor(this.bg.x + GOWSettings.layout.contentToBorderPadding);
         this.avatarPlaceholder.y = Math.floor(this.bg.y + GOWSettings.layout.contentToBorderPadding);
 
-        this.cityBtn.x = Math.floor(this.bg.x + this.bg.width - this.cityBtn.width - GOWSettings.layout.contentToBorderPadding);
-        this.cityBtn.y = Math.floor(this.bg.y + GOWSettings.layout.contentToBorderPadding);
+        this.mapBtn.x = Math.floor(this.bg.x + this.bg.width - this.mapBtn.width - GOWSettings.layout.contentToBorderPadding);
+        this.mapBtn.y = Math.floor(this.bg.y + GOWSettings.layout.contentToBorderPadding);
 
         this.moneyLabel.x = Math.floor(this.avatarPlaceholder.x + this.avatarPlaceholder.width) + 15;
         this.moneyLabel.y = this.avatarPlaceholder.y;
-        this.moneyLabel.width = this.cityBtn.x - this.moneyLabel.x - 15;
+        this.moneyLabel.width = this.mapBtn.x - this.moneyLabel.x - 15;
 
         this.premiumCurrenciesPlaceholderLabel.x = this.moneyLabel.x;
         this.premiumCurrenciesPlaceholderLabel.y = Math.floor(this.avatarPlaceholder.y + this.avatarPlaceholder.height - this.premiumCurrenciesPlaceholderLabel.height);
