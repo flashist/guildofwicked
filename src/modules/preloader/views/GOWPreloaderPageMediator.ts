@@ -38,7 +38,14 @@ export class GOWPreloaderPageMediator extends BaseMediator {
     }
 
     private onViewProgressComplete() {
-        new ChangePageCommand(PageId.GAME_PAGE_ID)
-            .execute();
+        // Timeout is set for user-experience purpuse,
+        // to keep the 100% loading information a bit longer on the screen
+        setTimeout(
+            () => {
+                new ChangePageCommand(PageId.GAME_PAGE_ID)
+                    .execute();
+            },
+            1000
+        );
     }
 }

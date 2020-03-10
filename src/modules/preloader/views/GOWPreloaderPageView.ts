@@ -1,11 +1,9 @@
-import {NumberTools} from "fcore";
-import {FContainer, FLabel, getInstance, getText, Graphics, Sprite} from "fsuite";
+import {FContainer, FLabel, getText, Graphics, Sprite} from "fsuite";
 
 import {TweenLite} from "gsap";
 
 import {GOWSettings} from "../../../GOWSettings";
 import {GOWBasePageView} from "../../pages/views/GOWBasePageView";
-import {GlobalEventDispatcher} from "../../../appframework/globaleventdispatcher/dispatcher/GlobalEventDispatcher";
 import {GOWPreloaderPageViewEvent} from "./GOWPreloaderPageViewEvent";
 
 export class GOWPreloaderPageView extends GOWBasePageView {
@@ -103,14 +101,16 @@ export class GOWPreloaderPageView extends GOWBasePageView {
     set viewProgress(value: number) {
         this._viewProgress = value;
 
-        this.commitViewData();
+        this.commitData();
 
         if (this.viewProgress >= 1) {
             this.emit(GOWPreloaderPageViewEvent.PROGRESS_COMPLETE);
         }
     }
 
-    protected commitViewData(): void {
+    protected commitData(): void {
+        super.commitData();
+
         this.progressBarMask.width = this.progressBar.width * this._viewProgress;
         this.progressLabel.text = getText(
             "preloaderProgress",
