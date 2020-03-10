@@ -89,20 +89,25 @@ export class SimpleButtonView<DataType extends object = object> extends Resizabl
         if (this.bg.width !== this.resizeSize.x ||
             this.bg.height !== this.resizeSize.y) {
 
-            this.bg.beginFill(this.config.bgConfig.bgColor, this.config.bgConfig.bgAlpha);
-            this.bg.lineStyle(
-                this.config.bgConfig.bgBorderWidth,
-                this.config.bgConfig.bgBorderColor,
-                this.config.bgConfig.bgBorderAlpha
-            );
-            this.bg.drawRect(0, 0, this.resizeSize.x, this.resizeSize.y);
-
+            this.updateBg();
         }
 
         this.label.width = this.bg.width;
         this.label.height = this.bg.height;
         this.label.x = this.bg.x + Math.floor((this.bg.width - this.label.width) / 2);
         this.label.y = this.bg.y + Math.floor((this.bg.height - this.label.height) / 2);
+    }
+
+    protected updateBg(): void {
+        this.bg.clear();
+
+        this.bg.beginFill(this.config.bgConfig.bgColor, this.config.bgConfig.bgAlpha);
+        this.bg.lineStyle(
+            this.config.bgConfig.bgBorderWidth,
+            this.config.bgConfig.bgBorderColor,
+            this.config.bgConfig.bgBorderAlpha
+        );
+        this.bg.drawRect(0, 0, this.resizeSize.x, this.resizeSize.y);
     }
 
     get enabled(): boolean {
@@ -145,8 +150,10 @@ export class SimpleButtonView<DataType extends object = object> extends Resizabl
         if (this.enabled) {
             this.interactive = true;
 
-            if (this.state === SimpleButtonState.NORMAL || this.state === SimpleButtonState.SELECTED_NORMAL) {
+            if (this.state === SimpleButtonState.NORMAL) {
                 this.alpha = 0.5;
+            } else if (this.state === SimpleButtonState.SELECTED_NORMAL) {
+                this.alpha = 1;
             } else if (this.state === SimpleButtonState.OVER || this.state === SimpleButtonState.SELECTED_OVER) {
                 this.alpha = 1;
             }
@@ -167,7 +174,7 @@ export class SimpleButtonView<DataType extends object = object> extends Resizabl
 
         this._selected = value;
 
-        this.state = this.findStateValue(SimpleButtonState.SELECTED_NORMAL);
+        this.state = this.findStateValue(SimpleButtonState.NORMAL);
     }
 
     protected findStateValue(normalState: string): string {

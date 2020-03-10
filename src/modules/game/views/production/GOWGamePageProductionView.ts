@@ -5,6 +5,9 @@ import {GOWGamePageModel} from "../../models/GOWGamePageModel";
 import {GOWGamePageModelEvent} from "../../events/GOWGamePageModelEvent";
 import {SimpleButtonView} from "../../../../appframework/display/views/button/SimpleButtonView";
 import {GOWSettings} from "../../../../GOWSettings";
+import {ToggleGroup} from "../../../../appframework/display/views/togglegroup/ToggleGroup";
+import {ToggleGroupEvent} from "../../../../appframework/display/views/togglegroup/ToggleGroupEvent";
+import {GOWGamePageTabId} from "../../data/GOWGamePageTabId";
 
 export class GOWGamePageProductionView extends BaseView {
 
@@ -12,6 +15,7 @@ export class GOWGamePageProductionView extends BaseView {
 
     protected moneyTabButton: SimpleButtonView;
     protected unitsTabButton: SimpleButtonView;
+    public tabsToggleGroup: ToggleGroup;
 
     protected construction(...args): void {
         super.construction(...args);
@@ -47,6 +51,7 @@ export class GOWGamePageProductionView extends BaseView {
         );
         this.addChild(this.moneyTabButton);
         //
+        this.moneyTabButton.id = GOWGamePageTabId.MONEY;
         this.moneyTabButton.text = getText("money");
 
         this.unitsTabButton = new SimpleButtonView(
@@ -78,7 +83,12 @@ export class GOWGamePageProductionView extends BaseView {
         );
         this.addChild(this.unitsTabButton);
         //
+        this.unitsTabButton.id = GOWGamePageTabId.UNITS;
         this.unitsTabButton.text = getText("units");
+
+        this.tabsToggleGroup = new ToggleGroup();
+        this.tabsToggleGroup.addItem(this.moneyTabButton);
+        this.tabsToggleGroup.addItem(this.unitsTabButton);
     }
 
     protected addListeners(): void {
@@ -88,7 +98,7 @@ export class GOWGamePageProductionView extends BaseView {
             this.gamePageModel,
             GOWGamePageModelEvent.TAB_ID_CHANGE,
             this.onTabIdChange
-        )
+        );
     }
 
     protected onTabIdChange(): void {
@@ -97,6 +107,8 @@ export class GOWGamePageProductionView extends BaseView {
 
     protected commitData(): void {
         super.commitData();
+
+        this.tabsToggleGroup.selectedId = this.gamePageModel.tabId;
 
         this.arrange();
     }

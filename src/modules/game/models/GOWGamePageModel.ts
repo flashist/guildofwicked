@@ -4,12 +4,12 @@ import {GOWGamePageModelEvent} from "../events/GOWGamePageModelEvent";
 
 export class GOWGamePageModel extends BaseModel {
 
-    private _tabId: GOWGamePageTabId = GOWGamePageTabId.MONEY;
+    private _tabId: string = GOWGamePageTabId.MONEY;
 
-    get tabId(): GOWGamePageTabId {
+    get tabId(): string {
         return this._tabId;
     }
-    set tabId(value: GOWGamePageTabId) {
+    set tabId(value: string) {
         if (value === this.tabId) {
             return;
         }

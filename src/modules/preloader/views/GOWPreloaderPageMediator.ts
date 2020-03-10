@@ -7,14 +7,13 @@ import {GOWPreloaderPageViewEvent} from "./GOWPreloaderPageViewEvent";
 import {ChangePageCommand} from "../../../appframework/pages/commands/ChangePageCommand";
 import {PageId} from "../../../appframework/pages/PageId";
 
-export class GOWPreloaderPageMediator extends BaseMediator {
+export class GOWPreloaderPageMediator extends BaseMediator<GOWPreloaderPageView> {
 
-    protected activator: GOWPreloaderPageView;
     protected loadManager: LoadManager = getInstance(LoadManager);
 
     protected initLoadGroup: LoadGroup;
 
-    onActivatorStart(activator: any): void {
+    onActivatorStart(activator: GOWPreloaderPageView): void {
         super.onActivatorStart(activator);
 
         this.initLoadGroup = this.loadManager.getGroup(LoadGroupName.INIT);
