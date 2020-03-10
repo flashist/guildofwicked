@@ -6,6 +6,7 @@
 
     "gamePageTest": "GAME PAGE",
     "cityBtn": "CITY",
-    "userMoney": "${money}"
+    "userMoney": "${money}",
+    "premiumCurrenciesPlaceholder": "PLACE FOR PREMIUM CURRENCIES"
   }
 }

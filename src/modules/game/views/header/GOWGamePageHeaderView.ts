@@ -16,6 +16,7 @@ export class GOWGamePageHeaderView extends BaseView {
     protected avatarPlaceholder: Graphics;
     protected cityBtn: SimpleButtonView;
     protected moneyLabel: FLabel;
+    protected premiumCurrenciesPlaceholderLabel: FLabel;
 
     protected construction(...args): void {
         super.construction(...args);
@@ -77,6 +78,24 @@ export class GOWGamePageHeaderView extends BaseView {
             dropShadowBlur: 4
         });
         this.addChild(this.moneyLabel);
+
+        this.premiumCurrenciesPlaceholderLabel = new FLabel({
+            fontFamily: "Clarence",
+            size: 24,
+            color: GOWSettings.colors.greyLight,
+            autosize: true,
+
+            stroke: GOWSettings.colors.black,
+            strokeThickness: 1.5,
+
+            dropShadow: true,
+            dropShadowColor: GOWSettings.colors.black,
+            dropShadowDistance: 0,
+            dropShadowBlur: 2
+        });
+        this.addChild(this.premiumCurrenciesPlaceholderLabel);
+        //
+        this.premiumCurrenciesPlaceholderLabel.text = getText("premiumCurrenciesPlaceholder");
     }
 
 
@@ -126,5 +145,8 @@ export class GOWGamePageHeaderView extends BaseView {
         this.moneyLabel.x = Math.floor(this.avatarPlaceholder.x + this.avatarPlaceholder.width) + 15;
         this.moneyLabel.y = this.avatarPlaceholder.y;
         this.moneyLabel.width = this.cityBtn.x - this.moneyLabel.x - 15;
+
+        this.premiumCurrenciesPlaceholderLabel.x = this.moneyLabel.x;
+        this.premiumCurrenciesPlaceholderLabel.y = Math.floor(this.avatarPlaceholder.y + this.avatarPlaceholder.height - this.premiumCurrenciesPlaceholderLabel.height);
     }
 }
