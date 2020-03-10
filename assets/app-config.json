@@ -18,6 +18,13 @@
     "loadGroup": "preload"
   },
 
+  "staticItemsFile": {
+    "id": "static.json",
+    "src": "assets/static.json",
+    "fileType": "text",
+    "loadGroup": "preload"
+  },
+
   "startItems": [
   ]
 }

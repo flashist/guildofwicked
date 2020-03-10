@@ -10,6 +10,7 @@ export interface IAppConfigVO extends IGenericObjectVO {
 
     assetsConfigFile?: ILoadItemConfig;
     localeConfigFile?: ILoadItemConfig;
+    staticItemsFile?: ILoadItemConfig;
 
     startDataItems?: IGenericObjectVO[];
 
