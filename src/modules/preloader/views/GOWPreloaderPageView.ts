@@ -10,8 +10,6 @@ import {GOWPreloaderPageViewEvent} from "./GOWPreloaderPageViewEvent";
 
 export class GOWPreloaderPageView extends GOWBasePageView {
 
-    protected globalDispatcher: GlobalEventDispatcher = getInstance(GlobalEventDispatcher);
-
     protected contentCont: FContainer;
 
     protected titleField: FLabel;
@@ -108,7 +106,7 @@ export class GOWPreloaderPageView extends GOWBasePageView {
         this.commitViewData();
 
         if (this.viewProgress >= 1) {
-            this.globalDispatcher.dispatchEvent(GOWPreloaderPageViewEvent.PROGRESS_COMPLETE);
+            this.emit(GOWPreloaderPageViewEvent.PROGRESS_COMPLETE);
         }
     }
 

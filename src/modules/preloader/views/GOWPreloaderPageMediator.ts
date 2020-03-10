@@ -2,14 +2,14 @@ import {getInstance, LoadEvent, LoadGroup, LoadManager} from "fsuite";
 
 import {BaseMediator} from "../../../appframework/base/mediators/BaseMediator";
 import {LoadGroupName} from "../../../appframework/load/LoadGroupName";
-import {GlobalEventDispatcher} from "../../../appframework/globaleventdispatcher/dispatcher/GlobalEventDispatcher";
 import {GOWPreloaderPageView} from "./GOWPreloaderPageView";
+import {GOWPreloaderPageViewEvent} from "./GOWPreloaderPageViewEvent";
+import {ChangePageCommand} from "../../../appframework/pages/commands/ChangePageCommand";
+import {PageId} from "../../../appframework/pages/PageId";
 
 export class GOWPreloaderPageMediator extends BaseMediator {
 
     protected activator: GOWPreloaderPageView;
-
-    protected globalDispatcher: GlobalEventDispatcher = getInstance(GlobalEventDispatcher);
     protected loadManager: LoadManager = getInstance(LoadManager);
 
     protected initLoadGroup: LoadGroup;
@@ -24,6 +24,12 @@ export class GOWPreloaderPageMediator extends BaseMediator {
             this.onLoaderProgress
         );
 
+        this.eventListenerHelper.addEventListener(
+            this.activator,
+            GOWPreloaderPageViewEvent.PROGRESS_COMPLETE,
+            this.onViewProgressComplete
+        );
+
         this.onLoaderProgress();
     }
 
@@ -31,4 +37,8 @@ export class GOWPreloaderPageMediator extends BaseMediator {
         this.activator.loadingProgress = this.initLoadGroup.progress;
     }
 
+    private onViewProgressComplete() {
+        new ChangePageCommand(PageId.GAME_PAGE_ID)
+            .execute();
+    }
 }

@@ -2,6 +2,8 @@
   "texts": {
     "gameName": "Guild Of Wicked",
 
-    "preloaderProgress": "LOADING: {progress}%"
+    "preloaderProgress": "LOADING: {progress}%",
+
+    "gamePageTest": "Game Page"
   }
 }
