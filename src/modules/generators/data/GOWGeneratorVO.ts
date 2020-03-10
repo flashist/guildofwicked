@@ -1,5 +1,5 @@
 import {BaseAppObjectWithStaticVO} from "../../../appframework/base/data/BaseAppObjectWithStaticVO";
-import {GOWStaticGeneratorVOType} from "./GOWStaticGeneratorVOType";
+import {GOWGeneratorVOStaticType} from "./GOWGeneratorVOStaticType";
 import {IGOWStaticGeneratorVO} from "./IGOWStaticGeneratorVO";
 
 export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWStaticGeneratorVO> {
@@ -7,7 +7,7 @@ export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWStaticGenerato
     constructor() {
         super();
 
-        this.staticType = GOWStaticGeneratorVOType;
+        this.staticType = GOWGeneratorVOStaticType;
     }
 
 }

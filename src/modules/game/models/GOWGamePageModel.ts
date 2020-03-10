@@ -1,10 +1,10 @@
 import {BaseModel} from "../../../appframework/base/models/BaseModel";
 import {GOWGamePageTabId} from "../data/GOWGamePageTabId";
-import {GOWGameModelEvent} from "../events/GOWGameModelEvent";
+import {GOWGamePageModelEvent} from "../events/GOWGamePageModelEvent";
 
-export class GOWGameModel extends BaseModel {
+export class GOWGamePageModel extends BaseModel {
 
-    private _tabId: GOWGamePageTabId;
+    private _tabId: GOWGamePageTabId = GOWGamePageTabId.MONEY;
 
     get tabId(): GOWGamePageTabId {
         return this._tabId;
@@ -16,6 +16,6 @@ export class GOWGameModel extends BaseModel {
 
         this._tabId = value;
 
-        this.dispatchEvent(GOWGameModelEvent.TAB_ID_CHANGE);
+        this.dispatchEvent(GOWGamePageModelEvent.TAB_ID_CHANGE);
     }
 }

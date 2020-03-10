@@ -52,7 +52,7 @@
       "type": "static_generator",
       "id": "midnightRiders",
       "localeId": "midnightRiders",
-      "icon": "building-grave-midnight-riders-icon.png",
+      "icon": "building-midnight-riders-icon.png",
       "resource": "money",
 
       "basePrice": 103680,

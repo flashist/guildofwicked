@@ -8,5 +8,21 @@ export const GOWSettings = {
     },
     layout: {
         contentToBorderPadding: 15
+    },
+
+    gamePage: {
+        visuzalization: {
+            layout: {
+                money: {
+                    itemPositionsCoefs: [
+                        {x: 0.5, y: 0.5},
+                        {x: 0.25, y: 0.25},
+                        {x: 0.75, y: 0.25},
+                        {x: 0.25, y: 0.75},
+                        {x: 0.75, y: 0.75}
+                    ]
+                }
+            }
+        }
     }
 };

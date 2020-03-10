@@ -1,39 +1,54 @@
 import {getInstance, Graphics} from "fsuite";
 
 import {BaseView} from "../../../../appframework/base/views/BaseView";
-import {GOWSettings} from "../../../../GOWSettings";
-import {GOWUsersModel} from "../../../users/models/GOWUsersModel";
+import {GOWGamePageMoneyVisuzalizationView} from "./GOWGamePageMoneyVisuzalizationView";
+import {GOWGamePageTabId} from "../../data/GOWGamePageTabId";
+import {GOWGamePageModel} from "../../models/GOWGamePageModel";
+import {GOWGamePageModelEvent} from "../../events/GOWGamePageModelEvent";
+import {ViewLazyCreationServiceLocatorStack} from "../../../../appframework/display/views/viewstack/ViewLazyCreationServiceLocatorStack";
 
 export class GOWGamePageVisualizationView extends BaseView {
 
-    protected bg: Graphics;
+    protected gamePageModel: GOWGamePageModel;
+
+    protected tabsStack: ViewLazyCreationServiceLocatorStack;
 
     protected construction(...args): void {
         super.construction(...args);
 
-        this.bg = new Graphics();
-        this.addChild(this.bg);
-        //
-        this.bg.beginFill(GOWSettings.colors.red);
-        this.bg.drawRect(0, 0, 100, 100);
-        this.bg.endFill();
-    }
+        this.gamePageModel = getInstance(GOWGamePageModel);
 
+        this.tabsStack = new ViewLazyCreationServiceLocatorStack();
+        this.addChild(this.tabsStack);
+        //
+        this.tabsStack.addViewClass(GOWGamePageMoneyVisuzalizationView, GOWGamePageTabId.MONEY);
+    }
 
     protected addListeners(): void {
         super.addListeners();
 
+        this.eventListenerHelper.addEventListener(
+            this.gamePageModel,
+            GOWGamePageModelEvent.TAB_ID_CHANGE,
+            this.onTabIdChange
+        )
+    }
+
+    protected onTabIdChange(): void {
+        this.commitData();
     }
 
     protected commitData(): void {
         super.commitData();
 
+        this.tabsStack.selectedId = this.gamePageModel.tabId;
+
+        this.arrange();
     }
 
     protected arrange(): void {
         super.arrange();
 
-        this.bg.width = this.resizeSize.x;
-        this.bg.height = this.resizeSize.y;
+        this.tabsStack.resize(this.resizeSize.x, this.resizeSize.y);
     }
 }
