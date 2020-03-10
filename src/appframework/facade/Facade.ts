@@ -109,8 +109,22 @@ export class Facade extends BaseObject {
 
     protected addListeners(): void {
         super.addListeners();
+        /**
+         * Note: temporary solution, until pixi.js improvements are released in npm: https://github.com/pixijs/pixi.js/pull/6415
+         * (when they are released, the Renderer will emit resize event itself, it means
+         * that in combination with resizeTo there won't be a need to "control" resize outside)
+         */
+        this.resizeListener = () => {
+            this.onWindowResize();
 
-        this.resizeListener = this.onWindowResize.bind(this);
+            // In some cases there is a need to add timeout for HTML DOM to be updated
+            setTimeout(
+                () => {
+                    this.onWindowResize();
+                },
+                100
+            );
+        };
         window.addEventListener(
             "resize",
             this.resizeListener
@@ -133,13 +147,7 @@ export class Facade extends BaseObject {
         );
     }
 
-    /**
-     * Note: temporary solution, until pixi.js improvements are released in npm: https://github.com/pixijs/pixi.js/pull/6415
-     * (when they are released, the Renderer will emit resize event itself, it means
-     * that in combination with resizeTo there won't be a need to "control" resize outside)
-     */
     protected onWindowResize(): void {
-        // this.arrange();
         const rendererManager: RendererManager = getInstance(RendererManager);
         const documentSize: Point = HtmlTools.getDocumentSize();
         rendererManager.resize(documentSize.x, documentSize.y);
@@ -157,7 +165,7 @@ export class Facade extends BaseObject {
         );
     }
 
-// - - - - -
+    // - - - - -
 
     private static _instance: Facade;
 

@@ -1,28 +1,56 @@
-import {FContainer, FLabel, getText} from "fsuite";
+import {FLabel, getInstance, getText, Point} from "fsuite";
 
 import {GOWSettings} from "../../../GOWSettings";
 import {GOWBasePageView} from "../../pages/views/GOWBasePageView";
+import {GOWGamePageHeaderView} from "./header/GOWGamePageHeaderView";
+import {GOWGamePageFooterView} from "./footer/GOWGamePageFooterView";
 
 export class GOWGamePageView extends GOWBasePageView {
 
-    protected contentCont: FContainer;
-    protected titleField: FLabel;
+    protected headerView: GOWGamePageHeaderView;
+    protected footerView: GOWGamePageFooterView;
 
     protected construction(...args): void {
         this.bgColor = GOWSettings.colors.white;
 
         super.construction(...args);
 
-        this.titleField = new FLabel({
+        this.headerView = getInstance(GOWGamePageHeaderView);
+        this.contentCont.addChild(this.headerView);
+
+        this.footerView = getInstance(GOWGamePageFooterView);
+        this.contentCont.addChild(this.footerView);
+
+        // TEST
+        const titleField: FLabel = new FLabel({
             fontFamily: "Clarence",
             size: 72,
             color: GOWSettings.colors.black,
             autosize: true
         });
-        this.contentCont.addChild(this.titleField);
-        this.titleField.text = getText("gamePageTest");
-        this.titleField.x = this.sizeArea.x + Math.floor((this.sizeArea.width - this.titleField.width) / 2);
-        this.titleField.y = this.sizeArea.x + Math.floor((this.sizeArea.height - this.titleField.height) / 2);
+        this.contentCont.addChild(titleField);
+        titleField.text = getText("gamePageTest");
+        titleField.x = this.sizeArea.x + Math.floor((this.sizeArea.width - titleField.width) / 2);
+        titleField.y = this.sizeArea.x + Math.floor((this.sizeArea.height - titleField.height) / 2);
     }
 
+    protected arrange(): void {
+        super.arrange();
+
+        const topLeftGlobal = this.toGlobal(new Point());
+        const topLeftContentLocal = this.contentCont.toLocal(topLeftGlobal);
+
+        const screenSizeLocal = new Point(
+            this.resizeSize.x / this.contentCont.scale.x,
+            this.resizeSize.y / this.contentCont.scale.y
+        );
+
+        this.headerView.resize(Math.ceil(screenSizeLocal.x), 140);
+        this.headerView.x = Math.floor(topLeftContentLocal.x);
+        this.headerView.y = Math.floor(topLeftContentLocal.y);
+
+        this.footerView.resize(Math.ceil(screenSizeLocal.x), 70);
+        this.footerView.x = Math.floor(topLeftContentLocal.x);
+        this.footerView.y = Math.ceil(topLeftContentLocal.y + screenSizeLocal.y - this.footerView.height);
+    }
 }
