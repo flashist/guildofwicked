@@ -4,31 +4,36 @@
       "type": "staticGenerator",
       "id": "coalMine",
       "localeId": "coalMine",
-      "icon": "building-coal-mine-icon.png"
+      "icon": "building-coal-mine-icon.png",
+      "resource": "money"
     },
     {
       "type": "staticGenerator",
       "id": "charlatan",
       "localeId": "charlatan",
-      "icon": "building-charlatan-icon.png"
+      "icon": "building-charlatan-icon.png",
+      "resource": "money"
     },
     {
       "type": "staticGenerator",
       "id": "tavern",
       "localeId": "tavern",
-      "icon": "building-tavern-icon.png"
+      "icon": "building-tavern-icon.png",
+      "resource": "money"
     },
     {
       "type": "staticGenerator",
       "id": "graveRobbers",
       "localeId": "graveRobbers",
-      "icon": "building-grave-robbers-icon.png"
+      "icon": "building-grave-robbers-icon.png",
+      "resource": "money"
     },
     {
       "type": "staticGenerator",
       "id": "midnightRiders",
       "localeId": "midnightRiders",
-      "icon": "building-grave-midnight-riders-icon.png"
+      "icon": "building-grave-midnight-riders-icon.png",
+      "resource": "money"
     }
   ]
 }
