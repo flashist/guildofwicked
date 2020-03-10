@@ -1,39 +1,64 @@
 {
   "items": [
     {
-      "type": "staticGenerator",
+      "type": "static_generator",
       "id": "coalMine",
       "localeId": "coalMine",
       "icon": "building-coal-mine-icon.png",
-      "resource": "money"
+      "resource": "money",
+
+      "basePrice": 4,
+      "buyCoef": 1.07,
+      "productionValue": 1,
+      "productionTime": 0.6
     },
     {
-      "type": "staticGenerator",
+      "type": "static_generator",
       "id": "charlatan",
       "localeId": "charlatan",
       "icon": "building-charlatan-icon.png",
-      "resource": "money"
+      "resource": "money",
+
+      "basePrice": 60,
+      "buyCoef": 1.15,
+      "productionValue": 120,
+      "productionTime": 3
     },
     {
-      "type": "staticGenerator",
+      "type": "static_generator",
       "id": "tavern",
       "localeId": "tavern",
       "icon": "building-tavern-icon.png",
-      "resource": "money"
+      "resource": "money",
+
+      "basePrice": 720,
+      "buyCoef": 1.14,
+      "productionValue": 540,
+      "productionTime": 6
     },
     {
-      "type": "staticGenerator",
+      "type": "static_generator",
       "id": "graveRobbers",
       "localeId": "graveRobbers",
       "icon": "building-grave-robbers-icon.png",
-      "resource": "money"
+      "resource": "money",
+
+      "basePrice": 8640,
+      "buyCoef": 1.13,
+      "productionValue": 4320,
+      "productionTime": 12
     },
     {
-      "type": "staticGenerator",
+      "type": "static_generator",
       "id": "midnightRiders",
       "localeId": "midnightRiders",
       "icon": "building-grave-midnight-riders-icon.png",
-      "resource": "money"
+      "resource": "money",
+
+      "basePrice": 103680,
+      "buyCoef": 1.12,
+      "productionValue": 51840,
+      "productionTime": 24
     }
   ]
 }
