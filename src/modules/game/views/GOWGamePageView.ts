@@ -5,12 +5,14 @@ import {GOWBasePageView} from "../../pages/views/GOWBasePageView";
 import {GOWGamePageHeaderView} from "./header/GOWGamePageHeaderView";
 import {GOWGamePageFooterView} from "./footer/GOWGamePageFooterView";
 import {GOWGamePageVisualizationView} from "./visualization/GOWGamePageVisualizationView";
+import {GOWGamePageProductionView} from "./production/GOWGamePageProductionView";
 
 export class GOWGamePageView extends GOWBasePageView {
 
     protected headerView: GOWGamePageHeaderView;
     protected footerView: GOWGamePageFooterView;
     protected visualizationView: GOWGamePageVisualizationView;
+    protected productionView: GOWGamePageProductionView;
 
     protected construction(...args): void {
         this.bgColor = GOWSettings.colors.white;
@@ -20,23 +22,14 @@ export class GOWGamePageView extends GOWBasePageView {
         this.visualizationView = getInstance(GOWGamePageVisualizationView);
         this.contentCont.addChild(this.visualizationView);
 
+        this.productionView = getInstance(GOWGamePageProductionView);
+        this.contentCont.addChild(this.productionView);
+
         this.headerView = getInstance(GOWGamePageHeaderView);
         this.contentCont.addChild(this.headerView);
 
         this.footerView = getInstance(GOWGamePageFooterView);
         this.contentCont.addChild(this.footerView);
-
-        // TEST
-        const titleField: FLabel = new FLabel({
-            fontFamily: "Clarence",
-            size: 72,
-            color: GOWSettings.colors.black,
-            autosize: true
-        });
-        this.contentCont.addChild(titleField);
-        titleField.text = getText("gamePageTest");
-        titleField.x = this.sizeArea.x + Math.floor((this.sizeArea.width - titleField.width) / 2);
-        titleField.y = this.sizeArea.x + Math.floor((this.sizeArea.height - titleField.height) / 2);
     }
 
     protected arrange(): void {
@@ -64,5 +57,12 @@ export class GOWGamePageView extends GOWBasePageView {
         );
         this.visualizationView.x = Math.floor(topLeftContentLocal.x);
         this.visualizationView.y = Math.floor(this.headerView.y + this.headerView.height);
+
+        this.productionView.resize(
+            Math.ceil(screenSizeLocal.x),
+            Math.ceil((screenSizeLocal.y / 2) - this.footerView.height)
+        );
+        this.productionView.x = Math.floor(topLeftContentLocal.x);
+        this.productionView.y = Math.floor(screenSizeLocal.y / 2);
     }
 }

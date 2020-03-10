@@ -1,9 +1,13 @@
-import {ResizableContainer} from "../../../appframework/display/views/resize/ResizableContainer";
 import {FContainer, FLabel, Graphics, InteractiveEvent} from "fsuite";
+
 import {ISimpleButtonConfig} from "./ISimpleButtonConfig";
 import {SimpleButtonState} from "./SimpleButtonState";
+import {ResizableContainer} from "../resize/ResizableContainer";
+import {IToggableItem} from "../togglegroup/IToggableItem";
 
-export class SimpleButtonView extends ResizableContainer {
+export class SimpleButtonView<DataType extends object = object> extends ResizableContainer<DataType> implements IToggableItem {
+
+    public id: string;
 
     private _enabled: boolean;
     protected _state: string;
@@ -29,14 +33,6 @@ export class SimpleButtonView extends ResizableContainer {
 
         this.bg = new Graphics();
         this.contentCont.addChild(this.bg);
-        //
-        this.bg.beginFill(this.config.bgConfig.bgColor, this.config.bgConfig.bgAlpha);
-        this.bg.lineStyle(
-            this.config.bgConfig.bgBorderWidth,
-            this.config.bgConfig.bgBorderColor,
-            this.config.bgConfig.bgBorderAlpha
-        );
-        this.bg.drawRect(0, 0, 100, 100);
 
         this.label = new FLabel(this.config.labelConfig);
         this.contentCont.addChild(this.label);
@@ -87,8 +83,21 @@ export class SimpleButtonView extends ResizableContainer {
     protected arrange(): void {
         super.arrange();
 
-        this.bg.width = this.resizeSize.x;
-        this.bg.height = this.resizeSize.y;
+        /*this.bg.width = this.resizeSize.x;
+        this.bg.height = this.resizeSize.y;*/
+
+        if (this.bg.width !== this.resizeSize.x ||
+            this.bg.height !== this.resizeSize.y) {
+
+            this.bg.beginFill(this.config.bgConfig.bgColor, this.config.bgConfig.bgAlpha);
+            this.bg.lineStyle(
+                this.config.bgConfig.bgBorderWidth,
+                this.config.bgConfig.bgBorderColor,
+                this.config.bgConfig.bgBorderAlpha
+            );
+            this.bg.drawRect(0, 0, this.resizeSize.x, this.resizeSize.y);
+
+        }
 
         this.label.width = this.bg.width;
         this.label.height = this.bg.height;
@@ -137,7 +146,7 @@ export class SimpleButtonView extends ResizableContainer {
             this.interactive = true;
 
             if (this.state === SimpleButtonState.NORMAL || this.state === SimpleButtonState.SELECTED_NORMAL) {
-                this.alpha = 0.75;
+                this.alpha = 0.5;
             } else if (this.state === SimpleButtonState.OVER || this.state === SimpleButtonState.SELECTED_OVER) {
                 this.alpha = 1;
             }

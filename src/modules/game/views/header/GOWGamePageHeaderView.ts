@@ -3,10 +3,10 @@ import {Align, AutosizeType, FLabel, getInstance, getText, Graphics, VAlign} fro
 
 import {BaseView} from "../../../../appframework/base/views/BaseView";
 import {GOWSettings} from "../../../../GOWSettings";
-import {SimpleButtonView} from "../../../views/button/SimpleButtonView";
 import {GOWUsersModel} from "../../../users/models/GOWUsersModel";
 import {GOWUserVOEvent} from "../../../users/events/GOWUserVOEvent";
 import {GOWResourceType} from "../../../resources/data/GOWResourceType";
+import {SimpleButtonView} from "../../../../appframework/display/views/button/SimpleButtonView";
 
 export class GOWGamePageHeaderView extends BaseView {
 
@@ -42,7 +42,7 @@ export class GOWGamePageHeaderView extends BaseView {
         this.mapBtn = new SimpleButtonView(
             {
                 bgConfig: {
-                    bgColor: GOWSettings.colors.white,
+                    bgColor: GOWSettings.colors.yellow,
                     bgAlpha: 1,
                     bgBorderColor: GOWSettings.colors.black,
                     bgBorderAlpha: 1,
