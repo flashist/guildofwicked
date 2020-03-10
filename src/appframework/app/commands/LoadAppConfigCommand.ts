@@ -1,7 +1,6 @@
 import {
     LoadItemCommand,
-    getInstance,
-    GenericObjectsByTypeModel
+    getInstance
 } from "fsuite";
 
 import {IAppConfigVO} from "../data/IAppConfigVO";
@@ -24,11 +23,6 @@ export class LoadAppConfigCommand extends BaseAppCommand {
                     console.log("LoadAppConfigCommand | executeInternal __ data: ", data);
 
                     appConfigModel.changeConfig(data);
-
-                    let genericObjectsByTypeModel: GenericObjectsByTypeModel = getInstance(GenericObjectsByTypeModel);
-                    if (data.startDataItems) {
-                        genericObjectsByTypeModel.commitItems(data.startDataItems);
-                    }
 
                     this.notifyComplete();
                 },

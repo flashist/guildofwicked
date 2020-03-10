@@ -7,11 +7,12 @@ import {
 } from "fsuite";
 
 import {LoadAppConfigCommand} from "../../../appframework/app/commands/LoadAppConfigCommand";
-import {InitLocalesCommand} from "../../../appframework/locales/commands/InitLocalesCommand";
+import {LoadLocalizaitonCommand} from "../../locales/commands/LoadLocalizaitonCommand";
 import {InitLoadProcessCommand} from "../../../appframework/assets/commands/InitLoadProcessCommand";
 import {LoadGroupName} from "../../../appframework/load/LoadGroupName";
 import {ChangePageCommand} from "../../../appframework/pages/commands/ChangePageCommand";
 import {PageId} from "../../../appframework/pages/PageId";
+import {LoadStaticItemsCommand} from "../../app/commands/LoadStaticItemsCommand";
 
 export class InitApplicationCommand extends QueueCommand {
 
@@ -19,8 +20,8 @@ export class InitApplicationCommand extends QueueCommand {
         super(
             [
                 new LoadAppConfigCommand(),
-
-                new InitLocalesCommand(),
+                new LoadLocalizaitonCommand(),
+                new LoadStaticItemsCommand(),
 
                 new InitLoadProcessCommand(),
                 new WaitGroupLoadingCompleteCommand(LoadGroupName.PRELOAD),

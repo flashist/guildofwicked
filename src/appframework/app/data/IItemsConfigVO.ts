@@ -1,5 +1,5 @@
 import {IGenericObjectVO} from "fsuite";
 
-export interface IItemsVO {
+export interface IItemsConfigVO {
     items: IGenericObjectVO[];
 }

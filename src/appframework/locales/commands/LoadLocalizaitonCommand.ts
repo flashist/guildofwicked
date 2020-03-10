@@ -1,5 +1,4 @@
 import {
-    Command,
     ObjectTools,
     StringTools
 } from "fcore";
@@ -15,7 +14,7 @@ import {
 import {AppConfigModel} from "../../app/models/AppConfigModel";
 import {BaseAppCommand} from "../../base/commands/BaseAppCommand";
 
-export class InitLocalesCommand extends BaseAppCommand {
+export class LoadLocalizaitonCommand extends BaseAppCommand {
 
     protected executeInternal(): void {
         let appConfigModel: AppConfigModel = getInstance(AppConfigModel);

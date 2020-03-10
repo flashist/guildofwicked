@@ -8,6 +8,15 @@
     "mapBtn": "CITY",
     "cityBtn": "MAP",
     "userMoney": "${money}",
-    "premiumCurrenciesPlaceholder": "PLACE FOR PREMIUM CURRENCIES"
+    "premiumCurrenciesPlaceholder": "PLACE FOR PREMIUM CURRENCIES",
+
+    "money": "MONEY",
+    "units": "UNITS",
+
+    "coalMine": "COAL MINE",
+    "charlatan": "CHARLATAN",
+    "tavern": "TAVERN",
+    "graveRobbers": "GRAVE ROBBERS",
+    "midnightRiders": "MIDNIGHT RIDERS"
   }
 }
