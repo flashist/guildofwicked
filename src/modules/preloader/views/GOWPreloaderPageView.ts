@@ -123,9 +123,9 @@ export class GOWPreloaderPageView extends GOWBasePageView {
     }
 
     protected arrange(): void {
+        super.arrange();
+
         this.progressLabel.x = this.sizeArea.x + Math.floor((this.sizeArea.width - this.progressLabel.width) / 2);
         this.progressLabel.y = 600;
-
-        super.arrange();
     }
 }

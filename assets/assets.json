@@ -12,14 +12,14 @@
 
     {
       "id": "preloader",
-      "src": "assets/atlases/preloader.json",
+      "src": "assets/atlases/preloader/preloader.json",
       "fileType": "spritesheet",
       "loadGroups": ["preload"]
     },
 
     {
       "id": "init",
-      "src": "assets/atlases/test-init.json",
+      "src": "assets/atlases/game/game.json",
       "fileType": "spritesheet",
       "loadGroups": ["init"]
     }
