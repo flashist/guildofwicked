@@ -135,7 +135,6 @@ export class SimpleButtonView extends ResizableContainer {
 
         if (this.enabled) {
             this.interactive = true;
-            this.buttonMode = true;
 
             if (this.state === SimpleButtonState.NORMAL || this.state === SimpleButtonState.SELECTED_NORMAL) {
                 this.alpha = 0.75;
@@ -145,7 +144,6 @@ export class SimpleButtonView extends ResizableContainer {
 
         } else {
             this.interactive = false;
-            this.buttonMode = false;
             this.alpha = 0.5;
         }
     }

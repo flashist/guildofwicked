@@ -1,17 +1,26 @@
-import {Align, getText, Graphics, VAlign} from "fsuite";
+import {StringTools} from "fcore";
+import {Align, AutosizeType, FLabel, getInstance, getText, Graphics, VAlign} from "fsuite";
 
 import {BaseView} from "../../../../appframework/base/views/BaseView";
 import {GOWSettings} from "../../../../GOWSettings";
 import {SimpleButtonView} from "../../../views/button/SimpleButtonView";
+import {GOWUsersModel} from "../../../users/models/GOWUsersModel";
+import {GOWUserVOEvent} from "../../../users/events/GOWUserVOEvent";
 
 export class GOWGamePageHeaderView extends BaseView {
 
+    protected usersModel: GOWUsersModel;
+
     protected bg: Graphics;
 
+    protected avatarPlaceholder: Graphics;
     protected cityBtn: SimpleButtonView;
+    protected moneyLabel: FLabel;
 
     protected construction(...args): void {
         super.construction(...args);
+
+        this.usersModel = getInstance(GOWUsersModel);
 
         this.bg = new Graphics();
         this.addChild(this.bg);
@@ -19,6 +28,14 @@ export class GOWGamePageHeaderView extends BaseView {
         this.bg.beginFill(GOWSettings.colors.grey);
         this.bg.drawRect(0, 0, 100, 100);
         this.bg.endFill();
+
+        this.avatarPlaceholder = new Graphics();
+        this.addChild(this.avatarPlaceholder);
+        //
+        this.avatarPlaceholder.beginFill(GOWSettings.colors.white);
+        this.avatarPlaceholder.lineStyle(2, GOWSettings.colors.black);
+        this.avatarPlaceholder.drawRect(0, 0, 110, 110);
+        this.avatarPlaceholder.endFill();
 
         this.cityBtn = new SimpleButtonView(
             {
@@ -41,8 +58,57 @@ export class GOWGamePageHeaderView extends BaseView {
         );
         this.addChild(this.cityBtn);
         //
-        this.cityBtn.resize(100, 100);
+        this.cityBtn.resize(110, 110);
         this.cityBtn.text = getText("cityBtn");
+
+        this.moneyLabel = new FLabel({
+            fontFamily: "Clarence",
+            size: 72,
+            color: GOWSettings.colors.white,
+            autosize: true,
+            autosizeType: AutosizeType.HEIGHT,
+
+            stroke: GOWSettings.colors.black,
+            strokeThickness: 1.5,
+
+            dropShadow: true,
+            dropShadowColor: GOWSettings.colors.black,
+            dropShadowDistance: 0,
+            dropShadowBlur: 4
+        });
+        this.addChild(this.moneyLabel);
+    }
+
+
+    protected addListeners(): void {
+        super.addListeners();
+
+        this.eventListenerHelper.addEventListener(
+            this.usersModel.curUserData,
+            GOWUserVOEvent.MONEY_CHANGE,
+            this.onUserMoneyChange
+        );
+    }
+
+    protected onUserMoneyChange(): void {
+        this.commitData();
+    }
+
+    protected commitData(): void {
+        super.commitData();
+
+        if (this.usersModel.curUserData) {
+            this.moneyLabel.text = getText(
+                "userMoney",
+                {
+                    money: StringTools.groupCharacters(
+                        this.usersModel.curUserData.money.toString(),
+                        3,
+                        ","
+                    )
+                }
+            );
+        }
     }
 
     protected arrange(): void {
@@ -51,7 +117,14 @@ export class GOWGamePageHeaderView extends BaseView {
         this.bg.width = this.resizeSize.x;
         this.bg.height = this.resizeSize.y;
 
+        this.avatarPlaceholder.x = Math.floor(this.bg.x + GOWSettings.layout.contentToBorderPadding);
+        this.avatarPlaceholder.y = Math.floor(this.bg.y + GOWSettings.layout.contentToBorderPadding);
+
         this.cityBtn.x = Math.floor(this.bg.x + this.bg.width - this.cityBtn.width - GOWSettings.layout.contentToBorderPadding);
         this.cityBtn.y = Math.floor(this.bg.y + GOWSettings.layout.contentToBorderPadding);
+
+        this.moneyLabel.x = Math.floor(this.avatarPlaceholder.x + this.avatarPlaceholder.width) + 15;
+        this.moneyLabel.y = this.avatarPlaceholder.y;
+        this.moneyLabel.width = this.cityBtn.x - this.moneyLabel.x - 15;
     }
 }
