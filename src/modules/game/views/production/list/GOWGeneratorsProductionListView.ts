@@ -104,7 +104,6 @@ export class GOWGeneratorsProductionListView extends BaseView {
         this.generatorsListMask.width = this.resizeSize.x;
         this.generatorsListMask.height = this.resizeSize.y;
 
-        // this.dragMinY = (this.generatorsListMask.y + this.generatorsListMask.height - this.generatorsList.height);
         const totalSize: Point = this.generatorsListLayout.getTotalSize();
         this.dragMinY = (this.generatorsListMask.y + this.generatorsListMask.height - totalSize.y);
 

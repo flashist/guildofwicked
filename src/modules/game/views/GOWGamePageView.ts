@@ -38,31 +38,33 @@ export class GOWGamePageView extends GOWBasePageView {
         const topLeftGlobal = this.toGlobal(new Point());
         const topLeftContentLocal = this.contentCont.toLocal(topLeftGlobal);
 
-        const screenSizeLocal = new Point(
+        const resizedScreenSizeLocal = new Point(
             this.resizeSize.x / this.contentCont.scale.x,
             this.resizeSize.y / this.contentCont.scale.y
         );
 
-        this.headerView.resize(Math.ceil(screenSizeLocal.x), 140);
+        this.headerView.resize(Math.ceil(resizedScreenSizeLocal.x), 140);
         this.headerView.x = Math.floor(topLeftContentLocal.x);
         this.headerView.y = Math.floor(topLeftContentLocal.y);
 
-        this.footerView.resize(Math.ceil(screenSizeLocal.x), 70);
+        this.footerView.resize(Math.ceil(resizedScreenSizeLocal.x), 70);
         this.footerView.x = Math.floor(topLeftContentLocal.x);
-        this.footerView.y = Math.ceil(topLeftContentLocal.y + screenSizeLocal.y - this.footerView.height);
+        this.footerView.y = Math.floor(topLeftContentLocal.y + resizedScreenSizeLocal.y - this.footerView.height);
 
+        const topPartHeight: number = Math.ceil(resizedScreenSizeLocal.y * GOWSettings.gamePage.layout.topPartHeightCoef);
+        const bottomPartHeight: number = Math.ceil(resizedScreenSizeLocal.y - topPartHeight);
         this.visualizationView.resize(
-            Math.ceil(screenSizeLocal.x),
-            Math.ceil((screenSizeLocal.y / 2) - (this.headerView.y + this.headerView.height))
+            Math.ceil(resizedScreenSizeLocal.x),
+            Math.ceil(topPartHeight - this.headerView.height)
         );
         this.visualizationView.x = Math.floor(topLeftContentLocal.x);
         this.visualizationView.y = Math.floor(this.headerView.y + this.headerView.height);
 
         this.productionView.resize(
-            Math.ceil(screenSizeLocal.x),
-            Math.ceil((screenSizeLocal.y / 2) - this.footerView.height)
+            Math.ceil(resizedScreenSizeLocal.x),
+            Math.ceil(bottomPartHeight - this.footerView.height)
         );
         this.productionView.x = Math.floor(topLeftContentLocal.x);
-        this.productionView.y = Math.floor(screenSizeLocal.y / 2);
+        this.productionView.y = Math.floor(this.headerView.y + topPartHeight);
     }
 }

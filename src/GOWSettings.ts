@@ -14,8 +14,9 @@ export const GOWSettings = {
     },
 
     gamePage: {
-        visuzalization: {
-            layout: {
+        layout: {
+            topPartHeightCoef: 0.3,
+            visualiztion: {
                 money: {
                     itemPositionsCoefs: [
                         {x: 0.5, y: 0.5},

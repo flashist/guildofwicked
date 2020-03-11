@@ -1,7 +1,8 @@
-import {Graphics} from "fsuite";
+import {Align, FLabel, Graphics, VAlign} from "fsuite";
 
 import {BaseView} from "../../../../appframework/base/views/BaseView";
 import {GOWSettings} from "../../../../GOWSettings";
+import {SimpleButtonView} from "../../../../appframework/display/views/button/SimpleButtonView";
 
 export class GOWGamePageFooterView extends BaseView {
 
@@ -16,6 +17,20 @@ export class GOWGamePageFooterView extends BaseView {
         this.bg.beginFill(GOWSettings.colors.grey);
         this.bg.drawRect(0, 0, 100, 100);
         this.bg.endFill();
+
+        // TEST
+        const testLabel: FLabel = new FLabel(
+            {
+                fontFamily: "Clarence",
+                size: 36,
+                color: GOWSettings.colors.black,
+                autosize: true,
+                align: Align.CENTER,
+                valign: VAlign.MIDDLE
+            }
+        );
+        this.addChild(testLabel);
+        testLabel.text = "IT'S FOOTER!"
     }
 
     protected arrange(): void {

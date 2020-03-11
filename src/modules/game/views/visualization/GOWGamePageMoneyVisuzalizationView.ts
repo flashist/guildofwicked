@@ -45,7 +45,7 @@ export class GOWGamePageMoneyVisuzalizationView extends BaseView {
         let itemsCount: number = itemViews.length;
         for (let itemIndex: number = 0; itemIndex < itemsCount; itemIndex++) {
             const singleItemView: GOWVisuzalizationItemRendererView = itemViews[itemIndex];
-            const singleItemPositionCoef = GOWSettings.gamePage.visuzalization.layout.money.itemPositionsCoefs[itemIndex];
+            const singleItemPositionCoef = GOWSettings.gamePage.layout.visualiztion.money.itemPositionsCoefs[itemIndex];
             singleItemView.x = Math.floor(this.resizeSize.x * singleItemPositionCoef.x);
             singleItemView.y = Math.floor(this.resizeSize.y * singleItemPositionCoef.y);
         }
