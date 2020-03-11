@@ -15,6 +15,7 @@ import {IGOWStaticGeneratorVO} from "../../../generators/data/IGOWStaticGenerato
 import {GOWGeneratorVOStaticType} from "../../../generators/data/GOWGeneratorVOStaticType";
 import {ColumnLayout} from "../../../../appframework/display/views/layout/ColumnLayout";
 import {GOWGeneratorsModel} from "../../../generators/models/GOWGeneratorsModel";
+import {GOWGeneratorsProductionListView} from "./list/GOWGeneratorsProductionListView";
 
 export class GOWGamePageProductionView extends BaseView {
 
@@ -28,9 +29,7 @@ export class GOWGamePageProductionView extends BaseView {
     public tabsToggleGroup: ToggleGroup;
     protected quickActionView: GOWQuickActionView;
 
-    protected generatorsList: SimpleList<GOWGeneratorProductionItemRendererView, GOWGeneratorVO>;
-    protected generatorsListLayout: ColumnLayout;
-    protected generatorsListMask: Graphics;
+    protected generatorsView: GOWGeneratorsProductionListView;
 
     protected construction(...args): void {
         super.construction(...args);
@@ -46,30 +45,8 @@ export class GOWGamePageProductionView extends BaseView {
         this.bg.drawRect(0,0,100,100);
         this.bg.endFill();
 
-        this.generatorsList = new SimpleList<GOWGeneratorProductionItemRendererView, GOWGeneratorVO>();
-        this.addChild(this.generatorsList);
-        this.generatorsList.ItemRendererClass = GOWGeneratorProductionItemRendererView;
-        //
-        const staticGeneratorsList: IGOWStaticGeneratorVO[] = this.genericByTypeModel.getItemsForType<IGOWStaticGeneratorVO>(GOWGeneratorVOStaticType);
-        const generatorsList: GOWGeneratorVO[] = [];
-        let generatorsCount: number = staticGeneratorsList.length;
-        for (let generatorIndex: number = 0; generatorIndex < generatorsCount; generatorIndex++) {
-            const singleStaticGenerator: IGOWStaticGeneratorVO = staticGeneratorsList[generatorIndex];
-            const singleGenerator: GOWGeneratorVO = this.generatorsModel.getItem(singleStaticGenerator.id);
-            generatorsList.push(singleGenerator);
-        }
-        //
-        this.generatorsList.dataProvider = generatorsList;
-        //
-        this.generatorsListLayout = new ColumnLayout();
-        //
-        this.generatorsListMask = new Graphics();
-        this.addChild(this.generatorsListMask);
-        this.generatorsListMask.beginFill(0x000000);
-        this.generatorsListMask.drawRect(0,0,100,100);
-        this.generatorsListMask.endFill();
-        //
-        this.generatorsList.mask = this.generatorsListMask;
+        this.generatorsView = getInstance(GOWGeneratorsProductionListView);
+        this.addChild(this.generatorsView);
 
         this.moneyTabButton = new SimpleButtonView(
             {
@@ -188,18 +165,11 @@ export class GOWGamePageProductionView extends BaseView {
         );
         this.quickActionView.y = Math.ceil(this.resizeSize.y - this.quickActionView.height);
 
-        this.generatorsList.y = this.moneyTabButton.y + this.moneyTabButton.height;
-        this.generatorsList.x = this.moneyTabButton.x;
-        //
-        this.generatorsList.resizeItems(
+        this.generatorsView.x = this.moneyTabButton.x;
+        this.generatorsView.y = this.moneyTabButton.y + this.moneyTabButton.height;
+        this.generatorsView.resize(
             this.resizeSize.x,
-            140
+            this.quickActionView.y - (this.moneyTabButton.y + this.moneyTabButton.height)
         );
-        this.generatorsListLayout.arrange(this.generatorsList);
-
-        this.generatorsListMask.x = this.generatorsList.x;
-        this.generatorsListMask.y = this.generatorsList.y;
-        this.generatorsListMask.width = this.resizeSize.x;
-        this.generatorsListMask.height = this.quickActionView.y - (this.moneyTabButton.y + this.moneyTabButton.height);
     }
 }
