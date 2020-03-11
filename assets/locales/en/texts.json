@@ -24,11 +24,13 @@
     "midnightRiders": "MIDNIGHT RIDERS",
 
     "productionInfo": "{value}",
+    "productionInfoLessThenSec": "{value} / sec",
 
-    "secondsAndMilliseconds": "{time}s",
-    "minutesAndSeconds": "{time}m",
-    "hoursAndMinutes": "{time}h",
-    "daysAndHours": "{time}d",
-    "days": "{time}d"
+    "seconds": "{sesonds}s",
+    "minutesAndSeconds": "{minutes}m {seconds}s",
+    "hoursAndMinutes": "{hours}h {minutes}m",
+    "daysAndHours": "{days}d {hours}h",
+    "days": "{days}d",
+    "waiting": "WAITING"
   }
 }

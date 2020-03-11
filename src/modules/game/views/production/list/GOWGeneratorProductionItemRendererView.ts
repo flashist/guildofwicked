@@ -7,6 +7,7 @@ import {IGetSizable} from "../../../../../appframework/display/data/IGetSizable"
 import {GOWResourceType} from "../../../../resources/data/GOWResourceType";
 import {GOWGeneratorProductionProgressView} from "./GOWGeneratorProductionProgressView";
 import {GOWTextTools} from "../../../../texts/tools/GOWTextTools";
+import {DateSettings} from "../../../../../appframework/date/DateSettings";
 
 export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGeneratorVO> implements IGetSizable {
 
@@ -27,6 +28,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
 
     protected timeBg: Graphics;
     protected timeLabel: FLabel;
+    protected waitingLabel: FLabel;
 
     protected buyBtn: SimpleButtonView;
     protected upgradeBtn: SimpleButtonView;
@@ -135,6 +137,30 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         this.timeLabel.width = this.timeBg.width;
         this.timeLabel.height = this.timeBg.height;
 
+        this.waitingLabel = new FLabel(
+            {
+                fontFamily: "Clarence",
+                size: 24,
+                color: GOWSettings.colors.black,
+                align: Align.CENTER,
+                valign: VAlign.MIDDLE,
+
+                stroke: GOWSettings.colors.white,
+                strokeThickness: 1.5,
+
+                dropShadow: true,
+                dropShadowColor: GOWSettings.colors.white,
+                dropShadowDistance: 0,
+                dropShadowBlur: 4
+            }
+        );
+        this.boughtCont.addChild(this.waitingLabel);
+        //
+        this.waitingLabel.width = this.timeBg.width;
+        this.waitingLabel.height = this.timeBg.height;
+        //
+        this.waitingLabel.text = getText("waiting");
+
         this.buyBtn = new SimpleButtonView(
             {
                 bgConfig: {
@@ -232,12 +258,26 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
             this.iconBgGlow.visible = false;
         }
 
+        if (this.data.isProductionInProgress) {
+            this.timeLabel.visible = true;
+            this.timeLabel.text = GOWTextTools.getFormattedDuration(this.data.productionTimeLeft);
+            this.waitingLabel.visible = false;
+
+        } else {
+            this.timeLabel.visible = false;
+            this.waitingLabel.visible = true;
+        }
+
         if (this.data.level > 0) {
             this.boughtCont.visible = true;
             this.notBoughtCont.visible = false;
 
+            let infoLocaleId: string = "productionInfo";
+            if (this.data.static.productionDuration < DateSettings.MS_IN_SECOND) {
+                infoLocaleId = "productionInfoLessThenSec";
+            }
             this.infoLabel.text = getText(
-                "productionInfo",
+                infoLocaleId,
                 {
                     value: GOWTextTools.getFormattedResourceAmount(
                         this.data.static.productionValue.value,
@@ -295,6 +335,9 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
 
         this.timeLabel.x = this.timeBg.x;
         this.timeLabel.y = this.timeBg.y;
+
+        this.waitingLabel.x = this.timeBg.x;
+        this.waitingLabel.y = this.timeBg.y;
 
         this.progressBar.x = Math.floor(this.iconCont.x + this.iconBg.width + GOWSettings.layout.contentToBorderPadding);
         this.progressBar.y = this.iconCont.y;

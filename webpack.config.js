@@ -38,7 +38,7 @@ module.exports = {
         }
     },
     output: {
-        path: `${__dirname}/${BUILD_DIR}`,
+        path: path.join(__dirname, `${BUILD_DIR}`),
         publicPath: `/${BUILD_DIR}/`,
         filename: 'bundle.js'
     },
@@ -56,18 +56,19 @@ module.exports = {
                 }
             ]
         )
-    ],
-
-    devServer: {
-        contentBase: path.join(__dirname, `${BUILD_DIR}`),
-        port: 9000,
-        openPage: "index.html"
-    }
+    ]
 };
 
 if (DEV) {
     module.exports.mode = "development";
     module.exports.devtool = 'inline-source-map';
+    module.exports.devServer = {
+        contentBase: path.join(__dirname, `${BUILD_DIR}`),
+        port: 9000,
+        openPage: "index.html"
+    };
+
+    console.log("DIST: ", path.join(__dirname, `${BUILD_DIR}`));
 
 } else {
     module.exports.mode = "production";

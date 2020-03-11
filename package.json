@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
-    "dev": "npm run build && (npm run dev:watch & npm run dev:server)",
-    "dev:watch": "webpack --watch",
+    "dev": "npm run build && npm run dev:server",
     "dev:server": "webpack-dev-server --open"
   },
   "author": "Mark Dolbyrev",

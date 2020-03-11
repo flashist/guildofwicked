@@ -24,4 +24,11 @@ export class ServerModel extends BaseModel {
         throw new Error("ERROR! The param 'clientTimeWhenServerTimeChanged' can't be changed directly!");
     }
 
+    get clientTimeDeltaSinceServerTimeChanged(): number {
+        return Date.now() - this._clientTimeWhenServerTimeChanged;
+    }
+
+    get clientToServerTimeDelta(): number {
+        return Date.now() - this._serverTime;
+    }
 }
