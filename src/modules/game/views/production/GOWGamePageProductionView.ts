@@ -30,6 +30,7 @@ export class GOWGamePageProductionView extends BaseView {
 
     protected generatorsList: SimpleList<GOWGeneratorProductionItemRendererView, GOWGeneratorVO>;
     protected generatorsListLayout: ColumnLayout;
+    protected generatorsListMask: Graphics;
 
     protected construction(...args): void {
         super.construction(...args);
@@ -59,8 +60,16 @@ export class GOWGamePageProductionView extends BaseView {
         }
         //
         this.generatorsList.dataProvider = generatorsList;
-
+        //
         this.generatorsListLayout = new ColumnLayout();
+        //
+        this.generatorsListMask = new Graphics();
+        this.addChild(this.generatorsListMask);
+        this.generatorsListMask.beginFill(0x000000);
+        this.generatorsListMask.drawRect(0,0,100,100);
+        this.generatorsListMask.endFill();
+        //
+        this.generatorsList.mask = this.generatorsListMask;
 
         this.moneyTabButton = new SimpleButtonView(
             {
@@ -179,10 +188,18 @@ export class GOWGamePageProductionView extends BaseView {
         );
         this.quickActionView.y = Math.ceil(this.resizeSize.y - this.quickActionView.height);
 
+        this.generatorsList.y = this.moneyTabButton.y + this.moneyTabButton.height;
+        this.generatorsList.x = this.moneyTabButton.x;
+        //
         this.generatorsList.resizeItems(
             this.resizeSize.x,
             140
         );
         this.generatorsListLayout.arrange(this.generatorsList);
+
+        this.generatorsListMask.x = this.generatorsList.x;
+        this.generatorsListMask.y = this.generatorsList.y;
+        this.generatorsListMask.width = this.resizeSize.x;
+        this.generatorsListMask.height = this.quickActionView.y - (this.moneyTabButton.y + this.moneyTabButton.height);
     }
 }

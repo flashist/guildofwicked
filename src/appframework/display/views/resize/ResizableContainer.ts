@@ -6,7 +6,7 @@ import {IResizable} from "./IResizable";
 
 export class ResizableContainer<DataType extends object = object> extends FContainer<DataType> implements IResizable {
 
-    protected resizeSize: Point;
+    private _resizeSize: Point;
     private _maxSize: Point;
     private _minSize: Point;
 
@@ -15,7 +15,7 @@ export class ResizableContainer<DataType extends object = object> extends FConta
 
         this._minSize = new Point();
         this._maxSize = new Point();
-        this.resizeSize = new Point();
+        this._resizeSize = new Point();
     }
 
     public resize(width: number, height: number): void {
@@ -69,5 +69,12 @@ export class ResizableContainer<DataType extends object = object> extends FConta
         this._maxSize = value.clone();
 
         this.resize(this.resizeSize.x, this.resizeSize.y);
+    }
+
+    public get resizeSize(): Point {
+        return this._resizeSize;
+    }
+    public set resizeSize(value: Point) {
+        throw new Error("Resize size should be changed through the resize method!");
     }
 }
