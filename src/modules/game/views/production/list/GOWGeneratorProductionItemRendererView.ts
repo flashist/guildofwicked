@@ -45,7 +45,12 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
             return;
         }
 
-        this.icon.texture = Texture.from(this.data.staticData.icon);
+        this.icon.texture = Texture.from(this.data.static.icon);
+        if (this.data.static.index % 2 === 0) {
+            this.bg.alpha = 0;
+        } else {
+            this.bg.alpha = 0.25;
+        }
 
         this.arrange();
     }

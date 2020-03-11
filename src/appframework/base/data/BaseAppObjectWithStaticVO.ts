@@ -7,7 +7,7 @@ export class BaseAppObjectWithStaticVO<StaticDataType extends IGenericObjectVO =
     staticId: string;
     staticType: string;
 
-    get staticData(): StaticDataType {
+    get static(): StaticDataType {
         return GenericObjectsWithStaticTools.getStaticObject<StaticDataType>(this);
     }
 }

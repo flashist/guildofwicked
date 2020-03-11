@@ -1,4 +1,4 @@
-import {Align, getInstance, getText, VAlign} from "fsuite";
+import {Align, GenericObjectsByTypeModel, getInstance, getText, Graphics, VAlign} from "fsuite";
 
 import {BaseView} from "../../../../appframework/base/views/BaseView";
 import {GOWGamePageModel} from "../../models/GOWGamePageModel";
@@ -8,20 +8,59 @@ import {GOWSettings} from "../../../../GOWSettings";
 import {ToggleGroup} from "../../../../appframework/display/views/togglegroup/ToggleGroup";
 import {GOWGamePageTabId} from "../../data/GOWGamePageTabId";
 import {GOWQuickActionView} from "./GOWQuickActionView";
+import {GOWGeneratorProductionItemRendererView} from "./list/GOWGeneratorProductionItemRendererView";
+import {GOWGeneratorVO} from "../../../generators/data/GOWGeneratorVO";
+import {SimpleList} from "../../../../appframework/display/views/simplelist/SimpleList";
+import {IGOWStaticGeneratorVO} from "../../../generators/data/IGOWStaticGeneratorVO";
+import {GOWGeneratorVOStaticType} from "../../../generators/data/GOWGeneratorVOStaticType";
+import {ColumnLayout} from "../../../../appframework/display/views/layout/ColumnLayout";
+import {GOWGeneratorsModel} from "../../../generators/models/GOWGeneratorsModel";
 
 export class GOWGamePageProductionView extends BaseView {
 
     protected gamePageModel: GOWGamePageModel;
+    protected generatorsModel: GOWGeneratorsModel;
+    protected genericByTypeModel: GenericObjectsByTypeModel;
 
+    protected bg: Graphics;
     protected moneyTabButton: SimpleButtonView;
     protected unitsTabButton: SimpleButtonView;
     public tabsToggleGroup: ToggleGroup;
     protected quickActionView: GOWQuickActionView;
 
+    protected generatorsList: SimpleList<GOWGeneratorProductionItemRendererView, GOWGeneratorVO>;
+    protected generatorsListLayout: ColumnLayout;
+
     protected construction(...args): void {
         super.construction(...args);
 
         this.gamePageModel = getInstance(GOWGamePageModel);
+        this.generatorsModel = getInstance(GOWGeneratorsModel);
+        this.genericByTypeModel = getInstance(GenericObjectsByTypeModel);
+
+        this.bg = new Graphics();
+        this.addChild(this.bg);
+        //
+        this.bg.beginFill(GOWSettings.colors.grey);
+        this.bg.drawRect(0,0,100,100);
+        this.bg.endFill();
+
+        this.generatorsList = new SimpleList<GOWGeneratorProductionItemRendererView, GOWGeneratorVO>();
+        this.addChild(this.generatorsList);
+        this.generatorsList.ItemRendererClass = GOWGeneratorProductionItemRendererView;
+        //
+        const staticGeneratorsList: IGOWStaticGeneratorVO[] = this.genericByTypeModel.getItemsForType<IGOWStaticGeneratorVO>(GOWGeneratorVOStaticType);
+        const generatorsList: GOWGeneratorVO[] = [];
+        let generatorsCount: number = staticGeneratorsList.length;
+        for (let generatorIndex: number = 0; generatorIndex < generatorsCount; generatorIndex++) {
+            const singleStaticGenerator: IGOWStaticGeneratorVO = staticGeneratorsList[generatorIndex];
+            const singleGenerator: GOWGeneratorVO = this.generatorsModel.getItem(singleStaticGenerator.id);
+            generatorsList.push(singleGenerator);
+        }
+        //
+        this.generatorsList.dataProvider = generatorsList;
+
+        this.generatorsListLayout = new ColumnLayout();
 
         this.moneyTabButton = new SimpleButtonView(
             {
@@ -120,6 +159,9 @@ export class GOWGamePageProductionView extends BaseView {
     protected arrange(): void {
         super.arrange();
 
+        this.bg.width = Math.floor(this.resizeSize.x);
+        this.bg.height = Math.floor(this.resizeSize.y);
+
         this.moneyTabButton.resize(
             Math.ceil(this.resizeSize.x / 2),
             70
@@ -136,5 +178,11 @@ export class GOWGamePageProductionView extends BaseView {
             70
         );
         this.quickActionView.y = Math.ceil(this.resizeSize.y - this.quickActionView.height);
+
+        this.generatorsList.resizeItems(
+            this.resizeSize.x,
+            140
+        );
+        this.generatorsListLayout.arrange(this.generatorsList);
     }
 }

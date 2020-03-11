@@ -4,7 +4,6 @@ import {BaseModule} from "../../appframework/base/modules/BaseModule";
 import {PagesModel} from "../../appframework/pages/models/PagesModel";
 import {PageId} from "../../appframework/pages/PageId";
 import {GOWGamePageView} from "./views/GOWGamePageView";
-import {GOWGamePageMediator} from "./views/GOWGamePageMediator";
 import {GOWGamePageModel} from "./models/GOWGamePageModel";
 
 export class GOWGameModule extends BaseModule {
@@ -13,7 +12,6 @@ export class GOWGameModule extends BaseModule {
         super.init();
 
         serviceLocatorAdd(GOWGamePageModel, {isSingleton: true});
-        serviceLocatorAdd(GOWGamePageView, {activateesConstructors: [GOWGamePageMediator]});
     }
 
     activateCompleteHook(): void {

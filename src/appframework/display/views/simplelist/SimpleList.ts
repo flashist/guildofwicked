@@ -295,6 +295,9 @@ export class SimpleList
             return;
         }
 
+        this.childrenResizeSize.x = childrenWidth;
+        this.childrenResizeSize.y = childrenHeight;
+
         for (let singleItem of this.items) {
             this.resizeSingleItem(singleItem);
         }

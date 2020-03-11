@@ -22,7 +22,7 @@ export class GOWVisuzalizationItemRendererView extends BaseView<GOWGeneratorVO> 
             return;
         }
 
-        this.icon.texture = Texture.from(this.data.staticData.icon);
+        this.icon.texture = Texture.from(this.data.static.icon);
 
         this.arrange();
     }
