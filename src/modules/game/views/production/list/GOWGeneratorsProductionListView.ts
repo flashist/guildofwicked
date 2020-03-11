@@ -24,6 +24,7 @@ export class GOWGeneratorsProductionListView extends BaseView {
     protected startDragViewLocalPos: Point;
     protected startDragViewGlobalPos: Point;
     protected dragMinY: number;
+    protected isScrollAvailable: boolean;
 
     protected construction(...args): void {
         super.construction(...args);
@@ -81,6 +82,10 @@ export class GOWGeneratorsProductionListView extends BaseView {
     }
 
     protected onDragStart(): void {
+        if (!this.isScrollAvailable) {
+            return;
+        }
+
         this.startDragViewLocalPos.x = this.generatorsList.x;
         this.startDragViewLocalPos.y = this.generatorsList.y;
         this.startDragViewGlobalPos = this.generatorsList.parent.toGlobal(this.startDragViewLocalPos) as any;
@@ -107,11 +112,18 @@ export class GOWGeneratorsProductionListView extends BaseView {
         const totalSize: Point = this.generatorsListLayout.getTotalSize();
         this.dragMinY = (this.generatorsListMask.y + this.generatorsListMask.height - totalSize.y);
 
+        if (totalSize.y > this.generatorsListMask.height) {
+            this.isScrollAvailable = true;
+        } else {
+            this.isScrollAvailable = false;
+        }
+
         this.commitDragData();
     }
 
     protected commitDragData(): void {
-        if (!this.dragHelper.isDragStarted) {
+        if (!this.dragHelper.isDragStarted ||
+            !this.isScrollAvailable) {
             return;
         }
 

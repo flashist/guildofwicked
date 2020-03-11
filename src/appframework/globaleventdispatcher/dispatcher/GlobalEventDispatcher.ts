@@ -1,7 +1,6 @@
-import {BaseObject} from "fcore";
+import {IEventListenerCallback, StringTools, BaseObject} from "fcore";
+
 import {GLobalEventDispatcherEvent} from "./GlobalEventDispatcherEvent";
-import {IGlobalDispatchEventVO} from "./IGlobalDispatchEventVO";
-import {IEventListenerCallback, StringTools} from "../../../../../fcore/src";
 
 export class GlobalEventDispatcher extends BaseObject {
 

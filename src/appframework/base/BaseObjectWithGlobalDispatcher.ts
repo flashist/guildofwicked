@@ -2,7 +2,6 @@ import {BaseObject} from "fcore";
 import {getInstance} from "fsuite";
 
 import {GlobalEventDispatcher} from "../globaleventdispatcher/dispatcher/GlobalEventDispatcher";
-import {IEventListenerCallback} from "../../../../fcore/src";
 
 export class BaseObjectWithGlobalDispatcher extends BaseObject {
 
