@@ -2,7 +2,7 @@ import {Command} from "fcore";
 import {GlobalEventDispatcher} from "../../globaleventdispatcher/dispatcher/GlobalEventDispatcher";
 import {getInstance} from "fsuite";
 
-export abstract class BaseAppCommand extends Command {
+export abstract class BaseAppCommand<ResolveType = any> extends Command<ResolveType> {
 
     protected globalDispatcher: GlobalEventDispatcher;
 

@@ -1,11 +1,11 @@
-import {Point, HtmlTools} from "fsuite";
-
 import {Facade} from "./appframework/facade/Facade";
 import {GOWPreloaderModule} from "./modules/preloader/GOWPreloaderModule";
 import {GOWAppModule} from "./modules/app/GOWAppModule";
 import {GOWGameModule} from "./modules/game/GOWGameModule";
 import {GOWUsersModule} from "./modules/users/GOWUsersModule";
 import {GOWGeneratorsModule} from "./modules/generators/GOWGeneratorsModule";
+import {GOWServerEmulatorModule} from "./modules/serveremulator/GOWServerEmulatorModule";
+import {GOWInitModule} from "./modules/init/GOWInitModule";
 
 export class GOWFacade extends Facade {
 
@@ -17,6 +17,8 @@ export class GOWFacade extends Facade {
         this.addSingleModule(new GOWGameModule());
         this.addSingleModule(new GOWUsersModule());
         this.addSingleModule(new GOWGeneratorsModule());
+        this.addSingleModule(new GOWServerEmulatorModule());
+        this.addSingleModule(new GOWInitModule());
     }
 
 }

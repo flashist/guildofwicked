@@ -1,0 +1,11 @@
+import {IGenericObjectVO} from "fsuite";
+
+export interface IServerRequestVO {
+    id: string;
+    loginData?: string;
+    items?: IGenericObjectVO;
+
+    // This is needed because since some typescript version it's not possible
+    // to use object with fields, not described in an interface
+    [key: string]: any;
+}

@@ -13,4 +13,7 @@ export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWStaticGenerato
         this.staticType = GOWGeneratorVOStaticType;
     }
 
+    public get nextProductionAvailable(): boolean {
+        return this.level > 0 && !this.isProductionInProgress;
+    }
 }

@@ -3,6 +3,7 @@ import {
 } from "fcore";
 
 import {
+    getInstance,
     WaitGroupLoadingCompleteCommand
 } from "fsuite";
 
@@ -13,20 +14,23 @@ import {LoadGroupName} from "../../../appframework/load/LoadGroupName";
 import {ChangePageCommand} from "../../../appframework/pages/commands/ChangePageCommand";
 import {PageId} from "../../../appframework/pages/PageId";
 import {LoadStaticItemsCommand} from "../../app/commands/LoadStaticItemsCommand";
+import {InitApplicationDataCommand} from "./InitApplicationDataCommand";
 
 export class InitApplicationCommand extends QueueCommand {
 
     constructor() {
         super(
             [
-                new LoadAppConfigCommand(),
-                new LoadLocalizaitonCommand(),
-                new LoadStaticItemsCommand(),
+                getInstance(LoadAppConfigCommand),
+                getInstance(LoadLocalizaitonCommand),
+                getInstance(LoadStaticItemsCommand),
 
-                new InitLoadProcessCommand(),
-                new WaitGroupLoadingCompleteCommand(LoadGroupName.PRELOAD),
+                getInstance(InitLoadProcessCommand),
+                getInstance(WaitGroupLoadingCompleteCommand, LoadGroupName.PRELOAD),
 
-                new ChangePageCommand(PageId.PRELOADER_PAGE_ID)
+                getInstance(InitApplicationDataCommand),
+
+                getInstance(ChangePageCommand, PageId.PRELOADER_PAGE_ID)
             ]
         );
     }
