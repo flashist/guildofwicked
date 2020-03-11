@@ -1,5 +1,5 @@
 import {Point} from "fsuite";
 
-export interface IGetSizeObject {
+export interface IGetSizable {
     getSize():Point;
 }

@@ -83,9 +83,6 @@ export class SimpleButtonView<DataType extends object = object> extends Resizabl
     protected arrange(): void {
         super.arrange();
 
-        /*this.bg.width = this.resizeSize.x;
-        this.bg.height = this.resizeSize.y;*/
-
         if (this.bg.width !== this.resizeSize.x ||
             this.bg.height !== this.resizeSize.y) {
 

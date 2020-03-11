@@ -12,6 +12,7 @@
     "resourceDefense": "DEF {value}",
     "premiumCurrenciesPlaceholder": "PLACE FOR PREMIUM CURRENCIES",
     "quickActionBtnPlaceholder": "QUICK ACTION: START PROD / BUY / UPGRADE",
+    "firstBuyButton": "{name}\n{price}",
 
     "money": "MONEY",
     "units": "UNITS",

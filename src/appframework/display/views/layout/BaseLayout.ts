@@ -1,5 +1,3 @@
-import {Logger} from "fcore";
-
 import {VAlign, Align, Point} from "fsuite";
 
 import {LayoutConfig} from "./LayoutConfig";

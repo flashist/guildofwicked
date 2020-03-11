@@ -1,12 +1,12 @@
 import {Point, DisplayObjectContainer} from "fsuite";
-import {IGetSizeObject} from "../data/IGetSizeObject";
+import {IGetSizable} from "../data/IGetSizable";
 
 export class GetSizeTools {
 
     static getObjectSize(sourceObject: DisplayObjectContainer): Point {
         let result: Point = new Point();
 
-        let getSizeObject: IGetSizeObject = (sourceObject as any as IGetSizeObject);
+        let getSizeObject: IGetSizable = (sourceObject as any as IGetSizable);
         if (getSizeObject.getSize) {
             result = getSizeObject.getSize();
 
