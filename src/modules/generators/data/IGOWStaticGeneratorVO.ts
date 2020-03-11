@@ -11,7 +11,11 @@ export interface IGOWStaticGeneratorVO extends BaseDataVO {
     basePrice: number;
     isStartGenerator?: boolean;
     buyCoef: number;
-    productionValue: number;
-    productionTime: number;
+
+    productionValue: {
+        resourceType: GOWResourceType,
+        value: number
+    };
+    productionDuration: number;
 
 }

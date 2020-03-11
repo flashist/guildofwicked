@@ -1,11 +1,12 @@
 import {BaseView} from "../../../../../appframework/base/views/BaseView";
 import {GOWGeneratorVO} from "../../../../generators/data/GOWGeneratorVO";
-import {Align, BaseDataVOEvent, FContainer, getText, Graphics, Point, Sprite, Texture, VAlign} from "fsuite";
+import {Align, BaseDataVOEvent, FContainer, FLabel, getText, Graphics, Point, Sprite, Texture, VAlign} from "fsuite";
 import {GOWSettings} from "../../../../../GOWSettings";
 import {SimpleButtonView} from "../../../../../appframework/display/views/button/SimpleButtonView";
 import {IGetSizable} from "../../../../../appframework/display/data/IGetSizable";
-import {GOWResourcesTools} from "../../../../resources/tools/GOWResourcesTools";
 import {GOWResourceType} from "../../../../resources/data/GOWResourceType";
+import {GOWGeneratorProductionProgressView} from "./GOWGeneratorProductionProgressView";
+import {GOWTextTools} from "../../../../texts/tools/GOWTextTools";
 
 export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGeneratorVO> implements IGetSizable {
 
@@ -16,7 +17,19 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
     protected iconBgGlow: Sprite;
     protected icon: Sprite;
 
+    protected notBoughtCont: FContainer;
     protected firstBuyButton: SimpleButtonView;
+
+    protected boughtCont: FContainer;
+    protected progressBar: GOWGeneratorProductionProgressView;
+
+    protected infoLabel: FLabel;
+
+    protected timeBg: Graphics;
+    protected timeLabel: FLabel;
+
+    protected buyBtn: SimpleButtonView;
+    protected upgradeBtn: SimpleButtonView;
 
     protected construction(...args): void {
         super.construction(...args);
@@ -43,6 +56,9 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         this.icon = new Sprite();
         this.iconCont.addChild(this.icon);
 
+        this.notBoughtCont = new FContainer();
+        this.addChild(this.notBoughtCont);
+
         this.firstBuyButton = new SimpleButtonView(
             {
                 bgConfig: {
@@ -62,7 +78,108 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 }
             }
         );
-        this.addChild(this.firstBuyButton);
+        this.notBoughtCont.addChild(this.firstBuyButton);
+
+        this.boughtCont = new FContainer();
+        this.addChild(this.boughtCont);
+
+        this.progressBar = new GOWGeneratorProductionProgressView();
+        this.boughtCont.addChild(this.progressBar);
+
+        this.infoLabel = new FLabel(
+            {
+                fontFamily: "Clarence",
+                size: 36,
+                color: GOWSettings.colors.black,
+                align: Align.CENTER,
+                valign: VAlign.MIDDLE,
+
+                stroke: GOWSettings.colors.white,
+                strokeThickness: 1.5,
+
+                dropShadow: true,
+                dropShadowColor: GOWSettings.colors.white,
+                dropShadowDistance: 0,
+                dropShadowBlur: 4
+            }
+        );
+        this.boughtCont.addChild(this.infoLabel);
+
+        this.timeBg = new Graphics();
+        this.boughtCont.addChild(this.timeBg);
+        //
+        this.timeBg.beginFill(GOWSettings.colors.white);
+        this.timeBg.lineStyle(2, GOWSettings.colors.black);
+        this.timeBg.drawRect(0, 0, 90, 50);
+        this.timeBg.endFill();
+
+        this.timeLabel = new FLabel(
+            {
+                fontFamily: "Clarence",
+                size: 36,
+                color: GOWSettings.colors.black,
+                align: Align.CENTER,
+                valign: VAlign.MIDDLE,
+
+                stroke: GOWSettings.colors.white,
+                strokeThickness: 1.5,
+
+                dropShadow: true,
+                dropShadowColor: GOWSettings.colors.white,
+                dropShadowDistance: 0,
+                dropShadowBlur: 4
+            }
+        );
+        this.boughtCont.addChild(this.timeLabel);
+        //
+        this.timeLabel.width = this.timeBg.width;
+        this.timeLabel.height = this.timeBg.height;
+
+        this.buyBtn = new SimpleButtonView(
+            {
+                bgConfig: {
+                    bgColor: GOWSettings.colors.white,
+                    bgAlpha: 1,
+                    bgBorderColor: GOWSettings.colors.black,
+                    bgBorderAlpha: 1,
+                    bgBorderWidth: 2
+                },
+                labelConfig: {
+                    fontFamily: "Clarence",
+                    size: 24,
+                    color: GOWSettings.colors.black,
+                    autosize: true,
+                    align: Align.CENTER,
+                    valign: VAlign.MIDDLE
+                }
+            }
+        );
+        this.boughtCont.addChild(this.buyBtn);
+        //
+        this.buyBtn.resize(110, 50);
+
+        this.upgradeBtn = new SimpleButtonView(
+            {
+                bgConfig: {
+                    bgColor: GOWSettings.colors.white,
+                    bgAlpha: 1,
+                    bgBorderColor: GOWSettings.colors.black,
+                    bgBorderAlpha: 1,
+                    bgBorderWidth: 2
+                },
+                labelConfig: {
+                    fontFamily: "Clarence",
+                    size: 24,
+                    color: GOWSettings.colors.black,
+                    autosize: true,
+                    align: Align.CENTER,
+                    valign: VAlign.MIDDLE
+                }
+            }
+        );
+        this.boughtCont.addChild(this.upgradeBtn);
+        //
+        this.upgradeBtn.resize(215, 50);
     }
 
 
@@ -116,18 +233,33 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         }
 
         if (this.data.level > 0) {
-            this.firstBuyButton.visible = false;
+            this.boughtCont.visible = true;
+            this.notBoughtCont.visible = false;
+
+            this.infoLabel.text = getText(
+                "productionInfo",
+                {
+                    value: GOWTextTools.getFormattedResourceAmount(
+                        this.data.static.productionValue.value,
+                        this.data.static.productionValue.resourceType
+                    )
+                }
+            );
+
         } else {
+            this.boughtCont.visible = false;
+            this.notBoughtCont.visible = true;
+
             this.firstBuyButton.text = getText(
                 "firstBuyButton",
                 {
                     name: getText(this.data.static.localeId),
-                    price: GOWResourcesTools.getFormattedResourceAmount(
+                    price: GOWTextTools.getFormattedResourceAmount(
                         this.data.static.basePrice,
                         GOWResourceType.MONEY
                     )
                 }
-            )
+            );
         }
 
         this.arrange();
@@ -145,15 +277,41 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         this.icon.x = this.iconBg.x + Math.floor((this.iconBg.width - this.icon.width) / 2);
         this.icon.y = this.iconBg.y + Math.floor((this.iconBg.height - this.icon.height) / 2);
 
-        this.firstBuyButton.x = this.iconCont.x + this.iconBg.width + GOWSettings.layout.contentToBorderPadding;
-        this.firstBuyButton.y = this.iconCont.y;
+        this.firstBuyButton.x = Math.floor(this.iconCont.x + this.iconBg.width + GOWSettings.layout.contentToBorderPadding);
+        this.firstBuyButton.y = Math.floor(this.iconCont.y);
         this.firstBuyButton.resize(
-            this.resizeSize.x - this.firstBuyButton.x - GOWSettings.layout.contentToBorderPadding,
+            Math.floor(this.resizeSize.x - this.firstBuyButton.x - GOWSettings.layout.contentToBorderPadding),
             this.iconBg.height
-        )
+        );
+
+        this.upgradeBtn.x = Math.floor(this.resizeSize.x - this.upgradeBtn.width - GOWSettings.layout.contentToBorderPadding);
+        this.upgradeBtn.y = Math.floor(this.resizeSize.y - this.upgradeBtn.height - GOWSettings.layout.contentToBorderPadding);
+
+        this.buyBtn.x = Math.floor(this.resizeSize.x - this.buyBtn.width - GOWSettings.layout.contentToBorderPadding);
+        this.buyBtn.y = this.iconCont.y;
+
+        this.timeBg.x = this.upgradeBtn.x;
+        this.timeBg.y = this.buyBtn.y;
+
+        this.timeLabel.x = this.timeBg.x;
+        this.timeLabel.y = this.timeBg.y;
+
+        this.progressBar.x = Math.floor(this.iconCont.x + this.iconBg.width + GOWSettings.layout.contentToBorderPadding);
+        this.progressBar.y = this.iconCont.y;
+        //
+        this.progressBar.resize(
+            Math.floor(this.timeBg.x - this.progressBar.x - GOWSettings.layout.contentToBorderPadding),
+            this.timeBg.height
+        );
+
+        this.infoLabel.x = this.progressBar.x;
+        this.infoLabel.y = this.progressBar.y;
+        this.infoLabel.width = this.progressBar.width;
+        this.infoLabel.height = this.progressBar.height;
     }
 
     getSize(): Point {
         return this.resizeSize.clone();
     }
+
 }

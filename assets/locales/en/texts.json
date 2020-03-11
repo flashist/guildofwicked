@@ -12,7 +12,7 @@
     "resourceDefense": "DEF {value}",
     "premiumCurrenciesPlaceholder": "PLACE FOR PREMIUM CURRENCIES",
     "quickActionBtnPlaceholder": "QUICK ACTION: START PROD / BUY / UPGRADE",
-    "firstBuyButton": "{name}\n{price}",
+    "firstBuyButton": "{name}\nBUY: {price}",
 
     "money": "MONEY",
     "units": "UNITS",
@@ -21,6 +21,14 @@
     "charlatan": "CHARLATAN",
     "tavern": "TAVERN",
     "graveRobbers": "GRAVE ROBBERS",
-    "midnightRiders": "MIDNIGHT RIDERS"
+    "midnightRiders": "MIDNIGHT RIDERS",
+
+    "productionInfo": "{value}",
+
+    "secondsAndMilliseconds": "{time}s",
+    "minutesAndSeconds": "{time}m",
+    "hoursAndMinutes": "{time}h",
+    "daysAndHours": "{time}d",
+    "days": "{time}d"
   }
 }

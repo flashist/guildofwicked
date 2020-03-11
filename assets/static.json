@@ -11,8 +11,11 @@
       "isStartGenerator": true,
       "basePrice": 4,
       "buyCoef": 1.07,
-      "productionValue": 1,
-      "productionTime": 0.6
+      "productionValue": {
+        "resourceType": "money",
+        "value": 1
+      },
+      "productionDuration": 600
     },
     {
       "type": "static_generator",
@@ -24,8 +27,11 @@
       "index": 1,
       "basePrice": 60,
       "buyCoef": 1.15,
-      "productionValue": 120,
-      "productionTime": 3
+      "productionValue": {
+        "resourceType": "money",
+        "value": 120
+      },
+      "productionDuration": 3000
     },
     {
       "type": "static_generator",
@@ -37,8 +43,11 @@
       "index": 2,
       "basePrice": 720,
       "buyCoef": 1.14,
-      "productionValue": 540,
-      "productionTime": 6
+      "productionValue": {
+        "resourceType": "money",
+        "value": 540
+      },
+      "productionDuration": 6000
     },
     {
       "type": "static_generator",
@@ -50,8 +59,11 @@
       "index": 3,
       "basePrice": 8640,
       "buyCoef": 1.13,
-      "productionValue": 4320,
-      "productionTime": 12
+      "productionValue": {
+        "resourceType": "money",
+        "value": 4320
+      },
+      "productionDuration": 12000
     },
     {
       "type": "static_generator",
@@ -63,8 +75,11 @@
       "index": 4,
       "basePrice": 103680,
       "buyCoef": 1.12,
-      "productionValue": 51840,
-      "productionTime": 24
+      "productionValue": {
+        "resourceType": "money",
+        "value": 51840
+      },
+      "productionDuration": 24000
     }
   ]
 }

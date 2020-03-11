@@ -7,7 +7,7 @@ import {GOWUsersModel} from "../../../users/models/GOWUsersModel";
 import {GOWUserVOEvent} from "../../../users/events/GOWUserVOEvent";
 import {GOWResourceType} from "../../../resources/data/GOWResourceType";
 import {SimpleButtonView} from "../../../../appframework/display/views/button/SimpleButtonView";
-import {GOWResourcesTools} from "../../../resources/tools/GOWResourcesTools";
+import {GOWTextTools} from "../../../texts/tools/GOWTextTools";
 
 export class GOWGamePageHeaderView extends BaseView {
 
@@ -120,7 +120,7 @@ export class GOWGamePageHeaderView extends BaseView {
 
         if (this.usersModel.curUserData) {
             const userMoney: number = this.usersModel.curUserData.getResource(GOWResourceType.MONEY);
-            this.moneyLabel.text = GOWResourcesTools.getFormattedResourceAmount(
+            this.moneyLabel.text = GOWTextTools.getFormattedResourceAmount(
                 userMoney,
                 GOWResourceType.MONEY
             );
