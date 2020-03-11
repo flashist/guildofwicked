@@ -109,10 +109,10 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
             this.bg.alpha = 0.25;
         }
 
-        if (this.data.nextProductionAvailable) {
-            this.iconBgGlow.visible = false;
-        } else {
+        if (this.data.isNextProductionAvailable) {
             this.iconBgGlow.visible = true;
+        } else {
+            this.iconBgGlow.visible = false;
         }
 
         if (this.data.level > 0) {

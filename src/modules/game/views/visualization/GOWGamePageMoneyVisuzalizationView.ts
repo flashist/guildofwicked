@@ -2,19 +2,19 @@ import {GenericObjectsByTypeModel, getInstance} from "fsuite";
 
 import {BaseView} from "../../../../appframework/base/views/BaseView";
 import {SimpleList} from "../../../../appframework/display/views/simplelist/SimpleList";
-import {GOWVisuzalizationItemRendererView} from "./GOWVisuzalizationItemRendererView";
 import {GOWGeneratorsModel} from "../../../generators/models/GOWGeneratorsModel";
 import {GOWGeneratorVOStaticType} from "../../../generators/data/GOWGeneratorVOStaticType";
 import {GOWGeneratorVO} from "../../../generators/data/GOWGeneratorVO";
 import {IGOWStaticGeneratorVO} from "../../../generators/data/IGOWStaticGeneratorVO";
 import {GOWSettings} from "../../../../GOWSettings";
+import {GOWVisualizationItemRendererView} from "./GOWVisualizationItemRendererView";
 
 export class GOWGamePageMoneyVisuzalizationView extends BaseView {
 
     protected generatorsModel: GOWGeneratorsModel = getInstance(GOWGeneratorsModel);
     protected genericByTypeModel: GenericObjectsByTypeModel = getInstance(GenericObjectsByTypeModel);
 
-    protected itemsList: SimpleList<GOWVisuzalizationItemRendererView, GOWGeneratorVO>;
+    protected itemsList: SimpleList<GOWVisualizationItemRendererView, GOWGeneratorVO>;
 
     protected construction(...args): void {
         super.construction(...args);
@@ -22,9 +22,9 @@ export class GOWGamePageMoneyVisuzalizationView extends BaseView {
         this.generatorsModel = getInstance(GOWGeneratorsModel);
         this.genericByTypeModel = getInstance(GenericObjectsByTypeModel);
 
-        this.itemsList = new SimpleList<GOWVisuzalizationItemRendererView, GOWGeneratorVO>();
+        this.itemsList = new SimpleList<GOWVisualizationItemRendererView, GOWGeneratorVO>();
         this.addChild(this.itemsList);
-        this.itemsList.ItemRendererClass = GOWVisuzalizationItemRendererView;
+        this.itemsList.ItemRendererClass = GOWVisualizationItemRendererView;
 
         const staticGeneratorsList: IGOWStaticGeneratorVO[] = this.genericByTypeModel.getItemsForType<IGOWStaticGeneratorVO>(GOWGeneratorVOStaticType);
         const generatorsList: GOWGeneratorVO[] = [];
@@ -41,10 +41,10 @@ export class GOWGamePageMoneyVisuzalizationView extends BaseView {
     protected arrange(): void {
         super.arrange();
 
-        const itemViews: GOWVisuzalizationItemRendererView[] = this.itemsList.getItems();
+        const itemViews: GOWVisualizationItemRendererView[] = this.itemsList.getItems();
         let itemsCount: number = itemViews.length;
         for (let itemIndex: number = 0; itemIndex < itemsCount; itemIndex++) {
-            const singleItemView: GOWVisuzalizationItemRendererView = itemViews[itemIndex];
+            const singleItemView: GOWVisualizationItemRendererView = itemViews[itemIndex];
             const singleItemPositionCoef = GOWSettings.gamePage.layout.visualiztion.money.itemPositionsCoefs[itemIndex];
             singleItemView.x = Math.floor(this.resizeSize.x * singleItemPositionCoef.x);
             singleItemView.y = Math.floor(this.resizeSize.y * singleItemPositionCoef.y);

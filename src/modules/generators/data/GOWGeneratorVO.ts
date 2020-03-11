@@ -6,6 +6,7 @@ export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWStaticGenerato
 
     public level: number = 0;
     public isProductionInProgress: boolean;
+    public startProductionTime: number;
 
     constructor() {
         super();
@@ -13,7 +14,7 @@ export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWStaticGenerato
         this.staticType = GOWGeneratorVOStaticType;
     }
 
-    public get nextProductionAvailable(): boolean {
+    public get isNextProductionAvailable(): boolean {
         return this.level > 0 && !this.isProductionInProgress;
     }
 }

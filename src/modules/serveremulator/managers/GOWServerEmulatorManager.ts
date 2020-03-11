@@ -8,7 +8,9 @@ import {GOWServerEmulatorUsersManager} from "./GOWServerEmulatorUsersManager";
 import {GOWServerRequestId} from "../../server/data/GOWServerRequestId";
 import {IInitServerRequestVO} from "../../server/data/IInitServerRequestVO";
 import {IInitServerResponseVO} from "../../server/data/IInitServerResponseVO";
-import {IGOWEmulationUserVO} from "../data/IGOWEmulationUserVO";
+import {GOWServerEmulatorCreateUserCommand} from "../commands/GOWServerEmulatorCreateUserCommand";
+import {GOWServerEmulatorTools} from "../tools/GOWServerEmulatorTools";
+import {IGOWServerEmulatorUserVO} from "../data/IGOWServerEmulatorUserVO";
 
 export class GOWServerEmulatorManager extends BaseManager {
 
@@ -63,14 +65,17 @@ export class GOWServerEmulatorManager extends BaseManager {
         return new Promise(
             (resolve: Function) => {
 
-                let userData: IGOWEmulationUserVO = this.emulationUsersManager.getUserDataByLogin(requestData.loginData);
+                let userData: IGOWServerEmulatorUserVO = this.emulationUsersManager.getUserDataByLogin(requestData.loginData);
                 if (!userData) {
-                    userData = this.emulationUsersManager.createUser(requestData.loginData);
+                    new GOWServerEmulatorCreateUserCommand(requestData.loginData)
+                        .execute();
+                    userData = this.emulationUsersManager.getUserDataByLogin(requestData.loginData);
                 }
 
+                const items: IGenericObjectVO[] = GOWServerEmulatorTools.prepareUserItemsResponse(userData.id);
                 const responseData: Partial<IInitServerResponseVO> = this.prepareResponse(
                     requestData.id,
-                    [userData]
+                    items
                 );
                 responseData.userId = userData.id;
 

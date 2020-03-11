@@ -9,6 +9,7 @@ export interface IGOWStaticGeneratorVO extends BaseDataVO {
 
     index: number;
     basePrice: number;
+    isStartGenerator?: boolean;
     buyCoef: number;
     productionValue: number;
     productionTime: number;

@@ -17,18 +17,6 @@ export class GOWUsersModule extends BaseModule {
         const genericObjectsByTypeModel: GenericObjectsByTypeModel = getInstance(GenericObjectsByTypeModel);
         const model: GOWUsersModel = getInstance(GOWUsersModel);
         genericObjectsByTypeModel.mapModelToType(model, model.itemsType);
-
-        // TEST: init data, which will be got from server
-        model.parseSource(
-            {
-                id: "1",
-                type: "user",
-
-                resources: {
-                    money: 123456789
-                }
-            }
-        )
     }
 
 }

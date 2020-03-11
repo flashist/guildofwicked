@@ -8,6 +8,7 @@
       "resource": "money",
 
       "index": 0,
+      "isStartGenerator": true,
       "basePrice": 4,
       "buyCoef": 1.07,
       "productionValue": 1,

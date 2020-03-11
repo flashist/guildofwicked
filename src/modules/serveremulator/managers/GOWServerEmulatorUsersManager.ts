@@ -1,20 +1,22 @@
 import {UniqueTools} from "fcore";
-import {getInstance} from "fsuite";
 
 import {BaseManager} from "../../../appframework/base/managers/BaseManager";
 import {StorageManager} from "../../../appframework/storage/managers/StorageManager";
-import {IGOWEmulationUserVO} from "../data/IGOWEmulationUserVO";
 import {GOWEmulatorSettings} from "../GOWEmulatorSettings";
+import {GOWUserVOType} from "../../users/data/GOWUserVOType";
+import {IGOWServerEmulatorUserVO} from "../data/IGOWServerEmulatorUserVO";
+import {getInstance} from "fsuite";
 
 export class GOWServerEmulatorUsersManager extends BaseManager {
     protected storageManager: StorageManager;
 
-    protected userIdToUserMap: {[userId: string]: IGOWEmulationUserVO};
+    protected userIdToUserMap: {[userId: string]: IGOWServerEmulatorUserVO};
 
     protected construction(...args): void {
         super.construction(...args);
 
         this.storageManager = getInstance(StorageManager);
+
         this.userIdToUserMap = this.storageManager.getParam(GOWEmulatorSettings.users.storageId);
         if (!this.userIdToUserMap) {
             this.userIdToUserMap = {};
@@ -26,9 +28,11 @@ export class GOWServerEmulatorUsersManager extends BaseManager {
     }
 
 
-    public createUser(loginData: string): IGOWEmulationUserVO {
-        const userData: IGOWEmulationUserVO = {
+    public createUser(loginData: string): IGOWServerEmulatorUserVO {
+        const userData: IGOWServerEmulatorUserVO = {
             id: UniqueTools.getUniqueIdForPool(GOWEmulatorSettings.users.uniquePoolId),
+            type: GOWUserVOType,
+
             loginData: loginData,
 
             resources: {
@@ -42,12 +46,12 @@ export class GOWServerEmulatorUsersManager extends BaseManager {
         return userData;
     }
 
-    public getUserData(userId: string): IGOWEmulationUserVO {
+    public getUserData(userId: string): IGOWServerEmulatorUserVO {
         return this.userIdToUserMap[userId];
     }
 
-    public getUserDataByLogin(loginData: string): IGOWEmulationUserVO {
-        let result: IGOWEmulationUserVO;
+    public getUserDataByLogin(loginData: string): IGOWServerEmulatorUserVO {
+        let result: IGOWServerEmulatorUserVO;
 
         const userId: string = this.getUserIdByLogin(loginData);
         if (userId) {
@@ -62,7 +66,7 @@ export class GOWServerEmulatorUsersManager extends BaseManager {
 
         const userIds: string[] = Object.keys(this.userIdToUserMap);
         for (let singleUserId of userIds) {
-            const singleUser: IGOWEmulationUserVO = this.userIdToUserMap[singleUserId];
+            const singleUser: IGOWServerEmulatorUserVO = this.userIdToUserMap[singleUserId];
             if (singleUser.loginData === loginData) {
                 result = singleUser.id;
                 break;
