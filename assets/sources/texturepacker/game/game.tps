@@ -285,6 +285,32 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">production-icon-bg-glow.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>39,39,78,78</rect>
+                <key>scale9Paddings</key>
+                <rect>39,39,78,78</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">production-icon-bg.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>28,28,55,55</rect>
+                <key>scale9Paddings</key>
+                <rect>28,28,55,55</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">unit-magic-icon.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
