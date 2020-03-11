@@ -7,6 +7,7 @@
       "icon": "building-coal-mine-icon.png",
       "resource": "money",
 
+      "index": 0,
       "basePrice": 4,
       "buyCoef": 1.07,
       "productionValue": 1,
@@ -19,6 +20,7 @@
       "icon": "building-charlatan-icon.png",
       "resource": "money",
 
+      "index": 1,
       "basePrice": 60,
       "buyCoef": 1.15,
       "productionValue": 120,
@@ -31,6 +33,7 @@
       "icon": "building-tavern-icon.png",
       "resource": "money",
 
+      "index": 2,
       "basePrice": 720,
       "buyCoef": 1.14,
       "productionValue": 540,
@@ -43,6 +46,7 @@
       "icon": "building-grave-robbers-icon.png",
       "resource": "money",
 
+      "index": 3,
       "basePrice": 8640,
       "buyCoef": 1.13,
       "productionValue": 4320,
@@ -55,6 +59,7 @@
       "icon": "building-midnight-riders-icon.png",
       "resource": "money",
 
+      "index": 4,
       "basePrice": 103680,
       "buyCoef": 1.12,
       "productionValue": 51840,

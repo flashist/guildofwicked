@@ -27,7 +27,7 @@ export class ToggleGroup<IToggleItemType extends IToggableItem = IToggableItem> 
         }
     }
 
-    protected processItemClick(item: IToggleItemType): void {
+    protected processItemTap(item: IToggleItemType): void {
         this.selectedId = item.id;
     }
 
@@ -40,7 +40,7 @@ export class ToggleGroup<IToggleItemType extends IToggableItem = IToggableItem> 
             item,
             InteractiveEvent.TAP,
             () => {
-                this.processItemClick(item);
+                this.processItemTap(item);
             }
         );
     }

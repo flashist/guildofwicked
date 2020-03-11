@@ -6,8 +6,8 @@ import {GOWGamePageModelEvent} from "../../events/GOWGamePageModelEvent";
 import {SimpleButtonView} from "../../../../appframework/display/views/button/SimpleButtonView";
 import {GOWSettings} from "../../../../GOWSettings";
 import {ToggleGroup} from "../../../../appframework/display/views/togglegroup/ToggleGroup";
-import {ToggleGroupEvent} from "../../../../appframework/display/views/togglegroup/ToggleGroupEvent";
 import {GOWGamePageTabId} from "../../data/GOWGamePageTabId";
+import {GOWQuickActionView} from "./GOWQuickActionView";
 
 export class GOWGamePageProductionView extends BaseView {
 
@@ -16,6 +16,7 @@ export class GOWGamePageProductionView extends BaseView {
     protected moneyTabButton: SimpleButtonView;
     protected unitsTabButton: SimpleButtonView;
     public tabsToggleGroup: ToggleGroup;
+    protected quickActionView: GOWQuickActionView;
 
     protected construction(...args): void {
         super.construction(...args);
@@ -85,10 +86,13 @@ export class GOWGamePageProductionView extends BaseView {
         //
         this.unitsTabButton.id = GOWGamePageTabId.UNITS;
         this.unitsTabButton.text = getText("units");
-
+        //
         this.tabsToggleGroup = new ToggleGroup();
         this.tabsToggleGroup.addItem(this.moneyTabButton);
         this.tabsToggleGroup.addItem(this.unitsTabButton);
+
+        this.quickActionView = getInstance(GOWQuickActionView);
+        this.addChild(this.quickActionView);
     }
 
     protected addListeners(): void {
@@ -126,5 +130,11 @@ export class GOWGamePageProductionView extends BaseView {
             70
         );
         this.unitsTabButton.x = this.moneyTabButton.x + this.moneyTabButton.width;
+
+        this.quickActionView.resize(
+            Math.ceil(this.resizeSize.x),
+            70
+        );
+        this.quickActionView.y = Math.ceil(this.resizeSize.y - this.quickActionView.height);
     }
 }

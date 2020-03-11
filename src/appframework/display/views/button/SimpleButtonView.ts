@@ -57,7 +57,7 @@ export class SimpleButtonView<DataType extends object = object> extends Resizabl
         this.eventListenerHelper.addEventListener(
             this,
             InteractiveEvent.TAP,
-            this.onClick
+            this.onTap
         );
         this.eventListenerHelper.addEventListener(
             this,
@@ -76,7 +76,7 @@ export class SimpleButtonView<DataType extends object = object> extends Resizabl
         this.state = this.findStateValue(SimpleButtonState.NORMAL);
     }
 
-    protected onClick(): void {
+    protected onTap(): void {
         this.onOut();
     }
 

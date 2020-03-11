@@ -4,6 +4,8 @@ import {IGOWStaticGeneratorVO} from "./IGOWStaticGeneratorVO";
 
 export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWStaticGeneratorVO> {
 
+    public level: number = 0;
+
     constructor() {
         super();
 

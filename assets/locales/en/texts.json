@@ -5,12 +5,13 @@
     "preloaderProgress": "LOADING: {progress}%",
 
     "gamePageTest": "GAME PAGE",
-    "mapBtn": "CITY",
-    "cityBtn": "MAP",
+    "mapBtn": "MAP",
+    "cityBtn": "CITY",
     "resourceMoney": "$ {value}",
     "resourceAttack": "ATK {value}",
     "resourceDefense": "DEF {value}",
     "premiumCurrenciesPlaceholder": "PLACE FOR PREMIUM CURRENCIES",
+    "quickActionBtnPlaceholder": "QUICK ACTION: START PROD / BUY / UPGRADE",
 
     "money": "MONEY",
     "units": "UNITS",

@@ -2,11 +2,12 @@
 
 import {
     FContainer,
-    DisplayTools
+    DisplayTools, Point, DisplayObjectContainer
 } from "fsuite";
 
 import {ISimpleListItem} from "./ISimpleListItem";
 import {ILayoutableContainer} from "../layout/container/ILayoutableContainer";
+import {IResizable} from "../resize/IResizable";
 
 export class SimpleList
     <ItemType extends ISimpleListItem = ISimpleListItem, ItemData extends any = any>
@@ -233,13 +234,11 @@ export class SimpleList
     }
 
     protected addItem(item: ItemType, index: number): void {
-
-        const isNewAdd: boolean = item.parent !== this;
-
         DisplayTools.safeAddChildAt(this, item, index);
         this.items[index] = item;
 
         this.applyDataToItem(item, this.dataProvider[index]);
+        this.resizeSingleItem(item);
     }
 
     protected removeItem(item: ItemType, removeFromDisplayList: boolean = true): void {
@@ -283,5 +282,36 @@ export class SimpleList
 
     public getItems(): ItemType[] {
         return this.items.concat();
+    }
+
+    protected childrenResizeSize: Point;
+    public resizeItems(childrenWidth: number, childrenHeight: number): void {
+        if (!this.childrenResizeSize) {
+            this.childrenResizeSize = new Point();
+        }
+
+        if (this.childrenResizeSize.x === childrenWidth &&
+            this.childrenResizeSize.y === childrenHeight) {
+            return;
+        }
+
+        for (let singleItem of this.items) {
+            this.resizeSingleItem(singleItem);
+        }
+    }
+
+    protected resizeSingleItem(item: ItemType): void {
+        if (!this.childrenResizeSize) {
+            return;
+        }
+
+        const resizableItem: IResizable = (item as any);
+        if (resizableItem.resize) {
+            resizableItem.resize(this.childrenResizeSize.x, this.childrenResizeSize.y);
+
+        } else {
+            item.width = this.childrenResizeSize.x;
+            item.height = this.childrenResizeSize.y;
+        }
     }
 }

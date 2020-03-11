@@ -43,7 +43,7 @@ export class GOWGamePageHeaderView extends BaseView {
         this.mapBtn = new SimpleButtonView(
             {
                 bgConfig: {
-                    bgColor: GOWSettings.colors.yellow,
+                    bgColor: GOWSettings.colors.white,
                     bgAlpha: 1,
                     bgBorderColor: GOWSettings.colors.black,
                     bgBorderAlpha: 1,

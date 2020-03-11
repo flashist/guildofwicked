@@ -1,6 +1,7 @@
+import {getText} from "fsuite";
+
 import {GOWResourceType} from "../data/GOWResourceType";
 import {GOWSettings} from "../../../GOWSettings";
-import {getText} from "fsuite";
 
 export class GOWResourcesTools {
 

@@ -7,6 +7,7 @@ export interface IGOWStaticGeneratorVO extends BaseDataVO {
     icon: string;
     resource: GOWResourceType;
 
+    index: number;
     basePrice: number;
     buyCoef: number;
     productionValue: number;
