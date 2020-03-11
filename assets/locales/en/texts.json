@@ -7,7 +7,9 @@
     "gamePageTest": "GAME PAGE",
     "mapBtn": "CITY",
     "cityBtn": "MAP",
-    "userMoney": "${money}",
+    "resourceMoney": "$ {value}",
+    "resourceAttack": "ATK {value}",
+    "resourceDefense": "DEF {value}",
     "premiumCurrenciesPlaceholder": "PLACE FOR PREMIUM CURRENCIES",
 
     "money": "MONEY",

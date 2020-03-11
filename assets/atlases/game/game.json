@@ -2,7 +2,7 @@
 
 "building-attack-icon.png":
 {
-	"frame": {"x":1,"y":94,"w":87,"h":82},
+	"frame": {"x":159,"y":1,"w":87,"h":82},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":87,"h":82},
@@ -10,7 +10,7 @@
 },
 "building-charlatan-icon.png":
 {
-	"frame": {"x":121,"y":1,"w":106,"h":70},
+	"frame": {"x":113,"y":159,"w":106,"h":70},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":106,"h":70},
@@ -18,7 +18,7 @@
 },
 "building-coal-mine-icon.png":
 {
-	"frame": {"x":1,"y":178,"w":79,"h":53},
+	"frame": {"x":121,"y":298,"w":79,"h":53},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":79,"h":53},
@@ -26,7 +26,7 @@
 },
 "building-defense-icon.png":
 {
-	"frame": {"x":1,"y":1,"w":118,"h":91},
+	"frame": {"x":1,"y":271,"w":118,"h":91},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":118,"h":91},
@@ -34,7 +34,7 @@
 },
 "building-grave-robbers-icon.png":
 {
-	"frame": {"x":90,"y":153,"w":87,"h":66},
+	"frame": {"x":159,"y":85,"w":87,"h":66},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":87,"h":66},
@@ -42,7 +42,7 @@
 },
 "building-midnight-riders-icon.png":
 {
-	"frame": {"x":179,"y":153,"w":70,"h":74},
+	"frame": {"x":101,"y":364,"w":70,"h":74},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":70,"h":74},
@@ -50,7 +50,7 @@
 },
 "building-tavern-icon.png":
 {
-	"frame": {"x":121,"y":73,"w":98,"h":78},
+	"frame": {"x":1,"y":364,"w":98,"h":78},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":98,"h":78},
@@ -58,15 +58,31 @@
 },
 "icon-burger.png":
 {
-	"frame": {"x":204,"y":229,"w":47,"h":46},
+	"frame": {"x":202,"y":298,"w":47,"h":46},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":46},
 	"sourceSize": {"w":47,"h":46}
 },
+"production-icon-bg-glow.png":
+{
+	"frame": {"x":1,"y":1,"w":156,"h":156},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":156,"h":156},
+	"sourceSize": {"w":156,"h":156}
+},
+"production-icon-bg.png":
+{
+	"frame": {"x":1,"y":159,"w":110,"h":110},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":110},
+	"sourceSize": {"w":110,"h":110}
+},
 "unit-magic-icon.png":
 {
-	"frame": {"x":82,"y":221,"w":60,"h":65},
+	"frame": {"x":121,"y":231,"w":60,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":65},
@@ -74,7 +90,7 @@
 },
 "unit-melee-icon.png":
 {
-	"frame": {"x":1,"y":233,"w":58,"h":65},
+	"frame": {"x":183,"y":231,"w":58,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":58,"h":65},
@@ -82,7 +98,7 @@
 },
 "unit-range-icon.png":
 {
-	"frame": {"x":144,"y":229,"w":58,"h":65},
+	"frame": {"x":173,"y":353,"w":58,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":58,"h":65},
@@ -93,8 +109,8 @@
 	"version": "1.0",
 	"image": "game.png",
 	"format": "RGBA8888",
-	"size": {"w":252,"h":299},
+	"size": {"w":250,"h":443},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:fb5142761224297c6b5d06ba9ea42831:47099d10f17cbb56eb2e6745c972aee2:fc2835210f98bae8e8c1b7f0a84c9321$"
+	"smartupdate": "$TexturePacker:SmartUpdate:b78c87a316a746bb3bac13c868cf8408:52200209f46bf18cadfcf609dea09480:fc2835210f98bae8e8c1b7f0a84c9321$"
 }
 }

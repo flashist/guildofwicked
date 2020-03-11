@@ -5,8 +5,10 @@ export const GOWSettings = {
         greyLight: 0xb6b7b5,
         white: 0xeaeaea,
         red: 0xde757a,
-        yellow: 0xfed766
+        yellow: 0xfed766,
+        orange: 0xee8434
     },
+
     layout: {
         contentToBorderPadding: 15
     },
@@ -24,6 +26,18 @@ export const GOWSettings = {
                     ]
                 }
             }
+        }
+    },
+
+    resources: {
+        money: {
+            localeId: "resourceMoney"
+        },
+        attack: {
+            localeId: "resourceAttack"
+        },
+        defense: {
+            localeId: "resourceDefense"
         }
     }
 };
