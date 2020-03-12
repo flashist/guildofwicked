@@ -6,7 +6,7 @@
   "scripts": {
     "build": "gulp build",
     "dev": "npm run build && npm run dev:server",
-    "dev:server": "webpack-dev-server --open"
+    "dev:server": "webpack-dev-server --compress --open"
   },
   "author": "Mark Dolbyrev",
   "dependencies": {},

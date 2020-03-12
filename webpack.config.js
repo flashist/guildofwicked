@@ -64,8 +64,10 @@ if (DEV) {
     module.exports.devtool = 'inline-source-map';
     module.exports.devServer = {
         contentBase: path.join(__dirname, `${BUILD_DIR}`),
+        watchContentBase: true,
+        index: "index.html",
         port: 9000,
-        openPage: "index.html"
+        compress: true
     };
 
     console.log("DIST: ", path.join(__dirname, `${BUILD_DIR}`));
