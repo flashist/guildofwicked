@@ -31,6 +31,9 @@
     "hoursAndMinutes": "{hours}h {minutes}m",
     "daysAndHours": "{days}d {hours}h",
     "days": "{days}d",
-    "waiting": "WAITING"
+    "waiting": "IDLE",
+
+    "buyPlaceholder": "BUY",
+    "upgradePlaceholder": "UPGRADE"
   }
 }

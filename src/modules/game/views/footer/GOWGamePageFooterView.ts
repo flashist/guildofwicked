@@ -8,6 +8,8 @@ export class GOWGamePageFooterView extends BaseView {
 
     protected bg: Graphics;
 
+    protected testLabel: FLabel;
+
     protected construction(...args): void {
         super.construction(...args);
 
@@ -19,7 +21,7 @@ export class GOWGamePageFooterView extends BaseView {
         this.bg.endFill();
 
         // TEST
-        const testLabel: FLabel = new FLabel(
+        this.testLabel = new FLabel(
             {
                 fontFamily: "Clarence",
                 size: 36,
@@ -29,8 +31,8 @@ export class GOWGamePageFooterView extends BaseView {
                 valign: VAlign.MIDDLE
             }
         );
-        this.addChild(testLabel);
-        testLabel.text = "IT'S FOOTER!"
+        this.addChild(this.testLabel);
+        this.testLabel.text = "IT'S FOOTER!"
     }
 
     protected arrange(): void {
@@ -38,5 +40,8 @@ export class GOWGamePageFooterView extends BaseView {
 
         this.bg.width = this.resizeSize.x;
         this.bg.height = this.resizeSize.y;
+
+        this.testLabel.x = this.bg.x + Math.floor((this.bg.width - this.testLabel.width) / 2);
+        this.testLabel.y = this.bg.y + Math.floor((this.bg.height - this.testLabel.height) / 2);
     }
 }

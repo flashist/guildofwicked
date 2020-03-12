@@ -70,6 +70,10 @@ if (DEV) {
         compress: true,
         overlay: true
     };
+    module.exports.watch = true;
+    module.exports.watchOptions = {
+        poll: true
+    };
 
     console.log("DIST: ", path.join(__dirname, `${BUILD_DIR}`));
 

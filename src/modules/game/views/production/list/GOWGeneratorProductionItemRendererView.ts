@@ -184,6 +184,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         );
         this.boughtCont.addChild(this.buyBtn);
         //
+        this.buyBtn.text = getText("buyPlaceholder");
         this.buyBtn.resize(110, 50);
 
         this.upgradeBtn = new SimpleButtonView(
@@ -207,6 +208,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         );
         this.boughtCont.addChild(this.upgradeBtn);
         //
+        this.upgradeBtn.text = getText("upgradePlaceholder");
         this.upgradeBtn.resize(215, 50);
     }
 

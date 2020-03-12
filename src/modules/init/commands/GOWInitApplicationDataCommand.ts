@@ -1,7 +1,8 @@
+import {getInstance} from "fsuite";
+
 import {InitApplicationDataCommand} from "../../../appframework/init/commands/InitApplicationDataCommand";
 import {GOWInitServerRequestCommand} from "../../server/commands/GOWInitServerRequestCommand";
 import {GOWUsersModel} from "../../users/models/GOWUsersModel";
-import {getInstance} from "fsuite";
 
 export class GOWInitApplicationDataCommand extends InitApplicationDataCommand {
 
@@ -14,7 +15,7 @@ export class GOWInitApplicationDataCommand extends InitApplicationDataCommand {
                 () => {
                     this.notifyComplete();
                 }
-            )
+            );
     }
 
 }
