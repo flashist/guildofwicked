@@ -38,9 +38,9 @@ module.exports = {
         }
     },
     output: {
-        path: path.join(__dirname, `${BUILD_DIR}`),
+        filename: 'bundle.js',
         publicPath: `/${BUILD_DIR}/`,
-        filename: 'bundle.js'
+        path: path.resolve(__dirname, `${BUILD_DIR}`)
     },
     plugins: [
         new CopyPlugin(
@@ -64,10 +64,11 @@ if (DEV) {
     module.exports.devtool = 'inline-source-map';
     module.exports.devServer = {
         contentBase: path.join(__dirname, `${BUILD_DIR}`),
-        watchContentBase: true,
+        open: true,
         index: "index.html",
         port: 9000,
-        compress: true
+        compress: true,
+        overlay: true
     };
 
     console.log("DIST: ", path.join(__dirname, `${BUILD_DIR}`));

@@ -1,6 +1,8 @@
+import {NumberTools} from "fcore";
+import {Align, BaseDataVOEvent, FContainer, FLabel, getText, Graphics, Point, Sprite, Texture, VAlign} from "fsuite";
+
 import {BaseView} from "../../../../../appframework/base/views/BaseView";
 import {GOWGeneratorVO} from "../../../../generators/data/GOWGeneratorVO";
-import {Align, BaseDataVOEvent, FContainer, FLabel, getText, Graphics, Point, Sprite, Texture, VAlign} from "fsuite";
 import {GOWSettings} from "../../../../../GOWSettings";
 import {SimpleButtonView} from "../../../../../appframework/display/views/button/SimpleButtonView";
 import {IGetSizable} from "../../../../../appframework/display/data/IGetSizable";
@@ -273,14 +275,19 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
             this.notBoughtCont.visible = false;
 
             let infoLocaleId: string = "productionInfo";
+            let productionVale: number = this.data.static.productionValue.value;
             if (this.data.static.productionDuration < DateSettings.MS_IN_SECOND) {
                 infoLocaleId = "productionInfoLessThenSec";
+                productionVale = NumberTools.roundTo(
+                    this.data.static.productionValue.value / (this.data.static.productionDuration / DateSettings.MS_IN_SECOND),
+                    0.1
+                );
             }
             this.infoLabel.text = getText(
                 infoLocaleId,
                 {
                     value: GOWTextTools.getFormattedResourceAmount(
-                        this.data.static.productionValue.value,
+                        productionVale,
                         this.data.static.productionValue.resourceType
                     )
                 }
