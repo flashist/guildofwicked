@@ -13,4 +13,10 @@ export class GOWTimeTools {
         return serverTime + serverModel.clientToServerTimeDelta;
     }
 
+    /**
+     * Returning prediction of the current server time.
+     */
+    static getCurrentServerTimeClientPrediction(): number {
+        return GOWTimeTools.convertClientToServerTime(Date.now());
+    }
 }

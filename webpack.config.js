@@ -67,8 +67,7 @@ if (DEV) {
         open: true,
         index: "index.html",
         port: 9000,
-        compress: true,
-        overlay: true
+        compress: true
     };
     module.exports.watch = true;
     module.exports.watchOptions = {

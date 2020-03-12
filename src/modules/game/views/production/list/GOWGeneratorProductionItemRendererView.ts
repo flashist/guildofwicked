@@ -1,5 +1,18 @@
 import {NumberTools} from "fcore";
-import {Align, BaseDataVOEvent, FContainer, FLabel, getText, Graphics, Point, Sprite, Texture, VAlign} from "fsuite";
+
+import {
+    Align,
+    BaseDataVOEvent,
+    FContainer,
+    FLabel,
+    getInstance,
+    getText,
+    Graphics,
+    Point,
+    Sprite,
+    Texture,
+    VAlign
+} from "fsuite";
 
 import {BaseView} from "../../../../../appframework/base/views/BaseView";
 import {GOWGeneratorVO} from "../../../../generators/data/GOWGeneratorVO";
@@ -10,12 +23,16 @@ import {GOWResourceType} from "../../../../resources/data/GOWResourceType";
 import {GOWGeneratorProductionProgressView} from "./GOWGeneratorProductionProgressView";
 import {GOWTextTools} from "../../../../texts/tools/GOWTextTools";
 import {DateSettings} from "../../../../../appframework/date/DateSettings";
+import {GlobalEventDispatcher} from "../../../../../appframework/globaleventdispatcher/dispatcher/GlobalEventDispatcher";
+import {TimeModelEvent} from "../../../../../appframework/time/models/TimeModelEvent";
 
 export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGeneratorVO> implements IGetSizable {
 
+    protected globalEventDispatcher: GlobalEventDispatcher;
+
     protected bg: Graphics;
 
-    protected iconCont: FContainer;
+    public iconCont: FContainer;
     protected iconBg: Sprite;
     protected iconBgGlow: Sprite;
     protected icon: Sprite;
@@ -37,6 +54,8 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
 
     protected construction(...args): void {
         super.construction(...args);
+
+        this.globalEventDispatcher = getInstance(GlobalEventDispatcher);
 
         this.bg = new Graphics();
         this.addChild(this.bg);
@@ -213,6 +232,21 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
     }
 
 
+    protected addListeners(): void {
+        super.addListeners();
+
+        this.eventListenerHelper.addEventListener(
+            this.globalEventDispatcher,
+            TimeModelEvent.TIME_DATA_CHANGE,
+            this.onTimeDataChange
+        );
+    }
+
+    protected onTimeDataChange(): void {
+        this.commitTimeData();
+    }
+
+
     protected processDataUnset(value: GOWGeneratorVO): void {
         super.processDataUnset(value);
 
@@ -257,8 +291,11 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         }
 
         if (this.data.isNextProductionAvailable) {
+            this.iconCont.interactive = true;
             this.iconBgGlow.visible = true;
+
         } else {
+            this.iconCont.interactive = false;
             this.iconBgGlow.visible = false;
         }
 
@@ -311,7 +348,17 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
             );
         }
 
+        this.commitTimeData();
+
         this.arrange();
+    }
+
+    protected commitTimeData(): void {
+        if (!this.data) {
+            return;
+        }
+
+        this.progressBar.progressCoef = this.data.productionCompleteCoef;
     }
 
     protected arrange(): void {

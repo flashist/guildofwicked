@@ -12,7 +12,7 @@ export class GOWInitServerRequestCommand extends GOWBaseServerCommand<IInitServe
     constructor(loginData: string) {
         super(
             {
-                id: GOWServerRequestId.INIT,
+                requestId: GOWServerRequestId.INIT,
                 loginData: loginData
             } as IInitServerRequestVO
         );

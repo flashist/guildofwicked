@@ -1,4 +1,5 @@
 export const GOWServerRequestId = {
     INIT: "init",
-    PING: "ping"
+    PING: "ping",
+    GENERATOR_START: "generatorStart"
 };

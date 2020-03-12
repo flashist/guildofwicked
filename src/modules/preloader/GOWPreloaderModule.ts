@@ -11,7 +11,7 @@ export class GOWPreloaderModule extends BaseModule {
     init(): void {
         super.init();
 
-        serviceLocatorAdd(GOWPreloaderPageView, {activateesConstructors: [GOWPreloaderPageMediator]});
+        serviceLocatorAdd(GOWPreloaderPageView, {activateeConstructors: [GOWPreloaderPageMediator]});
     }
 
     activateCompleteHook(): void {

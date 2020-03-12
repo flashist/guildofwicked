@@ -5,6 +5,8 @@ import {PagesModel} from "../../appframework/pages/models/PagesModel";
 import {PageId} from "../../appframework/pages/PageId";
 import {GOWGamePageView} from "./views/GOWGamePageView";
 import {GOWGamePageModel} from "./models/GOWGamePageModel";
+import {GOWGeneratorProductionItemRendererView} from "./views/production/list/GOWGeneratorProductionItemRendererView";
+import {GOWGeneratorProductionItemRendererMediator} from "./views/production/list/GOWGeneratorProductionItemRendererMediator";
 
 export class GOWGameModule extends BaseModule {
 
@@ -12,6 +14,7 @@ export class GOWGameModule extends BaseModule {
         super.init();
 
         serviceLocatorAdd(GOWGamePageModel, {isSingleton: true});
+        serviceLocatorAdd(GOWGeneratorProductionItemRendererView, {activateeConstructors: [GOWGeneratorProductionItemRendererMediator]});
     }
 
     activateCompleteHook(): void {
