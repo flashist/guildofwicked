@@ -18,7 +18,7 @@
         "type": "money",
         "value": 1
       },
-      "productionDuration": 1000
+      "productionDuration": 600
     },
     {
       "type": "static_generator",

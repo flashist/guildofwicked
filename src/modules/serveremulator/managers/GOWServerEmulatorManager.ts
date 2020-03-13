@@ -131,6 +131,8 @@ export class GOWServerEmulatorManager extends BaseManager {
                 if (userData) {
                     responseItems.push(userData);
 
+                    const productionResult: IGOWProductionResultVO = this.emulatorProductionManager.calculateProductionForUser(userData.id);
+
                     const generator = this.emulatorGeneratorsManager.getUserSingleGenerator(userData.id, requestData.generatorId);
                     if (generator) {
                         responseItems.push(generator);

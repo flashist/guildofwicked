@@ -1,10 +1,8 @@
-import {StringTools} from "fcore";
-import {Align, AutosizeType, FLabel, getInstance, getText, Graphics, VAlign} from "fsuite";
+import {Align, AutosizeType, BaseDataVOEvent, FLabel, getInstance, getText, Graphics, VAlign} from "fsuite";
 
 import {BaseView} from "../../../../appframework/base/views/BaseView";
 import {GOWSettings} from "../../../../GOWSettings";
 import {GOWUsersModel} from "../../../users/models/GOWUsersModel";
-import {GOWUserVOEvent} from "../../../users/events/GOWUserVOEvent";
 import {GOWResourceType} from "../../../resources/data/GOWResourceType";
 import {SimpleButtonView} from "../../../../appframework/display/views/button/SimpleButtonView";
 import {GOWTextTools} from "../../../texts/tools/GOWTextTools";
@@ -107,12 +105,12 @@ export class GOWGamePageHeaderView extends BaseView {
 
         this.eventListenerHelper.addEventListener(
             this.usersModel.curUserData,
-            GOWUserVOEvent.MONEY_CHANGE,
-            this.onUserMoneyChange
+            BaseDataVOEvent.CHANGE,
+            this.onUserDataChange
         );
     }
 
-    protected onUserMoneyChange(): void {
+    protected onUserDataChange(): void {
         this.commitData();
     }
 
