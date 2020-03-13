@@ -16,6 +16,7 @@ import {GOWGeneratorVO} from "../../generators/data/GOWGeneratorVO";
 import {GOWGeneratorChangeStartProductionTimeClientCommand} from "../../generators/commands/GOWGeneratorChangeStartProductionTimeClientCommand";
 import {GOWGeneratorStopProductionClientCommand} from "../../generators/commands/GOWGeneratorStopProductionClientCommand";
 import {GOWChangeUserResourcesClientCommand} from "../../users/command/GOWChangeUserResourcesClientCommand";
+import {GOWCalculateProductionServerRequestCommand} from "../../generators/commands/GOWCalculateProductionServerRequestCommand";
 
 export class GOWProductionManager extends BaseManager {
 
@@ -48,11 +49,13 @@ export class GOWProductionManager extends BaseManager {
         this.calculateProductionForUser(this.usersModel.curUserId);
     }
 
-    public calculateProductionForUser(userId: string): IGOWProductionResultVO {
+    public calculateProductionForUser(userId: string): void {
         const result: IGOWProductionResultVO = {
             profitByGenerator: {},
             totalProfit: {}
         };
+
+        let isAnyProductionCycleComplete: boolean;
 
         const userData: GOWUserVO = this.usersModel.getItem(userId);
         if (userData) {
@@ -79,7 +82,7 @@ export class GOWProductionManager extends BaseManager {
                     const autoBonus: number = cumulativeBonusesData[GOWBonusType.AUTO];
                     const durationWithBonuses: number = staticSingleGenerator.productionDuration * durationBonus;
                     while (timeForProductionCycles >= durationWithBonuses) {
-                        console.log("calculateProductionForUser __ complete __ time: ", Date.now());
+                        isAnyProductionCycleComplete = true;
 
                         timeForProductionCycles -= durationWithBonuses;
                         completeCyclesCount++;
@@ -135,7 +138,9 @@ export class GOWProductionManager extends BaseManager {
                 .execute();
         }
 
-
-        return result;
+        if (isAnyProductionCycleComplete) {
+            new GOWCalculateProductionServerRequestCommand()
+                .execute();
+        }
     }
 }

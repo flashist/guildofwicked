@@ -3,7 +3,7 @@ import {GOWGeneratorsModel} from "../models/GOWGeneratorsModel";
 import {getInstance} from "fsuite";
 import {GOWGeneratorVO} from "../data/GOWGeneratorVO";
 import {GOWTimeTools} from "../../time/tools/GOWTimeTools";
-import {GOWGeneratorStartProductionServerCommand} from "./GOWGeneratorStartProductionServerCommand";
+import {GOWGeneratorStartProductionServerRequestCommand} from "./GOWGeneratorStartProductionServerRequestCommand";
 
 export class GOWGeneratorStartProductionClientCommand extends BaseAppCommand {
 
@@ -24,7 +24,7 @@ export class GOWGeneratorStartProductionClientCommand extends BaseAppCommand {
             }
         );
 
-        new GOWGeneratorStartProductionServerCommand(this.generatorId)
+        new GOWGeneratorStartProductionServerRequestCommand(this.generatorId)
             .execute()
             .then(
                 () => {

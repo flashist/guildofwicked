@@ -3,7 +3,7 @@ import {IGeneratorStartRequestVO} from "../../server/data/IGeneratorStartRequest
 import {GOWServerRequestId} from "../../server/data/GOWServerRequestId";
 import {GOWBaseServerCommand} from "../../server/commands/GOWBaseServerCommand";
 
-export class GOWGeneratorStartProductionServerCommand extends GOWBaseServerCommand<IServerResponseVO, IGeneratorStartRequestVO> {
+export class GOWGeneratorStartProductionServerRequestCommand extends GOWBaseServerCommand<IServerResponseVO, IGeneratorStartRequestVO> {
 
     constructor(generatorId: string) {
         super(
