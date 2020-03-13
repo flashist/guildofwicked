@@ -104,6 +104,12 @@ export class GOWServerEmulatorProductionManager extends BaseManager {
             }
         }
 
+        let resourceKeys: string[] = Object.keys(result.totalProfit);
+        for (let singleResourceId of resourceKeys) {
+            const singleResource: IGOWResourceVO = result.totalProfit[singleResourceId];
+            this.emulatorUsersManager.changeUserResource(userId, singleResource);
+        }
+
         return result;
     }
 

@@ -99,6 +99,10 @@ export class GOWPreloaderPageView extends GOWBasePageView {
         return this._viewProgress;
     }
     set viewProgress(value: number) {
+        if (value === this._viewProgress) {
+            return;
+        }
+
         this._viewProgress = value;
 
         this.commitData();

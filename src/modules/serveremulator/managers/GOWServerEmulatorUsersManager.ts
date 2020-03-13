@@ -7,6 +7,7 @@ import {GOWEmulatorSettings} from "../GOWEmulatorSettings";
 import {GOWUserVOType} from "../../users/data/GOWUserVOType";
 import {IGOWServerEmulatorUserVO} from "../data/IGOWServerEmulatorUserVO";
 import {GOWResourceType} from "../../resources/data/GOWResourceType";
+import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
 
 export class GOWServerEmulatorUsersManager extends BaseManager {
     protected storageManager: StorageManager;
@@ -101,6 +102,17 @@ export class GOWServerEmulatorUsersManager extends BaseManager {
     public updatePrevSessionLastActivityTime(userId: string, serverTime: number): void {
         const userData: IGOWServerEmulatorUserVO = this.getUserData(userId);
         userData.prevSessionLastActivityServerTime = serverTime;
+
+        this.saveData();
+    }
+
+    public changeUserResource(userId: string, resource: IGOWResourceVO): void {
+        const userData: IGOWServerEmulatorUserVO = this.getUserData(userId);
+        if (userData.resources[resource.type]) {
+            userData.resources[resource.type].value = resource.value;
+        } else {
+            userData.resources[resource.type] = resource;
+        }
 
         this.saveData();
     }
