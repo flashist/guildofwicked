@@ -6,9 +6,6 @@ export class GOWUserVO extends BaseDataVO {
 
     resources: {[resourceType: string]: IGOWResourceVO} = {};
 
-    lastActivityServerTime: number;
-    prevSessionLastActivityServerTime: number;
-
     public getResource(resourceType: GOWResourceType): IGOWResourceVO {
         if (!this.resources[resourceType]) {
             this.resources[resourceType] = {
@@ -18,5 +15,11 @@ export class GOWUserVO extends BaseDataVO {
         }
 
         return this.resources[resourceType];
+    }
+
+
+    // For testing purpose
+    update(source: Partial<this>): void {
+        super.update(source);
     }
 }

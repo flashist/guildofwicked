@@ -15,16 +15,24 @@ export class GOWChangeUserResourcesClientCommand extends BaseAppCommand {
     protected executeInternal(): void {
         const userData: GOWUserVO = this.usersModel.getItem(this.userId);
         if (userData) {
-            const changeResourcesData: { [resourceType: string]: IGOWResourceVO } = userData.resources;
+
+            const changeResources: { [resourceType: string]: IGOWResourceVO } = {};
             for (let singleResource of this.resources) {
-                if (userData.resources[singleResource.type]) {
-                    changeResourcesData[singleResource.type].value += singleResource.value;
+                if (changeResources[singleResource.type]) {
+                    changeResources[singleResource.type].value += singleResource.value;
                 } else {
-                    changeResourcesData[singleResource.type] = singleResource;
+                    changeResources[singleResource.type] = singleResource;
                 }
             }
 
-            userData.update({resources: changeResourcesData});
+            let userResourceTypes: string[] = Object.keys(userData.resources);
+            for (let singleUserResourceType of userResourceTypes) {
+                if (changeResources[singleUserResourceType]) {
+                    changeResources[singleUserResourceType].value += userData.resources[singleUserResourceType].value;
+                }
+            }
+
+            userData.update({resources: changeResources});
         }
     }
 }

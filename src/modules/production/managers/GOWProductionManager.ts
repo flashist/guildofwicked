@@ -79,6 +79,8 @@ export class GOWProductionManager extends BaseManager {
                     const autoBonus: number = cumulativeBonusesData[GOWBonusType.AUTO];
                     const durationWithBonuses: number = staticSingleGenerator.productionDuration * durationBonus;
                     while (timeForProductionCycles >= durationWithBonuses) {
+                        console.log("calculateProductionForUser __ complete __ time: ", Date.now());
+
                         timeForProductionCycles -= durationWithBonuses;
                         completeCyclesCount++;
 

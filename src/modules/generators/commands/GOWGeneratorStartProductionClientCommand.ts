@@ -14,6 +14,8 @@ export class GOWGeneratorStartProductionClientCommand extends BaseAppCommand {
     }
 
     protected executeInternal(): void {
+        console.log("GOWGeneratorStartProductionClientCommand __ time: ", Date.now());
+
         const generatorData: GOWGeneratorVO = this.generatorsModel.getItem(this.generatorId);
         generatorData.update(
             {

@@ -71,7 +71,8 @@ if (DEV) {
     };
     module.exports.watch = true;
     module.exports.watchOptions = {
-        poll: true
+        poll: true,
+        aggregateTimeout: 1000
     };
 
     console.log("DIST: ", path.join(__dirname, `${BUILD_DIR}`));

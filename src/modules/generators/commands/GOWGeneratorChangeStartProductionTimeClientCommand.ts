@@ -3,8 +3,6 @@ import {GOWGeneratorsModel} from "../models/GOWGeneratorsModel";
 import {getInstance} from "fsuite";
 import {GOWGeneratorVO} from "../data/GOWGeneratorVO";
 import {GOWTimeTools} from "../../time/tools/GOWTimeTools";
-import {GOWGeneratorStartProductionServerCommand} from "./GOWGeneratorStartProductionServerCommand";
-import {IGOWServerEmulatorGeneratorVO} from "../../serveremulator/data/IGOWServerEmulatorGeneratorVO";
 
 export class GOWGeneratorChangeStartProductionTimeClientCommand extends BaseAppCommand {
 
@@ -15,6 +13,8 @@ export class GOWGeneratorChangeStartProductionTimeClientCommand extends BaseAppC
     }
 
     protected executeInternal(): void {
+        console.log("GOWGeneratorChangeStartProductionTimeClientCommand __ time: ", Date.now());
+
         const generator: GOWGeneratorVO = this.generatorsModel.getItem(this.generatorId);
         if (generator.isProductionInProgress) {
             generator.startProductionServerTime = GOWTimeTools.convertClientToServerTime(this.startClientTime);
