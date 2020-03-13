@@ -17,6 +17,7 @@ export class GOWTimeTools {
      * Returning prediction of the current server time.
      */
     static getCurrentServerTimeClientPrediction(): number {
-        return GOWTimeTools.convertClientToServerTime(Date.now());
+        const serverModel: ServerModel = getInstance(ServerModel);
+        return serverModel.serverTime + serverModel.clientTimeDeltaSinceServerTimeChanged;
     }
 }

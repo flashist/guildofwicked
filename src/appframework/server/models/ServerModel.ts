@@ -29,6 +29,6 @@ export class ServerModel extends BaseModel {
     }
 
     get clientToServerTimeDelta(): number {
-        return Date.now() - this._serverTime;
+        return this._clientTimeWhenServerTimeChanged - this._serverTime;
     }
 }

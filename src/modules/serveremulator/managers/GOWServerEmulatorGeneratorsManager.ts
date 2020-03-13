@@ -55,7 +55,7 @@ export class GOWServerEmulatorGeneratorsManager extends BaseManager {
                 type: GOWGeneratorVOType,
 
                 level: 0,
-                startProductionTime: 0,
+                startProductionServerTime: 0,
                 isProductionInProgress: false
             };
             userGenerators[generatorId] = generatorData;
@@ -73,6 +73,8 @@ export class GOWServerEmulatorGeneratorsManager extends BaseManager {
         }
 
         generatorData.isProductionInProgress = true;
-        generatorData.startProductionTime = Date.now();
+        generatorData.startProductionServerTime = Date.now();
+
+        this.saveData();
     }
 }

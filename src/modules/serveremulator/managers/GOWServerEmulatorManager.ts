@@ -15,6 +15,11 @@ import {IGeneratorStartRequestVO} from "../../server/data/IGeneratorStartRequest
 import {GOWServerEmulatorGeneratorsManager} from "./GOWServerEmulatorGeneratorsManager";
 import {GOWServerErrorCode} from "../data/GOWServerErrorCode";
 
+/**
+ * Class for emulating server-bahavor. In real life cases this class might be used for local-development
+ * (e.g. when server-side implementation is not ready, but the client might do their work,
+ * if client-server protocol is established).
+ */
 export class GOWServerEmulatorManager extends BaseManager {
 
     protected emulationUsersManager: GOWServerEmulatorUsersManager = getInstance(GOWServerEmulatorUsersManager);

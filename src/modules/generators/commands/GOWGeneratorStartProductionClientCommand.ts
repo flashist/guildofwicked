@@ -15,8 +15,12 @@ export class GOWGeneratorStartProductionClientCommand extends BaseAppCommand {
 
     protected executeInternal(): void {
         const generatorData: GOWGeneratorVO = this.generatorsModel.getItem(this.generatorId);
-        generatorData.isProductionInProgress = true;
-        generatorData.startProductionTime = GOWTimeTools.getCurrentServerTimeClientPrediction();
+        generatorData.update(
+            {
+                isProductionInProgress: true,
+                startProductionServerTime: GOWTimeTools.getCurrentServerTimeClientPrediction()
+            }
+        );
 
         new GOWGeneratorStartProductionServerCommand(this.generatorId)
             .execute()

@@ -7,7 +7,7 @@ export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWStaticGenerato
 
     public level: number = 0;
     public isProductionInProgress: boolean;
-    public startProductionTime: number;
+    public startProductionServerTime: number;
 
     constructor() {
         super();
@@ -15,12 +15,17 @@ export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWStaticGenerato
         this.staticType = GOWGeneratorVOStaticType;
     }
 
+    // For debugging
+    update(source: Partial<this>): void {
+        super.update(source);
+    }
+
     public get isNextProductionAvailable(): boolean {
         return this.level > 0 && !this.isProductionInProgress;
     }
 
     public get startProductionClientTime(): number {
-        return GOWTimeTools.convertServerToClientTime(this.startProductionTime);
+        return GOWTimeTools.convertServerToClientTime(this.startProductionServerTime);
     }
 
     public get finishProductionClientTime(): number {
@@ -28,13 +33,27 @@ export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWStaticGenerato
     }
 
     public get productionTimeLeft(): number {
-        return this.finishProductionClientTime - this.startProductionClientTime;
+        let result: number = this.finishProductionClientTime - Date.now();
+        if (result < 0) {
+            result = 0;
+        }
+        return result;
     }
 
     public get productionCompleteCoef(): number {
         let result: number = 0;
         if (this.isProductionInProgress) {
-            result = this.static.productionDuration / this.productionTimeLeft;
+            if (this.productionTimeLeft > 0) {
+                result = 1 - (this.productionTimeLeft / this.static.productionDuration);
+            } else {
+                result = 1;
+            }
+        }
+
+        if (result < 0) {
+            result = 0;
+        } else if (result > 1) {
+            result = 1;
         }
 
         return result;

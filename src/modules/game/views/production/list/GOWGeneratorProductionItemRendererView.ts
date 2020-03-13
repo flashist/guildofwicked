@@ -155,6 +155,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         );
         this.boughtCont.addChild(this.timeLabel);
         //
+        this.timeLabel.fieldPadding = new Point(5, 5);
         this.timeLabel.width = this.timeBg.width;
         this.timeLabel.height = this.timeBg.height;
 
@@ -177,6 +178,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         );
         this.boughtCont.addChild(this.waitingLabel);
         //
+        this.waitingLabel.fieldPadding = new Point(5, 5);
         this.waitingLabel.width = this.timeBg.width;
         this.waitingLabel.height = this.timeBg.height;
         //
@@ -301,7 +303,6 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
 
         if (this.data.isProductionInProgress) {
             this.timeLabel.visible = true;
-            this.timeLabel.text = GOWTextTools.getFormattedDuration(this.data.productionTimeLeft);
             this.waitingLabel.visible = false;
 
         } else {
@@ -359,6 +360,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         }
 
         this.progressBar.progressCoef = this.data.productionCompleteCoef;
+        this.timeLabel.text = GOWTextTools.getFormattedDuration(this.data.productionTimeLeft);
     }
 
     protected arrange(): void {

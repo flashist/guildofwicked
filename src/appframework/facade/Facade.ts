@@ -24,6 +24,7 @@ import {InitApplicationCommand} from "../init/commands/InitApplicationCommand";
 import {RendererManager} from "../renderer/managers/RendererManager";
 import {GlobalEventDispatcher} from "../globaleventdispatcher/dispatcher/GlobalEventDispatcher";
 import {RendererManagerEvent} from "../renderer/events/RendererManagerEvent";
+import {ServerModule} from "../server/ServerModule";
 
 export class Facade extends BaseObject {
 
@@ -80,6 +81,7 @@ export class Facade extends BaseObject {
         this.addSingleModule(new AppModule());
         this.addSingleModule(new TimeModule());
         this.addSingleModule(new ContainersModule());
+        this.addSingleModule(new ServerModule());
 
         if (this.options.debug) {
             this.addSingleModule(new DebugModule());
