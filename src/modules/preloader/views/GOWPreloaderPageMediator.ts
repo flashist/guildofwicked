@@ -6,6 +6,7 @@ import {GOWPreloaderPageView} from "./GOWPreloaderPageView";
 import {GOWPreloaderPageViewEvent} from "./GOWPreloaderPageViewEvent";
 import {ChangePageCommand} from "../../../appframework/pages/commands/ChangePageCommand";
 import {PageId} from "../../../appframework/pages/PageId";
+import {GOWShowGamePageCommand} from "../../game/commands/GOWShowGamePageCommand";
 
 export class GOWPreloaderPageMediator extends BaseMediator<GOWPreloaderPageView> {
 
@@ -41,7 +42,7 @@ export class GOWPreloaderPageMediator extends BaseMediator<GOWPreloaderPageView>
         // to keep the 100% loading information a bit longer on the screen
         setTimeout(
             () => {
-                new ChangePageCommand(PageId.GAME_PAGE_ID)
+                new GOWShowGamePageCommand()
                     .execute();
             },
             1000

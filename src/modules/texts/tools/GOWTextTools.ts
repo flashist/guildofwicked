@@ -21,7 +21,6 @@ export class GOWTextTools {
     }
 
     static getFormattedDuration(duration: number): string {
-
         let configObj = {
             seconds: Math.floor(duration / DateSettings.MS_IN_SECOND),
             minutes: Math.floor(duration / DateSettings.MS_IN_MINUTE),
@@ -49,5 +48,9 @@ export class GOWTextTools {
             configObj
         );
         return result;
+    }
+
+    static getFormattedHoursMinutesSeconds(time: number): string {
+        return new Date(time).toISOString().substr(11, 8);
     }
 }

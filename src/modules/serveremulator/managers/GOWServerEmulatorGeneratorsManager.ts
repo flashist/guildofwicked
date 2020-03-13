@@ -3,7 +3,6 @@ import {getInstance} from "fsuite";
 import {BaseManager} from "../../../appframework/base/managers/BaseManager";
 import {StorageManager} from "../../../appframework/storage/managers/StorageManager";
 import {GOWEmulatorSettings} from "../GOWEmulatorSettings";
-import {GOWUserVOType} from "../../users/data/GOWUserVOType";
 import {IGOWServerEmulatorGeneratorVO} from "../data/IGOWServerEmulatorGeneratorVO";
 import {GOWGeneratorVOType} from "../../generators/data/GOWGeneratorVOType";
 
@@ -11,29 +10,35 @@ export class GOWServerEmulatorGeneratorsManager extends BaseManager {
     protected storageManager: StorageManager;
 
     protected userIdToActiveGeneratorsMap: {
-        [userId: string]: {
-            [generatorId: string]: IGOWServerEmulatorGeneratorVO
-        }
+        [userId: string]: IGOWServerEmulatorGeneratorVO[]
     };
 
     protected construction(...args): void {
         super.construction(...args);
 
         this.storageManager = getInstance(StorageManager);
-        this.userIdToActiveGeneratorsMap = this.storageManager.getParam(GOWEmulatorSettings.generators.storageId);
-        if (!this.userIdToActiveGeneratorsMap) {
+
+        this.readData();
+    }
+
+    protected saveData(): void {
+        const textData: string = JSON.stringify(this.userIdToActiveGeneratorsMap);
+        this.storageManager.setParam(GOWEmulatorSettings.generators.storageId, textData);
+    }
+
+    protected readData(): void {
+        const textData: string = this.storageManager.getParam(GOWEmulatorSettings.generators.storageId);
+        if (textData) {
+            this.userIdToActiveGeneratorsMap = JSON.parse(textData);
+        } else {
             this.userIdToActiveGeneratorsMap = {};
         }
     }
 
-    protected saveData(): void {
-        this.storageManager.setParam(GOWEmulatorSettings.generators.storageId, this.userIdToActiveGeneratorsMap);
-    }
-
-    public getUserGenerators(userId: string): {[generatorId: string]: IGOWServerEmulatorGeneratorVO} {
+    public getUserGenerators(userId: string): IGOWServerEmulatorGeneratorVO[] {
         let result = this.userIdToActiveGeneratorsMap[userId];
         if (!result) {
-            result = {};
+            result = [];
             this.userIdToActiveGeneratorsMap[userId] = result;
         }
 
@@ -41,9 +46,19 @@ export class GOWServerEmulatorGeneratorsManager extends BaseManager {
     }
 
     public getUserSingleGenerator(userId: string, generatorId: string): IGOWServerEmulatorGeneratorVO {
-        let userGenerators = this.getUserGenerators(userId);
-        let generatorData: IGOWServerEmulatorGeneratorVO = userGenerators[generatorId];
-        return generatorData;
+        let result: IGOWServerEmulatorGeneratorVO;
+
+        let userGenerators: IGOWServerEmulatorGeneratorVO[] = this.getUserGenerators(userId);
+        if (userGenerators) {
+            for (let singleGenerator of userGenerators) {
+                if (singleGenerator.id === generatorId) {
+                    result = singleGenerator;
+                    break;
+                }
+            }
+        }
+
+        return result;
     }
 
     public buyGeneratorForUser(userId: string, generatorId: string): void {
@@ -56,9 +71,11 @@ export class GOWServerEmulatorGeneratorsManager extends BaseManager {
 
                 level: 0,
                 startProductionServerTime: 0,
-                isProductionInProgress: false
+                isProductionInProgress: false,
+                bonusIds: []
             };
-            userGenerators[generatorId] = generatorData;
+
+            userGenerators.push(generatorData);
         }
 
         generatorData.level++;
@@ -66,14 +83,25 @@ export class GOWServerEmulatorGeneratorsManager extends BaseManager {
         this.saveData();
     }
 
-    public startProduction(userId: string, generatorId: string): void {
+    public startProduction(userId: string, generatorId: string, startTime: number): void {
         const generatorData: IGOWServerEmulatorGeneratorVO = this.getUserSingleGenerator(userId, generatorId);
         if (generatorData.isProductionInProgress) {
             return;
         }
 
         generatorData.isProductionInProgress = true;
-        generatorData.startProductionServerTime = Date.now();
+        generatorData.startProductionServerTime = startTime;
+
+        this.saveData();
+    }
+
+    public stopProduction(userId: string, generatorId: string): void {
+        const generatorData: IGOWServerEmulatorGeneratorVO = this.getUserSingleGenerator(userId, generatorId);
+        if (!generatorData.isProductionInProgress) {
+            return;
+        }
+
+        generatorData.isProductionInProgress = false;
 
         this.saveData();
     }

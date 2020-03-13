@@ -18,12 +18,7 @@ export class GOWServerEmulatorUsersManager extends BaseManager {
 
         this.storageManager = getInstance(StorageManager);
 
-        const storageText: string = this.storageManager.getParam(GOWEmulatorSettings.users.storageId);
-        if (storageText) {
-            this.userIdToUserMap = JSON.parse(storageText);
-        } else {
-            this.userIdToUserMap = {};
-        }
+        this.readData();
     }
 
     protected saveData(): void {
@@ -31,6 +26,15 @@ export class GOWServerEmulatorUsersManager extends BaseManager {
             GOWEmulatorSettings.users.storageId,
             JSON.stringify(this.userIdToUserMap)
         );
+    }
+
+    protected readData(): void {
+        const textData: string = this.storageManager.getParam(GOWEmulatorSettings.users.storageId);
+        if (textData) {
+            this.userIdToUserMap = JSON.parse(textData);
+        } else {
+            this.userIdToUserMap = {};
+        }
     }
 
 

@@ -14,6 +14,8 @@ import {IGOWServerEmulatorUserVO} from "../data/IGOWServerEmulatorUserVO";
 import {IGeneratorStartRequestVO} from "../../server/data/IGeneratorStartRequestVO";
 import {GOWServerEmulatorGeneratorsManager} from "./GOWServerEmulatorGeneratorsManager";
 import {GOWServerErrorCode} from "../data/GOWServerErrorCode";
+import {GOWServerEmulatorProductionManager} from "./GOWServerEmulatorProductionManager";
+import {IGOWProductionResultVO} from "../../production/data/IGOWProductionResultVO";
 
 /**
  * Class for emulating server-bahavor. In real life cases this class might be used for local-development
@@ -22,8 +24,9 @@ import {GOWServerErrorCode} from "../data/GOWServerErrorCode";
  */
 export class GOWServerEmulatorManager extends BaseManager {
 
-    protected emulationUsersManager: GOWServerEmulatorUsersManager = getInstance(GOWServerEmulatorUsersManager);
-    protected emulationGeneratorsManager: GOWServerEmulatorGeneratorsManager = getInstance(GOWServerEmulatorGeneratorsManager);
+    protected emulatorUsersManager: GOWServerEmulatorUsersManager = getInstance(GOWServerEmulatorUsersManager);
+    protected emulatorGeneratorsManager: GOWServerEmulatorGeneratorsManager = getInstance(GOWServerEmulatorGeneratorsManager);
+    protected emulatorProductionManager: GOWServerEmulatorProductionManager = getInstance(GOWServerEmulatorProductionManager);
 
     protected requestIdToMethodMap: {
         [key: string]: (requestData: IServerRequestVO) => Promise<IServerResponseVO>
@@ -47,9 +50,7 @@ export class GOWServerEmulatorManager extends BaseManager {
             handleMethod = this.processUnknownRequest;
         }
 
-        const result = handleMethod.call(this, requestData);
-
-        return result;
+        return handleMethod.call(this, requestData);
     }
 
     protected prepareResponse(id: string, errorCode?: string, items?: IGenericObjectVO[]): IServerResponseVO {
@@ -79,16 +80,18 @@ export class GOWServerEmulatorManager extends BaseManager {
         return new Promise(
             (resolve: Function) => {
 
-                let userData: IGOWServerEmulatorUserVO = this.emulationUsersManager.getUserDataByLogin(requestData.loginData);
+                let userData: IGOWServerEmulatorUserVO = this.emulatorUsersManager.getUserDataByLogin(requestData.loginData);
                 if (!userData) {
                     new GOWServerEmulatorCreateUserCommand(requestData.loginData)
                         .execute();
 
-                    userData = this.emulationUsersManager.getUserDataByLogin(requestData.loginData);
+                    userData = this.emulatorUsersManager.getUserDataByLogin(requestData.loginData);
                 }
 
-                this.emulationUsersManager.updatePrevSessionLastActivityTime(userData.id, userData.lastActivityServerTime);
-                this.emulationUsersManager.updateLastActivityTime(userData.id);
+                this.emulatorUsersManager.updatePrevSessionLastActivityTime(userData.id, userData.lastActivityServerTime);
+                this.emulatorUsersManager.updateLastActivityTime(userData.id);
+
+                const productionResult: IGOWProductionResultVO = this.emulatorProductionManager.calculateProductionForUser(userData.id);
 
                 const items: IGenericObjectVO[] = GOWServerEmulatorTools.prepareUserItemsResponse(userData.id);
                 const responseData: Partial<IInitServerResponseVO> = this.prepareResponse(
@@ -97,6 +100,8 @@ export class GOWServerEmulatorManager extends BaseManager {
                     items
                 );
                 responseData.userId = userData.id;
+                responseData.productionResult = productionResult;
+                responseData.timeOffline = Date.now() - userData.prevSessionLastActivityServerTime;
 
                 resolve(responseData);
             }
@@ -122,14 +127,14 @@ export class GOWServerEmulatorManager extends BaseManager {
                 let errorCode: string;
 
                 const responseItems = [];
-                const userData = this.emulationUsersManager.getUserDataByLogin(requestData.loginData);
+                const userData = this.emulatorUsersManager.getUserDataByLogin(requestData.loginData);
                 if (userData) {
                     responseItems.push(userData);
 
-                    const generator = this.emulationGeneratorsManager.getUserSingleGenerator(userData.id, requestData.generatorId);
+                    const generator = this.emulatorGeneratorsManager.getUserSingleGenerator(userData.id, requestData.generatorId);
                     if (generator) {
                         responseItems.push(generator);
-                        this.emulationGeneratorsManager.startProduction(userData.id, requestData.generatorId);
+                        this.emulatorGeneratorsManager.startProduction(userData.id, requestData.generatorId, Date.now());
 
                     } else {
                         errorCode = GOWServerErrorCode.GENERATOR_NOT_FOUND;
@@ -139,7 +144,6 @@ export class GOWServerEmulatorManager extends BaseManager {
                     errorCode = GOWServerErrorCode.USER_NOT_FOUND;
                 }
 
-                this.emulationUsersManager.updateLastActivityTime(userData.id);
                 const responseData: IServerResponseVO = this.prepareResponse(
                     requestData.requestId,
                     errorCode,

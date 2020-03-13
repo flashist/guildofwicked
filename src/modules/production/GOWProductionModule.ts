@@ -1,14 +1,14 @@
-import {getInstance, serviceLocatorAdd} from "fsuite";
+import {serviceLocatorAdd} from "fsuite";
 
 import {BaseModule} from "../../appframework/base/modules/BaseModule";
-import {GOWProductionManagers} from "./managers/GOWProductionManagers";
+import {GOWProductionManager} from "./managers/GOWProductionManager";
 
 export class GOWProductionModule extends BaseModule {
 
     init(): void {
         super.init();
 
-        serviceLocatorAdd(GOWProductionManagers, {isSingleton: true});
+        serviceLocatorAdd(GOWProductionManager, {isSingleton: true});
     }
 
 }

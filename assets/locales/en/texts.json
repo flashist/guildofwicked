@@ -34,6 +34,7 @@
     "waiting": "IDLE",
 
     "buyPlaceholder": "BUY",
-    "upgradePlaceholder": "UPGRADE"
+    "upgradePlaceholder": "UPGRADE",
+    "loginProductionResultPlaceholder": "You were offline for {time} and earned {value} !"
   }
 }

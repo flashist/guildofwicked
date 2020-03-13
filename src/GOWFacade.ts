@@ -7,6 +7,7 @@ import {GOWGeneratorsModule} from "./modules/generators/GOWGeneratorsModule";
 import {GOWServerEmulatorModule} from "./modules/serveremulator/GOWServerEmulatorModule";
 import {GOWInitModule} from "./modules/init/GOWInitModule";
 import {GOWProductionModule} from "./modules/production/GOWProductionModule";
+import {GOWServerModule} from "./modules/server/GOWServerModule";
 
 export class GOWFacade extends Facade {
 
@@ -18,6 +19,7 @@ export class GOWFacade extends Facade {
         this.addSingleModule(new GOWGameModule());
         this.addSingleModule(new GOWUsersModule());
         this.addSingleModule(new GOWGeneratorsModule());
+        this.addSingleModule(new GOWServerModule());
         this.addSingleModule(new GOWServerEmulatorModule());
         this.addSingleModule(new GOWInitModule());
         this.addSingleModule(new GOWProductionModule());

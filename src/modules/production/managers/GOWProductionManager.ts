@@ -4,7 +4,7 @@ import {BaseManager} from "../../../appframework/base/managers/BaseManager";
 import {TimeModel} from "../../../appframework/time/models/TimeModel";
 import {TimeModelEvent} from "../../../appframework/time/models/TimeModelEvent";
 
-export class GOWProductionManagers extends BaseManager {
+export class GOWProductionManager extends BaseManager {
 
     protected timeModel: TimeModel;
     protected prevProductionTime: number = 0;
