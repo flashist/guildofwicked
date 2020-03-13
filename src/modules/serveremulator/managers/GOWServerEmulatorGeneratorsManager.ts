@@ -85,9 +85,6 @@ export class GOWServerEmulatorGeneratorsManager extends BaseManager {
 
     public startProduction(userId: string, generatorId: string, startTime: number): void {
         const generatorData: IGOWServerEmulatorGeneratorVO = this.getUserSingleGenerator(userId, generatorId);
-        if (generatorData.isProductionInProgress) {
-            return;
-        }
 
         generatorData.isProductionInProgress = true;
         generatorData.startProductionServerTime = startTime;

@@ -106,12 +106,15 @@ export class GOWServerEmulatorUsersManager extends BaseManager {
         this.saveData();
     }
 
-    public changeUserResource(userId: string, resource: IGOWResourceVO): void {
+    public changeUserResources(userId: string, resources: IGOWResourceVO[]): void {
         const userData: IGOWServerEmulatorUserVO = this.getUserData(userId);
-        if (userData.resources[resource.type]) {
-            userData.resources[resource.type].value = resource.value;
-        } else {
-            userData.resources[resource.type] = resource;
+
+        for (let singleResource of resources) {
+            if (userData.resources[singleResource.type]) {
+                userData.resources[singleResource.type].value += singleResource.value;
+            } else {
+                userData.resources[singleResource.type] = singleResource;
+            }
         }
 
         this.saveData();

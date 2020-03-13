@@ -3,8 +3,12 @@ import {QueueCommand} from "fcore";
 import {ChangePageCommand} from "../../../appframework/pages/commands/ChangePageCommand";
 import {PageId} from "../../../appframework/pages/PageId";
 import {GOWShowOfflineProductionInfoCommand} from "./GOWShowOfflineProductionInfoCommand";
+import {GOWProductionManager} from "../../production/managers/GOWProductionManager";
+import {getInstance} from "fsuite";
 
 export class GOWShowGamePageCommand extends BaseAppCommand {
+
+    protected productionManager: GOWProductionManager = getInstance(GOWProductionManager);
 
     protected executeInternal(): void {
         new QueueCommand([
@@ -14,6 +18,8 @@ export class GOWShowGamePageCommand extends BaseAppCommand {
             .execute()
             .then(
                 () => {
+                    this.productionManager.isActive = true;
+
                     this.notifyComplete();
                 }
             );
