@@ -2,4 +2,5 @@ import {IServerResponseVO} from "../../../appframework/server/data/IServerRespon
 
 export interface IInitServerResponseVO extends IServerResponseVO {
     userId: string;
+    prevSessionEndServerTime: number;
 }

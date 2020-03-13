@@ -5,7 +5,7 @@ import {SimpleList} from "../../../../../appframework/display/views/simplelist/S
 import {GOWGeneratorProductionItemRendererView} from "./GOWGeneratorProductionItemRendererView";
 import {GOWGeneratorVO} from "../../../../generators/data/GOWGeneratorVO";
 import {ColumnLayout} from "../../../../../appframework/display/views/layout/ColumnLayout";
-import {IGOWStaticGeneratorVO} from "../../../../generators/data/IGOWStaticGeneratorVO";
+import {IGOWGeneratorStaticVO} from "../../../../generators/data/IGOWGeneratorStaticVO";
 import {GOWGeneratorVOStaticType} from "../../../../generators/data/GOWGeneratorVOStaticType";
 import {GOWGamePageModel} from "../../../models/GOWGamePageModel";
 import {GOWGeneratorsModel} from "../../../../generators/models/GOWGeneratorsModel";
@@ -41,11 +41,11 @@ export class GOWGeneratorsProductionListView extends BaseView {
         //
         this.generatorsList.ItemRendererClass = GOWGeneratorProductionItemRendererView;
         //
-        const staticGeneratorsList: IGOWStaticGeneratorVO[] = this.genericByTypeModel.getItemsForType<IGOWStaticGeneratorVO>(GOWGeneratorVOStaticType);
+        const staticGeneratorsList: IGOWGeneratorStaticVO[] = this.genericByTypeModel.getItemsForType<IGOWGeneratorStaticVO>(GOWGeneratorVOStaticType);
         const generatorsList: GOWGeneratorVO[] = [];
         let generatorsCount: number = staticGeneratorsList.length;
         for (let generatorIndex: number = 0; generatorIndex < generatorsCount; generatorIndex++) {
-            const singleStaticGenerator: IGOWStaticGeneratorVO = staticGeneratorsList[generatorIndex];
+            const singleStaticGenerator: IGOWGeneratorStaticVO = staticGeneratorsList[generatorIndex];
             const singleGenerator: GOWGeneratorVO = this.generatorsModel.getItem(singleStaticGenerator.id);
             generatorsList.push(singleGenerator);
         }

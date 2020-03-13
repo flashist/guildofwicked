@@ -1,5 +1,5 @@
 import {Command} from "fcore";
-import {IGOWStaticGeneratorVO} from "../../generators/data/IGOWStaticGeneratorVO";
+import {IGOWGeneratorStaticVO} from "../../generators/data/IGOWGeneratorStaticVO";
 import {GOWGeneratorsTools} from "../../generators/tools/GOWGeneratorsTools";
 import {getInstance} from "fsuite";
 import {GOWServerEmulatorGeneratorsManager} from "../managers/GOWServerEmulatorGeneratorsManager";
@@ -19,7 +19,7 @@ export class GOWServerEmulatorCreateUserCommand extends Command {
 
         const userData: IGOWServerEmulatorUserVO = this.usersManager.createUser(this.loginData);
 
-        const startGenerators: IGOWStaticGeneratorVO[] = GOWGeneratorsTools.getStartGenerators();
+        const startGenerators: IGOWGeneratorStaticVO[] = GOWGeneratorsTools.getStartGenerators();
         for (let singleGenerator of startGenerators) {
             this.generatorsManager.buyGeneratorForUser(userData.id, singleGenerator.id);
             // this.generatorsManager.startProduction(userData.id, singleGenerator.id);

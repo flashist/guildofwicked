@@ -3,17 +3,18 @@ import {getText} from "fsuite";
 import {GOWResourceType} from "../../resources/data/GOWResourceType";
 import {GOWSettings} from "../../../GOWSettings";
 import {DateSettings} from "../../../appframework/date/DateSettings";
+import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
 
 export class GOWTextTools {
     private static formatter = new Intl.NumberFormat();
 
-    static getFormattedResourceAmount(amount: number, resourceType: GOWResourceType): string {
-        let resourceLocaleId: string = GOWSettings.resources[resourceType].localeId;
+    static getFormattedResourceAmount(data: IGOWResourceVO): string {
+        let resourceLocaleId: string = GOWSettings.resources[data.type].localeId;
 
         const result: string = getText(
             resourceLocaleId,
             {
-                value: GOWTextTools.formatter.format(amount)
+                value: GOWTextTools.formatter.format(data.value)
             }
         );
         return result;

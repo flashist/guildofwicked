@@ -8,6 +8,7 @@ import {GOWUserVOEvent} from "../../../users/events/GOWUserVOEvent";
 import {GOWResourceType} from "../../../resources/data/GOWResourceType";
 import {SimpleButtonView} from "../../../../appframework/display/views/button/SimpleButtonView";
 import {GOWTextTools} from "../../../texts/tools/GOWTextTools";
+import {IGOWResourceVO} from "../../../resources/data/IGOWResourceVO";
 
 export class GOWGamePageHeaderView extends BaseView {
 
@@ -119,11 +120,8 @@ export class GOWGamePageHeaderView extends BaseView {
         super.commitData();
 
         if (this.usersModel.curUserData) {
-            const userMoney: number = this.usersModel.curUserData.getResource(GOWResourceType.MONEY);
-            this.moneyLabel.text = GOWTextTools.getFormattedResourceAmount(
-                userMoney,
-                GOWResourceType.MONEY
-            );
+            const userMoney: IGOWResourceVO = this.usersModel.curUserData.getResource(GOWResourceType.MONEY);
+            this.moneyLabel.text = GOWTextTools.getFormattedResourceAmount(userMoney);
         }
     }
 

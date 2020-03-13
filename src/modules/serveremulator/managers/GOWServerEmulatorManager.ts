@@ -41,12 +41,15 @@ export class GOWServerEmulatorManager extends BaseManager {
     }
 
     public sendRequest(requestData: IServerRequestVO): Promise<IServerResponseVO> {
+
         let handleMethod = this.requestIdToMethodMap[requestData.requestId];
         if (!handleMethod) {
             handleMethod = this.processUnknownRequest;
         }
 
-        return handleMethod.call(this, requestData);
+        const result = handleMethod.call(this, requestData);
+
+        return result;
     }
 
     protected prepareResponse(id: string, errorCode?: string, items?: IGenericObjectVO[]): IServerResponseVO {
@@ -80,8 +83,12 @@ export class GOWServerEmulatorManager extends BaseManager {
                 if (!userData) {
                     new GOWServerEmulatorCreateUserCommand(requestData.loginData)
                         .execute();
+
                     userData = this.emulationUsersManager.getUserDataByLogin(requestData.loginData);
                 }
+
+                this.emulationUsersManager.updatePrevSessionLastActivityTime(userData.id, userData.lastActivityServerTime);
+                this.emulationUsersManager.updateLastActivityTime(userData.id);
 
                 const items: IGenericObjectVO[] = GOWServerEmulatorTools.prepareUserItemsResponse(userData.id);
                 const responseData: Partial<IInitServerResponseVO> = this.prepareResponse(
@@ -132,6 +139,7 @@ export class GOWServerEmulatorManager extends BaseManager {
                     errorCode = GOWServerErrorCode.USER_NOT_FOUND;
                 }
 
+                this.emulationUsersManager.updateLastActivityTime(userData.id);
                 const responseData: IServerResponseVO = this.prepareResponse(
                     requestData.requestId,
                     errorCode,

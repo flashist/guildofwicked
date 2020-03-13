@@ -315,10 +315,10 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
             this.notBoughtCont.visible = false;
 
             let infoLocaleId: string = "productionInfo";
-            let productionVale: number = this.data.static.productionValue.value;
+            let visibleProductionValue: number = this.data.static.productionValue.value;
             if (this.data.static.productionDuration < DateSettings.MS_IN_SECOND) {
                 infoLocaleId = "productionInfoLessThenSec";
-                productionVale = NumberTools.roundTo(
+                visibleProductionValue = NumberTools.roundTo(
                     this.data.static.productionValue.value / (this.data.static.productionDuration / DateSettings.MS_IN_SECOND),
                     0.1
                 );
@@ -327,8 +327,10 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 infoLocaleId,
                 {
                     value: GOWTextTools.getFormattedResourceAmount(
-                        productionVale,
-                        this.data.static.productionValue.resourceType
+                        {
+                            type: this.data.static.productionValue.type,
+                            value: visibleProductionValue
+                        }
                     )
                 }
             );
@@ -341,10 +343,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 "firstBuyButton",
                 {
                     name: getText(this.data.static.localeId),
-                    price: GOWTextTools.getFormattedResourceAmount(
-                        this.data.static.basePrice,
-                        GOWResourceType.MONEY
-                    )
+                    price: GOWTextTools.getFormattedResourceAmount(this.data.static.basePrice)
                 }
             );
         }

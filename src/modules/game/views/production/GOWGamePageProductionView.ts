@@ -8,12 +8,6 @@ import {GOWSettings} from "../../../../GOWSettings";
 import {ToggleGroup} from "../../../../appframework/display/views/togglegroup/ToggleGroup";
 import {GOWGamePageTabId} from "../../data/GOWGamePageTabId";
 import {GOWQuickActionView} from "./GOWQuickActionView";
-import {GOWGeneratorProductionItemRendererView} from "./list/GOWGeneratorProductionItemRendererView";
-import {GOWGeneratorVO} from "../../../generators/data/GOWGeneratorVO";
-import {SimpleList} from "../../../../appframework/display/views/simplelist/SimpleList";
-import {IGOWStaticGeneratorVO} from "../../../generators/data/IGOWStaticGeneratorVO";
-import {GOWGeneratorVOStaticType} from "../../../generators/data/GOWGeneratorVOStaticType";
-import {ColumnLayout} from "../../../../appframework/display/views/layout/ColumnLayout";
 import {GOWGeneratorsModel} from "../../../generators/models/GOWGeneratorsModel";
 import {GOWGeneratorsProductionListView} from "./list/GOWGeneratorsProductionListView";
 

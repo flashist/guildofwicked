@@ -9,13 +9,16 @@
 
       "index": 0,
       "isStartGenerator": true,
-      "basePrice": 4,
+      "basePrice": {
+        "type": "money",
+        "value": 4
+      },
       "buyCoef": 1.07,
       "productionValue": {
-        "resourceType": "money",
+        "type": "money",
         "value": 1
       },
-      "productionDuration": 1000000
+      "productionDuration": 1000
     },
     {
       "type": "static_generator",
@@ -25,10 +28,13 @@
       "resource": "money",
 
       "index": 1,
-      "basePrice": 60,
+      "basePrice": {
+        "type": "money",
+        "value": 60
+      },
       "buyCoef": 1.15,
       "productionValue": {
-        "resourceType": "money",
+        "type": "money",
         "value": 120
       },
       "productionDuration": 3000
@@ -41,10 +47,13 @@
       "resource": "money",
 
       "index": 2,
-      "basePrice": 720,
+      "basePrice": {
+        "type": "money",
+        "value": 720
+      },
       "buyCoef": 1.14,
       "productionValue": {
-        "resourceType": "money",
+        "type": "money",
         "value": 540
       },
       "productionDuration": 6000
@@ -57,10 +66,13 @@
       "resource": "money",
 
       "index": 3,
-      "basePrice": 8640,
+      "basePrice": {
+        "type": "money",
+        "value": 8640
+      },
       "buyCoef": 1.13,
       "productionValue": {
-        "resourceType": "money",
+        "type": "money",
         "value": 4320
       },
       "productionDuration": 12000
@@ -73,13 +85,62 @@
       "resource": "money",
 
       "index": 4,
-      "basePrice": 103680,
+      "basePrice": {
+        "type": "money",
+        "value": 103680
+      },
       "buyCoef": 1.12,
       "productionValue": {
-        "resourceType": "money",
+        "type": "money",
         "value": 51840
       },
       "productionDuration": 24000
+    },
+
+    {
+      "type": "static_upgrade",
+      "id": "coalMineAuto",
+      "localeId": "coalMineAuto",
+      "upgradeType": "manager",
+      "bonus": {
+        "type": "auto"
+      },
+      "generatorId": "coalMine",
+
+      "price": {
+        "type": "money",
+        "value": 1000
+      }
+    },
+    {
+      "type": "static_upgrade",
+      "id": "charlatanAuto",
+      "localeId": "charlatanAuto",
+      "upgradeType": "manager",
+      "bonus": {
+        "type": "auto"
+      },
+      "generatorId": "charlatan",
+
+      "price": {
+        "type": "money",
+        "value": 15000
+      }
+    },
+    {
+      "type": "static_upgrade",
+      "id": "tavernAuto",
+      "localeId": "tavernAuto",
+      "upgradeType": "manager",
+      "bonus": {
+        "type": "auto"
+      },
+      "generatorId": "tavern",
+
+      "price": {
+        "type": "money",
+        "value": 100000
+      }
     }
   ]
 }

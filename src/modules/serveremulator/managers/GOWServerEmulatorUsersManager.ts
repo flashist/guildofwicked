@@ -1,11 +1,12 @@
 import {UniqueTools} from "fcore";
+import {getInstance} from "fsuite";
 
 import {BaseManager} from "../../../appframework/base/managers/BaseManager";
 import {StorageManager} from "../../../appframework/storage/managers/StorageManager";
 import {GOWEmulatorSettings} from "../GOWEmulatorSettings";
 import {GOWUserVOType} from "../../users/data/GOWUserVOType";
 import {IGOWServerEmulatorUserVO} from "../data/IGOWServerEmulatorUserVO";
-import {getInstance} from "fsuite";
+import {GOWResourceType} from "../../resources/data/GOWResourceType";
 
 export class GOWServerEmulatorUsersManager extends BaseManager {
     protected storageManager: StorageManager;
@@ -17,14 +18,19 @@ export class GOWServerEmulatorUsersManager extends BaseManager {
 
         this.storageManager = getInstance(StorageManager);
 
-        this.userIdToUserMap = this.storageManager.getParam(GOWEmulatorSettings.users.storageId);
-        if (!this.userIdToUserMap) {
+        const storageText: string = this.storageManager.getParam(GOWEmulatorSettings.users.storageId);
+        if (storageText) {
+            this.userIdToUserMap = JSON.parse(storageText);
+        } else {
             this.userIdToUserMap = {};
         }
     }
 
     protected saveData(): void {
-        this.storageManager.setParam(GOWEmulatorSettings.users.storageId, this.userIdToUserMap);
+        this.storageManager.setParam(
+            GOWEmulatorSettings.users.storageId,
+            JSON.stringify(this.userIdToUserMap)
+        );
     }
 
 
@@ -34,9 +40,14 @@ export class GOWServerEmulatorUsersManager extends BaseManager {
             type: GOWUserVOType,
 
             loginData: loginData,
+            lastActivityServerTime: Date.now(),
+            prevSessionLastActivityServerTime: Date.now(),
 
             resources: {
-                money: 0
+                money: {
+                    type: GOWResourceType.MONEY,
+                    value: 0
+                }
             }
         };
         this.userIdToUserMap[userData.id] = userData;
@@ -76,4 +87,17 @@ export class GOWServerEmulatorUsersManager extends BaseManager {
         return result;
     }
 
+    public updateLastActivityTime(userId: string): void {
+        const userData: IGOWServerEmulatorUserVO = this.getUserData(userId);
+        userData.lastActivityServerTime = Date.now();
+
+        this.saveData();
+    }
+
+    public updatePrevSessionLastActivityTime(userId: string, serverTime: number): void {
+        const userData: IGOWServerEmulatorUserVO = this.getUserData(userId);
+        userData.prevSessionLastActivityServerTime = serverTime;
+
+        this.saveData();
+    }
 }

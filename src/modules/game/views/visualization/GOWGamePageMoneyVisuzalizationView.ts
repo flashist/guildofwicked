@@ -5,7 +5,7 @@ import {SimpleList} from "../../../../appframework/display/views/simplelist/Simp
 import {GOWGeneratorsModel} from "../../../generators/models/GOWGeneratorsModel";
 import {GOWGeneratorVOStaticType} from "../../../generators/data/GOWGeneratorVOStaticType";
 import {GOWGeneratorVO} from "../../../generators/data/GOWGeneratorVO";
-import {IGOWStaticGeneratorVO} from "../../../generators/data/IGOWStaticGeneratorVO";
+import {IGOWGeneratorStaticVO} from "../../../generators/data/IGOWGeneratorStaticVO";
 import {GOWSettings} from "../../../../GOWSettings";
 import {GOWVisualizationItemRendererView} from "./GOWVisualizationItemRendererView";
 
@@ -26,11 +26,11 @@ export class GOWGamePageMoneyVisuzalizationView extends BaseView {
         this.addChild(this.itemsList);
         this.itemsList.ItemRendererClass = GOWVisualizationItemRendererView;
 
-        const staticGeneratorsList: IGOWStaticGeneratorVO[] = this.genericByTypeModel.getItemsForType<IGOWStaticGeneratorVO>(GOWGeneratorVOStaticType);
+        const staticGeneratorsList: IGOWGeneratorStaticVO[] = this.genericByTypeModel.getItemsForType<IGOWGeneratorStaticVO>(GOWGeneratorVOStaticType);
         const generatorsList: GOWGeneratorVO[] = [];
         let generatorsCount: number = staticGeneratorsList.length;
         for (let generatorIndex: number = 0; generatorIndex < generatorsCount; generatorIndex++) {
-            const singleStaticGenerator: IGOWStaticGeneratorVO = staticGeneratorsList[generatorIndex];
+            const singleStaticGenerator: IGOWGeneratorStaticVO = staticGeneratorsList[generatorIndex];
             const singleGenerator: GOWGeneratorVO = this.generatorsModel.getItem(singleStaticGenerator.id);
             generatorsList.push(singleGenerator);
         }
