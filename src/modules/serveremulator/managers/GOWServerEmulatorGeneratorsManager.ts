@@ -72,7 +72,7 @@ export class GOWServerEmulatorGeneratorsManager extends BaseManager {
                 level: 0,
                 startProductionServerTime: 0,
                 isProductionInProgress: false,
-                bonusIds: []
+                boughtUpgradeIds: []
             };
 
             userGenerators.push(generatorData);
@@ -99,6 +99,17 @@ export class GOWServerEmulatorGeneratorsManager extends BaseManager {
         }
 
         generatorData.isProductionInProgress = false;
+
+        this.saveData();
+    }
+
+    public addGeneratorUpdate(userId: string, generatorId: string, upgradeId: string): void {
+        const generatorData: IGOWServerEmulatorGeneratorVO = this.getUserSingleGenerator(userId, generatorId);
+        if (generatorData.boughtUpgradeIds.indexOf(upgradeId) !== -1) {
+            return;
+        }
+
+        generatorData.boughtUpgradeIds.push(upgradeId);
 
         this.saveData();
     }

@@ -37,7 +37,7 @@ export class GOWBaseServerCommand<ResponseType extends IServerResponseVO = IServ
         super.notifyComplete(resolveData, rejectErrorData);
 
         if (this.errorCode) {
-            alert(`Imagine: Server Error Handled For Error Code "${resolveData.errorCode}"`);
+            alert(`Imagine: Server Error Handled!\nError code: ${resolveData.errorCode}\nError message: ${resolveData.errorMessage}`);
         }
     }
 }

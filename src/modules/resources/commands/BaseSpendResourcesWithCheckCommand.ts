@@ -18,7 +18,18 @@ export abstract class BaseSpendResourcesWithCheckCommand extends BaseAppCommand 
     protected executeInternal(): void {
         if (this.spendResourcesGuard()) {
             if (this.fakeSpendResources) {
-                new GOWChangeUserResourcesClientCommand(this.usersModel.curUserId, this.resourcesToSpend)
+
+                const reduceResources: IGOWResourceVO[] = [];
+                for (let singleResource of this.resourcesToSpend) {
+                    reduceResources.push(
+                        {
+                            type: singleResource.type,
+                            value: -1 * singleResource.value
+                        }
+                    );
+                }
+
+                new GOWChangeUserResourcesClientCommand(this.usersModel.curUserId, reduceResources)
                     .execute();
             }
 

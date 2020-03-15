@@ -5,6 +5,7 @@ import {GOWServerEmulatorUsersManager} from "./managers/GOWServerEmulatorUsersMa
 import {GOWServerEmulatorManager} from "./managers/GOWServerEmulatorManager";
 import {GOWServerEmulatorProductionManager} from "./managers/GOWServerEmulatorProductionManager";
 import {GOWServerEmulatorGeneratorsManager} from "./managers/GOWServerEmulatorGeneratorsManager";
+import {GOWServerEmulatorBuyManager} from "./managers/GOWServerEmulatorBuyManager";
 
 export class GOWServerEmulatorModule extends BaseModule {
 
@@ -15,6 +16,7 @@ export class GOWServerEmulatorModule extends BaseModule {
         serviceLocatorAdd(GOWServerEmulatorUsersManager, {isSingleton: true});
         serviceLocatorAdd(GOWServerEmulatorGeneratorsManager, {isSingleton: true});
         serviceLocatorAdd(GOWServerEmulatorProductionManager, {isSingleton: true});
+        serviceLocatorAdd(GOWServerEmulatorBuyManager, {isSingleton: true});
     }
 
 }

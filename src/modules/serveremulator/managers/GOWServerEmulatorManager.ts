@@ -16,6 +16,9 @@ import {GOWServerEmulatorGeneratorsManager} from "./GOWServerEmulatorGeneratorsM
 import {GOWServerErrorCode} from "../data/GOWServerErrorCode";
 import {GOWServerEmulatorProductionManager} from "./GOWServerEmulatorProductionManager";
 import {IGOWProductionResultVO} from "../../production/data/IGOWProductionResultVO";
+import {IGeneralBuyRequestVO} from "../../server/data/IGeneralBuyRequestVO";
+import {GOWServerEmulatorBuyManager} from "./GOWServerEmulatorBuyManager";
+import {GOWGeneratorVOType} from "../../generators/data/GOWGeneratorVOType";
 
 /**
  * Class for emulating server-bahavor. In real life cases this class might be used for local-development
@@ -27,6 +30,7 @@ export class GOWServerEmulatorManager extends BaseManager {
     protected emulatorUsersManager: GOWServerEmulatorUsersManager = getInstance(GOWServerEmulatorUsersManager);
     protected emulatorGeneratorsManager: GOWServerEmulatorGeneratorsManager = getInstance(GOWServerEmulatorGeneratorsManager);
     protected emulatorProductionManager: GOWServerEmulatorProductionManager = getInstance(GOWServerEmulatorProductionManager);
+    protected emulatorBuyEmulatorBuyManager: GOWServerEmulatorBuyManager = getInstance(GOWServerEmulatorBuyManager);
 
     protected requestIdToMethodMap: {
         [key: string]: (requestData: IServerRequestVO) => Promise<IServerResponseVO>
@@ -42,9 +46,10 @@ export class GOWServerEmulatorManager extends BaseManager {
         //
         this.requestIdToMethodMap[GOWServerRequestId.GENERATOR_START] = this.processGeneratorStartRequest;
         this.requestIdToMethodMap[GOWServerRequestId.CALCULATE_PRODUCTION] = this.processCalculateProdctionRequest;
+        this.requestIdToMethodMap[GOWServerRequestId.GENERAL_BUY] = this.processGeneralBuy;
     }
 
-    public sendRequest(requestData: IServerRequestVO): Promise<IServerResponseVO> {
+    public async sendRequest(requestData: IServerRequestVO): Promise<IServerResponseVO> {
 
         let handleMethod = this.requestIdToMethodMap[requestData.requestId];
         if (!handleMethod) {
@@ -52,134 +57,157 @@ export class GOWServerEmulatorManager extends BaseManager {
         }
 
         return handleMethod.call(this, requestData);
+        // return handleMethod(requestData);
     }
 
-    protected prepareResponse(id: string, errorCode?: string, items?: IGenericObjectVO[]): IServerResponseVO {
-        const result: IServerResponseVO =  {
-            id: id,
-            time: Date.now()
-        };
-        if (items) {
-            result.items = items;
+    protected prepareResponse<Type extends IServerResponseVO>(
+        sourceResponse: Type
+    ): Type {
+
+        sourceResponse.time = Date.now();
+        return sourceResponse;
+
+    }
+
+    protected async processUnknownRequest(requestData: IServerRequestVO): Promise<IServerResponseVO> {
+        const responseData: IServerResponseVO = this.prepareResponse(
+            {
+                id: requestData.requestId,
+                errorCode: ServerErrorCode.UNKNOWN_REQUEST_ID
+            }
+        );
+        return Promise.resolve(responseData);
+    }
+
+    protected async processInitRequest(requestData: IInitServerRequestVO): Promise<IInitServerResponseVO> {
+        let userData: IGOWServerEmulatorUserVO = this.emulatorUsersManager.getUserDataByLogin(requestData.loginData);
+        if (!userData) {
+            new GOWServerEmulatorCreateUserCommand(requestData.loginData)
+                .execute();
+
+            userData = this.emulatorUsersManager.getUserDataByLogin(requestData.loginData);
         }
 
-        return result;
-    }
+        this.emulatorUsersManager.updatePrevSessionLastActivityTime(userData.id, userData.lastActivityServerTime);
+        this.emulatorUsersManager.updateLastActivityTime(userData.id);
 
-    protected processUnknownRequest(requestData: IServerRequestVO): Promise<IServerResponseVO> {
-        return new Promise(
-            (resolve: Function) => {
-                const responseData: IServerResponseVO = this.prepareResponse(requestData.requestId);
-                responseData.errorCode = ServerErrorCode.UNKNOWN_REQUEST_ID;
+        const productionResult: IGOWProductionResultVO = this.emulatorProductionManager.calculateProductionForUser(userData.id);
 
-                resolve(responseData);
+        const items: IGenericObjectVO[] = GOWServerEmulatorTools.prepareUserItemsResponse(userData.id);
+        const responseData: IInitServerResponseVO = this.prepareResponse<IInitServerResponseVO>(
+            {
+                id: requestData.requestId,
+                items: items,
+                userId: userData.id,
+                productionResult: productionResult,
+                timeOffline: Date.now() - userData.prevSessionLastActivityServerTime
             }
         );
+
+        return Promise.resolve(responseData);
     }
 
-    protected processInitRequest(requestData: IInitServerRequestVO): Promise<IInitServerResponseVO> {
-        return new Promise(
-            (resolve: Function) => {
+    protected async processCalculateProdctionRequest(requestData: IServerRequestVO): Promise<IServerResponseVO> {
+        let userData: IGOWServerEmulatorUserVO = this.emulatorUsersManager.getUserDataByLogin(requestData.loginData);
+        if (!userData) {
+            new GOWServerEmulatorCreateUserCommand(requestData.loginData)
+                .execute();
 
-                let userData: IGOWServerEmulatorUserVO = this.emulatorUsersManager.getUserDataByLogin(requestData.loginData);
-                if (!userData) {
-                    new GOWServerEmulatorCreateUserCommand(requestData.loginData)
-                        .execute();
+            userData = this.emulatorUsersManager.getUserDataByLogin(requestData.loginData);
+        }
 
-                    userData = this.emulatorUsersManager.getUserDataByLogin(requestData.loginData);
-                }
+        this.emulatorUsersManager.updateLastActivityTime(userData.id);
+        this.emulatorProductionManager.calculateProductionForUser(userData.id);
 
-                this.emulatorUsersManager.updatePrevSessionLastActivityTime(userData.id, userData.lastActivityServerTime);
-                this.emulatorUsersManager.updateLastActivityTime(userData.id);
-
-                const productionResult: IGOWProductionResultVO = this.emulatorProductionManager.calculateProductionForUser(userData.id);
-
-                const items: IGenericObjectVO[] = GOWServerEmulatorTools.prepareUserItemsResponse(userData.id);
-                const responseData: Partial<IInitServerResponseVO> = this.prepareResponse(
-                    requestData.requestId,
-                    null,
-                    items
-                );
-                responseData.userId = userData.id;
-                responseData.productionResult = productionResult;
-                responseData.timeOffline = Date.now() - userData.prevSessionLastActivityServerTime;
-
-                resolve(responseData);
+        const items: IGenericObjectVO[] = GOWServerEmulatorTools.prepareUserItemsResponse(userData.id);
+        const responseData: IServerResponseVO = this.prepareResponse(
+            {
+                id: requestData.requestId,
+                items: items
             }
         );
-    }
 
-    protected processCalculateProdctionRequest(requestData: IServerRequestVO): Promise<IServerResponseVO> {
-        return new Promise(
-            (resolve: Function) => {
-
-                let userData: IGOWServerEmulatorUserVO = this.emulatorUsersManager.getUserDataByLogin(requestData.loginData);
-                if (!userData) {
-                    new GOWServerEmulatorCreateUserCommand(requestData.loginData)
-                        .execute();
-
-                    userData = this.emulatorUsersManager.getUserDataByLogin(requestData.loginData);
-                }
-
-                this.emulatorUsersManager.updateLastActivityTime(userData.id);
-                this.emulatorProductionManager.calculateProductionForUser(userData.id);
-
-                const items: IGenericObjectVO[] = GOWServerEmulatorTools.prepareUserItemsResponse(userData.id);
-                const responseData: Partial<IInitServerResponseVO> = this.prepareResponse(
-                    requestData.requestId,
-                    null,
-                    items
-                );
-
-                resolve(responseData);
-            }
-        );
+        return Promise.resolve(responseData);
     }
 
     protected processPingRequest(requestData: IServerRequestVO): Promise<IServerResponseVO> {
         return new Promise(
             (resolve: Function) => {
-                const responseData: IServerResponseVO = this.prepareResponse(requestData.requestId);
-
-                // TODO: get information about user data
-
-                resolve(responseData);
-            }
-        );
-    }
-
-    protected processGeneratorStartRequest(requestData: IGeneratorStartRequestVO): Promise<IServerResponseVO> {
-        return new Promise(
-            (resolve: Function) => {
-
-                let errorCode: string;
-
-                const userData = this.emulatorUsersManager.getUserDataByLogin(requestData.loginData);
-                if (userData) {
-                    this.emulatorProductionManager.calculateProductionForUser(userData.id);
-
-                    const generator = this.emulatorGeneratorsManager.getUserSingleGenerator(userData.id, requestData.generatorId);
-                    if (generator) {
-                        this.emulatorGeneratorsManager.startProduction(userData.id, requestData.generatorId, Date.now());
-
-                    } else {
-                        errorCode = GOWServerErrorCode.GENERATOR_NOT_FOUND;
-                    }
-
-                } else {
-                    errorCode = GOWServerErrorCode.USER_NOT_FOUND;
-                }
-
-                const items: IGenericObjectVO[] = GOWServerEmulatorTools.prepareUserItemsResponse(userData.id);
-                this.emulatorUsersManager.updateLastActivityTime(userData.id);
-
                 const responseData: IServerResponseVO = this.prepareResponse(
-                    requestData.requestId,
-                    errorCode,
-                    items
+                    {id: requestData.requestId}
                 );
+
                 resolve(responseData);
             }
         );
     }
+
+    protected async processGeneratorStartRequest(requestData: IGeneratorStartRequestVO): Promise<IServerResponseVO> {
+        let errorCode: string;
+        let errorMessage: string;
+
+        const userData = this.emulatorUsersManager.getUserDataByLogin(requestData.loginData);
+        if (userData) {
+            this.emulatorProductionManager.calculateProductionForUser(userData.id);
+
+            const generator = this.emulatorGeneratorsManager.getUserSingleGenerator(userData.id, requestData.generatorId);
+            if (generator) {
+                this.emulatorGeneratorsManager.startProduction(userData.id, requestData.generatorId, Date.now());
+
+            } else {
+                errorCode = GOWServerErrorCode.OBJECT_NOT_FOUND;
+                errorMessage = `objectType: ${GOWGeneratorVOType}, objectId: ${requestData.generatorId}`;
+            }
+
+        } else {
+            errorCode = GOWServerErrorCode.USER_NOT_FOUND;
+        }
+
+        const items: IGenericObjectVO[] = GOWServerEmulatorTools.prepareUserItemsResponse(userData.id);
+        this.emulatorUsersManager.updateLastActivityTime(userData.id);
+
+        const responseData: IServerResponseVO = this.prepareResponse(
+            {
+                id: requestData.requestId,
+                errorCode: errorCode,
+                errorMessage: errorMessage,
+                items: items
+            }
+        );
+        return Promise.resolve(responseData);
+    }
+
+    protected async processGeneralBuy(requestData: IGeneralBuyRequestVO): Promise<IServerResponseVO> {
+        let errorCode: string;
+        let errorMessage: string;
+
+        const userData = this.emulatorUsersManager.getUserDataByLogin(requestData.loginData);
+        if (userData) {
+            const buyResult: Partial<IServerResponseVO> = await this.emulatorBuyEmulatorBuyManager.processGeneralBuy(
+                userData.id,
+                requestData.objectType,
+                requestData.objectId
+            );
+            errorCode = buyResult.errorCode;
+            errorMessage = buyResult.errorMessage;
+
+        } else {
+            errorCode = GOWServerErrorCode.USER_NOT_FOUND;
+        }
+
+        const items: IGenericObjectVO[] = GOWServerEmulatorTools.prepareUserItemsResponse(userData.id);
+        this.emulatorUsersManager.updateLastActivityTime(userData.id);
+
+        const responseData: IServerResponseVO = this.prepareResponse(
+            {
+                id: requestData.requestId,
+                errorCode: errorCode,
+                errorMessage: errorMessage,
+                items: items
+            }
+        );
+
+        return Promise.resolve(responseData);
+    }
+
 }
