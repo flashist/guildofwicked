@@ -3,6 +3,11 @@ import {GenericObjectsByTypeModel, getInstance} from "fsuite";
 import {GOWGeneratorStaticVOType} from "../data/GOWGeneratorStaticVOType";
 
 export class GOWGeneratorsTools {
+
+    static calculateNextLevelPrice(basePrice: number, curLevel: number, priceGrowthCoef: number): number {
+        return basePrice * Math.pow(priceGrowthCoef, curLevel);
+    }
+
     static getStartGenerators(): IGOWGeneratorStaticVO[] {
         let result: IGOWGeneratorStaticVO[] = [];
 

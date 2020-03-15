@@ -14,14 +14,17 @@ import {GOWGeneralBuyServerRequestCommand} from "../../server/commands/GOWGenera
 
 export class GOWBuyUpgradeForGeneratorCommand extends BaseSpendResourcesWithCheckCommand {
 
-    protected genericByTypeModel: GenericObjectsByTypeModel = getInstance(GenericObjectsByTypeModel);
+    protected genericByTypeModel: GenericObjectsByTypeModel;
 
     protected upgradeData: IGOWUpgradeStaticVO;
+    protected generatorData: GOWGeneratorVO;
 
     constructor(protected upgradeId: string) {
         super();
 
+        this.genericByTypeModel = getInstance(GenericObjectsByTypeModel);
         this.upgradeData = this.genericByTypeModel.getItem(GOWUpgradeStaticVOType, this.upgradeId);
+        this.generatorData = this.genericByTypeModel.getItem(GOWGeneratorVOType, this.upgradeData.generatorId);
     }
 
     protected get resourcesToSpend(): IGOWResourceVO[] {
@@ -31,17 +34,12 @@ export class GOWBuyUpgradeForGeneratorCommand extends BaseSpendResourcesWithChec
     protected enoughResourcesExecute(): void {
         const promises: Promise<any>[] = [];
 
-        const generatorData: GOWGeneratorVO = this.genericByTypeModel.getItem(
-            GOWGeneratorVOType,
-            this.upgradeData.generatorId
-        );
-
-        if (generatorData) {
-            if (generatorData.boughtUpgradeIds.indexOf(this.upgradeId) === -1) {
+        if (this.generatorData) {
+            if (this.generatorData.boughtUpgradeIds.indexOf(this.upgradeId) === -1) {
                 // Fake change data locally (for better user experience)
-                generatorData.update(
+                this.generatorData.update(
                     {
-                        boughtUpgradeIds: generatorData.boughtUpgradeIds.concat(this.upgradeId)
+                        boughtUpgradeIds: this.generatorData.boughtUpgradeIds.concat(this.upgradeId)
                     }
                 );
 
@@ -52,8 +50,11 @@ export class GOWBuyUpgradeForGeneratorCommand extends BaseSpendResourcesWithChec
 
                 // If it's an auto bonus, then start production for the building
                 if (bonusData.bonusType === GOWBonusType.AUTO) {
-                    if (!generatorData.isProductionInProgress) {
-                        const tempStartProdCmd: GOWGeneratorStartProductionClientCommand = new GOWGeneratorStartProductionClientCommand(generatorData.id, false);
+                    if (!this.generatorData.isProductionInProgress) {
+                        const tempStartProdCmd: GOWGeneratorStartProductionClientCommand = new GOWGeneratorStartProductionClientCommand(
+                            this.generatorData.id,
+                            false
+                        );
                         promises.push(
                             tempStartProdCmd.execute()
                         );
@@ -61,7 +62,10 @@ export class GOWBuyUpgradeForGeneratorCommand extends BaseSpendResourcesWithChec
                 }
             }
 
-            const tempServerCmd: GOWGeneralBuyServerRequestCommand = new GOWGeneralBuyServerRequestCommand(this.upgradeData.type, this.upgradeData.id);
+            const tempServerCmd: GOWGeneralBuyServerRequestCommand = new GOWGeneralBuyServerRequestCommand(
+                this.upgradeData.type,
+                this.upgradeData.id
+            );
             promises.push(
                 tempServerCmd.execute()
             );

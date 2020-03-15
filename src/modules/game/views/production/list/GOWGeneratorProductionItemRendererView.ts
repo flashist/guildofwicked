@@ -38,7 +38,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
     protected icon: Sprite;
 
     protected notBoughtCont: FContainer;
-    protected firstBuyButton: SimpleButtonView;
+    public firstBuyButton: SimpleButtonView;
 
     protected boughtCont: FContainer;
     protected progressBar: GOWGeneratorProductionProgressView;
@@ -49,7 +49,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
     protected timeLabel: FLabel;
     protected waitingLabel: FLabel;
 
-    protected buyBtn: SimpleButtonView;
+    public buyNextLevelBtn: SimpleButtonView;
     protected upgradeBtn: SimpleButtonView;
 
     protected managersView: GOWGeneratorProductionManagersItemRendererView;
@@ -189,7 +189,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         //
         this.waitingLabel.text = getText("waiting");
 
-        this.buyBtn = new SimpleButtonView(
+        this.buyNextLevelBtn = new SimpleButtonView(
             {
                 bgConfig: {
                     vector: {
@@ -211,10 +211,10 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 }
             }
         );
-        this.boughtCont.addChild(this.buyBtn);
+        this.boughtCont.addChild(this.buyNextLevelBtn);
         //
-        this.buyBtn.text = getText("buyPlaceholder");
-        this.buyBtn.resize(110, 50);
+        this.buyNextLevelBtn.text = getText("buyPlaceholder");
+        this.buyNextLevelBtn.resize(110, 50);
 
         this.upgradeBtn = new SimpleButtonView(
             {
@@ -401,11 +401,11 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         this.upgradeBtn.x = Math.floor(this.resizeSize.x - this.upgradeBtn.width - GOWSettings.layout.contentToBorderPadding);
         this.upgradeBtn.y = Math.floor(this.resizeSize.y - this.upgradeBtn.height - GOWSettings.layout.contentToBorderPadding);
 
-        this.buyBtn.x = Math.floor(this.resizeSize.x - this.buyBtn.width - GOWSettings.layout.contentToBorderPadding);
-        this.buyBtn.y = this.iconCont.y;
+        this.buyNextLevelBtn.x = Math.floor(this.resizeSize.x - this.buyNextLevelBtn.width - GOWSettings.layout.contentToBorderPadding);
+        this.buyNextLevelBtn.y = this.iconCont.y;
 
         this.timeBg.x = this.upgradeBtn.x;
-        this.timeBg.y = this.buyBtn.y;
+        this.timeBg.y = this.buyNextLevelBtn.y;
 
         this.timeLabel.x = this.timeBg.x;
         this.timeLabel.y = this.timeBg.y;
