@@ -5,12 +5,9 @@ import {CheckEnoughResourcesCommand} from "./CheckEnoughResourcesCommand";
 import {GOWTextTools} from "../../texts/tools/GOWTextTools";
 
 export abstract class BaseSpendResourcesWithCheckCommand extends BaseAppCommand {
-    constructor(protected resources: IGOWResourceVO[]) {
-        super();
-    }
 
     protected executeInternal(): void {
-        new CheckEnoughResourcesCommand(this.resources)
+        new CheckEnoughResourcesCommand(this.getResourcesToCheck())
             .execute()
             .then(
                 (checkResult: ICheckEnoughResourcesVO) => {
@@ -20,13 +17,13 @@ export abstract class BaseSpendResourcesWithCheckCommand extends BaseAppCommand 
                     } else {
                         const notEnoughResourcesText: string = GOWTextTools.getFormattedResourcesList(checkResult.notEnoughResourcesList);
                         alert("Imagine: Buying Resource Dialogue Shown: " + notEnoughResourcesText);
+
                         this.notifyComplete();
                     }
-
-
                 }
             );
     }
 
+    protected abstract getResourcesToCheck(): IGOWResourceVO[];
     protected abstract enoughResourcesExecute(): void;
 }

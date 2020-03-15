@@ -22,7 +22,8 @@ export class GOWGeneratorProductionManagersItemRendererView extends BaseView<GOW
     protected managerIconsList: SimpleList;
     protected managerIconsListLayout: BaseLayout;
 
-    protected buyBtn: SimpleButtonView;
+    public buyBtn: SimpleButtonView;
+    public upgradeToBuyData: IGOWUpgradeStaticVO;
 
     protected construction(...args): void {
         super.construction(...args);
@@ -121,11 +122,14 @@ export class GOWGeneratorProductionManagersItemRendererView extends BaseView<GOW
                 bought: false
             }
         );
+
+        this.upgradeToBuyData = null;
+        this.buyBtn.visible = false;
         if (notBoughtUpgrades && notBoughtUpgrades.length > 0) {
-            const firstAvailableUpgradeData: IGOWUpgradeStaticVO = notBoughtUpgrades[0];
+            this.upgradeToBuyData = notBoughtUpgrades[0];
             const firstAvailableBonus: IGOWBonusStaticVO = this.genericByTypeModel.getItem(
                 GOWBonusStaticVOType,
-                firstAvailableUpgradeData.bonusId
+                this.upgradeToBuyData.bonusId
             );
 
             this.buyBtn.visible = true;
@@ -135,12 +139,10 @@ export class GOWGeneratorProductionManagersItemRendererView extends BaseView<GOW
                     upgrade: getText(
                         firstAvailableBonus.localeId
                     ),
-                    price: GOWTextTools.getFormattedResourceAmount(firstAvailableUpgradeData.price)
+                    price: GOWTextTools.getFormattedResourceAmount(this.upgradeToBuyData.price)
                 }
             );
 
-        } else {
-            this.buyBtn.visible = false;
         }
     }
 

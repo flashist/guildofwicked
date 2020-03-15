@@ -9,7 +9,7 @@ export class GOWGeneratorStartProductionClientCommand extends BaseAppCommand {
 
     protected generatorsModel: GOWGeneratorsModel = getInstance(GOWGeneratorsModel);
 
-    constructor(protected generatorId: string) {
+    constructor(protected generatorId: string, protected sendRequest: boolean = true) {
         super();
     }
 
@@ -24,13 +24,18 @@ export class GOWGeneratorStartProductionClientCommand extends BaseAppCommand {
             }
         );
 
-        new GOWGeneratorStartProductionServerRequestCommand(this.generatorId)
-            .execute()
-            .then(
-                () => {
-                    this.notifyComplete();
-                }
-            );
+        if (this.sendRequest) {
+            new GOWGeneratorStartProductionServerRequestCommand(this.generatorId)
+                .execute()
+                .then(
+                    () => {
+                        this.notifyComplete();
+                    }
+                );
+
+        } else {
+            this.notifyComplete();
+        }
     }
 
 }

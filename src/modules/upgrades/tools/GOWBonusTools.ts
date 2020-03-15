@@ -16,14 +16,14 @@ export class GOWBonusTools {
             );
 
             if (singleBonus) {
-                if (!result[singleBonus.id]) {
-                    result[singleBonus.id] = 0;
+                if (!result[singleBonus.bonusType]) {
+                    result[singleBonus.bonusType] = 0;
                 }
 
-                if (singleBonus.type === GOWBonusType.AUTO) {
-                    result[singleBonus.id] = 1;
+                if (singleBonus.bonusType === GOWBonusType.AUTO) {
+                    result[singleBonus.bonusType] = 1;
                 } else {
-                    result[singleBonus.id] += singleBonus.value;
+                    result[singleBonus.bonusType] += singleBonus.value;
                 }
             }
         }
