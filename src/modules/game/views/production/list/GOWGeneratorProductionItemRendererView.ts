@@ -25,6 +25,7 @@ import {GOWTextTools} from "../../../../texts/tools/GOWTextTools";
 import {DateSettings} from "../../../../../appframework/date/DateSettings";
 import {GlobalEventDispatcher} from "../../../../../appframework/globaleventdispatcher/dispatcher/GlobalEventDispatcher";
 import {TimeModelEvent} from "../../../../../appframework/time/models/TimeModelEvent";
+import {GOWGeneratorProductionManagersItemRendererView} from "./managers/GOWGeneratorProductionManagersItemRendererView";
 
 export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGeneratorVO> implements IGetSizable {
 
@@ -51,6 +52,8 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
 
     protected buyBtn: SimpleButtonView;
     protected upgradeBtn: SimpleButtonView;
+
+    protected managersView: GOWGeneratorProductionManagersItemRendererView;
 
     protected construction(...args): void {
         super.construction(...args);
@@ -241,6 +244,9 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         //
         this.upgradeBtn.text = getText("upgradePlaceholder");
         this.upgradeBtn.resize(215, 50);
+
+        this.managersView = getInstance(GOWGeneratorProductionManagersItemRendererView);
+        this.boughtCont.addChild(this.managersView);
     }
 
 
@@ -358,6 +364,8 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
             );
         }
 
+        this.managersView.data = this.data;
+
         this.commitTimeData();
 
         this.arrange();
@@ -418,6 +426,9 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         this.infoLabel.y = this.progressBar.y;
         this.infoLabel.width = this.progressBar.width;
         this.infoLabel.height = this.progressBar.height;
+
+        this.managersView.x = this.progressBar.x;
+        this.managersView.y = this.upgradeBtn.y;
     }
 
     getSize(): Point {

@@ -100,11 +100,8 @@
     {
       "type": "static_upgrade",
       "id": "coalMineAuto",
-      "localeId": "coalMineAuto",
       "upgradeType": "manager",
-      "bonus": {
-        "type": "auto"
-      },
+      "bonusId": "auto",
       "generatorId": "coalMine",
 
       "price": {
@@ -114,12 +111,36 @@
     },
     {
       "type": "static_upgrade",
-      "id": "charlatanAuto",
-      "localeId": "charlatanAuto",
+      "id": "coalMineProfit2",
+
       "upgradeType": "manager",
-      "bonus": {
-        "type": "auto"
-      },
+      "bonusId": "profit2",
+      "generatorId": "coalMine",
+
+      "price": {
+        "type": "money",
+        "value": 1000000
+      }
+    },
+    {
+      "type": "static_upgrade",
+      "id": "coalMineDuration2",
+
+      "upgradeType": "manager",
+      "bonusId": "duration2",
+      "generatorId": "coalMine",
+
+      "price": {
+        "type": "money",
+        "value": 1000000000
+      }
+    },
+
+    {
+      "type": "static_upgrade",
+      "id": "charlatanAuto",
+      "upgradeType": "manager",
+      "bonusId": "auto",
       "generatorId": "charlatan",
 
       "price": {
@@ -129,18 +150,112 @@
     },
     {
       "type": "static_upgrade",
-      "id": "tavernAuto",
-      "localeId": "tavernAuto",
+      "id": "charlatanProfit2",
+
       "upgradeType": "manager",
-      "bonus": {
-        "type": "auto"
-      },
+      "bonusId": "profit2",
+      "generatorId": "charlatan",
+
+      "price": {
+        "type": "money",
+        "value": 15000000
+      }
+    },
+
+    {
+      "type": "static_upgrade",
+      "id": "tavernAuto",
+      "upgradeType": "manager",
+      "bonusId": "auto",
       "generatorId": "tavern",
 
       "price": {
         "type": "money",
         "value": 100000
       }
+    },
+    {
+      "type": "static_upgrade",
+      "id": "tavernProfit2",
+
+      "upgradeType": "manager",
+      "bonusId": "profit2",
+      "generatorId": "tavern",
+
+      "price": {
+        "type": "money",
+        "value": 100000000
+      }
+    },
+
+    {
+      "type": "static_upgrade",
+      "id": "graveRobbersAuto",
+      "upgradeType": "manager",
+      "bonusId": "auto",
+      "generatorId": "graveRobbers",
+
+      "price": {
+        "type": "money",
+        "value": 500000
+      }
+    },
+    {
+      "type": "static_upgrade",
+      "id": "graveRobbersProfit2",
+
+      "upgradeType": "manager",
+      "bonusId": "profit2",
+      "generatorId": "graveRobbers",
+
+      "price": {
+        "type": "money",
+        "value": 500000000
+      }
+    },
+
+    {
+      "type": "static_upgrade",
+      "id": "midnightRidersAuto",
+      "upgradeType": "manager",
+      "bonusId": "auto",
+      "generatorId": "midnightRiders",
+
+      "price": {
+        "type": "money",
+        "value": 1200000
+      }
+    },
+    {
+      "type": "static_upgrade",
+      "id": "midnightRidersProfit2",
+
+      "upgradeType": "manager",
+      "bonusId": "profit2",
+      "generatorId": "midnightRiders",
+
+      "price": {
+        "type": "money",
+        "value": 1200000000
+      }
+    },
+
+    {
+      "type": "static_bonus",
+      "id": "auto",
+      "bonusType": "auto"
+    },
+    {
+      "type": "static_bonus",
+      "id": "profit2",
+      "bonusType": "proft",
+      "bonusValue": 2
+    },
+    {
+      "type": "static_bonus",
+      "id": "duration2",
+      "bonusType": "duration",
+      "bonusValue": 2
     }
   ]
 }

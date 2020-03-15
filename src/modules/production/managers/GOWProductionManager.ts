@@ -5,7 +5,7 @@ import {TimeModel} from "../../../appframework/time/models/TimeModel";
 import {TimeModelEvent} from "../../../appframework/time/models/TimeModelEvent";
 import {IGOWProductionResultVO} from "../data/IGOWProductionResultVO";
 import {IGOWGeneratorStaticVO} from "../../generators/data/IGOWGeneratorStaticVO";
-import {GOWGeneratorVOStaticType} from "../../generators/data/GOWGeneratorVOStaticType";
+import {GOWGeneratorStaticVOType} from "../../generators/data/GOWGeneratorStaticVOType";
 import {GOWBonusTools} from "../../upgrades/tools/GOWBonusTools";
 import {GOWBonusType} from "../../upgrades/data/GOWBonusType";
 import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
@@ -65,11 +65,11 @@ export class GOWProductionManager extends BaseManager {
 
                 if (singleGenerator.isProductionInProgress) {
                     const staticSingleGenerator: IGOWGeneratorStaticVO = this.genericByTypeModel.getItem(
-                        GOWGeneratorVOStaticType,
+                        GOWGeneratorStaticVOType,
                         singleGenerator.id
                     );
 
-                    const cumulativeBonusesData = GOWBonusTools.getCumulativeBonusesData(singleGenerator.bonusIds);
+                    const cumulativeBonusesData = GOWBonusTools.getCumulativeBonusesData(singleGenerator.boughtUpgradeIds);
 
                     let completeCyclesCount: number = 0;
                     let timeForProductionCycles: number = Date.now() - singleGenerator.startProductionServerTime;
@@ -80,7 +80,7 @@ export class GOWProductionManager extends BaseManager {
                     }
 
                     const autoBonus: number = cumulativeBonusesData[GOWBonusType.AUTO];
-                    const durationWithBonuses: number = staticSingleGenerator.productionDuration * durationBonus;
+                    const durationWithBonuses: number = staticSingleGenerator.productionDuration / durationBonus;
                     while (timeForProductionCycles >= durationWithBonuses) {
                         isAnyProductionCycleComplete = true;
 

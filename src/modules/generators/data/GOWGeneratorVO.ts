@@ -1,19 +1,20 @@
 import {BaseAppObjectWithStaticVO} from "../../../appframework/base/data/BaseAppObjectWithStaticVO";
-import {GOWGeneratorVOStaticType} from "./GOWGeneratorVOStaticType";
 import {IGOWGeneratorStaticVO} from "./IGOWGeneratorStaticVO";
 import {GOWTimeTools} from "../../time/tools/GOWTimeTools";
+import {GOWGeneratorStaticVOType} from "./GOWGeneratorStaticVOType";
 
 export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWGeneratorStaticVO> {
 
     public level: number = 0;
     public isProductionInProgress: boolean;
     public startProductionServerTime: number;
-    public bonusIds: string[] = [];
+
+    public boughtUpgradeIds: string[] = [];
 
     constructor() {
         super();
 
-        this.staticType = GOWGeneratorVOStaticType;
+        this.staticType = GOWGeneratorStaticVOType;
     }
 
     // For debugging

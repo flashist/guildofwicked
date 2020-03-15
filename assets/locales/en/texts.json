@@ -35,6 +35,12 @@
 
     "buyPlaceholder": "BUY",
     "upgradePlaceholder": "UPGRADE",
-    "loginProductionResultPlaceholder": "You were offline for {time} and earned {value} !"
+    "loginProductionResultPlaceholder": "You were offline for {time} and earned {value} !",
+
+    "hireManager": "HIRE MANAGER: {upgrade}\n{price}",
+
+    "bonusAuto": "AUTO",
+    "bonusProfit": "PROFIT x2",
+    "bonusDuration": "FASTER x2"
   }
 }

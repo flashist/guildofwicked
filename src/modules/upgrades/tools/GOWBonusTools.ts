@@ -1,8 +1,8 @@
 import {IGOWCumulativeBonusesData} from "../data/IGOWCumulativeBonusesData";
 import {GenericObjectsByTypeModel, getInstance} from "fsuite";
 import {IGOWBonusStaticVO} from "../data/IGOWBonusStaticVO";
-import {GOWBonusVOStaticType} from "../data/GOWBonusVOStaticType";
 import {GOWBonusType} from "../data/GOWBonusType";
+import {GOWBonusStaticVOType} from "../data/GOWBonusStaticVOType";
 
 export class GOWBonusTools {
     static getCumulativeBonusesData(bonusIds: string[]): IGOWCumulativeBonusesData {
@@ -11,7 +11,7 @@ export class GOWBonusTools {
         const genericByTypeModel: GenericObjectsByTypeModel = getInstance(GenericObjectsByTypeModel);
         for (let singleBonusId of bonusIds) {
             const singleBonus: IGOWBonusStaticVO = genericByTypeModel.getItem(
-                GOWBonusVOStaticType,
+                GOWBonusStaticVOType,
                 singleBonusId
             );
 

@@ -4,4 +4,5 @@ import {IGenericObjectVO} from "fsuite";
 export interface IGOWBonusStaticVO extends IGenericObjectVO {
     type: GOWBonusType;
     value?: number;
+    localeId: string;
 }

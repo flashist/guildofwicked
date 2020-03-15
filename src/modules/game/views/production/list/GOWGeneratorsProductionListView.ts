@@ -6,7 +6,7 @@ import {GOWGeneratorProductionItemRendererView} from "./GOWGeneratorProductionIt
 import {GOWGeneratorVO} from "../../../../generators/data/GOWGeneratorVO";
 import {ColumnLayout} from "../../../../../appframework/display/views/layout/ColumnLayout";
 import {IGOWGeneratorStaticVO} from "../../../../generators/data/IGOWGeneratorStaticVO";
-import {GOWGeneratorVOStaticType} from "../../../../generators/data/GOWGeneratorVOStaticType";
+import {GOWGeneratorStaticVOType} from "../../../../generators/data/GOWGeneratorStaticVOType";
 import {GOWGamePageModel} from "../../../models/GOWGamePageModel";
 import {GOWGeneratorsModel} from "../../../../generators/models/GOWGeneratorsModel";
 
@@ -41,7 +41,7 @@ export class GOWGeneratorsProductionListView extends BaseView {
         //
         this.generatorsList.ItemRendererClass = GOWGeneratorProductionItemRendererView;
         //
-        const staticGeneratorsList: IGOWGeneratorStaticVO[] = this.genericByTypeModel.getItemsForType<IGOWGeneratorStaticVO>(GOWGeneratorVOStaticType);
+        const staticGeneratorsList: IGOWGeneratorStaticVO[] = this.genericByTypeModel.getItemsForType<IGOWGeneratorStaticVO>(GOWGeneratorStaticVOType);
         const generatorsList: GOWGeneratorVO[] = [];
         let generatorsCount: number = staticGeneratorsList.length;
         for (let generatorIndex: number = 0; generatorIndex < generatorsCount; generatorIndex++) {

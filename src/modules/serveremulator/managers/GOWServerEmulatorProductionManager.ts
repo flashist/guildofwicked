@@ -5,7 +5,7 @@ import {GenericObjectsByTypeModel, getInstance} from "fsuite";
 import {IGOWServerEmulatorUserVO} from "../data/IGOWServerEmulatorUserVO";
 import {IGOWServerEmulatorGeneratorVO} from "../data/IGOWServerEmulatorGeneratorVO";
 import {IGOWGeneratorStaticVO} from "../../generators/data/IGOWGeneratorStaticVO";
-import {GOWGeneratorVOStaticType} from "../../generators/data/GOWGeneratorVOStaticType";
+import {GOWGeneratorStaticVOType} from "../../generators/data/GOWGeneratorStaticVOType";
 import {GOWBonusType} from "../../upgrades/data/GOWBonusType";
 import {GOWBonusTools} from "../../upgrades/tools/GOWBonusTools";
 import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
@@ -31,7 +31,7 @@ export class GOWServerEmulatorProductionManager extends BaseManager {
 
                 if (singleGenerator.isProductionInProgress) {
                     const staticSingleGenerator: IGOWGeneratorStaticVO = this.genericByTypeModel.getItem(
-                        GOWGeneratorVOStaticType,
+                        GOWGeneratorStaticVOType,
                         singleGenerator.id
                     );
 
@@ -46,7 +46,7 @@ export class GOWServerEmulatorProductionManager extends BaseManager {
                     }
 
                     const autoBonus: number = cumulativeBonusesData[GOWBonusType.AUTO];
-                    const durationWithBonuses: number = staticSingleGenerator.productionDuration * durationBonus;
+                    const durationWithBonuses: number = staticSingleGenerator.productionDuration / durationBonus;
                     while (timeForProductionCycles >= durationWithBonuses) {
                         timeForProductionCycles -= durationWithBonuses;
                         completeCyclesCount++;
