@@ -204,6 +204,7 @@ export class SimpleButtonView<DataType extends object = object> extends Resizabl
 
         } else {
             const vectorBg: Graphics = this.bg as Graphics;
+
             vectorBg.clear();
 
             vectorBg.beginFill(this.config.bgConfig.vector.bgColor, this.config.bgConfig.vector.bgAlpha);

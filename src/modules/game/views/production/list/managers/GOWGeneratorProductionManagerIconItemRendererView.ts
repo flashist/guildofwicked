@@ -20,6 +20,11 @@ export class GOWGeneratorProductionManagerIconItemRendererView extends BaseView<
         this.iconPlaceholder.lineStyle(2, GOWSettings.colors.black);
         this.iconPlaceholder.drawCircle(0, 0, 25);
         this.iconPlaceholder.endFill();
+        // Improves vector circle graphics
+        this.iconPlaceholder.cacheAsBitmap = true;
+        //
+        this.iconPlaceholder.x = this.iconPlaceholder.width / 2;
+        this.iconPlaceholder.y = this.iconPlaceholder.height / 2;
     }
 
 }

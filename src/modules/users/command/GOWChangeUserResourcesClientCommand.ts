@@ -29,6 +29,8 @@ export class GOWChangeUserResourcesClientCommand extends BaseAppCommand {
             for (let singleUserResourceType of userResourceTypes) {
                 if (changeResources[singleUserResourceType]) {
                     changeResources[singleUserResourceType].value += userData.resources[singleUserResourceType].value;
+                } else {
+                    changeResources[singleUserResourceType].value = userData.resources[singleUserResourceType].value;
                 }
             }
 

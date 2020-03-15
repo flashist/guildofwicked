@@ -1,6 +1,7 @@
+import {GenericObjectsByTypeModel, getInstance} from "fsuite";
+
 import {BaseSpendResourcesWithCheckCommand} from "../../resources/commands/BaseSpendResourcesWithCheckCommand";
 import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
-import {GenericObjectsByTypeModel, getInstance} from "fsuite";
 import {GOWUpgradeStaticVOType} from "../../upgrades/data/GOWUpgradeStaticVOType";
 import {IGOWUpgradeStaticVO} from "../../upgrades/data/IGOWUpgradeStaticVO";
 import {GOWGeneratorVO} from "../data/GOWGeneratorVO";
@@ -23,7 +24,7 @@ export class GOWBuyUpgradeForGeneratorCommand extends BaseSpendResourcesWithChec
         this.upgradeData = this.genericByTypeModel.getItem(GOWUpgradeStaticVOType, this.upgradeId);
     }
 
-    protected getResourcesToCheck(): IGOWResourceVO[] {
+    protected get resourcesToSpend(): IGOWResourceVO[] {
         return [this.upgradeData.price];
     }
 
@@ -37,7 +38,12 @@ export class GOWBuyUpgradeForGeneratorCommand extends BaseSpendResourcesWithChec
 
         if (generatorData) {
             if (generatorData.boughtUpgradeIds.indexOf(this.upgradeId) === -1) {
-                generatorData.boughtUpgradeIds.push(this.upgradeId);
+                // Fake change data locally (for better user experience)
+                generatorData.update(
+                    {
+                        boughtUpgradeIds: generatorData.boughtUpgradeIds.concat(this.upgradeId)
+                    }
+                );
 
                 const bonusData: IGOWBonusStaticVO = this.genericByTypeModel.getItem(
                     GOWBonusStaticVOType,

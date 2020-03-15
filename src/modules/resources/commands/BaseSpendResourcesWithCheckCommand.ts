@@ -1,29 +1,40 @@
+import {getInstance} from "fsuite";
+
 import {BaseAppCommand} from "../../../appframework/base/commands/BaseAppCommand";
 import {IGOWResourceVO} from "../data/IGOWResourceVO";
 import {ICheckEnoughResourcesVO} from "../data/ICheckEnoughResourcesVO";
-import {CheckEnoughResourcesCommand} from "./CheckEnoughResourcesCommand";
-import {GOWTextTools} from "../../texts/tools/GOWTextTools";
+import {GOWResourcesTools} from "../tools/GOWResourcesTools";
+import {GOWChangeUserResourcesClientCommand} from "../../users/command/GOWChangeUserResourcesClientCommand";
+import {GOWUsersModel} from "../../users/models/GOWUsersModel";
 
 export abstract class BaseSpendResourcesWithCheckCommand extends BaseAppCommand {
 
-    protected executeInternal(): void {
-        new CheckEnoughResourcesCommand(this.getResourcesToCheck())
-            .execute()
-            .then(
-                (checkResult: ICheckEnoughResourcesVO) => {
-                    if (checkResult.isEnough) {
-                        this.enoughResourcesExecute();
+    protected usersModel: GOWUsersModel = getInstance(GOWUsersModel);
 
-                    } else {
-                        const notEnoughResourcesText: string = GOWTextTools.getFormattedResourcesList(checkResult.notEnoughResourcesList);
-                        alert("Imagine: Buying Resource Dialogue Shown: " + notEnoughResourcesText);
-
-                        this.notifyComplete();
-                    }
-                }
-            );
+    constructor(protected fakeSpendResources: boolean = true) {
+        super();
     }
 
-    protected abstract getResourcesToCheck(): IGOWResourceVO[];
+    protected executeInternal(): void {
+        if (this.spendResourcesGuard()) {
+            if (this.fakeSpendResources) {
+                new GOWChangeUserResourcesClientCommand(this.usersModel.curUserId, this.resourcesToSpend)
+                    .execute();
+            }
+
+            this.enoughResourcesExecute();
+
+        } else {
+            alert("Imagine: Not Enough Resources Dialogue Shown");
+            this.notifyComplete();
+        }
+    }
+
+    protected spendResourcesGuard(): boolean {
+        const checkResult: ICheckEnoughResourcesVO = GOWResourcesTools.checkIfEnoughResources(this.resourcesToSpend);
+        return checkResult.isEnough;
+    }
+
+    protected abstract get resourcesToSpend(): IGOWResourceVO[];
     protected abstract enoughResourcesExecute(): void;
 }
