@@ -12,11 +12,14 @@ export class GOWQuickActionView extends BaseView {
         this.button = new SimpleButtonView(
             {
                 bgConfig: {
-                    bgColor: GOWSettings.colors.white,
-                    bgAlpha: 1,
-                    bgBorderColor: GOWSettings.colors.black,
-                    bgBorderAlpha: 1,
-                    bgBorderWidth: 2
+                    vector: {
+                        bgColor: GOWSettings.colors.white,
+                        bgAlpha: 1,
+                        bgBorderColor: GOWSettings.colors.black,
+                        bgBorderAlpha: 1,
+                        bgBorderWidth: 2
+                    },
+                    resizeBg: true
                 },
                 labelConfig: {
                     fontFamily: "Clarence",

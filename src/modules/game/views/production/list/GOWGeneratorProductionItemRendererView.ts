@@ -85,11 +85,14 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         this.firstBuyButton = new SimpleButtonView(
             {
                 bgConfig: {
-                    bgColor: GOWSettings.colors.white,
-                    bgAlpha: 1,
-                    bgBorderColor: GOWSettings.colors.black,
-                    bgBorderAlpha: 1,
-                    bgBorderWidth: 2
+                    vector: {
+                        bgColor: GOWSettings.colors.white,
+                        bgAlpha: 1,
+                        bgBorderColor: GOWSettings.colors.black,
+                        bgBorderAlpha: 1,
+                        bgBorderWidth: 2
+                    },
+                    resizeBg: true
                 },
                 labelConfig: {
                     fontFamily: "Clarence",
@@ -187,11 +190,14 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         this.buyBtn = new SimpleButtonView(
             {
                 bgConfig: {
-                    bgColor: GOWSettings.colors.white,
-                    bgAlpha: 1,
-                    bgBorderColor: GOWSettings.colors.black,
-                    bgBorderAlpha: 1,
-                    bgBorderWidth: 2
+                    vector: {
+                        bgColor: GOWSettings.colors.white,
+                        bgAlpha: 1,
+                        bgBorderColor: GOWSettings.colors.black,
+                        bgBorderAlpha: 1,
+                        bgBorderWidth: 2
+                    },
+                    resizeBg: true
                 },
                 labelConfig: {
                     fontFamily: "Clarence",
@@ -211,11 +217,15 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         this.upgradeBtn = new SimpleButtonView(
             {
                 bgConfig: {
-                    bgColor: GOWSettings.colors.white,
-                    bgAlpha: 1,
-                    bgBorderColor: GOWSettings.colors.black,
-                    bgBorderAlpha: 1,
-                    bgBorderWidth: 2
+                    vector: {
+                        bgColor: GOWSettings.colors.white,
+                        bgAlpha: 1,
+                        bgBorderColor: GOWSettings.colors.black,
+                        bgBorderAlpha: 1,
+                        bgBorderWidth: 2
+                    },
+
+                    resizeBg: true
                 },
                 labelConfig: {
                     fontFamily: "Clarence",
@@ -316,7 +326,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
 
             let infoLocaleId: string = "productionInfo";
             let visibleProductionValue: number = this.data.static.productionValue.value;
-            if (this.data.static.productionDuration < DateSettings.MS_IN_SECOND) {
+            if (this.data.static.productionDuration < DateSettings.MS_IN_SECOND / 2) {
                 infoLocaleId = "productionInfoLessThenSec";
                 visibleProductionValue = NumberTools.roundTo(
                     this.data.static.productionValue.value / (this.data.static.productionDuration / DateSettings.MS_IN_SECOND),

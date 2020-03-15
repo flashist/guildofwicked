@@ -45,11 +45,14 @@ export class GOWGamePageProductionView extends BaseView {
         this.moneyTabButton = new SimpleButtonView(
             {
                 bgConfig: {
-                    bgColor: GOWSettings.colors.yellow,
-                    bgAlpha: 1,
-                    bgBorderColor: GOWSettings.colors.black,
-                    bgBorderAlpha: 1,
-                    bgBorderWidth: 2
+                    vector: {
+                        bgColor: GOWSettings.colors.yellow,
+                        bgAlpha: 1,
+                        bgBorderColor: GOWSettings.colors.black,
+                        bgBorderAlpha: 1,
+                        bgBorderWidth: 2
+                    },
+                    resizeBg: true
                 },
                 labelConfig: {
                     fontFamily: "Clarence",
@@ -77,11 +80,14 @@ export class GOWGamePageProductionView extends BaseView {
         this.unitsTabButton = new SimpleButtonView(
             {
                 bgConfig: {
-                    bgColor: GOWSettings.colors.yellow,
-                    bgAlpha: 1,
-                    bgBorderColor: GOWSettings.colors.black,
-                    bgBorderAlpha: 1,
-                    bgBorderWidth: 2
+                    vector: {
+                        bgColor: GOWSettings.colors.yellow,
+                        bgAlpha: 1,
+                        bgBorderColor: GOWSettings.colors.black,
+                        bgBorderAlpha: 1,
+                        bgBorderWidth: 2
+                    },
+                    resizeBg: true
                 },
                 labelConfig: {
                     fontFamily: "Clarence",

@@ -8,7 +8,8 @@ export class GOWGamePageFooterView extends BaseView {
 
     protected bg: Graphics;
 
-    protected testLabel: FLabel;
+    // protected testLabel: FLabel;
+    public menuBtn: SimpleButtonView;
 
     protected construction(...args): void {
         super.construction(...args);
@@ -20,7 +21,7 @@ export class GOWGamePageFooterView extends BaseView {
         this.bg.drawRect(0, 0, 100, 100);
         this.bg.endFill();
 
-        // TEST
+        /*// TEST
         this.testLabel = new FLabel(
             {
                 fontFamily: "Clarence",
@@ -32,7 +33,19 @@ export class GOWGamePageFooterView extends BaseView {
             }
         );
         this.addChild(this.testLabel);
-        this.testLabel.text = "IT'S FOOTER!"
+        this.testLabel.text = "IT'S FOOTER!"*/
+
+        this.menuBtn = new SimpleButtonView(
+            {
+                bgConfig: {
+                    image: {
+                        imageId: "icon-burger.png"
+                    },
+                    resizeBg: false
+                }
+            }
+        );
+        this.addChild(this.menuBtn);
     }
 
     protected arrange(): void {
@@ -41,7 +54,7 @@ export class GOWGamePageFooterView extends BaseView {
         this.bg.width = this.resizeSize.x;
         this.bg.height = this.resizeSize.y;
 
-        this.testLabel.x = this.bg.x + Math.floor((this.bg.width - this.testLabel.width) / 2);
-        this.testLabel.y = this.bg.y + Math.floor((this.bg.height - this.testLabel.height) / 2);
+        this.menuBtn.x = this.bg.x + Math.floor((this.bg.width - this.menuBtn.width) / 2);
+        this.menuBtn.y = this.bg.y + Math.floor((this.bg.height - this.menuBtn.height) / 2);
     }
 }

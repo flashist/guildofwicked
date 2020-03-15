@@ -71,7 +71,7 @@ if (DEV) {
     };
     module.exports.watch = true;
     module.exports.watchOptions = {
-        poll: true,
+        poll: 1000,
         aggregateTimeout: 1000
     };
 
