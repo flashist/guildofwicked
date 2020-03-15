@@ -103,7 +103,7 @@ export class GOWServerEmulatorGeneratorsManager extends BaseManager {
         this.saveData();
     }
 
-    public addGeneratorUpdate(userId: string, generatorId: string, upgradeId: string): void {
+    public addGeneratorUpgrade(userId: string, generatorId: string, upgradeId: string): void {
         const generatorData: IGOWServerEmulatorGeneratorVO = this.getUserSingleGenerator(userId, generatorId);
         if (generatorData.boughtUpgradeIds.indexOf(upgradeId) !== -1) {
             return;

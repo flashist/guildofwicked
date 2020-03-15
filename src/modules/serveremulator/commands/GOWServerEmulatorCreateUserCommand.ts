@@ -22,7 +22,6 @@ export class GOWServerEmulatorCreateUserCommand extends Command {
         const startGenerators: IGOWGeneratorStaticVO[] = GOWGeneratorsTools.getStartGenerators();
         for (let singleGenerator of startGenerators) {
             this.generatorsManager.buyGeneratorForUser(userData.id, singleGenerator.id);
-            // this.generatorsManager.startProduction(userData.id, singleGenerator.id);
         }
 
     }

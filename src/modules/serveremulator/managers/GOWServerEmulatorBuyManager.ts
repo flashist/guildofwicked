@@ -16,6 +16,10 @@ import {GOWGeneratorVOType} from "../../generators/data/GOWGeneratorVOType";
 import {GOWServerEmulatorResourcesTools} from "../tools/GOWServerEmulatorResourcesTools";
 import {GOWServerEmulatorUsersManager} from "./GOWServerEmulatorUsersManager";
 import {IGOWServerEmulatorUserVO} from "../data/IGOWServerEmulatorUserVO";
+import {GOWGeneratorsTools} from "../../generators/tools/GOWGeneratorsTools";
+import {IGOWGeneratorStaticVO} from "../../generators/data/IGOWGeneratorStaticVO";
+import {GOWGeneratorStaticVOType} from "../../generators/data/GOWGeneratorStaticVOType";
+import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
 
 export class GOWServerEmulatorBuyManager extends BaseManager {
 
@@ -31,6 +35,10 @@ export class GOWServerEmulatorBuyManager extends BaseManager {
                 result = this.processUpgradeBuy(userId, objectId);
                 break;
 
+            case GOWGeneratorVOType:
+                result = this.processGeneratorBuy(userId, objectId);
+                break;
+
             default:
                 result = Promise.resolve(
                     {
@@ -39,6 +47,54 @@ export class GOWServerEmulatorBuyManager extends BaseManager {
                     } as Partial<IServerResponseVO>
                 );
                 break;
+        }
+
+        return result;
+    }
+
+    protected async processGeneratorBuy(userId: string, generatorId: string): Promise<Partial<IServerResponseVO>> {
+        let result: Partial<IServerResponseVO> = {};
+
+        const generatorData: IGOWServerEmulatorGeneratorVO = this.generatorsManager.getUserSingleGenerator(
+            userId,
+            generatorId
+        );
+        let curGeneratorLevel: number = 0;
+        if (generatorData) {
+            curGeneratorLevel = generatorData.level;
+        }
+
+        const staticGeneratorData: IGOWGeneratorStaticVO = this.genericByTypeModel.getItem(
+            GOWGeneratorStaticVOType,
+            generatorId
+        );
+        const priceResource: IGOWResourceVO = {
+            type: staticGeneratorData.basePrice.type,
+            value: GOWGeneratorsTools.calculateNextLevelPrice(
+                staticGeneratorData.basePrice.value,
+                curGeneratorLevel,
+                staticGeneratorData.buyCoef
+            )
+        };
+
+        if (GOWServerEmulatorResourcesTools.checkIfEnoughResources(userId, [priceResource])) {
+            this.usersManager.changeUserResources(
+                userId,
+                [
+                    {
+                        type: priceResource.type,
+                        value: -1 * priceResource.value
+                    }
+                ]
+            );
+
+            this.generatorsManager.buyGeneratorForUser(
+                userId,
+                generatorId
+            );
+
+        } else {
+            result.errorCode = GOWServerErrorCode.NOT_ENOUGH_RESOURCES;
         }
 
         return result;
@@ -69,7 +125,7 @@ export class GOWServerEmulatorBuyManager extends BaseManager {
                     );
 
 
-                    this.generatorsManager.addGeneratorUpdate(userId, upgradeData.generatorId, generatorData.id);
+                    this.generatorsManager.addGeneratorUpgrade(userId, upgradeData.generatorId, generatorData.id);
 
                     const bonusData: IGOWBonusStaticVO = this.genericByTypeModel.getItem(
                         GOWBonusStaticVOType,
