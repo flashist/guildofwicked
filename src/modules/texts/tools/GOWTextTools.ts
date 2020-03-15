@@ -20,6 +20,17 @@ export class GOWTextTools {
         return result;
     }
 
+    static getFormattedResourcesList(data: IGOWResourceVO[]): string {
+        const resourceTexts: string[] = [];
+        for (let singleResource of data) {
+            resourceTexts.push(
+                GOWTextTools.getFormattedResourceAmount(singleResource)
+            );
+        }
+
+        return resourceTexts.join(", ");
+    }
+
     static getFormattedDuration(duration: number): string {
         let configObj = {
             seconds: Math.floor(duration / DateSettings.MS_IN_SECOND),

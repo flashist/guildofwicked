@@ -11,7 +11,6 @@ import {GOWBaseServerCommand} from "./GOWBaseServerCommand";
 export class GOWGeneralBuyServerRequestCommand extends GOWBaseServerCommand<IServerResponseVO, IGeneralBuyRequestVO> {
 
     protected serverModel: GOWServerModel;
-    protected usersModel: GOWUsersModel = getInstance(GOWUsersModel);
 
     constructor(objectType: string, objectId: string) {
         super(
