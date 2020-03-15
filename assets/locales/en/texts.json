@@ -40,7 +40,7 @@
     "hireManager": "HIRE MANAGER: {upgrade}\n{price}",
 
     "bonusAuto": "AUTO",
-    "bonusProfit": "PROFIT x2",
-    "bonusDuration": "FASTER x2"
+    "bonusProfit2": "PROFIT x2",
+    "bonusDuration2": "FASTER x2"
   }
 }

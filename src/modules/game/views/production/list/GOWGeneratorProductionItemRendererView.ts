@@ -19,7 +19,6 @@ import {GOWGeneratorVO} from "../../../../generators/data/GOWGeneratorVO";
 import {GOWSettings} from "../../../../../GOWSettings";
 import {SimpleButtonView} from "../../../../../appframework/display/views/button/SimpleButtonView";
 import {IGetSizable} from "../../../../../appframework/display/data/IGetSizable";
-import {GOWResourceType} from "../../../../resources/data/GOWResourceType";
 import {GOWGeneratorProductionProgressView} from "./GOWGeneratorProductionProgressView";
 import {GOWTextTools} from "../../../../texts/tools/GOWTextTools";
 import {DateSettings} from "../../../../../appframework/date/DateSettings";

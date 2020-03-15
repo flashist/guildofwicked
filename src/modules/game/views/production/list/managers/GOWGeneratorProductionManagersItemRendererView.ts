@@ -1,4 +1,4 @@
-import {Align, GenericObjectsByTypeModel, getInstance, getText, VAlign} from "fsuite";
+import {Align, BaseDataVOEvent, GenericObjectsByTypeModel, getInstance, getText, VAlign} from "fsuite";
 
 import {BaseView} from "../../../../../../appframework/base/views/BaseView";
 import {SimpleButtonView} from "../../../../../../appframework/display/views/button/SimpleButtonView";
@@ -63,6 +63,36 @@ export class GOWGeneratorProductionManagersItemRendererView extends BaseView<GOW
         this.buyBtn.resize(210, 50);
     }
 
+
+    protected processDataUnset(value: GOWGeneratorVO): void {
+        super.processDataUnset(value);
+
+        if (!value) {
+            return;
+        }
+
+        this.eventListenerHelper.removeAllListeners(value);
+    }
+
+    protected processDataSet(value: GOWGeneratorVO): void {
+        super.processDataSet(value);
+
+        if (!value) {
+            return;
+        }
+
+        this.eventListenerHelper.addEventListener(
+            value,
+            BaseDataVOEvent.CHANGE,
+            this.onDataChange
+        );
+    }
+
+    protected onDataChange(): void {
+        this.commitData();
+    }
+
+
     protected commitData(): void {
         super.commitData();
 
@@ -88,7 +118,7 @@ export class GOWGeneratorProductionManagersItemRendererView extends BaseView<GOW
             this.data.static.id,
             {
                 upgradeType: GOWUpgradeType.MANAGER,
-                bought: true
+                bought: false
             }
         );
         if (notBoughtUpgrades && notBoughtUpgrades.length > 0) {

@@ -243,19 +243,22 @@
     {
       "type": "static_bonus",
       "id": "auto",
-      "bonusType": "auto"
+      "bonusType": "auto",
+      "localeId": "bonusAuto"
     },
     {
       "type": "static_bonus",
       "id": "profit2",
       "bonusType": "proft",
-      "bonusValue": 2
+      "bonusValue": 2,
+      "localeId": "bonusProfit2"
     },
     {
       "type": "static_bonus",
       "id": "duration2",
       "bonusType": "duration",
-      "bonusValue": 2
+      "bonusValue": 2,
+      "localeId": "bonusDuration2"
     }
   ]
 }

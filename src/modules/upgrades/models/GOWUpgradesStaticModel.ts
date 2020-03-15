@@ -38,6 +38,7 @@ export class GOWUpgradesStaticModel extends BaseModel<IGOWUpgradeStaticVO> {
             result = {
                 all: []
             };
+            this.generatorIdToUpgradesMap[generatorId] = result;
         }
 
         return result;
