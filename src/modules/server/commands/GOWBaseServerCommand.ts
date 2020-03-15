@@ -33,4 +33,11 @@ export class GOWBaseServerCommand<ResponseType extends IServerResponseVO = IServ
             );
     }
 
+    protected notifyComplete(resolveData?: ResponseType, rejectErrorData?: any): void {
+        super.notifyComplete(resolveData, rejectErrorData);
+
+        if (this.errorCode) {
+            alert(`Imagine: Server Error Handled For Error Code "${resolveData.errorCode}"`);
+        }
+    }
 }
