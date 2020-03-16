@@ -19,6 +19,6 @@ export class GOWGamePageProductionMediator extends BaseMediator<GOWGamePageProdu
     }
 
     protected onToggleGroupChange(): void {
-        this.gamePageModel.tabId = this.activator.tabsToggleGroup.selectedId;
+        this.gamePageModel.productionTabId = this.activator.tabsToggleGroup.selectedId;
     }
 }

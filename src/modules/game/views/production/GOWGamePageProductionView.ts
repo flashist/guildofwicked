@@ -6,7 +6,7 @@ import {GOWGamePageModelEvent} from "../../events/GOWGamePageModelEvent";
 import {SimpleButtonView} from "../../../../appframework/display/views/button/SimpleButtonView";
 import {GOWSettings} from "../../../../GOWSettings";
 import {ToggleGroup} from "../../../../appframework/display/views/togglegroup/ToggleGroup";
-import {GOWGamePageTabId} from "../../data/GOWGamePageTabId";
+import {GOWGamePageProductionTabId} from "../../data/GOWGamePageProductionTabId";
 import {GOWQuickActionView} from "./GOWQuickActionView";
 import {GOWGeneratorsModel} from "../../../generators/models/GOWGeneratorsModel";
 import {GOWGeneratorsProductionListView} from "./list/GOWGeneratorsProductionListView";
@@ -74,7 +74,7 @@ export class GOWGamePageProductionView extends BaseView {
         );
         this.addChild(this.moneyTabButton);
         //
-        this.moneyTabButton.id = GOWGamePageTabId.MONEY;
+        this.moneyTabButton.id = GOWGamePageProductionTabId.MONEY;
         this.moneyTabButton.text = getText("money");
 
         this.unitsTabButton = new SimpleButtonView(
@@ -109,7 +109,7 @@ export class GOWGamePageProductionView extends BaseView {
         );
         this.addChild(this.unitsTabButton);
         //
-        this.unitsTabButton.id = GOWGamePageTabId.UNITS;
+        this.unitsTabButton.id = GOWGamePageProductionTabId.UNITS;
         this.unitsTabButton.text = getText("units");
         //
         this.tabsToggleGroup = new ToggleGroup();
@@ -125,7 +125,7 @@ export class GOWGamePageProductionView extends BaseView {
 
         this.eventListenerHelper.addEventListener(
             this.gamePageModel,
-            GOWGamePageModelEvent.TAB_ID_CHANGE,
+            GOWGamePageModelEvent.PRODUCTION_TAB_ID_CHANGE,
             this.onTabIdChange
         );
 
@@ -142,11 +142,11 @@ export class GOWGamePageProductionView extends BaseView {
     }
 
     protected onMoneyTab(): void {
-        this.tabsToggleGroup.selectedId = GOWGamePageTabId.MONEY;
+        this.tabsToggleGroup.selectedId = GOWGamePageProductionTabId.MONEY;
     }
 
     protected onUnitsTab(): void {
-        this.tabsToggleGroup.selectedId = GOWGamePageTabId.UNITS;
+        this.tabsToggleGroup.selectedId = GOWGamePageProductionTabId.UNITS;
     }
 
     protected onTabIdChange(): void {
@@ -156,7 +156,7 @@ export class GOWGamePageProductionView extends BaseView {
     protected commitData(): void {
         super.commitData();
 
-        this.tabsToggleGroup.selectedId = this.gamePageModel.tabId;
+        this.tabsToggleGroup.selectedId = this.gamePageModel.productionTabId;
 
         this.arrange();
     }

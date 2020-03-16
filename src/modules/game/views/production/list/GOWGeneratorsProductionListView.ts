@@ -9,7 +9,7 @@ import {IGOWGeneratorStaticVO} from "../../../../generators/data/IGOWGeneratorSt
 import {GOWGamePageModel} from "../../../models/GOWGamePageModel";
 import {GOWGeneratorsModel} from "../../../../generators/models/GOWGeneratorsModel";
 import {GOWGamePageModelEvent} from "../../../events/GOWGamePageModelEvent";
-import {GOWGamePageTabId} from "../../../data/GOWGamePageTabId";
+import {GOWGamePageProductionTabId} from "../../../data/GOWGamePageProductionTabId";
 import {GOWGeneratorsTools} from "../../../../generators/tools/GOWGeneratorsTools";
 import {GOWResourceType} from "../../../../resources/data/GOWResourceType";
 
@@ -65,7 +65,7 @@ export class GOWGeneratorsProductionListView extends BaseView {
 
         this.eventListenerHelper.addEventListener(
             this.gamePageModel,
-            GOWGamePageModelEvent.TAB_ID_CHANGE,
+            GOWGamePageModelEvent.PRODUCTION_TAB_ID_CHANGE,
             this.onTabIdChange
         );
 
@@ -148,7 +148,7 @@ export class GOWGeneratorsProductionListView extends BaseView {
 
     protected commitTabData(): void {
         let staticGeneratorsList: IGOWGeneratorStaticVO[];
-        if (this.gamePageModel.tabId === GOWGamePageTabId.MONEY) {
+        if (this.gamePageModel.productionTabId === GOWGamePageProductionTabId.MONEY) {
             staticGeneratorsList = GOWGeneratorsTools.getStaticGenerators({resourceTypes: [GOWResourceType.MONEY]});
         } else {
             staticGeneratorsList = GOWGeneratorsTools.getStaticGenerators({resourceTypes: [GOWResourceType.DEFENSE, GOWResourceType.ATTACK]});

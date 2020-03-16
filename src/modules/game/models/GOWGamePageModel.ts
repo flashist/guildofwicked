@@ -1,21 +1,21 @@
 import {BaseModel} from "../../../appframework/base/models/BaseModel";
-import {GOWGamePageTabId} from "../data/GOWGamePageTabId";
+import {GOWGamePageProductionTabId} from "../data/GOWGamePageProductionTabId";
 import {GOWGamePageModelEvent} from "../events/GOWGamePageModelEvent";
 
 export class GOWGamePageModel extends BaseModel {
 
-    private _tabId: string = GOWGamePageTabId.MONEY;
+    private _productionTabId: string = GOWGamePageProductionTabId.MONEY;
 
-    get tabId(): string {
-        return this._tabId;
+    get productionTabId(): string {
+        return this._productionTabId;
     }
-    set tabId(value: string) {
-        if (value === this.tabId) {
+    set productionTabId(value: string) {
+        if (value === this.productionTabId) {
             return;
         }
 
-        this._tabId = value;
+        this._productionTabId = value;
 
-        this.dispatchEvent(GOWGamePageModelEvent.TAB_ID_CHANGE);
+        this.dispatchEvent(GOWGamePageModelEvent.PRODUCTION_TAB_ID_CHANGE);
     }
 }

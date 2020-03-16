@@ -2,7 +2,7 @@ import {getInstance, Graphics} from "fsuite";
 
 import {BaseView} from "../../../../appframework/base/views/BaseView";
 import {GOWGamePageMoneyVisuzalizationView} from "./GOWGamePageMoneyVisuzalizationView";
-import {GOWGamePageTabId} from "../../data/GOWGamePageTabId";
+import {GOWGamePageProductionTabId} from "../../data/GOWGamePageProductionTabId";
 import {GOWGamePageModel} from "../../models/GOWGamePageModel";
 import {GOWGamePageModelEvent} from "../../events/GOWGamePageModelEvent";
 import {ViewLazyCreationServiceLocatorStack} from "../../../../appframework/display/views/viewstack/ViewLazyCreationServiceLocatorStack";
@@ -22,8 +22,8 @@ export class GOWGamePageVisualizationView extends BaseView {
         this.tabsStack = new ViewLazyCreationServiceLocatorStack();
         this.addChild(this.tabsStack);
         //
-        this.tabsStack.addViewClass(GOWGamePageMoneyVisuzalizationView, GOWGamePageTabId.MONEY);
-        this.tabsStack.addViewClass(GOWGamePageUnitsVisuzalizationView, GOWGamePageTabId.UNITS);
+        this.tabsStack.addViewClass(GOWGamePageMoneyVisuzalizationView, GOWGamePageProductionTabId.MONEY);
+        this.tabsStack.addViewClass(GOWGamePageUnitsVisuzalizationView, GOWGamePageProductionTabId.UNITS);
     }
 
     protected addListeners(): void {
@@ -31,7 +31,7 @@ export class GOWGamePageVisualizationView extends BaseView {
 
         this.eventListenerHelper.addEventListener(
             this.gamePageModel,
-            GOWGamePageModelEvent.TAB_ID_CHANGE,
+            GOWGamePageModelEvent.PRODUCTION_TAB_ID_CHANGE,
             this.onTabIdChange
         )
     }
@@ -43,7 +43,7 @@ export class GOWGamePageVisualizationView extends BaseView {
     protected commitData(): void {
         super.commitData();
 
-        this.tabsStack.selectedId = this.gamePageModel.tabId;
+        this.tabsStack.selectedId = this.gamePageModel.productionTabId;
 
         this.arrange();
     }
