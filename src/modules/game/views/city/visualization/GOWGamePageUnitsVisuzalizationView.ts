@@ -1,17 +1,16 @@
 import {GenericObjectsByTypeModel, getInstance} from "fsuite";
 
-import {BaseView} from "../../../../appframework/base/views/BaseView";
-import {SimpleList} from "../../../../appframework/display/views/simplelist/SimpleList";
-import {GOWGeneratorsModel} from "../../../generators/models/GOWGeneratorsModel";
-import {GOWGeneratorStaticVOType} from "../../../generators/data/GOWGeneratorStaticVOType";
-import {GOWGeneratorVO} from "../../../generators/data/GOWGeneratorVO";
-import {IGOWGeneratorStaticVO} from "../../../generators/data/IGOWGeneratorStaticVO";
-import {GOWSettings} from "../../../../GOWSettings";
+import {BaseView} from "../../../../../appframework/base/views/BaseView";
+import {SimpleList} from "../../../../../appframework/display/views/simplelist/SimpleList";
+import {GOWGeneratorsModel} from "../../../../generators/models/GOWGeneratorsModel";
+import {GOWGeneratorVO} from "../../../../generators/data/GOWGeneratorVO";
+import {IGOWGeneratorStaticVO} from "../../../../generators/data/IGOWGeneratorStaticVO";
+import {GOWSettings} from "../../../../../GOWSettings";
+import {GOWGeneratorsTools} from "../../../../generators/tools/GOWGeneratorsTools";
+import {GOWResourceType} from "../../../../resources/data/GOWResourceType";
 import {GOWVisualizationItemRendererView} from "./GOWVisualizationItemRendererView";
-import {GOWGeneratorsTools} from "../../../generators/tools/GOWGeneratorsTools";
-import {GOWResourceType} from "../../../resources/data/GOWResourceType";
 
-export class GOWGamePageMoneyVisuzalizationView extends BaseView {
+export class GOWGamePageUnitsVisuzalizationView extends BaseView {
 
     protected generatorsModel: GOWGeneratorsModel = getInstance(GOWGeneratorsModel);
     protected genericByTypeModel: GenericObjectsByTypeModel = getInstance(GenericObjectsByTypeModel);
@@ -28,7 +27,11 @@ export class GOWGamePageMoneyVisuzalizationView extends BaseView {
         this.addChild(this.itemsList);
         this.itemsList.ItemRendererClass = GOWVisualizationItemRendererView;
 
-        const staticGeneratorsList: IGOWGeneratorStaticVO[] = GOWGeneratorsTools.getStaticGenerators({resourceTypes: [GOWResourceType.MONEY]});
+        const staticGeneratorsList: IGOWGeneratorStaticVO[] = GOWGeneratorsTools.getStaticGenerators(
+            {
+                resourceTypes: [GOWResourceType.ATTACK, GOWResourceType.DEFENSE]
+            }
+        );
         const generatorsList: GOWGeneratorVO[] = [];
         let generatorsCount: number = staticGeneratorsList.length;
         for (let generatorIndex: number = 0; generatorIndex < generatorsCount; generatorIndex++) {
@@ -47,7 +50,7 @@ export class GOWGamePageMoneyVisuzalizationView extends BaseView {
         let itemsCount: number = itemViews.length;
         for (let itemIndex: number = 0; itemIndex < itemsCount; itemIndex++) {
             const singleItemView: GOWVisualizationItemRendererView = itemViews[itemIndex];
-            const singleItemPositionCoef = GOWSettings.gamePage.layout.visualiztion.money.itemPositionsCoefs[itemIndex];
+            const singleItemPositionCoef = GOWSettings.gamePage.layout.visualiztion.units.itemPositionsCoefs[itemIndex];
             singleItemView.x = Math.floor(this.resizeSize.x * singleItemPositionCoef.x);
             singleItemView.y = Math.floor(this.resizeSize.y * singleItemPositionCoef.y);
         }

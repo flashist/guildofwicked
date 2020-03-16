@@ -1,14 +1,14 @@
 import {Align, GenericObjectsByTypeModel, getInstance, getText, Graphics, InteractiveEvent, VAlign} from "fsuite";
 
-import {BaseView} from "../../../../appframework/base/views/BaseView";
-import {GOWGamePageModel} from "../../models/GOWGamePageModel";
-import {GOWGamePageModelEvent} from "../../events/GOWGamePageModelEvent";
-import {SimpleButtonView} from "../../../../appframework/display/views/button/SimpleButtonView";
-import {GOWSettings} from "../../../../GOWSettings";
-import {ToggleGroup} from "../../../../appframework/display/views/togglegroup/ToggleGroup";
-import {GOWGamePageProductionTabId} from "../../data/GOWGamePageProductionTabId";
+import {BaseView} from "../../../../../appframework/base/views/BaseView";
+import {GOWGamePageModel} from "../../../models/GOWGamePageModel";
+import {GOWGamePageModelEvent} from "../../../events/GOWGamePageModelEvent";
+import {SimpleButtonView} from "../../../../../appframework/display/views/button/SimpleButtonView";
+import {GOWSettings} from "../../../../../GOWSettings";
+import {ToggleGroup} from "../../../../../appframework/display/views/togglegroup/ToggleGroup";
+import {GOWGamePageProductionTabId} from "../../../data/GOWGamePageProductionTabId";
 import {GOWQuickActionView} from "./GOWQuickActionView";
-import {GOWGeneratorsModel} from "../../../generators/models/GOWGeneratorsModel";
+import {GOWGeneratorsModel} from "../../../../generators/models/GOWGeneratorsModel";
 import {GOWGeneratorsProductionListView} from "./list/GOWGeneratorsProductionListView";
 
 export class GOWGamePageProductionView extends BaseView {

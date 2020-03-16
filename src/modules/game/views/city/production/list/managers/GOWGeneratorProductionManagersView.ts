@@ -1,19 +1,19 @@
 import {Align, BaseDataVOEvent, GenericObjectsByTypeModel, getInstance, getText, VAlign} from "fsuite";
 
-import {BaseView} from "../../../../../../appframework/base/views/BaseView";
-import {SimpleButtonView} from "../../../../../../appframework/display/views/button/SimpleButtonView";
-import {GOWGeneratorVO} from "../../../../../generators/data/GOWGeneratorVO";
-import {IGOWUpgradeStaticVO} from "../../../../../upgrades/data/IGOWUpgradeStaticVO";
-import {GOWUpgradeTools} from "../../../../../upgrades/tools/GOWUpgradeTools";
-import {GOWUpgradeType} from "../../../../../upgrades/data/GOWUpgradeType";
-import {SimpleList} from "../../../../../../appframework/display/views/simplelist/SimpleList";
-import {BaseLayout} from "../../../../../../appframework/display/views/layout/BaseLayout";
+import {BaseView} from "../../../../../../../appframework/base/views/BaseView";
+import {SimpleButtonView} from "../../../../../../../appframework/display/views/button/SimpleButtonView";
+import {GOWGeneratorVO} from "../../../../../../generators/data/GOWGeneratorVO";
+import {IGOWUpgradeStaticVO} from "../../../../../../upgrades/data/IGOWUpgradeStaticVO";
+import {GOWUpgradeTools} from "../../../../../../upgrades/tools/GOWUpgradeTools";
+import {GOWUpgradeType} from "../../../../../../upgrades/data/GOWUpgradeType";
+import {SimpleList} from "../../../../../../../appframework/display/views/simplelist/SimpleList";
+import {BaseLayout} from "../../../../../../../appframework/display/views/layout/BaseLayout";
 import {GOWGeneratorProductionManagerIconItemRendererView} from "./GOWGeneratorProductionManagerIconItemRendererView";
-import {RowLayout} from "../../../../../../appframework/display/views/layout/RowLayout";
-import {IGOWBonusStaticVO} from "../../../../../upgrades/data/IGOWBonusStaticVO";
-import {GOWBonusStaticVOType} from "../../../../../upgrades/data/GOWBonusStaticVOType";
-import {GOWTextTools} from "../../../../../texts/tools/GOWTextTools";
-import {GOWSettings} from "../../../../../../GOWSettings";
+import {RowLayout} from "../../../../../../../appframework/display/views/layout/RowLayout";
+import {IGOWBonusStaticVO} from "../../../../../../upgrades/data/IGOWBonusStaticVO";
+import {GOWBonusStaticVOType} from "../../../../../../upgrades/data/GOWBonusStaticVOType";
+import {GOWTextTools} from "../../../../../../texts/tools/GOWTextTools";
+import {GOWSettings} from "../../../../../../../GOWSettings";
 
 export class GOWGeneratorProductionManagersView extends BaseView<GOWGeneratorVO> {
 

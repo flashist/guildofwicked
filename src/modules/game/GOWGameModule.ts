@@ -5,14 +5,14 @@ import {PagesModel} from "../../appframework/pages/models/PagesModel";
 import {PageId} from "../../appframework/pages/PageId";
 import {GOWGamePageView} from "./views/GOWGamePageView";
 import {GOWGamePageModel} from "./models/GOWGamePageModel";
-import {GOWGeneratorProductionItemRendererView} from "./views/production/list/GOWGeneratorProductionItemRendererView";
-import {GOWGeneratorProductionItemRendererMediator} from "./views/production/list/GOWGeneratorProductionItemRendererMediator";
 import {GOWGamePageFooterView} from "./views/footer/GOWGamePageFooterView";
 import {GOWGamePageFooterMediator} from "./views/footer/GOWGamePageFooterMediator";
-import {GOWGeneratorProductionManagersView} from "./views/production/list/managers/GOWGeneratorProductionManagersView";
-import {GOWGeneratorProductionManagersMediator} from "./views/production/list/managers/GOWGeneratorProductionManagersMediator";
-import {GOWGamePageProductionView} from "./views/production/GOWGamePageProductionView";
-import {GOWGamePageProductionMediator} from "./views/production/GOWGamePageProductionMediator";
+import {GOWGeneratorProductionItemRendererView} from "./views/city/production/list/GOWGeneratorProductionItemRendererView";
+import {GOWGeneratorProductionManagersView} from "./views/city/production/list/managers/GOWGeneratorProductionManagersView";
+import {GOWGamePageProductionView} from "./views/city/production/GOWGamePageProductionView";
+import {GOWGamePageProductionMediator} from "./views/city/production/GOWGamePageProductionMediator";
+import {GOWGeneratorProductionManagersMediator} from "./views/city/production/list/managers/GOWGeneratorProductionManagersMediator";
+import {GOWGeneratorProductionItemRendererMediator} from "./views/city/production/list/GOWGeneratorProductionItemRendererMediator";
 
 export class GOWGameModule extends BaseModule {
 

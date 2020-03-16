@@ -1,7 +1,7 @@
 import {BaseDataVOEvent, Sprite, Texture} from "fsuite";
 
-import {BaseView} from "../../../../appframework/base/views/BaseView";
-import {GOWGeneratorVO} from "../../../generators/data/GOWGeneratorVO";
+import {BaseView} from "../../../../../appframework/base/views/BaseView";
+import {GOWGeneratorVO} from "../../../../generators/data/GOWGeneratorVO";
 
 export class GOWVisualizationItemRendererView extends BaseView<GOWGeneratorVO> {
 

@@ -1,8 +1,8 @@
-import {BaseMediator} from "../../../../appframework/base/mediators/BaseMediator";
-import {GOWGamePageProductionView} from "./GOWGamePageProductionView";
-import {ToggleGroupEvent} from "../../../../appframework/display/views/togglegroup/ToggleGroupEvent";
-import {GOWGamePageModel} from "../../models/GOWGamePageModel";
 import {getInstance} from "fsuite";
+import {BaseMediator} from "../../../../../appframework/base/mediators/BaseMediator";
+import {GOWGamePageProductionView} from "./GOWGamePageProductionView";
+import {ToggleGroupEvent} from "../../../../../appframework/display/views/togglegroup/ToggleGroupEvent";
+import {GOWGamePageModel} from "../../../models/GOWGamePageModel";
 
 export class GOWGamePageProductionMediator extends BaseMediator<GOWGamePageProductionView> {
 

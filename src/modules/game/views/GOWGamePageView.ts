@@ -1,29 +1,42 @@
-import {FLabel, getInstance, getText, Point} from "fsuite";
+import {getInstance, Point} from "fsuite";
 
 import {GOWSettings} from "../../../GOWSettings";
 import {GOWBasePageView} from "../../pages/views/GOWBasePageView";
 import {GOWGamePageHeaderView} from "./header/GOWGamePageHeaderView";
 import {GOWGamePageFooterView} from "./footer/GOWGamePageFooterView";
-import {GOWGamePageVisualizationView} from "./visualization/GOWGamePageVisualizationView";
-import {GOWGamePageProductionView} from "./production/GOWGamePageProductionView";
+import {ViewLazyCreationServiceLocatorStack} from "../../../appframework/display/views/viewstack/ViewLazyCreationServiceLocatorStack";
+import {GamePageCityTabView} from "./city/GamePageCityTabView";
+import {GOWGamePageTabId} from "../data/GOWGamePageTabId";
+import {GOWGamePageModel} from "../models/GOWGamePageModel";
+import {GOWGamePageModelEvent} from "../events/GOWGamePageModelEvent";
 
 export class GOWGamePageView extends GOWBasePageView {
 
+    protected gamePageModel: GOWGamePageModel;
+
     protected headerView: GOWGamePageHeaderView;
     protected footerView: GOWGamePageFooterView;
-    protected visualizationView: GOWGamePageVisualizationView;
-    protected productionView: GOWGamePageProductionView;
+
+    protected gameTabStack: ViewLazyCreationServiceLocatorStack;
 
     protected construction(...args): void {
         this.bgColor = GOWSettings.colors.white;
 
         super.construction(...args);
 
-        this.visualizationView = getInstance(GOWGamePageVisualizationView);
-        this.contentCont.addChild(this.visualizationView);
+        this.gamePageModel = getInstance(GOWGamePageModel);
 
-        this.productionView = getInstance(GOWGamePageProductionView);
-        this.contentCont.addChild(this.productionView);
+        this.gameTabStack = new ViewLazyCreationServiceLocatorStack();
+        this.contentCont.addChild(this.gameTabStack);
+        //
+        this.gameTabStack.addViewClass(
+            GamePageCityTabView,
+            GOWGamePageTabId.CITY
+        );
+        this.gameTabStack.addViewClass(
+            GamePageCityTabView,
+            GOWGamePageTabId.MAP
+        );
 
         this.headerView = getInstance(GOWGamePageHeaderView);
         this.contentCont.addChild(this.headerView);
@@ -31,6 +44,28 @@ export class GOWGamePageView extends GOWBasePageView {
         this.footerView = getInstance(GOWGamePageFooterView);
         this.contentCont.addChild(this.footerView);
     }
+
+    protected addListeners(): void {
+        super.addListeners();
+
+        this.eventListenerHelper.addEventListener(
+            this.gamePageModel,
+            GOWGamePageModelEvent.TAB_ID_CHANGE,
+            this.onGamePageTabIdChange
+        );
+    }
+
+    protected onGamePageTabIdChange(): void {
+        this.commitData();
+    }
+
+
+    protected commitData(): void {
+        super.commitData();
+
+        this.gameTabStack.selectedId = this.gamePageModel.tabId;
+    }
+
 
     protected arrange(): void {
         super.arrange();
@@ -51,20 +86,13 @@ export class GOWGamePageView extends GOWBasePageView {
         this.footerView.x = Math.floor(topLeftContentLocal.x);
         this.footerView.y = Math.floor(topLeftContentLocal.y + resizedScreenSizeLocal.y - this.footerView.height);
 
-        const topPartHeight: number = Math.ceil(resizedScreenSizeLocal.y * GOWSettings.gamePage.layout.topPartHeightCoef);
-        const bottomPartHeight: number = Math.ceil(resizedScreenSizeLocal.y - topPartHeight);
-        this.visualizationView.resize(
-            Math.ceil(resizedScreenSizeLocal.x),
-            Math.ceil(topPartHeight - this.headerView.height)
+        this.gameTabStack.resize(
+            resizedScreenSizeLocal.x,
+            Math.ceil(
+                resizedScreenSizeLocal.y - this.headerView.resizeSize.y - this.footerView.resizeSize.y
+            )
         );
-        this.visualizationView.x = Math.floor(topLeftContentLocal.x);
-        this.visualizationView.y = Math.floor(this.headerView.y + this.headerView.height);
-
-        this.productionView.resize(
-            Math.ceil(resizedScreenSizeLocal.x),
-            Math.ceil(bottomPartHeight - this.footerView.height)
-        );
-        this.productionView.x = Math.floor(topLeftContentLocal.x);
-        this.productionView.y = Math.floor(this.headerView.y + topPartHeight);
+        this.gameTabStack.x = this.headerView.x;
+        this.gameTabStack.y = Math.floor(this.headerView.y + this.headerView.height);
     }
 }

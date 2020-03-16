@@ -14,23 +14,23 @@ import {
     VAlign
 } from "fsuite";
 
-import {BaseView} from "../../../../../appframework/base/views/BaseView";
-import {GOWGeneratorVO} from "../../../../generators/data/GOWGeneratorVO";
-import {GOWSettings} from "../../../../../GOWSettings";
-import {SimpleButtonView} from "../../../../../appframework/display/views/button/SimpleButtonView";
-import {IGetSizable} from "../../../../../appframework/display/data/IGetSizable";
+import {BaseView} from "../../../../../../appframework/base/views/BaseView";
+import {GOWGeneratorVO} from "../../../../../generators/data/GOWGeneratorVO";
+import {GOWSettings} from "../../../../../../GOWSettings";
+import {SimpleButtonView} from "../../../../../../appframework/display/views/button/SimpleButtonView";
+import {IGetSizable} from "../../../../../../appframework/display/data/IGetSizable";
 import {GOWGeneratorProductionProgressView} from "./GOWGeneratorProductionProgressView";
-import {GOWTextTools} from "../../../../texts/tools/GOWTextTools";
-import {DateSettings} from "../../../../../appframework/date/DateSettings";
-import {GlobalEventDispatcher} from "../../../../../appframework/globaleventdispatcher/dispatcher/GlobalEventDispatcher";
-import {TimeModelEvent} from "../../../../../appframework/time/models/TimeModelEvent";
+import {GOWTextTools} from "../../../../../texts/tools/GOWTextTools";
+import {DateSettings} from "../../../../../../appframework/date/DateSettings";
+import {GlobalEventDispatcher} from "../../../../../../appframework/globaleventdispatcher/dispatcher/GlobalEventDispatcher";
+import {TimeModelEvent} from "../../../../../../appframework/time/models/TimeModelEvent";
 import {GOWGeneratorProductionManagersView} from "./managers/GOWGeneratorProductionManagersView";
-import {GOWGeneratorsTools} from "../../../../generators/tools/GOWGeneratorsTools";
-import {IGOWUpgradeStaticVO} from "../../../../upgrades/data/IGOWUpgradeStaticVO";
-import {GOWUpgradeTools} from "../../../../upgrades/tools/GOWUpgradeTools";
-import {GOWUpgradeType} from "../../../../upgrades/data/GOWUpgradeType";
-import {IGOWBonusStaticVO} from "../../../../upgrades/data/IGOWBonusStaticVO";
-import {GOWBonusStaticVOType} from "../../../../upgrades/data/GOWBonusStaticVOType";
+import {GOWGeneratorsTools} from "../../../../../generators/tools/GOWGeneratorsTools";
+import {IGOWUpgradeStaticVO} from "../../../../../upgrades/data/IGOWUpgradeStaticVO";
+import {GOWUpgradeTools} from "../../../../../upgrades/tools/GOWUpgradeTools";
+import {GOWUpgradeType} from "../../../../../upgrades/data/GOWUpgradeType";
+import {IGOWBonusStaticVO} from "../../../../../upgrades/data/IGOWBonusStaticVO";
+import {GOWBonusStaticVOType} from "../../../../../upgrades/data/GOWBonusStaticVOType";
 
 export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGeneratorVO> implements IGetSizable {
 

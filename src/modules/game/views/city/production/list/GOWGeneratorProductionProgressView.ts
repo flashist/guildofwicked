@@ -1,9 +1,9 @@
 import {Graphics} from "fsuite";
 
-import {BaseView} from "../../../../../appframework/base/views/BaseView";
-import {GOWSettings} from "../../../../../GOWSettings";
-import {GOWGeneratorVO} from "../../../../generators/data/GOWGeneratorVO";
-import {GOWResourceType} from "../../../../resources/data/GOWResourceType";
+import {BaseView} from "../../../../../../appframework/base/views/BaseView";
+import {GOWSettings} from "../../../../../../GOWSettings";
+import {GOWGeneratorVO} from "../../../../../generators/data/GOWGeneratorVO";
+import {GOWResourceType} from "../../../../../resources/data/GOWResourceType";
 
 export class GOWGeneratorProductionProgressView extends BaseView<GOWGeneratorVO> {
 

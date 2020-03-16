@@ -1,12 +1,12 @@
-import {getInstance, Graphics} from "fsuite";
+import {getInstance} from "fsuite";
 
-import {BaseView} from "../../../../appframework/base/views/BaseView";
 import {GOWGamePageMoneyVisuzalizationView} from "./GOWGamePageMoneyVisuzalizationView";
-import {GOWGamePageProductionTabId} from "../../data/GOWGamePageProductionTabId";
-import {GOWGamePageModel} from "../../models/GOWGamePageModel";
-import {GOWGamePageModelEvent} from "../../events/GOWGamePageModelEvent";
-import {ViewLazyCreationServiceLocatorStack} from "../../../../appframework/display/views/viewstack/ViewLazyCreationServiceLocatorStack";
+import {GOWGamePageProductionTabId} from "../../../data/GOWGamePageProductionTabId";
+import {GOWGamePageModel} from "../../../models/GOWGamePageModel";
+import {GOWGamePageModelEvent} from "../../../events/GOWGamePageModelEvent";
+import {ViewLazyCreationServiceLocatorStack} from "../../../../../appframework/display/views/viewstack/ViewLazyCreationServiceLocatorStack";
 import {GOWGamePageUnitsVisuzalizationView} from "./GOWGamePageUnitsVisuzalizationView";
+import {BaseView} from "../../../../../appframework/base/views/BaseView";
 
 export class GOWGamePageVisualizationView extends BaseView {
 

@@ -1,8 +1,8 @@
 import {Graphics} from "fsuite";
 
-import {BaseView} from "../../../../../../appframework/base/views/BaseView";
-import {IGOWUpgradeStaticVO} from "../../../../../upgrades/data/IGOWUpgradeStaticVO";
-import {GOWSettings} from "../../../../../../GOWSettings";
+import {BaseView} from "../../../../../../../appframework/base/views/BaseView";
+import {IGOWUpgradeStaticVO} from "../../../../../../upgrades/data/IGOWUpgradeStaticVO";
+import {GOWSettings} from "../../../../../../../GOWSettings";
 
 export class GOWGeneratorProductionManagerIconItemRendererView extends BaseView<IGOWUpgradeStaticVO> {
 

@@ -1,17 +1,17 @@
 import {DragHelper, DragHelperEvent, GenericObjectsByTypeModel, getInstance, Graphics, Point} from "fsuite";
 
-import {BaseView} from "../../../../../appframework/base/views/BaseView";
-import {SimpleList} from "../../../../../appframework/display/views/simplelist/SimpleList";
+import {BaseView} from "../../../../../../appframework/base/views/BaseView";
+import {SimpleList} from "../../../../../../appframework/display/views/simplelist/SimpleList";
 import {GOWGeneratorProductionItemRendererView} from "./GOWGeneratorProductionItemRendererView";
-import {GOWGeneratorVO} from "../../../../generators/data/GOWGeneratorVO";
-import {ColumnLayout} from "../../../../../appframework/display/views/layout/ColumnLayout";
-import {IGOWGeneratorStaticVO} from "../../../../generators/data/IGOWGeneratorStaticVO";
-import {GOWGamePageModel} from "../../../models/GOWGamePageModel";
-import {GOWGeneratorsModel} from "../../../../generators/models/GOWGeneratorsModel";
-import {GOWGamePageModelEvent} from "../../../events/GOWGamePageModelEvent";
-import {GOWGamePageProductionTabId} from "../../../data/GOWGamePageProductionTabId";
-import {GOWGeneratorsTools} from "../../../../generators/tools/GOWGeneratorsTools";
-import {GOWResourceType} from "../../../../resources/data/GOWResourceType";
+import {GOWGeneratorVO} from "../../../../../generators/data/GOWGeneratorVO";
+import {ColumnLayout} from "../../../../../../appframework/display/views/layout/ColumnLayout";
+import {IGOWGeneratorStaticVO} from "../../../../../generators/data/IGOWGeneratorStaticVO";
+import {GOWGamePageModel} from "../../../../models/GOWGamePageModel";
+import {GOWGeneratorsModel} from "../../../../../generators/models/GOWGeneratorsModel";
+import {GOWGamePageModelEvent} from "../../../../events/GOWGamePageModelEvent";
+import {GOWGamePageProductionTabId} from "../../../../data/GOWGamePageProductionTabId";
+import {GOWGeneratorsTools} from "../../../../../generators/tools/GOWGeneratorsTools";
+import {GOWResourceType} from "../../../../../resources/data/GOWResourceType";
 
 export class GOWGeneratorsProductionListView extends BaseView {
 

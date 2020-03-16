@@ -1,8 +1,8 @@
 import {InteractiveEvent} from "fsuite";
 
 import {GOWGeneratorProductionManagersView} from "./GOWGeneratorProductionManagersView";
-import {BaseMediator} from "../../../../../../appframework/base/mediators/BaseMediator";
-import {GOWBuyUpgradeForGeneratorCommand} from "../../../../../generators/commands/GOWBuyUpgradeForGeneratorCommand";
+import {BaseMediator} from "../../../../../../../appframework/base/mediators/BaseMediator";
+import {GOWBuyUpgradeForGeneratorCommand} from "../../../../../../generators/commands/GOWBuyUpgradeForGeneratorCommand";
 
 export class GOWGeneratorProductionManagersMediator extends BaseMediator<GOWGeneratorProductionManagersView> {
 

@@ -1,7 +1,8 @@
-import {BaseView} from "../../../../appframework/base/views/BaseView";
-import {SimpleButtonView} from "../../../../appframework/display/views/button/SimpleButtonView";
-import {GOWSettings} from "../../../../GOWSettings";
-import {Align, AutosizeType, getText, InteractiveEvent, VAlign} from "fsuite";
+import {Align, getText, InteractiveEvent, VAlign} from "fsuite";
+
+import {BaseView} from "../../../../../appframework/base/views/BaseView";
+import {SimpleButtonView} from "../../../../../appframework/display/views/button/SimpleButtonView";
+import {GOWSettings} from "../../../../../GOWSettings";
 
 export class GOWQuickActionView extends BaseView {
     protected button: SimpleButtonView;
