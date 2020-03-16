@@ -1,6 +1,5 @@
 import {getText} from "fsuite";
 
-import {GOWResourceType} from "../../resources/data/GOWResourceType";
 import {GOWSettings} from "../../../GOWSettings";
 import {DateSettings} from "../../../appframework/date/DateSettings";
 import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
@@ -8,13 +7,18 @@ import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
 export class GOWTextTools {
     private static formatter = new Intl.NumberFormat();
 
-    static getFormattedResourceAmount(data: IGOWResourceVO): string {
+    static getFormattedResourceAmount(data: IGOWResourceVO, removeDecimalsFrom: number = 1000000): string {
         let resourceLocaleId: string = GOWSettings.resources[data.type].localeId;
+
+        let valueToFormat: number = data.value;
+        if (valueToFormat > removeDecimalsFrom) {
+            valueToFormat = Math.floor(valueToFormat);
+        }
 
         const result: string = getText(
             resourceLocaleId,
             {
-                value: GOWTextTools.formatter.format(data.value)
+                value: GOWTextTools.formatter.format(valueToFormat)
             }
         );
         return result;
