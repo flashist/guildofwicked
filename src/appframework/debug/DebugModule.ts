@@ -12,7 +12,7 @@ export class DebugModule extends BaseModule {
             FApp.instance.stage,
             {
                 console: {
-                    defaultVisible: true
+                    defaultVisible: false
                 }
             }
         );
