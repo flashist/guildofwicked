@@ -21,20 +21,6 @@ export class GOWGamePageFooterView extends BaseView {
         this.bg.drawRect(0, 0, 100, 100);
         this.bg.endFill();
 
-        /*// TEST
-        this.testLabel = new FLabel(
-            {
-                fontFamily: "Clarence",
-                size: 36,
-                color: GOWSettings.colors.black,
-                autosize: true,
-                align: Align.CENTER,
-                valign: VAlign.MIDDLE
-            }
-        );
-        this.addChild(this.testLabel);
-        this.testLabel.text = "IT'S FOOTER!"*/
-
         this.menuBtn = new SimpleButtonView(
             {
                 bgConfig: {

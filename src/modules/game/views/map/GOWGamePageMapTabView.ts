@@ -24,7 +24,8 @@ export class GOWGamePageMapTabView extends BaseView {
             "slide-2.png",
             "slide-3.png",
             "slide-4.png",
-            "slide-5.png"
+            "slide-5.png",
+            ""
         ];
         this.curSlideIndex = 0;
 
@@ -88,7 +89,12 @@ export class GOWGamePageMapTabView extends BaseView {
 
     protected commitSlideData(): void {
         const spriteId: string = this.infoSlideIds[this.curSlideIndex];
-        this.slideImage.texture = Texture.from(spriteId);
+        if (spriteId) {
+            this.slideImage.visible = true;
+            this.slideImage.texture = Texture.from(spriteId);
+        } else {
+            this.slideImage.visible = false;
+        }
 
         this.arrange();
     }

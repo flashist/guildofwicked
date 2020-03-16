@@ -15,6 +15,6 @@ export class GOWGamePageFooterMediator extends BaseMediator<GOWGamePageFooterVie
     }
 
     protected onMenuBtn(): void {
-        alert("Imagine: Game Menu Open!");
+        alert("Imagine: Game Menu Opened!");
     }
 }
