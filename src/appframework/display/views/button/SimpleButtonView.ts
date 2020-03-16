@@ -84,7 +84,7 @@ export class SimpleButtonView<DataType extends object = object> extends Resizabl
     }
 
     protected onTap(): void {
-        this.onOut();
+        // this.onOut();
     }
 
     protected arrange(): void {

@@ -3,6 +3,7 @@ import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
 import {GOWUsersModel} from "../models/GOWUsersModel";
 import {getInstance} from "fsuite";
 import {GOWUserVO} from "../data/GOWUserVO";
+import {ObjectTools} from "fcore";
 
 export class GOWChangeUserResourcesClientCommand extends BaseAppCommand {
 
@@ -16,25 +17,19 @@ export class GOWChangeUserResourcesClientCommand extends BaseAppCommand {
         const userData: GOWUserVO = this.usersModel.getItem(this.userId);
         if (userData) {
 
-            const changeResources: { [resourceType: string]: IGOWResourceVO } = {};
+            const newResources: {[resourceType: string]: IGOWResourceVO} = {};
+            ObjectTools.copyProps(newResources, userData.resources);
+            //
             for (let singleResource of this.resources) {
-                if (changeResources[singleResource.type]) {
-                    changeResources[singleResource.type].value += singleResource.value;
+                if (newResources[singleResource.type]) {
+                    newResources[singleResource.type].value += singleResource.value;
+
                 } else {
-                    changeResources[singleResource.type] = singleResource;
+                    newResources[singleResource.type] = singleResource;
                 }
             }
 
-            let userResourceTypes: string[] = Object.keys(userData.resources);
-            for (let singleUserResourceType of userResourceTypes) {
-                if (changeResources[singleUserResourceType]) {
-                    changeResources[singleUserResourceType].value += userData.resources[singleUserResourceType].value;
-                } else {
-                    changeResources[singleUserResourceType].value = userData.resources[singleUserResourceType].value;
-                }
-            }
-
-            userData.update({resources: changeResources});
+            userData.update({resources: newResources});
         }
     }
 }

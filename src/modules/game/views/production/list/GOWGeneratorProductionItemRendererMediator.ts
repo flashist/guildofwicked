@@ -21,6 +21,12 @@ export class GOWGeneratorProductionItemRendererMediator extends BaseMediator<GOW
             InteractiveEvent.TAP,
             this.onBuyGenerator
         );
+
+        this.eventListenerHelper.addEventListener(
+            this.activator.buyNextLevelBtn,
+            InteractiveEvent.TAP,
+            this.onBuyGenerator
+        );
     }
 
     protected onIconTap(): void {

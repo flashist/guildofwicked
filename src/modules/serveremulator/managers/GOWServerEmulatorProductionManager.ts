@@ -40,15 +40,22 @@ export class GOWServerEmulatorProductionManager extends BaseManager {
                     let completeCyclesCount: number = 0;
                     let timeForProductionCycles: number = Date.now() - singleGenerator.startProductionServerTime;
 
-                    let durationBonus: number = cumulativeBonusesData[GOWBonusType.DURATION];
-                    if (!durationBonus) {
-                        durationBonus = 1;
+                    let durationBonus: number = 1;
+                    if (cumulativeBonusesData[GOWBonusType.DURATION]) {
+                        durationBonus = cumulativeBonusesData[GOWBonusType.DURATION];
                     }
 
+                    let profitBonus: number = 1;
+                    if (cumulativeBonusesData[GOWBonusType.PROFIT]) {
+                        profitBonus = cumulativeBonusesData[GOWBonusType.PROFIT];
+                    }
+
+                    const cumulativeProductionValue: number = staticSingleGenerator.productionValue.value * profitBonus * singleGenerator.level;
+                    const cumulativeProductionDuration: number = staticSingleGenerator.productionDuration / durationBonus;
+
                     const autoBonus: number = cumulativeBonusesData[GOWBonusType.AUTO];
-                    const durationWithBonuses: number = staticSingleGenerator.productionDuration / durationBonus;
-                    while (timeForProductionCycles >= durationWithBonuses) {
-                        timeForProductionCycles -= durationWithBonuses;
+                    while (timeForProductionCycles >= cumulativeProductionDuration) {
+                        timeForProductionCycles -= cumulativeProductionDuration;
                         completeCyclesCount++;
 
                         // If there is no auto bonus, then multiple cycles can't be generated
@@ -73,13 +80,8 @@ export class GOWServerEmulatorProductionManager extends BaseManager {
 
                         const profit: IGOWResourceVO = {
                             type: staticSingleGenerator.productionValue.type,
-                            value: staticSingleGenerator.productionValue.value * completeCyclesCount
+                            value: cumulativeProductionValue * completeCyclesCount
                         };
-
-                        const profitBonus: number = cumulativeBonusesData[GOWBonusType.PROFIT];
-                        if (profitBonus) {
-                            profit.value *= profitBonus;
-                        }
 
                         result.profitByGenerator[singleGenerator.id] = profit;
 

@@ -17,6 +17,8 @@ import {GOWGeneratorChangeStartProductionTimeClientCommand} from "../../generato
 import {GOWGeneratorStopProductionClientCommand} from "../../generators/commands/GOWGeneratorStopProductionClientCommand";
 import {GOWChangeUserResourcesClientCommand} from "../../users/command/GOWChangeUserResourcesClientCommand";
 import {GOWCalculateProductionServerRequestCommand} from "../../generators/commands/GOWCalculateProductionServerRequestCommand";
+import {GOWUpgradeStaticVOType} from "../../upgrades/data/GOWUpgradeStaticVOType";
+import {IGOWUpgradeStaticVO} from "../../upgrades/data/IGOWUpgradeStaticVO";
 
 export class GOWProductionManager extends BaseManager {
 
@@ -69,18 +71,13 @@ export class GOWProductionManager extends BaseManager {
                         singleGenerator.id
                     );
 
-                    const cumulativeBonusesData = GOWBonusTools.getCumulativeBonusesData(singleGenerator.boughtUpgradeIds);
+                    const cumulativeBonusesData = GOWBonusTools.getCumulativeBonusesFromUgpradesData(singleGenerator.boughtUpgradeIds);
 
                     let completeCyclesCount: number = 0;
                     let timeForProductionCycles: number = Date.now() - singleGenerator.startProductionServerTime;
 
-                    let durationBonus: number = cumulativeBonusesData[GOWBonusType.DURATION];
-                    if (!durationBonus) {
-                        durationBonus = 1;
-                    }
-
                     const autoBonus: number = cumulativeBonusesData[GOWBonusType.AUTO];
-                    const durationWithBonuses: number = staticSingleGenerator.productionDuration / durationBonus;
+                    const durationWithBonuses: number = singleGenerator.cumulativeProductionDuration;
                     while (timeForProductionCycles >= durationWithBonuses) {
                         isAnyProductionCycleComplete = true;
 
@@ -107,13 +104,8 @@ export class GOWProductionManager extends BaseManager {
 
                         const profit: IGOWResourceVO = {
                             type: staticSingleGenerator.productionValue.type,
-                            value: staticSingleGenerator.productionValue.value * completeCyclesCount
+                            value: singleGenerator.cumulativeProductionValue * completeCyclesCount
                         };
-
-                        const profitBonus: number = cumulativeBonusesData[GOWBonusType.PROFIT];
-                        if (profitBonus) {
-                            profit.value *= profitBonus;
-                        }
 
                         result.profitByGenerator[singleGenerator.id] = profit;
 

@@ -2,6 +2,10 @@ import {BaseAppObjectWithStaticVO} from "../../../appframework/base/data/BaseApp
 import {IGOWGeneratorStaticVO} from "./IGOWGeneratorStaticVO";
 import {GOWTimeTools} from "../../time/tools/GOWTimeTools";
 import {GOWGeneratorStaticVOType} from "./GOWGeneratorStaticVOType";
+import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
+import {IGOWCumulativeBonusesData} from "../../upgrades/data/IGOWCumulativeBonusesData";
+import {GOWBonusTools} from "../../upgrades/tools/GOWBonusTools";
+import {GOWBonusType} from "../../upgrades/data/GOWBonusType";
 
 export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWGeneratorStaticVO> {
 
@@ -10,6 +14,10 @@ export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWGeneratorStati
     public startProductionServerTime: number;
 
     public boughtUpgradeIds: string[] = [];
+
+    protected cumulativeBonuses: IGOWCumulativeBonusesData;
+    private _cumulativeProductionValue: number;
+    private _cumulativeProductionDuration: number;
 
     constructor() {
         super();
@@ -20,6 +28,20 @@ export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWGeneratorStati
     // For debugging
     update(source: Partial<this>): void {
         super.update(source);
+
+        this.cumulativeBonuses = GOWBonusTools.getCumulativeBonusesFromUgpradesData(this.boughtUpgradeIds);
+
+        let profitCoef: number = 1;
+        if (this.cumulativeBonuses[GOWBonusType.PROFIT]) {
+            profitCoef = this.cumulativeBonuses[GOWBonusType.PROFIT];
+        }
+        this._cumulativeProductionValue = this.static.productionValue.value * profitCoef * this.level;
+
+        let durationCoef: number = 1;
+        if (this.cumulativeBonuses[GOWBonusType.DURATION]) {
+            durationCoef = this.cumulativeBonuses[GOWBonusType.DURATION];
+        }
+        this._cumulativeProductionDuration = this.static.productionDuration / durationCoef;
     }
 
     public get isNextProductionAvailable(): boolean {
@@ -31,7 +53,7 @@ export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWGeneratorStati
     }
 
     public get finishProductionClientTime(): number {
-        return this.startProductionClientTime + this.static.productionDuration;
+        return this.startProductionClientTime + this.cumulativeProductionDuration;
     }
 
     public get productionTimeLeft(): number {
@@ -46,7 +68,7 @@ export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWGeneratorStati
         let result: number = 0;
         if (this.isProductionInProgress) {
             if (this.productionTimeLeft > 0) {
-                result = 1 - (this.productionTimeLeft / this.static.productionDuration);
+                result = 1 - (this.productionTimeLeft / this.cumulativeProductionDuration);
             } else {
                 result = 1;
             }
@@ -59,5 +81,20 @@ export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWGeneratorStati
         }
 
         return result;
+    }
+
+    get cumulativeProduction(): IGOWResourceVO {
+        return {
+            type: this.static.productionValue.type,
+            value: this.cumulativeProductionValue
+        }
+    }
+
+    get cumulativeProductionValue(): number {
+        return this._cumulativeProductionValue;
+    }
+
+    get cumulativeProductionDuration(): number {
+        return this._cumulativeProductionDuration;
     }
 }

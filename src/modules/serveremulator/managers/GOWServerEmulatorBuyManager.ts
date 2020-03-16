@@ -125,7 +125,7 @@ export class GOWServerEmulatorBuyManager extends BaseManager {
                     );
 
 
-                    this.generatorsManager.addGeneratorUpgrade(userId, upgradeData.generatorId, generatorData.id);
+                    this.generatorsManager.addGeneratorUpgrade(userId, upgradeData.generatorId, upgradeId);
 
                     const bonusData: IGOWBonusStaticVO = this.genericByTypeModel.getItem(
                         GOWBonusStaticVOType,

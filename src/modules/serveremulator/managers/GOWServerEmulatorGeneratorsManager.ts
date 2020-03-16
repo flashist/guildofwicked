@@ -62,8 +62,7 @@ export class GOWServerEmulatorGeneratorsManager extends BaseManager {
     }
 
     public buyGeneratorForUser(userId: string, generatorId: string): void {
-        let userGenerators = this.getUserGenerators(userId);
-        let generatorData: IGOWServerEmulatorGeneratorVO = userGenerators[generatorId];
+        let generatorData: IGOWServerEmulatorGeneratorVO= this.getUserSingleGenerator(userId, generatorId);
         if (!generatorData) {
             generatorData = {
                 id: generatorId,
@@ -75,6 +74,7 @@ export class GOWServerEmulatorGeneratorsManager extends BaseManager {
                 boughtUpgradeIds: []
             };
 
+            const userGenerators: IGOWServerEmulatorGeneratorVO[] = this.getUserGenerators(userId);
             userGenerators.push(generatorData);
         }
 

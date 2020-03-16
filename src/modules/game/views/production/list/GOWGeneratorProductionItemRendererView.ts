@@ -25,6 +25,9 @@ import {DateSettings} from "../../../../../appframework/date/DateSettings";
 import {GlobalEventDispatcher} from "../../../../../appframework/globaleventdispatcher/dispatcher/GlobalEventDispatcher";
 import {TimeModelEvent} from "../../../../../appframework/time/models/TimeModelEvent";
 import {GOWGeneratorProductionManagersItemRendererView} from "./managers/GOWGeneratorProductionManagersItemRendererView";
+import {IGOWResourceVO} from "../../../../resources/data/IGOWResourceVO";
+import {GOWGeneratorsTools} from "../../../../generators/tools/GOWGeneratorsTools";
+import {GOWBonusTools} from "../../../../upgrades/tools/GOWBonusTools";
 
 export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGeneratorVO> implements IGetSizable {
 
@@ -330,11 +333,11 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
             this.notBoughtCont.visible = false;
 
             let infoLocaleId: string = "productionInfo";
-            let visibleProductionValue: number = this.data.static.productionValue.value;
-            if (this.data.static.productionDuration < DateSettings.MS_IN_SECOND / 2) {
+            let visibleProductionValue: number = this.data.cumulativeProductionValue;
+            if (this.data.cumulativeProductionDuration < DateSettings.MS_IN_SECOND / 2) {
                 infoLocaleId = "productionInfoLessThenSec";
                 visibleProductionValue = NumberTools.roundTo(
-                    this.data.static.productionValue.value / (this.data.static.productionDuration / DateSettings.MS_IN_SECOND),
+                    this.data.cumulativeProductionValue / (this.data.cumulativeProductionDuration / DateSettings.MS_IN_SECOND),
                     0.1
                 );
             }
@@ -343,7 +346,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 {
                     value: GOWTextTools.getFormattedResourceAmount(
                         {
-                            type: this.data.static.productionValue.type,
+                            type: this.data.cumulativeProduction.type,
                             value: visibleProductionValue
                         }
                     )
