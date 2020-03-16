@@ -6,6 +6,7 @@ export const GOWSettings = {
         white: 0xeaeaea,
         red: 0xde757a,
         yellow: 0xfed766,
+        yellowLight: 0xfeebb2,
         orange: 0xee8434,
         green: 0xc2c57f
     },

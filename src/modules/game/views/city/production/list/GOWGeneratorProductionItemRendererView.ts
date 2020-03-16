@@ -119,6 +119,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 bgConfig: {
                     vector: {
                         bgColor: GOWSettings.colors.white,
+                        overBgColor: GOWSettings.colors.yellow,
                         bgAlpha: 1,
                         bgBorderColor: GOWSettings.colors.black,
                         bgBorderAlpha: 1,
@@ -224,6 +225,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 bgConfig: {
                     vector: {
                         bgColor: GOWSettings.colors.white,
+                        overBgColor: GOWSettings.colors.yellow,
                         bgAlpha: 1,
                         bgBorderColor: GOWSettings.colors.black,
                         bgBorderAlpha: 1,
@@ -251,6 +253,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 bgConfig: {
                     vector: {
                         bgColor: GOWSettings.colors.white,
+                        overBgColor: GOWSettings.colors.yellow,
                         bgAlpha: 1,
                         bgBorderColor: GOWSettings.colors.black,
                         bgBorderAlpha: 1,

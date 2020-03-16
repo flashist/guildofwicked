@@ -83,6 +83,7 @@ export class GOWGamePageHeaderView extends BaseView {
                 bgConfig: {
                     vector: {
                         bgColor: GOWSettings.colors.white,
+                        overBgColor: GOWSettings.colors.yellow,
                         bgAlpha: 1,
                         bgBorderColor: GOWSettings.colors.black,
                         bgBorderAlpha: 1,
@@ -110,6 +111,7 @@ export class GOWGamePageHeaderView extends BaseView {
                 bgConfig: {
                     vector: {
                         bgColor: GOWSettings.colors.white,
+                        overBgColor: GOWSettings.colors.yellow,
                         bgAlpha: 1,
                         bgBorderColor: GOWSettings.colors.black,
                         bgBorderAlpha: 1,

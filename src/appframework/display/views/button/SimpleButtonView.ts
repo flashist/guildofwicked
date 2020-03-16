@@ -146,19 +146,14 @@ export class SimpleButtonView<DataType extends object = object> extends Resizabl
 
         if (this.enabled) {
             this.interactive = true;
-
-            if (this.state === SimpleButtonState.NORMAL) {
-                this.alpha = 0.5;
-            } else if (this.state === SimpleButtonState.SELECTED_NORMAL) {
-                this.alpha = 1;
-            } else if (this.state === SimpleButtonState.OVER || this.state === SimpleButtonState.SELECTED_OVER) {
-                this.alpha = 1;
-            }
+            this.alpha = 1;
 
         } else {
             this.interactive = false;
             this.alpha = 0.5;
         }
+
+        this.updateBg();
     }
 
     public get selected(): boolean {
@@ -210,7 +205,12 @@ export class SimpleButtonView<DataType extends object = object> extends Resizabl
 
             vectorBg.clear();
 
-            vectorBg.beginFill(this.config.bgConfig.vector.bgColor, this.config.bgConfig.vector.bgAlpha);
+            let bgColor: number = this.config.bgConfig.vector.bgColor;
+            if (this.state === SimpleButtonState.SELECTED_NORMAL || this.state === SimpleButtonState.OVER || this.state === SimpleButtonState.SELECTED_OVER) {
+                bgColor = this.config.bgConfig.vector.overBgColor;
+            }
+
+            vectorBg.beginFill(bgColor, this.config.bgConfig.vector.bgAlpha);
             vectorBg.lineStyle(
                 this.config.bgConfig.vector.bgBorderWidth,
                 this.config.bgConfig.vector.bgBorderColor,

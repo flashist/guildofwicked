@@ -8,6 +8,7 @@ export interface ISimpleButtonConfig {
 
         vector?: {
             bgColor: number;
+            overBgColor: number;
             bgAlpha: number;
             bgBorderColor: number;
             bgBorderAlpha: number;

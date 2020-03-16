@@ -42,6 +42,7 @@ export class GOWGeneratorProductionManagersView extends BaseView<GOWGeneratorVO>
                 bgConfig: {
                     vector: {
                         bgColor: GOWSettings.colors.white,
+                        overBgColor: GOWSettings.colors.yellow,
                         bgAlpha: 1,
                         bgBorderColor: GOWSettings.colors.black,
                         bgBorderAlpha: 1,
