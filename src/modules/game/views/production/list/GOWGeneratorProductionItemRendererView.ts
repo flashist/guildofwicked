@@ -64,10 +64,6 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
 
         this.bg = new Graphics();
         this.addChild(this.bg);
-        //
-        this.bg.beginFill(GOWSettings.colors.black);
-        this.bg.drawRect(0, 0, 100, 100);
-        this.bg.endFill();
 
         this.iconCont = new FContainer();
         this.addChild(this.iconCont);
@@ -139,7 +135,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         this.addChild(this.boughtCont);
 
         this.progressBar = new GOWGeneratorProductionProgressView();
-        // this.boughtCont.addChild(this.progressBar);
+        this.boughtCont.addChild(this.progressBar);
 
         this.infoLabel = new FLabel(
             {
@@ -158,7 +154,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 dropShadowBlur: 4
             }
         );
-        // this.boughtCont.addChild(this.infoLabel);
+        this.boughtCont.addChild(this.infoLabel);
 
         this.timeBg = new Graphics();
         this.boughtCont.addChild(this.timeBg);
@@ -185,7 +181,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 dropShadowBlur: 4
             }
         );
-        // this.boughtCont.addChild(this.timeLabel);
+        this.boughtCont.addChild(this.timeLabel);
         //
         this.timeLabel.fieldPadding = new Point(5, 5);
         this.timeLabel.width = this.timeBg.width;
@@ -356,7 +352,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
             this.notBoughtCont.visible = false;
 
             this.amountLabel.visible = true;
-            // this.amountLabel.text = this.data.level.toString();
+            this.amountLabel.text = this.data.level.toString();
 
             let infoLocaleId: string = "productionInfo";
             let visibleProductionValue: number = this.data.cumulativeProductionValue;
@@ -367,7 +363,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                     0.1
                 );
             }
-            /*this.infoLabel.text = getText(
+            this.infoLabel.text = getText(
                 infoLocaleId,
                 {
                     value: GOWTextTools.getFormattedResourceAmount(
@@ -377,14 +373,14 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                         }
                     )
                 }
-            );*/
+            );
 
             const nextLevelPrice: number = GOWGeneratorsTools.calculateNextLevelPrice(
                 this.data.static.basePrice.value,
                 this.data.level,
                 this.data.static.buyCoef
             );
-            /*this.buyNextLevelBtn.text = getText(
+            this.buyNextLevelBtn.text = getText(
                 "buyNextLevelBtn",
                 {
                     count: 1,
@@ -395,7 +391,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                         }
                     )
                 }
-            );*/
+            );
 
         } else {
             this.boughtCont.visible = false;
@@ -403,13 +399,13 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
 
             this.amountLabel.visible = false;
 
-            /*this.firstBuyButton.text = getText(
+            this.firstBuyButton.text = getText(
                 "firstBuyButton",
                 {
                     name: getText(this.data.static.localeId),
                     price: GOWTextTools.getFormattedResourceAmount(this.data.static.basePrice)
                 }
-            );*/
+            );
         }
 
         this.managersView.data = this.data;
@@ -425,14 +421,20 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         }
 
         this.progressBar.progressCoef = this.data.productionCompleteCoef;
-        // this.timeLabel.text = GOWTextTools.getFormattedDuration(this.data.productionTimeLeft);
+        this.timeLabel.text = GOWTextTools.getFormattedDuration(this.data.productionTimeLeft);
     }
 
     protected arrange(): void {
         super.arrange();
 
-        this.bg.width = this.resizeSize.x;
-        this.bg.height = this.resizeSize.y;
+        if (this.bg.width === this.resizeSize.x && this.bg.height === this.resizeSize.y) {
+            return;
+        }
+
+        this.bg.clear();
+        this.bg.beginFill(GOWSettings.colors.black);
+        this.bg.drawRect(0, 0, this.resizeSize.x, this.resizeSize.y);
+        this.bg.endFill();
 
         this.iconCont.x = this.bg.x + GOWSettings.layout.contentToBorderPadding;
         this.iconCont.y = this.bg.y + GOWSettings.layout.contentToBorderPadding;
