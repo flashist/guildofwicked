@@ -5,6 +5,7 @@ import {IServerResponseVO} from "../../../appframework/server/data/IServerRespon
 import {IServerRequestVO} from "../../../appframework/server/data/IServerRequestVO";
 import {GOWServerEmulatorManager} from "../../serveremulator/managers/GOWServerEmulatorManager";
 import {GOWUsersModel} from "../../users/models/GOWUsersModel";
+import {GOWSimplePopupIntent} from "../../app/events/GOWSimplePopupIntent";
 
 export class GOWBaseServerCommand<ResponseType extends IServerResponseVO = IServerResponseVO,
     RequestType extends IServerRequestVO = IServerRequestVO,
@@ -37,7 +38,11 @@ export class GOWBaseServerCommand<ResponseType extends IServerResponseVO = IServ
         super.notifyComplete(resolveData, rejectErrorData);
 
         if (this.errorCode) {
-            alert(`Imagine: Server Error Handled!\nError code: ${resolveData.errorCode}\nError message: ${resolveData.errorMessage}`);
+            // alert(`Imagine: Server Error Handled!\nError code: ${resolveData.errorCode}\nError message: ${resolveData.errorMessage}`);
+            this.globalDispatcher.dispatchEvent(
+                GOWSimplePopupIntent.SHOW,
+                `Server Error Handled!\nError code: ${resolveData.errorCode}\nError message: ${resolveData.errorMessage}`
+            );
         }
     }
 }

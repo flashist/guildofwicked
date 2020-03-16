@@ -53,7 +53,6 @@ export class GOWQuickActionView extends BaseView {
     }
 
     protected onTap(): void {
-        // alert("Imagine: Quick Action Perofrmed!");
         new GOWShowTextHintFromCursorCommand(getText("quickActionBtnHinPlaceholder"))
             .execute();
     }

@@ -4,6 +4,7 @@ import {BaseAppCommand} from "../../../appframework/base/commands/BaseAppCommand
 import {GOWServerModel} from "../../server/models/GOWServerModel";
 import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
 import {GOWTextTools} from "../../texts/tools/GOWTextTools";
+import {GOWSimplePopupIntent} from "../../app/events/GOWSimplePopupIntent";
 
 export class GOWShowOfflineProductionInfoCommand extends BaseAppCommand {
 
@@ -44,7 +45,7 @@ export class GOWShowOfflineProductionInfoCommand extends BaseAppCommand {
         }
 
         if (infoText) {
-            alert(infoText);
+            this.globalDispatcher.dispatchEvent(GOWSimplePopupIntent.SHOW, infoText);
         }
 
         this.notifyComplete();

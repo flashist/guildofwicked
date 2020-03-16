@@ -42,7 +42,7 @@
 
     "buyPlaceholder": "BUY",
     "upgradePlaceholder": "UPGRADE",
-    "loginProductionResultPlaceholder": "You were offline for {time} and earned {value} !",
+    "loginProductionResultPlaceholder": "YOU WERE OFFLINE FOR: {time}\nAND EARNED: {value} !",
 
     "buyNextLevelBtn": "BUY x{count}\n{price}",
 
@@ -58,6 +58,7 @@
     "mapMockupInfo": "CLICK ON MAP TO SEE NEXT SLIDE",
     "notEnoughResources": "NOT ENOUGH RESOURCES!\n{resources}",
 
-    "menuBtnHintPlaceholder": "PLACEHOLDER:\nMENU OPENED"
+    "menuBtnHintPlaceholder": "PLACEHOLDER:\nMENU OPENED",
+    "close": "CLOSE"
   }
 }
