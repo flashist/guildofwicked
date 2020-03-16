@@ -35,36 +35,9 @@ export class GOWGamePageHeaderView extends BaseView {
         this.addChild(this.avatarPlaceholder);
         //
         this.avatarPlaceholder.beginFill(GOWSettings.colors.white);
-        this.avatarPlaceholder.lineStyle(2, GOWSettings.colors.black);
+        this.avatarPlaceholder.lineStyle(2, GOWSettings.colors.black, 1, 0);
         this.avatarPlaceholder.drawRect(0, 0, 110, 110);
         this.avatarPlaceholder.endFill();
-
-        this.mapBtn = new SimpleButtonView(
-            {
-                bgConfig: {
-                    vector: {
-                        bgColor: GOWSettings.colors.white,
-                        bgAlpha: 1,
-                        bgBorderColor: GOWSettings.colors.black,
-                        bgBorderAlpha: 1,
-                        bgBorderWidth: 2
-                    },
-                    resizeBg: true
-                },
-                labelConfig: {
-                    fontFamily: "Clarence",
-                    size: 48,
-                    color: GOWSettings.colors.black,
-                    autosize: true,
-                    align: Align.CENTER,
-                    valign: VAlign.MIDDLE
-                }
-            }
-        );
-        this.addChild(this.mapBtn);
-        //
-        this.mapBtn.resize(110, 110);
-        this.mapBtn.text = getText("mapBtn");
 
         this.moneyLabel = new FLabel({
             fontFamily: "Clarence",
@@ -72,6 +45,7 @@ export class GOWGamePageHeaderView extends BaseView {
             color: GOWSettings.colors.white,
             autosize: true,
             autosizeType: AutosizeType.HEIGHT,
+            fitToSize: true,
 
             stroke: GOWSettings.colors.black,
             strokeThickness: 1.5,
@@ -100,6 +74,33 @@ export class GOWGamePageHeaderView extends BaseView {
         this.addChild(this.premiumCurrenciesPlaceholderLabel);
         //
         this.premiumCurrenciesPlaceholderLabel.text = getText("premiumCurrenciesPlaceholder");
+
+        this.mapBtn = new SimpleButtonView(
+            {
+                bgConfig: {
+                    vector: {
+                        bgColor: GOWSettings.colors.white,
+                        bgAlpha: 1,
+                        bgBorderColor: GOWSettings.colors.black,
+                        bgBorderAlpha: 1,
+                        bgBorderWidth: 2
+                    },
+                    resizeBg: true
+                },
+                labelConfig: {
+                    fontFamily: "Clarence",
+                    size: 48,
+                    color: GOWSettings.colors.black,
+                    autosize: true,
+                    align: Align.CENTER,
+                    valign: VAlign.MIDDLE
+                }
+            }
+        );
+        this.addChild(this.mapBtn);
+        //
+        this.mapBtn.resize(110, 110);
+        this.mapBtn.text = getText("mapBtn");
     }
 
 

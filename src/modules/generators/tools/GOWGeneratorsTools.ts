@@ -1,9 +1,6 @@
 import {IGOWGeneratorStaticVO} from "../data/IGOWGeneratorStaticVO";
 import {GenericObjectsByTypeModel, getInstance} from "fsuite";
 import {GOWGeneratorStaticVOType} from "../data/GOWGeneratorStaticVOType";
-import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
-import {GOWBonusTools} from "../../upgrades/tools/GOWBonusTools";
-import {GOWBonusType} from "../../upgrades/data/GOWBonusType";
 
 export class GOWGeneratorsTools {
 

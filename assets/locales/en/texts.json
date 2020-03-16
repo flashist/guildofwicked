@@ -37,6 +37,8 @@
     "upgradePlaceholder": "UPGRADE",
     "loginProductionResultPlaceholder": "You were offline for {time} and earned {value} !",
 
+    "buyNextLevelBtn": "BUY x{count}\n{price}",
+
     "hireManager": "HIRE MANAGER: {upgrade}\n{price}",
 
     "bonusAuto": "AUTO",

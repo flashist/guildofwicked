@@ -17,7 +17,7 @@ export class GOWGeneratorProductionManagerIconItemRendererView extends BaseView<
         this.addChild(this.iconPlaceholder);
         //
         this.iconPlaceholder.beginFill(GOWSettings.colors.white);
-        this.iconPlaceholder.lineStyle(2, GOWSettings.colors.black);
+        this.iconPlaceholder.lineStyle(2, GOWSettings.colors.black, 1, 0);
         this.iconPlaceholder.drawCircle(0, 0, 25);
         this.iconPlaceholder.endFill();
         // Improves vector circle graphics

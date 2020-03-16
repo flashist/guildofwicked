@@ -36,6 +36,9 @@ export class SimpleButtonView<DataType extends object = object> extends Resizabl
 
         this.label = new FLabel(this.config.labelConfig);
         this.contentCont.addChild(this.label);
+        //
+        this.label.interactive = false;
+        this.label.interactiveChildren = false;
 
         this.state = SimpleButtonState.NORMAL;
         this.enabled = true;
@@ -211,9 +214,13 @@ export class SimpleButtonView<DataType extends object = object> extends Resizabl
             vectorBg.lineStyle(
                 this.config.bgConfig.vector.bgBorderWidth,
                 this.config.bgConfig.vector.bgBorderColor,
-                this.config.bgConfig.vector.bgBorderAlpha
+                this.config.bgConfig.vector.bgBorderAlpha,
+                0
             );
             vectorBg.drawRect(0, 0, this.resizeSize.x, this.resizeSize.y);
+            vectorBg.endFill();
+
+            vectorBg.cacheAsBitmap = true;
         }
     }
 }

@@ -51,7 +51,7 @@ export class GOWGeneratorProductionManagersItemRendererView extends BaseView<GOW
                 },
                 labelConfig: {
                     fontFamily: "Clarence",
-                    size: 18,
+                    size: 20,
                     color: GOWSettings.colors.black,
                     autosize: true,
                     align: Align.CENTER,

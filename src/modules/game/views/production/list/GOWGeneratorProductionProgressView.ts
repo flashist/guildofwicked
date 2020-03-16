@@ -49,7 +49,7 @@ export class GOWGeneratorProductionProgressView extends BaseView {
     protected fillRect(graphics: Graphics, color: number, rectWidth: number, rectHeight: number): void {
         graphics.clear();
         graphics.beginFill(color);
-        graphics.lineStyle(2, GOWSettings.colors.black);
+        graphics.lineStyle(2, GOWSettings.colors.black, 1, 0);
         graphics.drawRect(0, 0, rectWidth, rectHeight);
         graphics.endFill();
     }

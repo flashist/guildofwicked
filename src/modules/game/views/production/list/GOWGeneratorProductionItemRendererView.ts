@@ -140,7 +140,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         this.boughtCont.addChild(this.timeBg);
         //
         this.timeBg.beginFill(GOWSettings.colors.white);
-        this.timeBg.lineStyle(2, GOWSettings.colors.black);
+        this.timeBg.lineStyle(2, GOWSettings.colors.black, 1, 0);
         this.timeBg.drawRect(0, 0, 90, 50);
         this.timeBg.endFill();
 
@@ -206,7 +206,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 },
                 labelConfig: {
                     fontFamily: "Clarence",
-                    size: 24,
+                    size: 20,
                     color: GOWSettings.colors.black,
                     autosize: true,
                     align: Align.CENTER,
@@ -216,7 +216,6 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         );
         this.boughtCont.addChild(this.buyNextLevelBtn);
         //
-        this.buyNextLevelBtn.text = getText("buyPlaceholder");
         this.buyNextLevelBtn.resize(110, 50);
 
         this.upgradeBtn = new SimpleButtonView(
@@ -353,6 +352,24 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 }
             );
 
+            const nextLevelPrice: number = GOWGeneratorsTools.calculateNextLevelPrice(
+                this.data.static.basePrice.value,
+                this.data.level,
+                this.data.static.buyCoef
+            );
+            this.buyNextLevelBtn.text = getText(
+                "buyNextLevelBtn",
+                {
+                    count: 1,
+                    price: GOWTextTools.getFormattedResourceAmount(
+                        {
+                            type: this.data.static.basePrice.type,
+                            value: nextLevelPrice
+                        }
+                    )
+                }
+            );
+
         } else {
             this.boughtCont.visible = false;
             this.notBoughtCont.visible = true;
@@ -426,8 +443,8 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
 
         this.infoLabel.x = this.progressBar.x;
         this.infoLabel.y = this.progressBar.y;
-        this.infoLabel.width = this.progressBar.width;
-        this.infoLabel.height = this.progressBar.height;
+        this.infoLabel.width = this.progressBar.resizeSize.x;
+        this.infoLabel.height = this.progressBar.resizeSize.y;
 
         this.managersView.x = this.progressBar.x;
         this.managersView.y = this.upgradeBtn.y;

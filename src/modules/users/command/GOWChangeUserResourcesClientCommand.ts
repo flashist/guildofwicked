@@ -31,5 +31,7 @@ export class GOWChangeUserResourcesClientCommand extends BaseAppCommand {
 
             userData.update({resources: newResources});
         }
+
+        this.notifyComplete();
     }
 }
