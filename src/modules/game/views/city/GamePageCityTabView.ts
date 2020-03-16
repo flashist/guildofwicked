@@ -3,6 +3,7 @@ import {getInstance} from "fsuite";
 import {BaseView} from "../../../../appframework/base/views/BaseView";
 import {GOWGamePageProductionView} from "./production/GOWGamePageProductionView";
 import {GOWGamePageVisualizationView} from "./visualization/GOWGamePageVisualizationView";
+import {GOWSettings} from "../../../../GOWSettings";
 
 export class GamePageCityTabView extends BaseView {
 
@@ -24,7 +25,7 @@ export class GamePageCityTabView extends BaseView {
 
         this.visualizationView.resize(
             Math.ceil(this.resizeSize.x),
-            Math.ceil(this.resizeSize.y * 0.25)
+            Math.ceil(this.resizeSize.y * GOWSettings.gamePage.layout.visuzaliationPartCoef)
         );
 
         this.productionView.resize(
