@@ -9,6 +9,7 @@ import {GamePageCityTabView} from "./city/GamePageCityTabView";
 import {GOWGamePageTabId} from "../data/GOWGamePageTabId";
 import {GOWGamePageModel} from "../models/GOWGamePageModel";
 import {GOWGamePageModelEvent} from "../events/GOWGamePageModelEvent";
+import {GamePageMapTabView} from "./map/GamePageMapTabView";
 
 export class GOWGamePageView extends GOWBasePageView {
 
@@ -34,7 +35,7 @@ export class GOWGamePageView extends GOWBasePageView {
             GOWGamePageTabId.CITY
         );
         this.gameTabStack.addViewClass(
-            GamePageCityTabView,
+            GamePageMapTabView,
             GOWGamePageTabId.MAP
         );
 

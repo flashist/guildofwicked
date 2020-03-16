@@ -3,7 +3,7 @@ import {FLabel} from "fsuite";
 import {BaseView} from "../../../../appframework/base/views/BaseView";
 import {GOWSettings} from "../../../../GOWSettings";
 
-export class GamePageCityTabView extends BaseView {
+export class GamePageMapTabView extends BaseView {
 
     protected testLabel: FLabel;
 
