@@ -155,45 +155,6 @@
       },
       "productionDuration": 10000
     },
-    {
-      "type": "static_generator",
-      "id": "buildingDefense",
-      "localeId": "buildingDefense",
-      "icon": "building-defense-icon.png",
-      "resource": "defense",
-
-      "index": 4,
-      "basePrice": {
-        "type": "money",
-        "value": 100000
-      },
-      "buyCoef": 1.2,
-      "productionValue": {
-        "type": "defense",
-        "value": 1
-      },
-      "productionDuration": 10000
-    },
-    {
-      "type": "static_generator",
-      "id": "buildingAttack",
-      "localeId": "buildingAttack",
-      "icon": "building-attack-icon.png",
-      "resource": "attack",
-
-      "index": 4,
-      "basePrice": {
-        "type": "money",
-        "value": 100000
-      },
-      "buyCoef": 1.2,
-      "productionValue": {
-        "type": "defense",
-        "value": 1
-      },
-      "productionDuration": 10000
-    },
-
 
     {
       "type": "static_upgrade",

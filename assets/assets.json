@@ -22,6 +22,37 @@
       "src": "assets/atlases/game/game.json",
       "fileType": "spritesheet",
       "loadGroups": ["init"]
+    },
+
+    {
+      "id": "map-0",
+      "src": "assets/atlases/map/map-0.json",
+      "fileType": "spritesheet",
+      "loadGroups": ["init"]
+    },
+    {
+      "id": "map-1",
+      "src": "assets/atlases/map/map-1.json",
+      "fileType": "spritesheet",
+      "loadGroups": ["init"]
+    },
+    {
+      "id": "map-2",
+      "src": "assets/atlases/map/map-2.json",
+      "fileType": "spritesheet",
+      "loadGroups": ["init"]
+    },
+    {
+      "id": "map-3",
+      "src": "assets/atlases/map/map-3.json",
+      "fileType": "spritesheet",
+      "loadGroups": ["init"]
+    },
+    {
+      "id": "map-4",
+      "src": "assets/atlases/map/map-4.json",
+      "fileType": "spritesheet",
+      "loadGroups": ["init"]
     }
   ]
 }

@@ -29,11 +29,9 @@ export const GOWSettings = {
                 },
                 units: {
                     itemPositionsCoefs: [
-                        {x: 0.5, y: 0.25},
-                        {x: 0.3, y: 0.25},
-                        {x: 0.7, y: 0.25},
-                        {x: 0.4, y: 0.75},
-                        {x: 0.6, y: 0.75}
+                        {x: 0.35, y: 0.5},
+                        {x: 0.5, y: 0.5},
+                        {x: 0.65, y: 0.5}
                     ]
                 }
             }

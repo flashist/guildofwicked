@@ -52,6 +52,8 @@
     "bonusProfit2": "PROFIT x2",
     "bonusProfit3": "PROFIT x3",
     "bonusDuration2": "FASTER x2",
-    "bonusDuration3": "FASTER x3"
+    "bonusDuration3": "FASTER x3",
+
+    "mapMockupInfo": "CLICK ON MAP TO SEE NEXT SLIDE"
   }
 }

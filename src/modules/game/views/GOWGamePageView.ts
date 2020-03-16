@@ -5,11 +5,11 @@ import {GOWBasePageView} from "../../pages/views/GOWBasePageView";
 import {GOWGamePageHeaderView} from "./header/GOWGamePageHeaderView";
 import {GOWGamePageFooterView} from "./footer/GOWGamePageFooterView";
 import {ViewLazyCreationServiceLocatorStack} from "../../../appframework/display/views/viewstack/ViewLazyCreationServiceLocatorStack";
-import {GamePageCityTabView} from "./city/GamePageCityTabView";
+import {GOWGamePageCityTabView} from "./city/GOWGamePageCityTabView";
 import {GOWGamePageTabId} from "../data/GOWGamePageTabId";
 import {GOWGamePageModel} from "../models/GOWGamePageModel";
 import {GOWGamePageModelEvent} from "../events/GOWGamePageModelEvent";
-import {GamePageMapTabView} from "./map/GamePageMapTabView";
+import {GOWGamePageMapTabView} from "./map/GOWGamePageMapTabView";
 
 export class GOWGamePageView extends GOWBasePageView {
 
@@ -31,11 +31,11 @@ export class GOWGamePageView extends GOWBasePageView {
         this.contentCont.addChild(this.gameTabStack);
         //
         this.gameTabStack.addViewClass(
-            GamePageCityTabView,
+            GOWGamePageCityTabView,
             GOWGamePageTabId.CITY
         );
         this.gameTabStack.addViewClass(
-            GamePageMapTabView,
+            GOWGamePageMapTabView,
             GOWGamePageTabId.MAP
         );
 
