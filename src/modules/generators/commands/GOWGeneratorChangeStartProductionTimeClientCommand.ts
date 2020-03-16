@@ -13,11 +13,13 @@ export class GOWGeneratorChangeStartProductionTimeClientCommand extends BaseAppC
     }
 
     protected executeInternal(): void {
-        console.log("GOWGeneratorChangeStartProductionTimeClientCommand __ time: ", Date.now());
-
         const generator: GOWGeneratorVO = this.generatorsModel.getItem(this.generatorId);
         if (generator.isProductionInProgress) {
-            generator.startProductionServerTime = GOWTimeTools.convertClientToServerTime(this.startClientTime);
+            generator.update(
+                {
+                    startProductionServerTime: GOWTimeTools.convertClientToServerTime(this.startClientTime)
+                }
+            );
         }
 
         this.notifyComplete();

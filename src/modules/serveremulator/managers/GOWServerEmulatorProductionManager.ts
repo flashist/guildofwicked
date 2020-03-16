@@ -35,7 +35,7 @@ export class GOWServerEmulatorProductionManager extends BaseManager {
                         singleGenerator.id
                     );
 
-                    const cumulativeBonusesData = GOWBonusTools.getCumulativeBonusesData(singleGenerator.boughtUpgradeIds);
+                    const cumulativeBonusesData = GOWBonusTools.getCumulativeBonusesFromUgpradesData(singleGenerator.boughtUpgradeIds);
 
                     let completeCyclesCount: number = 0;
                     let timeForProductionCycles: number = Date.now() - singleGenerator.startProductionServerTime;
