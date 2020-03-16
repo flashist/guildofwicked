@@ -41,7 +41,7 @@ export class GOWBonusTools {
                 if (singleBonus.bonusType === GOWBonusType.AUTO) {
                     result[singleBonus.bonusType] = 1;
                 } else {
-                    result[singleBonus.bonusType] += singleBonus.value;
+                    result[singleBonus.bonusType] += singleBonus.bonusValue;
                 }
             }
         }

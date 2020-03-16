@@ -249,7 +249,7 @@
     {
       "type": "static_bonus",
       "id": "profit2",
-      "bonusType": "proft",
+      "bonusType": "profit",
       "bonusValue": 2,
       "localeId": "bonusProfit2"
     },

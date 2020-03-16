@@ -3,6 +3,6 @@ import {IGenericObjectVO} from "fsuite";
 
 export interface IGOWBonusStaticVO extends IGenericObjectVO {
     bonusType: GOWBonusType;
-    value?: number;
+    bonusValue?: number;
     localeId: string;
 }

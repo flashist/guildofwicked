@@ -83,7 +83,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         this.amountLabel = new FLabel(
             {
                 fontFamily: "Clarence",
-                size: 24,
+                size: 32,
                 color: GOWSettings.colors.black,
                 align: Align.CENTER,
                 valign: VAlign.MIDDLE,
@@ -228,7 +228,8 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                     fontFamily: "Clarence",
                     size: 20,
                     color: GOWSettings.colors.black,
-                    autosize: true,
+                    fitToSize: true,
+                    fieldPadding: new Point(4, 4),
                     align: Align.CENTER,
                     valign: VAlign.MIDDLE
                 }
@@ -443,7 +444,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         this.icon.y = this.iconBg.y + Math.floor((this.iconBg.height - this.icon.height) / 2);
 
         this.amountLabel.x = this.iconBg.x + Math.floor((this.iconBg.width - this.amountLabel.width) / 2);
-        this.amountLabel.y = this.iconBg.y + this.iconBg.height - Math.floor(this.amountLabel.height / 2) - 2;
+        this.amountLabel.y = this.iconBg.y + this.iconBg.height - Math.floor(this.amountLabel.height / 2) - 4;
 
         this.firstBuyButton.x = Math.floor(this.iconCont.x + this.iconBg.width + GOWSettings.layout.contentToBorderPadding);
         this.firstBuyButton.y = Math.floor(this.iconCont.y);
