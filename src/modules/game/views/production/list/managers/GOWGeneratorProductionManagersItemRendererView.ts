@@ -123,8 +123,6 @@ export class GOWGeneratorProductionManagersItemRendererView extends BaseView<GOW
             }
         );
 
-        this.upgradeToBuyData = null;
-        this.buyBtn.visible = false;
         if (notBoughtUpgrades && notBoughtUpgrades.length > 0) {
             this.upgradeToBuyData = notBoughtUpgrades[0];
             const firstAvailableBonus: IGOWBonusStaticVO = this.genericByTypeModel.getItem(
@@ -143,6 +141,9 @@ export class GOWGeneratorProductionManagersItemRendererView extends BaseView<GOW
                 }
             );
 
+        } else {
+            this.upgradeToBuyData = null;
+            this.buyBtn.visible = false;
         }
     }
 

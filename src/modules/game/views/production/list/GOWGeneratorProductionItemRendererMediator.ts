@@ -17,7 +17,7 @@ export class GOWGeneratorProductionItemRendererMediator extends BaseMediator<GOW
         );
 
         this.eventListenerHelper.addEventListener(
-            this.activator.firstBuyButton,
+            this.activator.firstBuyBtn,
             InteractiveEvent.TAP,
             this.onBuyGenerator
         );

@@ -4,7 +4,7 @@ import {
     Align, AutosizeType,
     BaseDataVOEvent,
     FContainer,
-    FLabel,
+    FLabel, GenericObjectsByTypeModel,
     getInstance,
     getText,
     Graphics,
@@ -26,10 +26,16 @@ import {GlobalEventDispatcher} from "../../../../../appframework/globaleventdisp
 import {TimeModelEvent} from "../../../../../appframework/time/models/TimeModelEvent";
 import {GOWGeneratorProductionManagersItemRendererView} from "./managers/GOWGeneratorProductionManagersItemRendererView";
 import {GOWGeneratorsTools} from "../../../../generators/tools/GOWGeneratorsTools";
+import {IGOWUpgradeStaticVO} from "../../../../upgrades/data/IGOWUpgradeStaticVO";
+import {GOWUpgradeTools} from "../../../../upgrades/tools/GOWUpgradeTools";
+import {GOWUpgradeType} from "../../../../upgrades/data/GOWUpgradeType";
+import {IGOWBonusStaticVO} from "../../../../upgrades/data/IGOWBonusStaticVO";
+import {GOWBonusStaticVOType} from "../../../../upgrades/data/GOWBonusStaticVOType";
 
 export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGeneratorVO> implements IGetSizable {
 
     protected globalEventDispatcher: GlobalEventDispatcher;
+    protected genericByTypeModel: GenericObjectsByTypeModel = getInstance(GenericObjectsByTypeModel);
 
     protected bg: Graphics;
 
@@ -41,7 +47,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
     protected amountLabel: FLabel;
 
     protected notBoughtCont: FContainer;
-    public firstBuyButton: SimpleButtonView;
+    public firstBuyBtn: SimpleButtonView;
 
     protected boughtCont: FContainer;
     protected progressBar: GOWGeneratorProductionProgressView;
@@ -56,6 +62,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
     protected upgradeBtn: SimpleButtonView;
 
     protected managersView: GOWGeneratorProductionManagersItemRendererView;
+    public upgradeToBuyData: IGOWUpgradeStaticVO;
 
     protected construction(...args): void {
         super.construction(...args);
@@ -107,7 +114,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         this.notBoughtCont = new FContainer();
         this.addChild(this.notBoughtCont);
 
-        this.firstBuyButton = new SimpleButtonView(
+        this.firstBuyBtn = new SimpleButtonView(
             {
                 bgConfig: {
                     vector: {
@@ -129,7 +136,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 }
             }
         );
-        this.notBoughtCont.addChild(this.firstBuyButton);
+        this.notBoughtCont.addChild(this.firstBuyBtn);
 
         this.boughtCont = new FContainer();
         this.addChild(this.boughtCont);
@@ -229,7 +236,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                     size: 20,
                     color: GOWSettings.colors.black,
                     fitToSize: true,
-                    fieldPadding: new Point(4, 4),
+                    fieldPadding: new Point(4, 0),
                     align: Align.CENTER,
                     valign: VAlign.MIDDLE
                 }
@@ -254,9 +261,10 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 },
                 labelConfig: {
                     fontFamily: "Clarence",
-                    size: 24,
+                    size: 20,
                     color: GOWSettings.colors.black,
-                    autosize: true,
+                    fitToSize: true,
+                    fieldPadding: new Point(4, 0),
                     align: Align.CENTER,
                     valign: VAlign.MIDDLE
                 }
@@ -264,7 +272,6 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         );
         this.boughtCont.addChild(this.upgradeBtn);
         //
-        this.upgradeBtn.text = getText("upgradePlaceholder");
         this.upgradeBtn.resize(215, 50);
 
         this.managersView = getInstance(GOWGeneratorProductionManagersItemRendererView);
@@ -394,13 +401,44 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 }
             );
 
+            const notBoughtUpgrades: IGOWUpgradeStaticVO[] = GOWUpgradeTools.findGeneratorUpgrades(
+                this.data.static.id,
+                {
+                    upgradeType: GOWUpgradeType.UPGRADE,
+                    bought: false
+                }
+            );
+
+            if (notBoughtUpgrades && notBoughtUpgrades.length > 0) {
+                this.upgradeToBuyData = notBoughtUpgrades[0];
+                const firstAvailableBonus: IGOWBonusStaticVO = this.genericByTypeModel.getItem(
+                    GOWBonusStaticVOType,
+                    this.upgradeToBuyData.bonusId
+                );
+
+                this.upgradeBtn.visible = true;
+                this.upgradeBtn.text = getText(
+                    "buyUpgrade",
+                    {
+                        upgrade: getText(
+                            firstAvailableBonus.localeId
+                        ),
+                        price: GOWTextTools.getFormattedResourceAmount(this.upgradeToBuyData.price)
+                    }
+                );
+
+            } else {
+                this.upgradeToBuyData = null;
+                this.upgradeBtn.visible = false;
+            }
+
         } else {
             this.boughtCont.visible = false;
             this.notBoughtCont.visible = true;
 
             this.amountLabel.visible = false;
 
-            this.firstBuyButton.text = getText(
+            this.firstBuyBtn.text = getText(
                 "firstBuyButton",
                 {
                     name: getText(this.data.static.localeId),
@@ -446,10 +484,10 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         this.amountLabel.x = this.iconBg.x + Math.floor((this.iconBg.width - this.amountLabel.width) / 2);
         this.amountLabel.y = this.iconBg.y + this.iconBg.height - Math.floor(this.amountLabel.height / 2) - 4;
 
-        this.firstBuyButton.x = Math.floor(this.iconCont.x + this.iconBg.width + GOWSettings.layout.contentToBorderPadding);
-        this.firstBuyButton.y = Math.floor(this.iconCont.y);
-        this.firstBuyButton.resize(
-            Math.floor(this.resizeSize.x - this.firstBuyButton.x - GOWSettings.layout.contentToBorderPadding),
+        this.firstBuyBtn.x = Math.floor(this.iconCont.x + this.iconBg.width + GOWSettings.layout.contentToBorderPadding);
+        this.firstBuyBtn.y = Math.floor(this.iconCont.y);
+        this.firstBuyBtn.resize(
+            Math.floor(this.resizeSize.x - this.firstBuyBtn.x - GOWSettings.layout.contentToBorderPadding),
             this.iconBg.height
         );
 

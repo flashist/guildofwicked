@@ -40,9 +40,11 @@
     "buyNextLevelBtn": "BUY x{count}\n{price}",
 
     "hireManager": "HIRE MANAGER: {upgrade}\n{price}",
+    "buyUpgrade": "BUY UPGRADE: {upgrade}\n{price}",
 
     "bonusAuto": "AUTO",
     "bonusProfit2": "PROFIT x2",
+    "bonusProfit3": "PROFIT x3",
     "bonusDuration2": "FASTER x2"
   }
 }

@@ -138,6 +138,31 @@
 
     {
       "type": "static_upgrade",
+      "id": "coalMineUpgradeProfit3",
+      "upgradeType": "upgrade",
+      "bonusId": "profit3",
+      "generatorId": "coalMine",
+
+      "price": {
+        "type": "money",
+        "value": 250000
+      }
+    },
+    {
+      "type": "static_upgrade",
+      "id": "coalMineUpgradeProfit3_2",
+      "upgradeType": "upgrade",
+      "bonusId": "profit3",
+      "generatorId": "coalMine",
+
+      "price": {
+        "type": "money",
+        "value": 20000000000000
+      }
+    },
+
+    {
+      "type": "static_upgrade",
       "id": "charlatanAuto",
       "upgradeType": "manager",
       "bonusId": "auto",
@@ -252,6 +277,13 @@
       "bonusType": "profit",
       "bonusValue": 2,
       "localeId": "bonusProfit2"
+    },
+    {
+      "type": "static_bonus",
+      "id": "profit3",
+      "bonusType": "profit",
+      "bonusValue": 3,
+      "localeId": "bonusProfit3"
     },
     {
       "type": "static_bonus",
