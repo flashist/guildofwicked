@@ -9,8 +9,8 @@ import {GOWGeneratorProductionItemRendererView} from "./views/production/list/GO
 import {GOWGeneratorProductionItemRendererMediator} from "./views/production/list/GOWGeneratorProductionItemRendererMediator";
 import {GOWGamePageFooterView} from "./views/footer/GOWGamePageFooterView";
 import {GOWGamePageFooterMediator} from "./views/footer/GOWGamePageFooterMediator";
-import {GOWGeneratorProductionManagersItemRendererView} from "./views/production/list/managers/GOWGeneratorProductionManagersItemRendererView";
-import {GOWGeneratorProductionManagersItemRendererMediator} from "./views/production/list/managers/GOWGeneratorProductionManagersItemRendererMediator";
+import {GOWGeneratorProductionManagersView} from "./views/production/list/managers/GOWGeneratorProductionManagersView";
+import {GOWGeneratorProductionManagersMediator} from "./views/production/list/managers/GOWGeneratorProductionManagersMediator";
 import {GOWGamePageProductionView} from "./views/production/GOWGamePageProductionView";
 import {GOWGamePageProductionMediator} from "./views/production/GOWGamePageProductionMediator";
 
@@ -21,7 +21,7 @@ export class GOWGameModule extends BaseModule {
 
         serviceLocatorAdd(GOWGamePageModel, {isSingleton: true});
         serviceLocatorAdd(GOWGeneratorProductionItemRendererView, {activateeConstructors: [GOWGeneratorProductionItemRendererMediator]});
-        serviceLocatorAdd(GOWGeneratorProductionManagersItemRendererView, {activateeConstructors: [GOWGeneratorProductionManagersItemRendererMediator]});
+        serviceLocatorAdd(GOWGeneratorProductionManagersView, {activateeConstructors: [GOWGeneratorProductionManagersMediator]});
         serviceLocatorAdd(GOWGamePageProductionView, {activateeConstructors: [GOWGamePageProductionMediator]});
         serviceLocatorAdd(GOWGamePageFooterView, {activateeConstructors: [GOWGamePageFooterMediator]});
     }

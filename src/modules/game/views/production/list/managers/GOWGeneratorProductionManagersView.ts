@@ -15,7 +15,7 @@ import {GOWBonusStaticVOType} from "../../../../../upgrades/data/GOWBonusStaticV
 import {GOWTextTools} from "../../../../../texts/tools/GOWTextTools";
 import {GOWSettings} from "../../../../../../GOWSettings";
 
-export class GOWGeneratorProductionManagersItemRendererView extends BaseView<GOWGeneratorVO> {
+export class GOWGeneratorProductionManagersView extends BaseView<GOWGeneratorVO> {
 
     protected genericByTypeModel: GenericObjectsByTypeModel;
 
@@ -145,6 +145,8 @@ export class GOWGeneratorProductionManagersItemRendererView extends BaseView<GOW
             this.upgradeToBuyData = null;
             this.buyBtn.visible = false;
         }
+
+        this.arrange();
     }
 
     protected arrange(): void {

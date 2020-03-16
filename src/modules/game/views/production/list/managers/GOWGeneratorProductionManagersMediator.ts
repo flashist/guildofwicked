@@ -1,12 +1,12 @@
 import {InteractiveEvent} from "fsuite";
 
-import {GOWGeneratorProductionManagersItemRendererView} from "./GOWGeneratorProductionManagersItemRendererView";
+import {GOWGeneratorProductionManagersView} from "./GOWGeneratorProductionManagersView";
 import {BaseMediator} from "../../../../../../appframework/base/mediators/BaseMediator";
 import {GOWBuyUpgradeForGeneratorCommand} from "../../../../../generators/commands/GOWBuyUpgradeForGeneratorCommand";
 
-export class GOWGeneratorProductionManagersItemRendererMediator extends BaseMediator<GOWGeneratorProductionManagersItemRendererView> {
+export class GOWGeneratorProductionManagersMediator extends BaseMediator<GOWGeneratorProductionManagersView> {
 
-    onActivatorStart(activator: GOWGeneratorProductionManagersItemRendererView): void {
+    onActivatorStart(activator: GOWGeneratorProductionManagersView): void {
         super.onActivatorStart(activator);
 
         this.eventListenerHelper.addEventListener(

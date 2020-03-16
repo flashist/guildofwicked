@@ -24,7 +24,7 @@ import {GOWTextTools} from "../../../../texts/tools/GOWTextTools";
 import {DateSettings} from "../../../../../appframework/date/DateSettings";
 import {GlobalEventDispatcher} from "../../../../../appframework/globaleventdispatcher/dispatcher/GlobalEventDispatcher";
 import {TimeModelEvent} from "../../../../../appframework/time/models/TimeModelEvent";
-import {GOWGeneratorProductionManagersItemRendererView} from "./managers/GOWGeneratorProductionManagersItemRendererView";
+import {GOWGeneratorProductionManagersView} from "./managers/GOWGeneratorProductionManagersView";
 import {GOWGeneratorsTools} from "../../../../generators/tools/GOWGeneratorsTools";
 import {IGOWUpgradeStaticVO} from "../../../../upgrades/data/IGOWUpgradeStaticVO";
 import {GOWUpgradeTools} from "../../../../upgrades/tools/GOWUpgradeTools";
@@ -62,7 +62,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
     public buyUpgradeBtn: SimpleButtonView;
     public upgradeToBuyData: IGOWUpgradeStaticVO;
 
-    protected managersView: GOWGeneratorProductionManagersItemRendererView;
+    protected managersView: GOWGeneratorProductionManagersView;
 
     protected construction(...args): void {
         super.construction(...args);
@@ -274,7 +274,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         //
         this.buyUpgradeBtn.resize(215, 50);
 
-        this.managersView = getInstance(GOWGeneratorProductionManagersItemRendererView);
+        this.managersView = getInstance(GOWGeneratorProductionManagersView);
         this.boughtCont.addChild(this.managersView);
     }
 
