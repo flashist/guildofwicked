@@ -1,7 +1,7 @@
 import {NumberTools} from "fcore";
 
 import {
-    Align,
+    Align, AutosizeType,
     BaseDataVOEvent,
     FContainer,
     FLabel,
@@ -25,9 +25,7 @@ import {DateSettings} from "../../../../../appframework/date/DateSettings";
 import {GlobalEventDispatcher} from "../../../../../appframework/globaleventdispatcher/dispatcher/GlobalEventDispatcher";
 import {TimeModelEvent} from "../../../../../appframework/time/models/TimeModelEvent";
 import {GOWGeneratorProductionManagersItemRendererView} from "./managers/GOWGeneratorProductionManagersItemRendererView";
-import {IGOWResourceVO} from "../../../../resources/data/IGOWResourceVO";
 import {GOWGeneratorsTools} from "../../../../generators/tools/GOWGeneratorsTools";
-import {GOWBonusTools} from "../../../../upgrades/tools/GOWBonusTools";
 
 export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGeneratorVO> implements IGetSizable {
 
@@ -39,6 +37,8 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
     protected iconBg: Sprite;
     protected iconBgGlow: Sprite;
     protected icon: Sprite;
+
+    protected amountLabel: FLabel;
 
     protected notBoughtCont: FContainer;
     public firstBuyButton: SimpleButtonView;
@@ -83,6 +83,30 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
 
         this.icon = new Sprite();
         this.iconCont.addChild(this.icon);
+
+        this.amountLabel = new FLabel(
+            {
+                fontFamily: "Clarence",
+                size: 24,
+                color: GOWSettings.colors.black,
+                align: Align.CENTER,
+                valign: VAlign.MIDDLE,
+
+                autosize: true,
+                autosizeType: AutosizeType.HEIGHT,
+
+                stroke: GOWSettings.colors.white,
+                strokeThickness: 1.5,
+
+                dropShadow: true,
+                dropShadowColor: GOWSettings.colors.white,
+                dropShadowDistance: 0,
+                dropShadowBlur: 4
+            }
+        );
+        this.iconCont.addChild(this.amountLabel);
+        //
+        this.amountLabel.width = this.iconBg.width;
 
         this.notBoughtCont = new FContainer();
         this.addChild(this.notBoughtCont);
@@ -331,6 +355,9 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
             this.boughtCont.visible = true;
             this.notBoughtCont.visible = false;
 
+            this.amountLabel.visible = true;
+            this.amountLabel.text = this.data.level.toString();
+
             let infoLocaleId: string = "productionInfo";
             let visibleProductionValue: number = this.data.cumulativeProductionValue;
             if (this.data.cumulativeProductionDuration < DateSettings.MS_IN_SECOND / 2) {
@@ -374,6 +401,8 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
             this.boughtCont.visible = false;
             this.notBoughtCont.visible = true;
 
+            this.amountLabel.visible = false;
+
             this.firstBuyButton.text = getText(
                 "firstBuyButton",
                 {
@@ -410,6 +439,9 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
 
         this.icon.x = this.iconBg.x + Math.floor((this.iconBg.width - this.icon.width) / 2);
         this.icon.y = this.iconBg.y + Math.floor((this.iconBg.height - this.icon.height) / 2);
+
+        this.amountLabel.x = this.iconBg.x + Math.floor((this.iconBg.width - this.amountLabel.width) / 2);
+        this.amountLabel.y = this.iconBg.y + this.iconBg.height - Math.floor(this.amountLabel.height / 2) - 2;
 
         this.firstBuyButton.x = Math.floor(this.iconCont.x + this.iconBg.width + GOWSettings.layout.contentToBorderPadding);
         this.firstBuyButton.y = Math.floor(this.iconCont.y);
