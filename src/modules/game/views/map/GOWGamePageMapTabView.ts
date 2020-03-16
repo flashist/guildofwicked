@@ -103,7 +103,7 @@ export class GOWGamePageMapTabView extends BaseView {
         this.slideImage.y =  Math.floor((this.resizeSize.y - this.slideImage.height) / 2);
 
         this.infoLabel.x =  Math.floor((this.resizeSize.x - this.infoLabel.width) / 2);
-        this.infoLabel.y =  Math.floor((this.resizeSize.y - this.infoLabel.height) / 2) - 450;
+        this.infoLabel.y =  Math.floor((this.resizeSize.y - this.infoLabel.height) / 2) - 500;
     }
 
     protected animateInfoLabel(): void {
