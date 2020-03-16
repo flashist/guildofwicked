@@ -48,7 +48,6 @@ export class GOWGamePageHeaderView extends BaseView {
             color: GOWSettings.colors.white,
             autosize: true,
             autosizeType: AutosizeType.HEIGHT,
-            fitToSize: true,
 
             stroke: GOWSettings.colors.black,
             strokeThickness: 1.5,

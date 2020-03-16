@@ -1,4 +1,4 @@
-import {Align, BaseDataVOEvent, GenericObjectsByTypeModel, getInstance, getText, VAlign} from "fsuite";
+import {Align, BaseDataVOEvent, GenericObjectsByTypeModel, getInstance, getText, Point, VAlign} from "fsuite";
 
 import {BaseView} from "../../../../../../../appframework/base/views/BaseView";
 import {SimpleButtonView} from "../../../../../../../appframework/display/views/button/SimpleButtonView";
@@ -56,7 +56,8 @@ export class GOWGeneratorProductionManagersView extends BaseView<GOWGeneratorVO>
                     color: GOWSettings.colors.black,
                     autosize: true,
                     align: Align.CENTER,
-                    valign: VAlign.MIDDLE
+                    valign: VAlign.MIDDLE,
+                    fieldPadding: new Point(8, 0)
                 }
             }
         );

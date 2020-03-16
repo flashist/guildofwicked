@@ -88,7 +88,6 @@ export class GOWSimplePopupView extends BaseView {
                     fontFamily: "Clarence",
                     size: 18,
                     color: GOWSettings.colors.black,
-                    fitToSize: true,
                     fieldPadding: new Point(4, 0),
                     align: Align.CENTER,
                     valign: VAlign.MIDDLE

@@ -186,12 +186,12 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 dropShadow: true,
                 dropShadowColor: GOWSettings.colors.white,
                 dropShadowDistance: 0,
-                dropShadowBlur: 4
+                dropShadowBlur: 4,
+                fieldPadding: new Point(5, 5)
             }
         );
         this.boughtCont.addChild(this.timeLabel);
         //
-        this.timeLabel.fieldPadding = new Point(5, 5);
         this.timeLabel.width = this.timeBg.width;
         this.timeLabel.height = this.timeBg.height;
 
@@ -209,12 +209,13 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 dropShadow: true,
                 dropShadowColor: GOWSettings.colors.white,
                 dropShadowDistance: 0,
-                dropShadowBlur: 4
+                dropShadowBlur: 4,
+
+                fieldPadding: new Point(5, 5)
             }
         );
         this.boughtCont.addChild(this.waitingLabel);
         //
-        this.waitingLabel.fieldPadding = new Point(5, 5);
         this.waitingLabel.width = this.timeBg.width;
         this.waitingLabel.height = this.timeBg.height;
         //
@@ -237,8 +238,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                     fontFamily: "Clarence",
                     size: 20,
                     color: GOWSettings.colors.black,
-                    fitToSize: true,
-                    fieldPadding: new Point(4, 0),
+                    fieldPadding: new Point(8, 0),
                     align: Align.CENTER,
                     valign: VAlign.MIDDLE
                 }
@@ -266,8 +266,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                     fontFamily: "Clarence",
                     size: 20,
                     color: GOWSettings.colors.black,
-                    fitToSize: true,
-                    fieldPadding: new Point(4, 0),
+                    fieldPadding: new Point(8, 0),
                     align: Align.CENTER,
                     valign: VAlign.MIDDLE
                 }
