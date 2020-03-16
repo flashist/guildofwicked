@@ -26,10 +26,6 @@ export class GOWGamePageHeaderView extends BaseView {
 
         this.bg = new Graphics();
         this.addChild(this.bg);
-        //
-        this.bg.beginFill(GOWSettings.colors.grey);
-        this.bg.drawRect(0, 0, 100, 100);
-        this.bg.endFill();
 
         this.avatarPlaceholder = new Graphics();
         this.addChild(this.avatarPlaceholder);
@@ -130,8 +126,15 @@ export class GOWGamePageHeaderView extends BaseView {
     protected arrange(): void {
         super.arrange();
 
-        this.bg.width = this.resizeSize.x;
-        this.bg.height = this.resizeSize.y;
+        if (this.bg.width === this.resizeSize.x && this.bg.height === this.resizeSize.y) {
+            return;
+        }
+
+        this.bg.clear();
+        //
+        this.bg.beginFill(GOWSettings.colors.grey);
+        this.bg.drawRect(0, 0, this.resizeSize.x, this.resizeSize.y);
+        this.bg.endFill();
 
         this.avatarPlaceholder.x = Math.floor(this.bg.x + GOWSettings.layout.contentToBorderPadding);
         this.avatarPlaceholder.y = Math.floor(this.bg.y + GOWSettings.layout.contentToBorderPadding);
