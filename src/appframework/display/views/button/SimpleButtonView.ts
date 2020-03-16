@@ -197,8 +197,10 @@ export class SimpleButtonView<DataType extends object = object> extends Resizabl
 
     protected updateBg(): void {
         if (this.config.bgConfig.image) {
-            this.bg.width = this.resizeSize.x;
-            this.bg.height = this.resizeSize.y;
+            if (this.config.bgConfig.resizeBg) {
+                this.bg.width = this.resizeSize.x;
+                this.bg.height = this.resizeSize.y;
+            }
 
         } else {
             const vectorBg: Graphics = this.bg as Graphics;
