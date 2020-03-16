@@ -26,6 +26,15 @@ export const GOWSettings = {
                         {x: 0.25, y: 0.75},
                         {x: 0.75, y: 0.75}
                     ]
+                },
+                units: {
+                    itemPositionsCoefs: [
+                        {x: 0.3, y: 0.3},
+                        {x: 0.6, y: 0.3},
+                        {x: 0.25, y: 0.6},
+                        {x: 0.5, y: 0.6},
+                        {x: 0.75, y: 0.6}
+                    ]
                 }
             }
         }

@@ -6,9 +6,12 @@ import {GOWGeneratorProductionItemRendererView} from "./GOWGeneratorProductionIt
 import {GOWGeneratorVO} from "../../../../generators/data/GOWGeneratorVO";
 import {ColumnLayout} from "../../../../../appframework/display/views/layout/ColumnLayout";
 import {IGOWGeneratorStaticVO} from "../../../../generators/data/IGOWGeneratorStaticVO";
-import {GOWGeneratorStaticVOType} from "../../../../generators/data/GOWGeneratorStaticVOType";
 import {GOWGamePageModel} from "../../../models/GOWGamePageModel";
 import {GOWGeneratorsModel} from "../../../../generators/models/GOWGeneratorsModel";
+import {GOWGamePageModelEvent} from "../../../events/GOWGamePageModelEvent";
+import {GOWGamePageTabId} from "../../../data/GOWGamePageTabId";
+import {GOWGeneratorsTools} from "../../../../generators/tools/GOWGeneratorsTools";
+import {GOWResourceType} from "../../../../resources/data/GOWResourceType";
 
 export class GOWGeneratorsProductionListView extends BaseView {
 
@@ -40,17 +43,6 @@ export class GOWGeneratorsProductionListView extends BaseView {
         this.generatorsList.interactive = true;
         //
         this.generatorsList.ItemRendererClass = GOWGeneratorProductionItemRendererView;
-        //
-        const staticGeneratorsList: IGOWGeneratorStaticVO[] = this.genericByTypeModel.getItemsForType<IGOWGeneratorStaticVO>(GOWGeneratorStaticVOType);
-        const generatorsList: GOWGeneratorVO[] = [];
-        let generatorsCount: number = staticGeneratorsList.length;
-        for (let generatorIndex: number = 0; generatorIndex < generatorsCount; generatorIndex++) {
-            const singleStaticGenerator: IGOWGeneratorStaticVO = staticGeneratorsList[generatorIndex];
-            const singleGenerator: GOWGeneratorVO = this.generatorsModel.getItem(singleStaticGenerator.id);
-            generatorsList.push(singleGenerator);
-        }
-        //
-        this.generatorsList.dataProvider = generatorsList;
 
         this.generatorsListLayout = new ColumnLayout();
 
@@ -64,10 +56,18 @@ export class GOWGeneratorsProductionListView extends BaseView {
 
         this.dragHelper = new DragHelper();
         this.dragHelper.view = this.generatorsList;
+
+        this.commitTabData();
     }
 
     protected addListeners(): void {
         super.addListeners();
+
+        this.eventListenerHelper.addEventListener(
+            this.gamePageModel,
+            GOWGamePageModelEvent.TAB_ID_CHANGE,
+            this.onTabIdChange
+        );
 
         this.eventListenerHelper.addEventListener(
             this.dragHelper,
@@ -79,6 +79,10 @@ export class GOWGeneratorsProductionListView extends BaseView {
             DragHelperEvent.DRAG_UPDATE,
             this.onDragUpdate
         );
+    }
+
+    protected onTabIdChange(): void {
+        this.commitTabData();
     }
 
     protected onDragStart(): void {
@@ -140,5 +144,26 @@ export class GOWGeneratorsProductionListView extends BaseView {
         }
 
         this.generatorsList.y = Math.floor(viewEndDragLocalPos.y);
+    }
+
+    protected commitTabData(): void {
+        let staticGeneratorsList: IGOWGeneratorStaticVO[];
+        if (this.gamePageModel.tabId === GOWGamePageTabId.MONEY) {
+            staticGeneratorsList = GOWGeneratorsTools.getStaticGenerators({resourceTypes: [GOWResourceType.MONEY]});
+        } else {
+            staticGeneratorsList = GOWGeneratorsTools.getStaticGenerators({resourceTypes: [GOWResourceType.DEFENSE, GOWResourceType.ATTACK]});
+        }
+
+        const generatorsList: GOWGeneratorVO[] = [];
+        let generatorsCount: number = staticGeneratorsList.length;
+        for (let generatorIndex: number = 0; generatorIndex < generatorsCount; generatorIndex++) {
+            const singleStaticGenerator: IGOWGeneratorStaticVO = staticGeneratorsList[generatorIndex];
+            const singleGenerator: GOWGeneratorVO = this.generatorsModel.getItem(singleStaticGenerator.id);
+            generatorsList.push(singleGenerator);
+        }
+        //
+        this.generatorsList.dataProvider = generatorsList;
+
+        this.arrange();
     }
 }

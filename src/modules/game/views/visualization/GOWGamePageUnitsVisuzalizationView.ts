@@ -11,7 +11,7 @@ import {GOWVisualizationItemRendererView} from "./GOWVisualizationItemRendererVi
 import {GOWGeneratorsTools} from "../../../generators/tools/GOWGeneratorsTools";
 import {GOWResourceType} from "../../../resources/data/GOWResourceType";
 
-export class GOWGamePageMoneyVisuzalizationView extends BaseView {
+export class GOWGamePageUnitsVisuzalizationView extends BaseView {
 
     protected generatorsModel: GOWGeneratorsModel = getInstance(GOWGeneratorsModel);
     protected genericByTypeModel: GenericObjectsByTypeModel = getInstance(GenericObjectsByTypeModel);
@@ -28,7 +28,11 @@ export class GOWGamePageMoneyVisuzalizationView extends BaseView {
         this.addChild(this.itemsList);
         this.itemsList.ItemRendererClass = GOWVisualizationItemRendererView;
 
-        const staticGeneratorsList: IGOWGeneratorStaticVO[] = GOWGeneratorsTools.getStaticGenerators({resourceTypes: [GOWResourceType.MONEY]});
+        const staticGeneratorsList: IGOWGeneratorStaticVO[] = GOWGeneratorsTools.getStaticGenerators(
+            {
+                resourceTypes: [GOWResourceType.ATTACK, GOWResourceType.DEFENSE]
+            }
+        );
         const generatorsList: GOWGeneratorVO[] = [];
         let generatorsCount: number = staticGeneratorsList.length;
         for (let generatorIndex: number = 0; generatorIndex < generatorsCount; generatorIndex++) {

@@ -1,6 +1,7 @@
 import {IGOWGeneratorStaticVO} from "../data/IGOWGeneratorStaticVO";
 import {GenericObjectsByTypeModel, getInstance} from "fsuite";
 import {GOWGeneratorStaticVOType} from "../data/GOWGeneratorStaticVOType";
+import {GOWResourceType} from "../../resources/data/GOWResourceType";
 
 export class GOWGeneratorsTools {
 
@@ -16,6 +17,20 @@ export class GOWGeneratorsTools {
         for (let singleGenerator of allGenerators) {
             if (singleGenerator.isStartGenerator) {
                 result.push(singleGenerator);
+            }
+        }
+
+        return result;
+    }
+
+    static getStaticGenerators(config: {resourceTypes: GOWResourceType[]}): IGOWGeneratorStaticVO[] {
+        const result: IGOWGeneratorStaticVO[] = [];
+
+        const genericByTypeModel: GenericObjectsByTypeModel = getInstance(GenericObjectsByTypeModel);
+        const staticGeneratorsList: IGOWGeneratorStaticVO[] = genericByTypeModel.getItemsForType<IGOWGeneratorStaticVO>(GOWGeneratorStaticVOType);
+        for (let singleStaticGenerator of staticGeneratorsList) {
+            if (config.resourceTypes.indexOf(singleStaticGenerator.resource) !== -1) {
+                result.push(singleStaticGenerator);
             }
         }
 

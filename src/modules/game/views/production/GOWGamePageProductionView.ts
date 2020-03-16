@@ -1,4 +1,4 @@
-import {Align, GenericObjectsByTypeModel, getInstance, getText, Graphics, VAlign} from "fsuite";
+import {Align, GenericObjectsByTypeModel, getInstance, getText, Graphics, InteractiveEvent, VAlign} from "fsuite";
 
 import {BaseView} from "../../../../appframework/base/views/BaseView";
 import {GOWGamePageModel} from "../../models/GOWGamePageModel";
@@ -128,6 +128,25 @@ export class GOWGamePageProductionView extends BaseView {
             GOWGamePageModelEvent.TAB_ID_CHANGE,
             this.onTabIdChange
         );
+
+        this.eventListenerHelper.addEventListener(
+            this.moneyTabButton,
+            InteractiveEvent.TAP,
+            this.onMoneyTab
+        );
+        this.eventListenerHelper.addEventListener(
+            this.unitsTabButton,
+            InteractiveEvent.TAP,
+            this.onUnitsTab
+        );
+    }
+
+    protected onMoneyTab(): void {
+        this.tabsToggleGroup.selectedId = GOWGamePageTabId.MONEY;
+    }
+
+    protected onUnitsTab(): void {
+        this.tabsToggleGroup.selectedId = GOWGamePageTabId.UNITS;
     }
 
     protected onTabIdChange(): void {

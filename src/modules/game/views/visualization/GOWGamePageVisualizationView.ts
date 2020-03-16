@@ -6,6 +6,7 @@ import {GOWGamePageTabId} from "../../data/GOWGamePageTabId";
 import {GOWGamePageModel} from "../../models/GOWGamePageModel";
 import {GOWGamePageModelEvent} from "../../events/GOWGamePageModelEvent";
 import {ViewLazyCreationServiceLocatorStack} from "../../../../appframework/display/views/viewstack/ViewLazyCreationServiceLocatorStack";
+import {GOWGamePageUnitsVisuzalizationView} from "./GOWGamePageUnitsVisuzalizationView";
 
 export class GOWGamePageVisualizationView extends BaseView {
 
@@ -22,6 +23,7 @@ export class GOWGamePageVisualizationView extends BaseView {
         this.addChild(this.tabsStack);
         //
         this.tabsStack.addViewClass(GOWGamePageMoneyVisuzalizationView, GOWGamePageTabId.MONEY);
+        this.tabsStack.addViewClass(GOWGamePageUnitsVisuzalizationView, GOWGamePageTabId.UNITS);
     }
 
     protected addListeners(): void {
