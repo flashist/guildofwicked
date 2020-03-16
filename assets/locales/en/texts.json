@@ -23,6 +23,12 @@
     "graveRobbers": "GRAVE ROBBERS",
     "midnightRiders": "MIDNIGHT RIDERS",
 
+    "meleeUnit": "MELEE",
+    "rangeUnit": "RANGE",
+    "magicUnit": "MAGIC",
+    "buildingDefense": "FORT",
+    "buildingAttack": "WAR BANNER",
+
     "productionInfo": "{value}",
     "productionInfoLessThenSec": "{value} / sec",
 

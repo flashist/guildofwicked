@@ -346,6 +346,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
             this.iconBgGlow.visible = false;
         }
 
+        this.progressBar.data = this.data;
         if (this.data.isProductionInProgress) {
             this.timeLabel.visible = true;
             this.waitingLabel.visible = false;
