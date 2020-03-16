@@ -1,0 +1,20 @@
+{"frames": {
+
+"map-page-mockup.png":
+{
+	"frame": {"x":1,"y":1,"w":1024,"h":1333},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1024,"h":1333},
+	"sourceSize": {"w":1024,"h":1333}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "map-5.png",
+	"format": "RGBA8888",
+	"size": {"w":1026,"h":1335},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:36eae3aa6853fe86259ac7f4894e210f:9a3e2540fb31d43095916d7eec1fabea:e7c7721ec598909e177cc6d1a507457b$"
+}
+}

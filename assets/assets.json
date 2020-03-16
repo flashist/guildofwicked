@@ -53,6 +53,12 @@
       "src": "assets/atlases/map/map-4.json",
       "fileType": "spritesheet",
       "loadGroups": ["init"]
+    },
+    {
+      "id": "map-5",
+      "src": "assets/atlases/map/map-5.json",
+      "fileType": "spritesheet",
+      "loadGroups": ["init"]
     }
   ]
 }

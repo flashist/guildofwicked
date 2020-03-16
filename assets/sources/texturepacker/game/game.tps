@@ -285,19 +285,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">map-page-mockup.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>256,303,512,607</rect>
-                <key>scale9Paddings</key>
-                <rect>256,303,512,607</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">production-icon-bg-glow.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>

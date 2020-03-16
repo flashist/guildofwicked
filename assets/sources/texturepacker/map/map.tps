@@ -181,6 +181,19 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">map-page-mockup.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>256,333,512,667</rect>
+                <key>scale9Paddings</key>
+                <rect>256,333,512,667</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">slide-1.png</key>
             <key type="filename">slide-2.png</key>
             <key type="filename">slide-3.png</key>
