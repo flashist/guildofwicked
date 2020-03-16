@@ -59,10 +59,10 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
     protected waitingLabel: FLabel;
 
     public buyNextLevelBtn: SimpleButtonView;
-    protected upgradeBtn: SimpleButtonView;
+    public buyUpgradeBtn: SimpleButtonView;
+    public upgradeToBuyData: IGOWUpgradeStaticVO;
 
     protected managersView: GOWGeneratorProductionManagersItemRendererView;
-    public upgradeToBuyData: IGOWUpgradeStaticVO;
 
     protected construction(...args): void {
         super.construction(...args);
@@ -246,7 +246,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         //
         this.buyNextLevelBtn.resize(110, 50);
 
-        this.upgradeBtn = new SimpleButtonView(
+        this.buyUpgradeBtn = new SimpleButtonView(
             {
                 bgConfig: {
                     vector: {
@@ -270,9 +270,9 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 }
             }
         );
-        this.boughtCont.addChild(this.upgradeBtn);
+        this.boughtCont.addChild(this.buyUpgradeBtn);
         //
-        this.upgradeBtn.resize(215, 50);
+        this.buyUpgradeBtn.resize(215, 50);
 
         this.managersView = getInstance(GOWGeneratorProductionManagersItemRendererView);
         this.boughtCont.addChild(this.managersView);
@@ -363,11 +363,11 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
             this.amountLabel.text = this.data.level.toString();
 
             let infoLocaleId: string = "productionInfo";
-            let visibleProductionValue: number = this.data.cumulativeProductionValue;
+            let visibleProductionValue: number = this.data.cumulativeProductionValue.value;
             if (this.data.cumulativeProductionDuration < DateSettings.MS_IN_SECOND / 2) {
                 infoLocaleId = "productionInfoLessThenSec";
                 visibleProductionValue = NumberTools.roundTo(
-                    this.data.cumulativeProductionValue / (this.data.cumulativeProductionDuration / DateSettings.MS_IN_SECOND),
+                    this.data.cumulativeProductionValue.value / (this.data.cumulativeProductionDuration / DateSettings.MS_IN_SECOND),
                     0.1
                 );
             }
@@ -376,7 +376,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                 {
                     value: GOWTextTools.getFormattedResourceAmount(
                         {
-                            type: this.data.cumulativeProduction.type,
+                            type: this.data.cumulativeProductionValue.type,
                             value: visibleProductionValue
                         }
                     )
@@ -416,8 +416,8 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
                     this.upgradeToBuyData.bonusId
                 );
 
-                this.upgradeBtn.visible = true;
-                this.upgradeBtn.text = getText(
+                this.buyUpgradeBtn.visible = true;
+                this.buyUpgradeBtn.text = getText(
                     "buyUpgrade",
                     {
                         upgrade: getText(
@@ -429,7 +429,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
 
             } else {
                 this.upgradeToBuyData = null;
-                this.upgradeBtn.visible = false;
+                this.buyUpgradeBtn.visible = false;
             }
 
         } else {
@@ -491,13 +491,13 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
             this.iconBg.height
         );
 
-        this.upgradeBtn.x = Math.floor(this.resizeSize.x - this.upgradeBtn.width - GOWSettings.layout.contentToBorderPadding);
-        this.upgradeBtn.y = Math.floor(this.resizeSize.y - this.upgradeBtn.height - GOWSettings.layout.contentToBorderPadding);
+        this.buyUpgradeBtn.x = Math.floor(this.resizeSize.x - this.buyUpgradeBtn.width - GOWSettings.layout.contentToBorderPadding);
+        this.buyUpgradeBtn.y = Math.floor(this.resizeSize.y - this.buyUpgradeBtn.height - GOWSettings.layout.contentToBorderPadding);
 
         this.buyNextLevelBtn.x = Math.floor(this.resizeSize.x - this.buyNextLevelBtn.width - GOWSettings.layout.contentToBorderPadding);
         this.buyNextLevelBtn.y = this.iconCont.y;
 
-        this.timeBg.x = this.upgradeBtn.x;
+        this.timeBg.x = this.buyUpgradeBtn.x;
         this.timeBg.y = this.buyNextLevelBtn.y;
 
         this.timeLabel.x = this.timeBg.x;
@@ -520,7 +520,7 @@ export class GOWGeneratorProductionItemRendererView extends BaseView<GOWGenerato
         this.infoLabel.height = this.progressBar.resizeSize.y;
 
         this.managersView.x = this.progressBar.x;
-        this.managersView.y = this.upgradeBtn.y;
+        this.managersView.y = this.buyUpgradeBtn.y;
     }
 
     getSize(): Point {

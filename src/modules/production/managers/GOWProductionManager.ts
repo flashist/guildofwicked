@@ -104,7 +104,7 @@ export class GOWProductionManager extends BaseManager {
 
                         const profit: IGOWResourceVO = {
                             type: staticSingleGenerator.productionValue.type,
-                            value: singleGenerator.cumulativeProductionValue * completeCyclesCount
+                            value: singleGenerator.cumulativeProductionValue.value * completeCyclesCount
                         };
 
                         result.profitByGenerator[singleGenerator.id] = profit;

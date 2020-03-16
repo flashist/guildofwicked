@@ -97,6 +97,27 @@
       "productionDuration": 24000
     },
 
+
+    {
+      "type": "static_generator",
+      "id": "melee",
+      "localeId": "midnightRiders",
+      "icon": "unit-melee-icon.png",
+      "resource": "attack",
+
+      "index": 4,
+      "basePrice": {
+        "type": "money",
+        "value": 100000
+      },
+      "buyCoef": 1.2,
+      "productionValue": {
+        "type": "attack",
+        "value": 1
+      },
+      "productionDuration": 10000
+    },
+
     {
       "type": "static_upgrade",
       "id": "coalMineAuto",
@@ -138,9 +159,9 @@
 
     {
       "type": "static_upgrade",
-      "id": "coalMineUpgradeProfit3",
+      "id": "coalMineUpgradeDuration3",
       "upgradeType": "upgrade",
-      "bonusId": "profit3",
+      "bonusId": "duration3",
       "generatorId": "coalMine",
 
       "price": {
@@ -150,7 +171,7 @@
     },
     {
       "type": "static_upgrade",
-      "id": "coalMineUpgradeProfit3_2",
+      "id": "coalMineUpgradeProfit3",
       "upgradeType": "upgrade",
       "bonusId": "profit3",
       "generatorId": "coalMine",
@@ -184,6 +205,31 @@
       "price": {
         "type": "money",
         "value": 15000000
+      }
+    },
+
+    {
+      "type": "static_upgrade",
+      "id": "charlatanUpgradeDuration3",
+      "upgradeType": "upgrade",
+      "bonusId": "duration3",
+      "generatorId": "charlatan",
+
+      "price": {
+        "type": "money",
+        "value": 500000
+      }
+    },
+    {
+      "type": "static_upgrade",
+      "id": "charlatanUpgradeProfit3",
+      "upgradeType": "upgrade",
+      "bonusId": "profit3",
+      "generatorId": "charlatan",
+
+      "price": {
+        "type": "money",
+        "value": 50000000000000
       }
     },
 
@@ -291,6 +337,13 @@
       "bonusType": "duration",
       "bonusValue": 2,
       "localeId": "bonusDuration2"
+    },
+    {
+      "type": "static_bonus",
+      "id": "duration3",
+      "bonusType": "duration",
+      "bonusValue": 3,
+      "localeId": "bonusDuration3"
     }
   ]
 }

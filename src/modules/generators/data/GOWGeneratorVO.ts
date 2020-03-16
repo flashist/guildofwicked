@@ -6,6 +6,7 @@ import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
 import {IGOWCumulativeBonusesData} from "../../upgrades/data/IGOWCumulativeBonusesData";
 import {GOWBonusTools} from "../../upgrades/tools/GOWBonusTools";
 import {GOWBonusType} from "../../upgrades/data/GOWBonusType";
+import {GOWResourceType} from "../../resources/data/GOWResourceType";
 
 export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWGeneratorStaticVO> {
 
@@ -16,26 +17,26 @@ export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWGeneratorStati
     public boughtUpgradeIds: string[] = [];
 
     protected cumulativeBonuses: IGOWCumulativeBonusesData;
-    private _cumulativeProductionValue: number;
+    private _cumulativeProductionValue: IGOWResourceVO;
     private _cumulativeProductionDuration: number;
 
     constructor() {
         super();
 
         this.staticType = GOWGeneratorStaticVOType;
+        this._cumulativeProductionValue = {
+            type: GOWResourceType.MONEY,
+            value: 0
+        };
     }
 
-    // For debugging
     update(source: Partial<this>): void {
         super.update(source);
 
         this.cumulativeBonuses = GOWBonusTools.getCumulativeBonusesFromUgpradesData(this.boughtUpgradeIds);
+        this._cumulativeProductionValue.type = this.static.productionValue.type;
 
-        let profitCoef: number = 1;
-        if (this.cumulativeBonuses[GOWBonusType.PROFIT]) {
-            profitCoef = this.cumulativeBonuses[GOWBonusType.PROFIT];
-        }
-        this._cumulativeProductionValue = this.static.productionValue.value * profitCoef * this.level;
+        this._cumulativeProductionValue.value = this.findCumulativeProductionForLevel(this.level);
 
         let durationCoef: number = 1;
         if (this.cumulativeBonuses[GOWBonusType.DURATION]) {
@@ -83,18 +84,21 @@ export class GOWGeneratorVO extends BaseAppObjectWithStaticVO<IGOWGeneratorStati
         return result;
     }
 
-    get cumulativeProduction(): IGOWResourceVO {
-        return {
-            type: this.static.productionValue.type,
-            value: this.cumulativeProductionValue
-        }
-    }
-
-    get cumulativeProductionValue(): number {
+    get cumulativeProductionValue(): IGOWResourceVO {
         return this._cumulativeProductionValue;
     }
 
     get cumulativeProductionDuration(): number {
         return this._cumulativeProductionDuration;
     }
+
+    public findCumulativeProductionForLevel(targetLevel: number): number {
+        let profitCoef: number = 1;
+        if (this.cumulativeBonuses[GOWBonusType.PROFIT]) {
+            profitCoef = this.cumulativeBonuses[GOWBonusType.PROFIT];
+        }
+
+        return this.static.productionValue.value * profitCoef * targetLevel;
+    }
+
 }

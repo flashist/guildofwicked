@@ -219,8 +219,6 @@ export class SimpleButtonView<DataType extends object = object> extends Resizabl
             );
             vectorBg.drawRect(0, 0, this.resizeSize.x, this.resizeSize.y);
             vectorBg.endFill();
-
-            vectorBg.cacheAsBitmap = true;
         }
     }
 }

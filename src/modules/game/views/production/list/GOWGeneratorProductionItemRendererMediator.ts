@@ -4,6 +4,7 @@ import {BaseMediator} from "../../../../../appframework/base/mediators/BaseMedia
 import {GOWGeneratorProductionItemRendererView} from "./GOWGeneratorProductionItemRendererView";
 import {GOWGeneratorStartProductionClientCommand} from "../../../../generators/commands/GOWGeneratorStartProductionClientCommand";
 import {GOWBuyGeneratorCommand} from "../../../../generators/commands/GOWBuyGeneratorCommand";
+import {GOWBuyUpgradeForGeneratorCommand} from "../../../../generators/commands/GOWBuyUpgradeForGeneratorCommand";
 
 export class GOWGeneratorProductionItemRendererMediator extends BaseMediator<GOWGeneratorProductionItemRendererView> {
 
@@ -27,6 +28,12 @@ export class GOWGeneratorProductionItemRendererMediator extends BaseMediator<GOW
             InteractiveEvent.TAP,
             this.onBuyGenerator
         );
+
+        this.eventListenerHelper.addEventListener(
+            this.activator.buyUpgradeBtn,
+            InteractiveEvent.TAP,
+            this.onBuyUpgrade
+        );
     }
 
     protected onIconTap(): void {
@@ -39,4 +46,12 @@ export class GOWGeneratorProductionItemRendererMediator extends BaseMediator<GOW
             .execute();
     }
 
+    protected onBuyUpgrade(): void {
+        if (!this.activator.upgradeToBuyData) {
+            return;
+        }
+
+        new GOWBuyUpgradeForGeneratorCommand(this.activator.upgradeToBuyData.id)
+            .execute();
+    }
 }
