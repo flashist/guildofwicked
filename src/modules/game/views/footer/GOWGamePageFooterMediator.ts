@@ -1,6 +1,7 @@
 import {BaseMediator} from "../../../../appframework/base/mediators/BaseMediator";
 import {GOWGamePageFooterView} from "./GOWGamePageFooterView";
-import {InteractiveEvent} from "fsuite";
+import {getText, InteractiveEvent} from "fsuite";
+import {GOWShowTextHintFromCursorCommand} from "../../../hints/command/GOWShowTextHintFromCursorCommand";
 
 export class GOWGamePageFooterMediator extends BaseMediator<GOWGamePageFooterView> {
 
@@ -15,6 +16,8 @@ export class GOWGamePageFooterMediator extends BaseMediator<GOWGamePageFooterVie
     }
 
     protected onMenuBtn(): void {
-        alert("Imagine: Game Menu Opened!");
+        // alert("Imagine: Game Menu Opened!");
+        new GOWShowTextHintFromCursorCommand(getText("menuBtnHintPlaceholder"))
+            .execute();
     }
 }

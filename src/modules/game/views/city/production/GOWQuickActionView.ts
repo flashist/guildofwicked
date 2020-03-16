@@ -3,6 +3,7 @@ import {Align, getText, InteractiveEvent, VAlign} from "fsuite";
 import {BaseView} from "../../../../../appframework/base/views/BaseView";
 import {SimpleButtonView} from "../../../../../appframework/display/views/button/SimpleButtonView";
 import {GOWSettings} from "../../../../../GOWSettings";
+import {GOWShowTextHintFromCursorCommand} from "../../../../hints/command/GOWShowTextHintFromCursorCommand";
 
 export class GOWQuickActionView extends BaseView {
     protected button: SimpleButtonView;
@@ -52,7 +53,9 @@ export class GOWQuickActionView extends BaseView {
     }
 
     protected onTap(): void {
-        alert("Imagine: Quick Action Perofrmed!");
+        // alert("Imagine: Quick Action Perofrmed!");
+        new GOWShowTextHintFromCursorCommand(getText("quickActionBtnHinPlaceholder"))
+            .execute();
     }
 
     protected arrange(): void {

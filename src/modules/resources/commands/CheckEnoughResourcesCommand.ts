@@ -1,5 +1,3 @@
-import {getInstance} from "fsuite";
-
 import {BaseAppCommand} from "../../../appframework/base/commands/BaseAppCommand";
 import {IGOWResourceVO} from "../data/IGOWResourceVO";
 import {GOWResourcesTools} from "../tools/GOWResourcesTools";

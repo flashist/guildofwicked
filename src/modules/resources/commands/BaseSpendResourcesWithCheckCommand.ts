@@ -1,4 +1,4 @@
-import {getInstance} from "fsuite";
+import {getInstance, getText} from "fsuite";
 
 import {BaseAppCommand} from "../../../appframework/base/commands/BaseAppCommand";
 import {IGOWResourceVO} from "../data/IGOWResourceVO";
@@ -6,6 +6,8 @@ import {ICheckEnoughResourcesVO} from "../data/ICheckEnoughResourcesVO";
 import {GOWResourcesTools} from "../tools/GOWResourcesTools";
 import {GOWChangeUserResourcesClientCommand} from "../../users/command/GOWChangeUserResourcesClientCommand";
 import {GOWUsersModel} from "../../users/models/GOWUsersModel";
+import {GOWShowTextHintFromCursorCommand} from "../../hints/command/GOWShowTextHintFromCursorCommand";
+import {GOWTextTools} from "../../texts/tools/GOWTextTools";
 
 export abstract class BaseSpendResourcesWithCheckCommand extends BaseAppCommand {
 
@@ -36,7 +38,16 @@ export abstract class BaseSpendResourcesWithCheckCommand extends BaseAppCommand 
             this.enoughResourcesExecute();
 
         } else {
-            alert("Imagine: Not Enough Resources Dialogue Shown");
+            const checkResult: ICheckEnoughResourcesVO = GOWResourcesTools.checkIfEnoughResources(this.resourcesToSpend);
+            new GOWShowTextHintFromCursorCommand(
+                getText(
+                    "notEnoughResources",
+                    {
+                        resources: GOWTextTools.getFormattedResourcesList(checkResult.notEnoughResourcesList)
+                    }
+                )
+            ).execute();
+
             this.notifyComplete();
         }
     }

@@ -12,6 +12,7 @@
     "resourceDefense": "DEF {value}",
     "premiumCurrenciesPlaceholder": "PLACE FOR PREMIUM CURRENCIES",
     "quickActionBtnPlaceholder": "QUICK ACTION: START PROD / BUY / UPGRADE",
+    "quickActionBtnHinPlaceholder": "PLACEHOLDER:\nQUICK ACTION EXECUTED!",
     "firstBuyButton": "{name}\nBUY: {price}",
 
     "money": "MONEY",
@@ -54,6 +55,9 @@
     "bonusDuration2": "FASTER x2",
     "bonusDuration3": "FASTER x3",
 
-    "mapMockupInfo": "CLICK ON MAP TO SEE NEXT SLIDE"
+    "mapMockupInfo": "CLICK ON MAP TO SEE NEXT SLIDE",
+    "notEnoughResources": "NOT ENOUGH RESOURCES!\n{resources}",
+
+    "menuBtnHintPlaceholder": "PLACEHOLDER:\nMENU OPENED"
   }
 }

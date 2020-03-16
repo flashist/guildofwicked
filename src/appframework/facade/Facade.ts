@@ -19,12 +19,12 @@ import {LocalesModule} from "../locales/LocalesModule";
 import {StorageModule} from "../storage/StorageModule";
 import {SoundsModule} from "../sounds/SoundsModule";
 import {HTMLModule} from "../html/HTMLModule";
-import {AppMainContainer} from "../display/views/maincontainer/AppMainContainer";
 import {InitApplicationCommand} from "../init/commands/InitApplicationCommand";
 import {RendererManager} from "../renderer/managers/RendererManager";
 import {GlobalEventDispatcher} from "../globaleventdispatcher/dispatcher/GlobalEventDispatcher";
 import {RendererManagerEvent} from "../renderer/events/RendererManagerEvent";
 import {ServerModule} from "../server/ServerModule";
+import {AppMainContainer} from "../app/views/AppMainContainer";
 
 export class Facade extends BaseObject {
 

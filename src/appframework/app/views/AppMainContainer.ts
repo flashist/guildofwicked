@@ -1,6 +1,5 @@
-import {ResizableContainer} from "../resize/ResizableContainer";
-
-import {PagesView} from "../../../pages/views/PagesView";
+import {PagesView} from "../../pages/views/PagesView";
+import {ResizableContainer} from "../../display/views/resize/ResizableContainer";
 
 export class AppMainContainer extends ResizableContainer {
 
