@@ -10,6 +10,8 @@ const NODE_MODULES_DIR = `${__dirname}/node_modules`;
 const DEV = process.env.NODE_ENV !== "prod";
 console.log("DEV: ", DEV);
 
+// Different files are needed for different paths,
+// webpack-watch works better with dev-version of path to the bundle.js file
 var indexFile = "src/index.html";
 if (DEV) {
     indexFile = "src/index.dev.html";
@@ -33,7 +35,7 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: [".js", ".ts", ".json"],
+        extensions: [".js", ".ts", ".json", ".png"],
         alias: {
             "createjs": path.resolve(NODE_MODULES_DIR, 'createjs/builds/1.0.0/createjs.js'),
 
