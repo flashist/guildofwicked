@@ -1,6 +1,12 @@
 # Guild Of Wicked
 *by Mark Dolbyrev for Game Closure Code Challenge*
 
+## Web App
+https://deletris-static.herokuapp.com/guildofwicked/index.html
+
+## Detailed Presentation
+https://deletris-static.herokuapp.com/guildofwicked/assets/others/code-challenge-follow-up.pdf
+
 ## System Requirements
 
 The app was built on macOS v10.15.3, Node.js v13.10.1, Npm 6.13.7. Other environments are not tested (e.g. Windows/Linux, other Node/NPM versions).
@@ -30,7 +36,6 @@ The main reason is that I've been using the shown architectural solutions for qu
 ### Trade-offs, Anything You Left Out, What You Might Do
 One of the trade-offs of this app is that it consists of more classes than a small prototype, which mean that it would be harder to understand and "read" (in comparison to small prototype apps).
 
-c. 
-d. Trade-offs you might have made, anything you left out, or what you might do
-differently if you were to spend additional time on the project.
-e. Link to to the hosted application if applicable.
+The architecture uses MVC as the main approach for app components. For some people the fact that there are no strict-academic rules like "views should know nothing about models" might be a trade-off, for me it's and advantage which gives a way to be flexible when it's needed and be focused on the final product and not of the academical programming.
+
+More information about the reasoning behind the architecture, decisions I made and trade-offs might be found in the presentation file: https://deletris-static.herokuapp.com/guildofwicked/assets/others/code-challenge-follow-up.pdf
