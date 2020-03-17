@@ -19,8 +19,6 @@ export class AppManager extends BaseManager {
         this.appModel = getInstance(AppModel);
         this.storageManager = getInstance(StorageManager);
 
-        // this.appModel.appLaunchesCount = this.storageManager.getParam<number>(AppSettings.storage.launchesCountParamId);
-        // this.appModel.totalUsageTime = this.storageManager.getParam<number>(AppSettings.storage.storateTotalUsageTimeParamId);
         const appModelStorageData: IAppModelStorageVO = this.storageManager.getParam<IAppModelStorageVO>(AppSettings.storageParamId);
         this.applyStorageData(appModelStorageData);
 
@@ -29,7 +27,6 @@ export class AppManager extends BaseManager {
 
         // Increase app launch counter
         this.appModel.appLaunchesCount++;
-        // this.storageManager.setParam<number>(AppSettings.storageParamId, this.appModel.appLaunchesCount);
 
         this.updateStorageData();
         this.updateTimeInterval = setInterval(
@@ -45,12 +42,9 @@ export class AppManager extends BaseManager {
         let sessionTimeDelta: number = Date.now() - this.appModel.sessionStartTime;
         this.appModel.totalUsageDuration = this.appModel.previousSessionTotalUsageTime + sessionTimeDelta;
 
-        // this.storageManager.setParam<number>(AppSettings.storage.storateTotalUsageTimeParamId, this.appModel.totalUsageTime);
         this.updateStorageData();
     }
 
-
-    // Storage
     protected applyStorageData(data: IAppModelStorageVO): void {
         if (!data) {
             return;
