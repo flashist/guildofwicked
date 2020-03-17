@@ -17,9 +17,4 @@ export class GOWUserVO extends BaseDataVO {
         return this.resources[resourceType];
     }
 
-
-    // For testing purpose
-    update(source: Partial<this>): void {
-        super.update(source);
-    }
 }

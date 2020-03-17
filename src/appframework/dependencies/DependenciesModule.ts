@@ -1,5 +1,3 @@
-import {Logger, ConsoleCustomLoggerItem} from "fcore";
-
 import {
     GenericObjectsByTypeModel,
     serviceLocatorAdd
