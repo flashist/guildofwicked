@@ -56,7 +56,7 @@
     "bonusDuration3": "FASTER x3",
 
     "mapMockupInfo": "CLICK ON MAP TO SEE NEXT SLIDE",
-    "notEnoughResources": "NOT ENOUGH RESOURCES!\n{resources}",
+    "notEnoughResourcesPopup": "NOT ENOUGH RESOURCES!\n{resources}\n\nTHIS IS A GOOD PLACE FOR MONETIZATION,\nTO SUGGEST USERS TO BUY REQUIRED RESOURCES.",
 
     "menuBtnHintPlaceholder": "PLACEHOLDER:\nMENU OPENED",
     "close": "CLOSE"

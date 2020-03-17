@@ -8,6 +8,7 @@ import {GOWChangeUserResourcesClientCommand} from "../../users/command/GOWChange
 import {GOWUsersModel} from "../../users/models/GOWUsersModel";
 import {GOWShowTextHintFromCursorCommand} from "../../hints/command/GOWShowTextHintFromCursorCommand";
 import {GOWTextTools} from "../../texts/tools/GOWTextTools";
+import {GOWSimplePopupIntent} from "../../app/events/GOWSimplePopupIntent";
 
 export abstract class BaseSpendResourcesWithCheckCommand extends BaseAppCommand {
 
@@ -39,14 +40,15 @@ export abstract class BaseSpendResourcesWithCheckCommand extends BaseAppCommand 
 
         } else {
             const checkResult: ICheckEnoughResourcesVO = GOWResourcesTools.checkIfEnoughResources(this.resourcesToSpend);
-            new GOWShowTextHintFromCursorCommand(
+            this.globalDispatcher.dispatchEvent(
+                GOWSimplePopupIntent.SHOW,
                 getText(
-                    "notEnoughResources",
+                    "notEnoughResourcesPopup",
                     {
                         resources: GOWTextTools.getFormattedResourcesList(checkResult.notEnoughResourcesList)
                     }
                 )
-            ).execute();
+            );
 
             this.notifyComplete();
         }
