@@ -7,8 +7,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const BUILD_DIR = "dist";
 const NODE_MODULES_DIR = `${__dirname}/node_modules`;
 //
-const DEV = true;
+const DEV = process.env.NODE_ENV !== "prod";
 console.log("DEV: ", DEV);
+
+var indexFile = "src/index.html";
+if (DEV) {
+    indexFile = "src/index.dev.html";
+}
 
 module.exports = {
     entry: './src/index.ts',
@@ -46,7 +51,8 @@ module.exports = {
         new CopyPlugin(
             [
                 {
-                    from: "src/index.html"
+                    from: indexFile,
+                    to: "index.html"
                 },
                 {
                     from: "assets/*"
