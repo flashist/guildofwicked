@@ -23,7 +23,7 @@ export class BasePageView extends BaseView {
         super.construction(args);
 
         this.appConfigModel = getInstance(AppConfigModel);
-        this.sizeArea = new Rectangle()
+        this.sizeArea = new Rectangle();
         if (this.appConfigModel.appConfig.sizeArea) {
             this.sizeArea = this.appConfigModel.appConfig.sizeArea.clone();
         }
