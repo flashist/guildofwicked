@@ -8,7 +8,8 @@ export const GOWSettings = {
         yellow: 0xfed766,
         yellowLight: 0xfeebb2,
         orange: 0xee8434,
-        green: 0xc2c57f
+        green: 0xc2c57f,
+        greenDark: 0x9ba47c
     },
 
     layout: {
