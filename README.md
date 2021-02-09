@@ -1,5 +1,5 @@
 # Guild Of Wicked (prototype)
-*by Mark Dolbyrev*
+Game prototype made as a test task for code review processes.
 
 ## Web App
 https://deletris-static.herokuapp.com/guildofwicked/index.html
