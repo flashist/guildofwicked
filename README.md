@@ -1,5 +1,5 @@
-# Guild Of Wicked
-*by Mark Dolbyrev for Game Closure Code Challenge*
+# Guild Of Wicked (prototype)
+*by Mark Dolbyrev*
 
 ## Web App
 https://deletris-static.herokuapp.com/guildofwicked/index.html
