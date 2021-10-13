@@ -1,4 +1,4 @@
-import {getInstance} from "fsuite";
+import {getInstance} from "@flashist/flibs";
 
 import {BaseView} from "../../../../appframework/base/views/BaseView";
 import {GOWGamePageProductionView} from "./production/GOWGamePageProductionView";

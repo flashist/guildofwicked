@@ -1,4 +1,4 @@
-import {BaseDataVO, GenericObjectsWithStaticTools, IGenericObjectVO, IGenericObjectWithStaticVO} from "fsuite";
+import {BaseDataVO, GenericObjectsWithStaticTools, IGenericObjectVO, IGenericObjectWithStaticVO} from "@flashist/flibs";
 
 export class BaseAppObjectWithStaticVO<StaticDataType extends IGenericObjectVO = IGenericObjectVO>
     extends BaseDataVO

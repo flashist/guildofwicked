@@ -1,4 +1,4 @@
-import {getInstance, getText} from "fsuite";
+import {getInstance, getText} from "@flashist/flibs";
 
 import {BaseAppCommand} from "../../../appframework/base/commands/BaseAppCommand";
 import {IGOWResourceVO} from "../data/IGOWResourceVO";

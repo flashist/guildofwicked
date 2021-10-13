@@ -1,5 +1,5 @@
-import {ObjectsPool} from "fcore";
-import {serviceLocatorAdd, ServiceLocatorObjectsPool} from "fsuite";
+import {ObjectsPool} from "@flashist/fcore";
+import {serviceLocatorAdd, ServiceLocatorObjectsPool} from "@flashist/flibs";
 
 import {BaseModule} from "../base/modules/BaseModule";
 

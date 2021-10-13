@@ -1,6 +1,6 @@
-import {Command} from "fcore";
+import {Command} from "@flashist/fcore";
 import {GlobalEventDispatcher} from "../../globaleventdispatcher/dispatcher/GlobalEventDispatcher";
-import {getInstance} from "fsuite";
+import {getInstance} from "@flashist/flibs";
 
 export abstract class BaseAppCommand<ResolveType = any> extends Command<ResolveType> {
 

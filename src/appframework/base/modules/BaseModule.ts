@@ -1,4 +1,4 @@
-import {BaseObject} from "fcore";
+import {BaseObject} from "@flashist/fcore";
 
 export abstract class BaseModule extends BaseObject {
 

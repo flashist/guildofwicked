@@ -1,4 +1,4 @@
-import {GenericObjectsByTypeModel, getInstance} from "fsuite";
+import {GenericObjectsByTypeModel, getInstance} from "@flashist/flibs";
 
 import {BaseSpendResourcesWithCheckCommand} from "../../resources/commands/BaseSpendResourcesWithCheckCommand";
 import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";

@@ -1,11 +1,11 @@
 import {
     IConstructor
-} from "fcore";
+} from "@flashist/fcore";
 
 import {
     DisplayObjectContainer,
     getInstance
-} from "fsuite";
+} from "@flashist/flibs";
 
 import {ViewLazyCreationStack} from "./ViewLazyCreationStack";
 

@@ -1,5 +1,5 @@
 import {ServerModel} from "../../../appframework/server/models/ServerModel";
-import {getInstance} from "fsuite";
+import {getInstance} from "@flashist/flibs";
 
 export class GOWTimeTools {
 

@@ -1,6 +1,6 @@
 import {Ticker} from "pixi.js";
 
-import {getInstance} from "fsuite";
+import {getInstance} from "@flashist/flibs";
 
 import {BaseManager} from "../../base/managers/BaseManager";
 import {TimeModel} from "../models/TimeModel";

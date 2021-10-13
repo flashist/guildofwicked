@@ -1,6 +1,6 @@
 import {GOWUpgradeType} from "../data/GOWUpgradeType";
 import {IGOWUpgradeStaticVO} from "../data/IGOWUpgradeStaticVO";
-import {GenericObjectsByTypeModel, getInstance} from "fsuite";
+import {GenericObjectsByTypeModel, getInstance} from "@flashist/flibs";
 import {GOWGeneratorVOType} from "../../generators/data/GOWGeneratorVOType";
 import {GOWGeneratorVO} from "../../generators/data/GOWGeneratorVO";
 import {GOWUpgradesStaticModel} from "../models/GOWUpgradesStaticModel";

@@ -1,10 +1,10 @@
 import {BaseAppCommand} from "../../../appframework/base/commands/BaseAppCommand";
-import {QueueCommand} from "fcore";
+import {QueueCommand} from "@flashist/fcore";
 import {ChangePageCommand} from "../../../appframework/pages/commands/ChangePageCommand";
 import {PageId} from "../../../appframework/pages/PageId";
 import {GOWShowOfflineProductionInfoCommand} from "./GOWShowOfflineProductionInfoCommand";
 import {GOWProductionManager} from "../../production/managers/GOWProductionManager";
-import {getInstance} from "fsuite";
+import {getInstance} from "@flashist/flibs";
 
 export class GOWShowGamePageCommand extends BaseAppCommand {
 
@@ -14,7 +14,7 @@ export class GOWShowGamePageCommand extends BaseAppCommand {
         new QueueCommand([
             new ChangePageCommand(PageId.GAME_PAGE_ID),
             new GOWShowOfflineProductionInfoCommand()
-        ])
+        ] as any)
             .execute()
             .then(
                 () => {

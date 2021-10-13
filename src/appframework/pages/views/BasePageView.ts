@@ -5,7 +5,7 @@ import {
     getInstance,
     Rectangle,
     DisplayObjectContainer
-} from "fsuite";
+} from "@flashist/flibs";
 
 import {BaseView} from "../../../appframework/base/views/BaseView";
 import {AppConfigModel} from "../../../appframework/app/models/AppConfigModel";

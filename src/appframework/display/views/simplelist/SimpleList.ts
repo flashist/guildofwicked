@@ -1,18 +1,15 @@
-﻿import {ArrayTools, Logger, IConstructor, ObjectTools, Dictionary} from "fcore";
+﻿import {ArrayTools, Logger, IConstructor, ObjectTools, Dictionary} from "@flashist/fcore";
 
 import {
     FContainer,
     DisplayTools, Point, DisplayObjectContainer
-} from "fsuite";
+} from "@flashist/flibs";
 
 import {ISimpleListItem} from "./ISimpleListItem";
 import {ILayoutableContainer} from "../layout/container/ILayoutableContainer";
 import {IResizable} from "../resize/IResizable";
 
-export class SimpleList
-    <ItemType extends ISimpleListItem = ISimpleListItem, ItemData extends any = any>
-    extends FContainer
-    implements ILayoutableContainer {
+export class SimpleList<ItemType extends ISimpleListItem = ISimpleListItem, ItemData extends any = any> extends FContainer implements ILayoutableContainer {
 
     private _dataProvider: ItemData[];
     private _itemsDataPropertyName: string;

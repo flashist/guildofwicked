@@ -1,5 +1,5 @@
 import {IGOWGeneratorStaticVO} from "../data/IGOWGeneratorStaticVO";
-import {GenericObjectsByTypeModel, getInstance} from "fsuite";
+import {GenericObjectsByTypeModel, getInstance} from "@flashist/flibs";
 import {GOWGeneratorStaticVOType} from "../data/GOWGeneratorStaticVOType";
 import {GOWResourceType} from "../../resources/data/GOWResourceType";
 

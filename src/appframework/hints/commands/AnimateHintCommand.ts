@@ -1,5 +1,5 @@
-import {NumberTools, ObjectTools} from "fcore";
-import {DisplayObject, FContainer, getInstance} from "fsuite";
+import {NumberTools, ObjectTools} from "@flashist/fcore";
+import {DisplayObject, FContainer, getInstance} from "@flashist/flibs";
 
 import {TweenLite, Sine, Back} from "gsap";
 

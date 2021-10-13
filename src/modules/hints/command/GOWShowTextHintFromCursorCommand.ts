@@ -1,4 +1,4 @@
-import {Point} from "fsuite";
+import {Point} from "@flashist/flibs";
 
 import {GOWShowTextHintCommand} from "./GOWShowTextHintCommand";
 import {Facade} from "../../../appframework/facade/Facade";

@@ -1,4 +1,4 @@
-import {serviceLocatorAdd} from "fsuite";
+import {serviceLocatorAdd} from "@flashist/flibs";
 
 import {BaseModule} from "../base/modules/BaseModule";
 import {AppModel} from "./models/AppModel";

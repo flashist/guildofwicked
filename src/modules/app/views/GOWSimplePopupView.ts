@@ -1,4 +1,4 @@
-import {Align, AutosizeType, DisplayResizeTools, FContainer, FLabel, getText, Graphics, Point, VAlign} from "fsuite";
+import {Align, AutosizeType, DisplayResizeTools, FContainer, FLabel, getText, Graphics, Point, VAlign} from "@flashist/flibs";
 
 import {TweenLite} from "gsap";
 

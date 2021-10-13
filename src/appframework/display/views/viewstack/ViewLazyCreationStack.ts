@@ -1,11 +1,11 @@
 import {
     IConstructor,
     AssociativeArray
-} from "fcore";
+} from "@flashist/fcore";
 
 import {
     DisplayObjectContainer
-} from "fsuite";
+} from "@flashist/flibs";
 
 import {ViewStack} from "./ViewStack";
 

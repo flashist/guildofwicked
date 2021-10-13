@@ -1,5 +1,5 @@
-import {UniqueTools} from "fcore";
-import {getInstance} from "fsuite";
+import {UniqueTools} from "@flashist/fcore";
+import {getInstance} from "@flashist/flibs";
 
 import {BaseManager} from "../../../appframework/base/managers/BaseManager";
 import {StorageManager} from "../../../appframework/storage/managers/StorageManager";

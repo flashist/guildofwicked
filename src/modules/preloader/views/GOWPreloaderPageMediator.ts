@@ -1,4 +1,4 @@
-import {getInstance, LoadEvent, LoadGroup, LoadManager} from "fsuite";
+import {getInstance, LoadEvent, LoadGroup, LoadManager} from "@flashist/flibs";
 
 import {BaseMediator} from "../../../appframework/base/mediators/BaseMediator";
 import {LoadGroupName} from "../../../appframework/load/LoadGroupName";

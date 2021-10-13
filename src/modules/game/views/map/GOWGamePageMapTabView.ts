@@ -1,4 +1,4 @@
-import {Texture, FLabel, Sprite, InteractiveEvent, getText} from "fsuite";
+import {Texture, FLabel, Sprite, InteractiveEvent, getText} from "@flashist/flibs";
 
 import {TweenLite} from "gsap";
 

@@ -1,4 +1,4 @@
-import {Align, FContainer, FLabel, getInstance, Point, VAlign} from "fsuite";
+import {Align, FContainer, FLabel, getInstance, Point, VAlign} from "@flashist/flibs";
 
 import {AnimateHintCommand} from "../../../appframework/hints/commands/AnimateHintCommand";
 import {BaseAppCommand} from "../../../appframework/base/commands/BaseAppCommand";

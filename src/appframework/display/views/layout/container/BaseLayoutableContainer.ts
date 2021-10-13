@@ -1,6 +1,6 @@
 import {
     FContainer
-} from "fsuite";
+} from "@flashist/flibs";
 
 import {ILayoutableContainer} from "./ILayoutableContainer";
 import {ILayoutableChild} from "./ILayoutableChild";

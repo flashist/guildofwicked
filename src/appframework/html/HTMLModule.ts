@@ -1,6 +1,6 @@
 import {
     serviceLocatorAdd
-} from "fsuite";
+} from "@flashist/flibs";
 
 import {BaseModule} from "../base/modules/BaseModule";
 import {HTMLManager} from "./managers/HTMLManager";

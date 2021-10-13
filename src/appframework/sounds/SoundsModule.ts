@@ -2,7 +2,7 @@ import {
     serviceLocatorAdd,
     SoundsManager,
     getInstance
-} from "fsuite";
+} from "@flashist/flibs";
 
 import {BaseModule} from "../base/modules/BaseModule";
 import {BackgroundMusicManager} from "./managers/BackgroundMusicManager";

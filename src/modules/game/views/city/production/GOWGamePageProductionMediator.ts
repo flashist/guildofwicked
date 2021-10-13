@@ -1,4 +1,4 @@
-import {getInstance} from "fsuite";
+import {getInstance} from "@flashist/flibs";
 import {BaseMediator} from "../../../../../appframework/base/mediators/BaseMediator";
 import {GOWGamePageProductionView} from "./GOWGamePageProductionView";
 import {ToggleGroupEvent} from "../../../../../appframework/display/views/togglegroup/ToggleGroupEvent";

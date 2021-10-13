@@ -1,4 +1,4 @@
-import {IActivatee} from "fsuite";
+import {IActivatee} from "@flashist/flibs";
 
 import {BaseObjectWithGlobalDispatcher} from "../BaseObjectWithGlobalDispatcher";
 

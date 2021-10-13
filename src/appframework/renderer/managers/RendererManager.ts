@@ -1,4 +1,4 @@
-import {FApp, getInstance} from "fsuite";
+import {FApp, getInstance} from "@flashist/flibs";
 
 import {BaseManager} from "../../base/managers/BaseManager";
 import {Facade} from "../../facade/Facade";

@@ -1,4 +1,4 @@
-import {getInstance, IGenericObjectVO} from "fsuite";
+import {getInstance, IGenericObjectVO} from "@flashist/flibs";
 import {GOWServerEmulatorUsersManager} from "../managers/GOWServerEmulatorUsersManager";
 import {GOWServerEmulatorGeneratorsManager} from "../managers/GOWServerEmulatorGeneratorsManager";
 import {IGOWServerEmulatorUserVO} from "../data/IGOWServerEmulatorUserVO";

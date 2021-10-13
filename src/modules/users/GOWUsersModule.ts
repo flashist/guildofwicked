@@ -1,4 +1,4 @@
-import {GenericObjectsByTypeModel, getInstance, IGenericObjectVO, serviceLocatorAdd} from "fsuite";
+import {GenericObjectsByTypeModel, getInstance, IGenericObjectVO, serviceLocatorAdd} from "@flashist/flibs";
 
 import {BaseModule} from "../../appframework/base/modules/BaseModule";
 import {GOWUsersModel} from "./models/GOWUsersModel";

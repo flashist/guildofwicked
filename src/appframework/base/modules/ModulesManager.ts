@@ -1,4 +1,4 @@
-import {ArrayTools} from "fcore";
+import {ArrayTools} from "@flashist/fcore";
 import {BaseModule} from "./BaseModule";
 
 export class ModulesManager {

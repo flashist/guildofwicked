@@ -1,5 +1,5 @@
-import {BaseObject} from "fcore";
-import {Sound, getInstance, SoundsManager} from "fsuite";
+import {BaseObject} from "@flashist/fcore";
+import {Sound, getInstance, SoundsManager} from "@flashist/flibs";
 
 export class BackgroundMusicManager extends BaseObject {
 

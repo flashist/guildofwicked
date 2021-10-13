@@ -1,4 +1,4 @@
-import {getInstance} from "fsuite";
+import {getInstance} from "@flashist/flibs";
 
 import {BaseAppCommand} from "../../../appframework/base/commands/BaseAppCommand";
 import {GOWGeneratorsModel} from "../models/GOWGeneratorsModel";

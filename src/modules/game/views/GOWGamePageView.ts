@@ -1,4 +1,4 @@
-import {getInstance, Point} from "fsuite";
+import {getInstance, Point} from "@flashist/flibs";
 
 import {GOWSettings} from "../../../GOWSettings";
 import {GOWBasePageView} from "../../pages/views/GOWBasePageView";

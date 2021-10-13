@@ -1,4 +1,4 @@
-import {IEventListenerCallback, StringTools, BaseObject} from "fcore";
+import {IEventListenerCallback, StringTools, BaseObject} from "@flashist/fcore";
 
 import {GLobalEventDispatcherEvent} from "./GlobalEventDispatcherEvent";
 

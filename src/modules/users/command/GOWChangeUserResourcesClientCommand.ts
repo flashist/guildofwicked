@@ -1,9 +1,9 @@
 import {BaseAppCommand} from "../../../appframework/base/commands/BaseAppCommand";
 import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
 import {GOWUsersModel} from "../models/GOWUsersModel";
-import {getInstance} from "fsuite";
+import {getInstance} from "@flashist/flibs";
 import {GOWUserVO} from "../data/GOWUserVO";
-import {ObjectTools} from "fcore";
+import {ObjectTools} from "@flashist/fcore";
 
 export class GOWChangeUserResourcesClientCommand extends BaseAppCommand {
 

@@ -1,4 +1,4 @@
-import {getText} from "fsuite";
+import {getText} from "@flashist/flibs";
 
 import {GOWSettings} from "../../../GOWSettings";
 import {DateSettings} from "../../../appframework/date/DateSettings";

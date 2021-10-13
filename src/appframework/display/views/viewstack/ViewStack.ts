@@ -1,12 +1,12 @@
 import {
     AssociativeArray,
     IDatable
-} from "fcore";
+} from "@flashist/fcore";
 
 import {
     DisplayObject,
     DisplayObjectContainer
-} from "fsuite";
+} from "@flashist/flibs";
 
 import {IResizable} from "../resize/IResizable";
 import {ResizableContainer} from "../resize/ResizableContainer";

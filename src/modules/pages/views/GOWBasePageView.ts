@@ -1,4 +1,4 @@
-import {Graphics} from "fsuite";
+import {Graphics} from "@flashist/flibs";
 
 import {BasePageView} from "../../../appframework/pages/views/BasePageView";
 

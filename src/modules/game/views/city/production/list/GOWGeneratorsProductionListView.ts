@@ -1,4 +1,4 @@
-import {DragHelper, DragHelperEvent, GenericObjectsByTypeModel, getInstance, Graphics, Point} from "fsuite";
+import {DragHelper, DragHelperEvent, GenericObjectsByTypeModel, getInstance, Graphics, Point} from "@flashist/flibs";
 
 import {BaseView} from "../../../../../../appframework/base/views/BaseView";
 import {SimpleList} from "../../../../../../appframework/display/views/simplelist/SimpleList";

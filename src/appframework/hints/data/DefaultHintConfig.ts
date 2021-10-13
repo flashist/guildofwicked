@@ -1,5 +1,5 @@
 import {IHintConfig} from "./IHintConfig";
-import {Point} from "fsuite";
+import {Point} from "@flashist/flibs";
 import {HintContainerId} from "./HintContainerId";
 
 export class DefaultHintConfig implements Partial<IHintConfig> {

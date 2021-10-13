@@ -1,8 +1,8 @@
 import {BaseLayout} from "./BaseLayout";
 import {LayoutConfig} from "./LayoutConfig";
 import {ILayoutableContainer} from "./container/ILayoutableContainer";
-import {Logger} from "fcore";
-import {Point} from "fsuite";
+import {Logger} from "@flashist/fcore";
+import {Point} from "@flashist/flibs";
 import {GetSizeTools} from "../../tools/GetSizeTools";
 import {ILayoutableChild} from "./container/ILayoutableChild";
 

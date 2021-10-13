@@ -1,4 +1,4 @@
-import {serviceLocatorAdd} from "fsuite";
+import {serviceLocatorAdd} from "@flashist/flibs";
 
 import {GlobalEventDispatcher} from "./dispatcher/GlobalEventDispatcher";
 import {BaseModule} from "../base/modules/BaseModule";

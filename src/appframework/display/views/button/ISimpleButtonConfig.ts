@@ -1,4 +1,4 @@
-import {IFLabelConfig} from "fsuite";
+import {IFLabelConfig} from "@flashist/flibs";
 
 export interface ISimpleButtonConfig {
     bgConfig?: {

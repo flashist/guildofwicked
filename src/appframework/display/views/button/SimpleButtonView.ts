@@ -1,4 +1,4 @@
-import {FContainer, FLabel, Graphics, InteractiveEvent, Point, Sprite} from "fsuite";
+import {FContainer, FLabel, Graphics, InteractiveEvent, Point, Sprite} from "@flashist/flibs";
 
 import {ISimpleButtonConfig} from "./ISimpleButtonConfig";
 import {SimpleButtonState} from "./SimpleButtonState";

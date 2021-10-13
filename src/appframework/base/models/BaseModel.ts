@@ -1,4 +1,4 @@
-import {getInstance, GenericObjectsModel, IGenericObjectVO} from "fsuite";
+import {getInstance, GenericObjectsModel, IGenericObjectVO} from "@flashist/flibs";
 
 import {GlobalEventDispatcher} from "../../globaleventdispatcher/dispatcher/GlobalEventDispatcher";
 
@@ -8,9 +8,9 @@ export class BaseModel<ItemType extends IGenericObjectVO = IGenericObjectVO> ext
     protected globalDispatcher: GlobalEventDispatcher;
 
     protected construction(...args): void {
-        super.construction(...args);
-
         this.globalDispatcher = getInstance(GlobalEventDispatcher);
+
+        super.construction(...args);
     }
 
     dispatchEvent(event: string, ...args: any[]): void {

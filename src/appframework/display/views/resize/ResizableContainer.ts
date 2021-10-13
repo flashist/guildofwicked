@@ -1,7 +1,7 @@
 import {
     FContainer,
     Point
-} from "fsuite";
+} from "@flashist/flibs";
 import {IResizable} from "./IResizable";
 
 export class ResizableContainer<DataType extends object = object> extends FContainer<DataType> implements IResizable {

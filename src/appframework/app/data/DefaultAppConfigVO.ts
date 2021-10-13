@@ -1,4 +1,4 @@
-import {Rectangle} from "fsuite";
+import {Rectangle} from "@flashist/flibs";
 
 import {IAppConfigVO} from "./IAppConfigVO";
 

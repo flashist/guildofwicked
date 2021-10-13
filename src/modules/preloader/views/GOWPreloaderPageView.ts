@@ -1,4 +1,4 @@
-import {FContainer, FLabel, getText, Graphics, Sprite} from "fsuite";
+import {FContainer, FLabel, getText, Graphics, Sprite} from "@flashist/flibs";
 
 import {TweenLite} from "gsap";
 

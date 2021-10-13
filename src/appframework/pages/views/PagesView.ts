@@ -1,7 +1,7 @@
 import {ResizableContainer} from "../../display/views/resize/ResizableContainer";
 import {ViewLazyCreationServiceLocatorStack} from "../../display/views/viewstack/ViewLazyCreationServiceLocatorStack";
 import {PagesModel} from "../models/PagesModel";
-import {getInstance} from "fsuite";
+import {getInstance} from "@flashist/flibs";
 import {PagesModelEvent} from "../models/PagesModelEvent";
 
 export class PagesView extends ResizableContainer {

@@ -1,4 +1,4 @@
-import {getInstance} from "fsuite";
+import {getInstance} from "@flashist/flibs";
 import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
 import {GOWServerEmulatorUsersManager} from "../managers/GOWServerEmulatorUsersManager";
 import {IGOWServerEmulatorUserVO} from "../data/IGOWServerEmulatorUserVO";

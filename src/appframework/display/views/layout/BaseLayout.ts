@@ -1,4 +1,4 @@
-import {VAlign, Align, Point} from "fsuite";
+import {VAlign, Align, Point} from "@flashist/flibs";
 
 import {LayoutConfig} from "./LayoutConfig";
 import {ILayoutableContainer} from "./container/ILayoutableContainer";

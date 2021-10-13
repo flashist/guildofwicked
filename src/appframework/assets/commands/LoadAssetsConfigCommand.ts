@@ -1,7 +1,7 @@
 import {
     getInstance,
     LoadItemCommand
-} from "fsuite";
+} from "@flashist/flibs";
 
 import {AppConfigModel} from "../../app/models/AppConfigModel";
 import {IAssetsConfigVO} from "../data/IAssetsConfigVO";

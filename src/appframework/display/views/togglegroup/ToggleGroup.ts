@@ -1,5 +1,5 @@
-import {BaseObject, ArrayTools, AssociativeArray} from "fcore";
-import {InteractiveEvent} from "fsuite";
+import {BaseObject, ArrayTools, AssociativeArray} from "@flashist/fcore";
+import {InteractiveEvent} from "@flashist/flibs";
 
 import {IToggableItem} from "./IToggableItem";
 import {ToggleGroupEvent} from "./ToggleGroupEvent";

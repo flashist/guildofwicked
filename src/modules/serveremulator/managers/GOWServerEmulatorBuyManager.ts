@@ -1,4 +1,4 @@
-import {GenericObjectsByTypeModel, getInstance} from "fsuite";
+import {GenericObjectsByTypeModel, getInstance} from "@flashist/flibs";
 
 import {BaseManager} from "../../../appframework/base/managers/BaseManager";
 import {GOWUpgradeStaticVOType} from "../../upgrades/data/GOWUpgradeStaticVOType";

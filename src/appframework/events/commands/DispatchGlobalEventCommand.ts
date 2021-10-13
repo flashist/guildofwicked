@@ -1,5 +1,5 @@
-import {Command} from "fcore";
-import {getInstance} from "fsuite";
+import {Command} from "@flashist/fcore";
+import {getInstance} from "@flashist/flibs";
 
 import {GlobalEventDispatcher} from "../../globaleventdispatcher/dispatcher/GlobalEventDispatcher";
 

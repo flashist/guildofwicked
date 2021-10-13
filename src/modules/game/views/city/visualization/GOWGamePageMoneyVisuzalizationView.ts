@@ -1,4 +1,4 @@
-import {GenericObjectsByTypeModel, getInstance} from "fsuite";
+import {GenericObjectsByTypeModel, getInstance} from "@flashist/flibs";
 
 import {BaseView} from "../../../../../appframework/base/views/BaseView";
 import {SimpleList} from "../../../../../appframework/display/views/simplelist/SimpleList";

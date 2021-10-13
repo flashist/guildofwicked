@@ -1,4 +1,4 @@
-import {QueueCommand} from "fcore";
+import {QueueCommand} from "@flashist/fcore";
 
 import {LoadAssetsConfigCommand} from "./LoadAssetsConfigCommand";
 import {ParseAssetsConfigCommand} from "./ParseAssetsConfigCommand";
@@ -11,7 +11,7 @@ export class InitLoadProcessCommand extends QueueCommand {
                 new LoadAssetsConfigCommand(),
                 new ParseAssetsConfigCommand(),
                 new AssetsStartLoadingCommand()
-            ]
+            ] as any
         );
     }
 }

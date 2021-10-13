@@ -1,5 +1,5 @@
 import {IGOWCumulativeBonusesData} from "../data/IGOWCumulativeBonusesData";
-import {GenericObjectsByTypeModel, getInstance} from "fsuite";
+import {GenericObjectsByTypeModel, getInstance} from "@flashist/flibs";
 import {IGOWBonusStaticVO} from "../data/IGOWBonusStaticVO";
 import {GOWBonusType} from "../data/GOWBonusType";
 import {GOWBonusStaticVOType} from "../data/GOWBonusStaticVOType";

@@ -1,7 +1,7 @@
 import {GOWSimplePopupView} from "./GOWSimplePopupView";
 import {BaseMediator} from "../../../appframework/base/mediators/BaseMediator";
 import {GOWSimplePopupIntent} from "../events/GOWSimplePopupIntent";
-import {InteractiveEvent} from "fsuite";
+import {InteractiveEvent} from "@flashist/flibs";
 
 export class GOWSimplePopupMediator extends BaseMediator<GOWSimplePopupView> {
 

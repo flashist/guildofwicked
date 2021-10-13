@@ -1,4 +1,4 @@
-import {Align, GenericObjectsByTypeModel, getInstance, getText, Graphics, InteractiveEvent, VAlign} from "fsuite";
+import {Align, GenericObjectsByTypeModel, getInstance, getText, Graphics, InteractiveEvent, VAlign} from "@flashist/flibs";
 
 import {BaseView} from "../../../../../appframework/base/views/BaseView";
 import {GOWGamePageModel} from "../../../models/GOWGamePageModel";

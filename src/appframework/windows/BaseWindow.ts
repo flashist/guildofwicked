@@ -1,4 +1,4 @@
-import {FContainer} from "fsuite";
+import {FContainer} from "@flashist/flibs";
 import {IWindowConfigVO} from "./data/IWindowConfigVO";
 
 export class BaseWindow extends FContainer {

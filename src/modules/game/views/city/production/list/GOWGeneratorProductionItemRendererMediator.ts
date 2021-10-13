@@ -1,4 +1,4 @@
-import {InteractiveEvent} from "fsuite";
+import {InteractiveEvent} from "@flashist/flibs";
 
 import {BaseMediator} from "../../../../../../appframework/base/mediators/BaseMediator";
 import {GOWGeneratorProductionItemRendererView} from "./GOWGeneratorProductionItemRendererView";

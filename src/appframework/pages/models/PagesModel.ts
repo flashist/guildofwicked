@@ -1,4 +1,4 @@
-import {IConstructor, AssociativeArray} from "fcore";
+import {IConstructor, AssociativeArray} from "@flashist/fcore";
 
 import {BaseModel} from "../../base/models/BaseModel";
 import {PagesModelEvent} from "./PagesModelEvent";

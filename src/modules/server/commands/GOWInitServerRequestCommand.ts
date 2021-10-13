@@ -3,7 +3,7 @@ import {IInitServerRequestVO} from "../data/IInitServerRequestVO";
 import {IInitServerResponseVO} from "../data/IInitServerResponseVO";
 import {GOWServerRequestId} from "../data/GOWServerRequestId";
 import {GOWUsersModel} from "../../users/models/GOWUsersModel";
-import {getInstance} from "fsuite";
+import {getInstance} from "@flashist/flibs";
 import {GOWServerModel} from "../models/GOWServerModel";
 
 export class GOWInitServerRequestCommand extends GOWBaseServerCommand<IInitServerResponseVO, IInitServerRequestVO> {

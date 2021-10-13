@@ -1,7 +1,7 @@
 import {BaseManager} from "../../../appframework/base/managers/BaseManager";
 import {GOWServerEmulatorUsersManager} from "./GOWServerEmulatorUsersManager";
 import {GOWServerEmulatorGeneratorsManager} from "./GOWServerEmulatorGeneratorsManager";
-import {GenericObjectsByTypeModel, getInstance} from "fsuite";
+import {GenericObjectsByTypeModel, getInstance} from "@flashist/flibs";
 import {IGOWServerEmulatorUserVO} from "../data/IGOWServerEmulatorUserVO";
 import {IGOWServerEmulatorGeneratorVO} from "../data/IGOWServerEmulatorGeneratorVO";
 import {IGOWGeneratorStaticVO} from "../../generators/data/IGOWGeneratorStaticVO";

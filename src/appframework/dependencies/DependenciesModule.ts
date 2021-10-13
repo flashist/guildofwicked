@@ -1,7 +1,7 @@
 import {
     GenericObjectsByTypeModel,
     serviceLocatorAdd
-} from "fsuite";
+} from "@flashist/flibs";
 
 import {BaseModule} from "../base/modules/BaseModule";
 

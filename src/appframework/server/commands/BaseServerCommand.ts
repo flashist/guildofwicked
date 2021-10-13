@@ -1,4 +1,4 @@
-import {GenericObjectsByTypeModel, getInstance} from "fsuite";
+import {GenericObjectsByTypeModel, getInstance} from "@flashist/flibs";
 
 import {BaseAppCommand} from "../../base/commands/BaseAppCommand";
 import {IServerResponseVO} from "../data/IServerResponseVO";

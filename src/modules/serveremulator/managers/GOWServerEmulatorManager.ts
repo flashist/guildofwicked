@@ -1,4 +1,4 @@
-import {getInstance, IGenericObjectVO} from "fsuite";
+import {getInstance, IGenericObjectVO} from "@flashist/flibs";
 
 import {BaseManager} from "../../../appframework/base/managers/BaseManager";
 import {IServerRequestVO} from "../../../appframework/server/data/IServerRequestVO";

@@ -1,4 +1,4 @@
-import {BaseObject} from "fcore";
+import {BaseObject} from "@flashist/fcore";
 import {StorageModuleConfig} from "../StorageModuleConfig";
 
 export class StorageManager extends BaseObject {

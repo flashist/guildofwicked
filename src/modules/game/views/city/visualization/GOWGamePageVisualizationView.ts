@@ -1,4 +1,4 @@
-import {getInstance} from "fsuite";
+import {getInstance} from "@flashist/flibs";
 
 import {GOWGamePageMoneyVisuzalizationView} from "./GOWGamePageMoneyVisuzalizationView";
 import {GOWGamePageProductionTabId} from "../../../data/GOWGamePageProductionTabId";

@@ -2,7 +2,7 @@ import {
     IGenericObjectVO,
     ILoadItemConfig,
     Rectangle
-} from "fsuite";
+} from "@flashist/flibs";
 
 export interface IAppConfigVO extends IGenericObjectVO {
     locale?: string;

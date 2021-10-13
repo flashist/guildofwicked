@@ -1,4 +1,4 @@
-import {BaseDataVOEvent, Sprite, Texture} from "fsuite";
+import {BaseDataVOEvent, Sprite, Texture} from "@flashist/flibs";
 
 import {BaseView} from "../../../../../appframework/base/views/BaseView";
 import {GOWGeneratorVO} from "../../../../generators/data/GOWGeneratorVO";

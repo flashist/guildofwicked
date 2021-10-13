@@ -1,4 +1,4 @@
-import {Align, BaseDataVOEvent, GenericObjectsByTypeModel, getInstance, getText, Point, VAlign} from "fsuite";
+import {Align, BaseDataVOEvent, GenericObjectsByTypeModel, getInstance, getText, Point, VAlign} from "@flashist/flibs";
 
 import {BaseView} from "../../../../../../../appframework/base/views/BaseView";
 import {SimpleButtonView} from "../../../../../../../appframework/display/views/button/SimpleButtonView";

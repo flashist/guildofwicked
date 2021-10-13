@@ -1,6 +1,6 @@
 import {
     DisplayObjectContainer
-} from "fsuite";
+} from "@flashist/flibs";
 
 export interface IToggableItem extends DisplayObjectContainer {
     id?: string;

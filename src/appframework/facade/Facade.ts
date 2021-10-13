@@ -1,6 +1,6 @@
-import {BaseObject, Command} from "fcore";
+import {BaseObject, Command} from "@flashist/fcore";
 
-import {FApp, ServiceLocator, getInstance, Point, HtmlTools} from "fsuite";
+import {FApp, ServiceLocator, getInstance, Point, HtmlTools} from "@flashist/flibs";
 
 import {GlobalEventDispatcherModule} from "../globaleventdispatcher/GlobalEventDispatcherModule";
 import {ModulesManager} from "../base/modules/ModulesManager";
@@ -50,7 +50,7 @@ export class Facade extends BaseObject {
             window["Facade"] = this;
         }
 
-        ServiceLocator.options = {debug: this.options.debug};
+        ServiceLocator.startInit({debug: this.options.debug});
 
         this.addModules();
         this.activateModules();

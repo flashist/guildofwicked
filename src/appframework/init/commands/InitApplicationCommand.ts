@@ -1,11 +1,11 @@
 import {
     QueueCommand
-} from "fcore";
+} from "@flashist/fcore";
 
 import {
     getInstance,
     WaitGroupLoadingCompleteCommand
-} from "fsuite";
+} from "@flashist/flibs";
 
 import {LoadAppConfigCommand} from "../../../appframework/app/commands/LoadAppConfigCommand";
 import {LoadLocalizaitonCommand} from "../../locales/commands/LoadLocalizaitonCommand";
@@ -31,7 +31,7 @@ export class InitApplicationCommand extends QueueCommand {
                 getInstance(InitApplicationDataCommand),
 
                 getInstance(ChangePageCommand, PageId.PRELOADER_PAGE_ID)
-            ]
+            ] as any
         );
     }
 }

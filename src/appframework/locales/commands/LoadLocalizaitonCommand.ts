@@ -1,7 +1,7 @@
 import {
     ObjectTools,
     StringTools
-} from "fcore";
+} from "@flashist/fcore";
 
 import {
     getInstance,
@@ -9,7 +9,7 @@ import {
     ILocaleConfig,
     LoadItemCommand,
     ILoadItemConfig
-} from "fsuite";
+} from "@flashist/flibs";
 
 import {AppConfigModel} from "../../app/models/AppConfigModel";
 import {BaseAppCommand} from "../../base/commands/BaseAppCommand";

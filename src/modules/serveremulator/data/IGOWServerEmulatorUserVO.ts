@@ -1,4 +1,4 @@
-import {IGenericObjectVO} from "fsuite";
+import {IGenericObjectVO} from "@flashist/flibs";
 import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
 
 export interface IGOWServerEmulatorUserVO extends IGenericObjectVO {

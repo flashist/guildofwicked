@@ -1,4 +1,4 @@
-import {getInstance, getText} from "fsuite";
+import {getInstance, getText} from "@flashist/flibs";
 
 import {InitApplicationDataCommand} from "../../../appframework/init/commands/InitApplicationDataCommand";
 import {GOWInitServerRequestCommand} from "../../server/commands/GOWInitServerRequestCommand";

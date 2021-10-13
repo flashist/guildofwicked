@@ -1,4 +1,4 @@
-import {BaseDataVO} from "fsuite";
+import {BaseDataVO} from "@flashist/flibs";
 import {GOWResourceType} from "../../resources/data/GOWResourceType";
 import {IGOWResourceVO} from "../../resources/data/IGOWResourceVO";
 

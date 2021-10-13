@@ -1,4 +1,4 @@
-import {Align, FLabel, Graphics, VAlign} from "fsuite";
+import {Align, FLabel, Graphics, VAlign} from "@flashist/flibs";
 
 import {BaseView} from "../../../../appframework/base/views/BaseView";
 import {GOWSettings} from "../../../../GOWSettings";

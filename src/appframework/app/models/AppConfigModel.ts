@@ -1,5 +1,5 @@
-import {ObjectTools} from "fcore";
-import {getInstance} from "fsuite";
+import {ObjectTools} from "@flashist/fcore";
+import {getInstance} from "@flashist/flibs";
 
 import {IAppConfigVO} from "../data/IAppConfigVO";
 import {BaseModel} from "../../base/models/BaseModel";

@@ -2,7 +2,7 @@ import {
     LoadItemCommand,
     getInstance,
     GenericObjectsByTypeModel
-} from "fsuite";
+} from "@flashist/flibs";
 
 import {AppConfigModel} from "../models/AppConfigModel";
 import {BaseAppCommand} from "../../base/commands/BaseAppCommand";

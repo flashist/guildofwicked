@@ -1,4 +1,4 @@
-import {Align, getText, InteractiveEvent, VAlign} from "fsuite";
+import {Align, getText, InteractiveEvent, VAlign} from "@flashist/flibs";
 
 import {BaseView} from "../../../../../appframework/base/views/BaseView";
 import {SimpleButtonView} from "../../../../../appframework/display/views/button/SimpleButtonView";

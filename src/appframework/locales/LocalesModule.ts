@@ -1,4 +1,4 @@
-import {serviceLocatorAdd, LocaleManager} from "fsuite";
+import {serviceLocatorAdd, LocaleManager} from "@flashist/flibs";
 import {BaseModule} from "../base/modules/BaseModule";
 
 export class LocalesModule extends BaseModule {

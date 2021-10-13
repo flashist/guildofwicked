@@ -1,4 +1,4 @@
-import {getInstance, SoundsManager} from "fsuite";
+import {getInstance, SoundsManager} from "@flashist/flibs";
 
 import {BaseManager} from "../../base/managers/BaseManager";
 

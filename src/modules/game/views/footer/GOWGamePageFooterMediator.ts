@@ -1,6 +1,6 @@
 import {BaseMediator} from "../../../../appframework/base/mediators/BaseMediator";
 import {GOWGamePageFooterView} from "./GOWGamePageFooterView";
-import {getText, InteractiveEvent} from "fsuite";
+import {getText, InteractiveEvent} from "@flashist/flibs";
 import {GOWShowTextHintFromCursorCommand} from "../../../hints/command/GOWShowTextHintFromCursorCommand";
 
 export class GOWGamePageFooterMediator extends BaseMediator<GOWGamePageFooterView> {

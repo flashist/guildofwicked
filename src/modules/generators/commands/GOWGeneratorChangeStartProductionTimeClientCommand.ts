@@ -1,6 +1,6 @@
 import {BaseAppCommand} from "../../../appframework/base/commands/BaseAppCommand";
 import {GOWGeneratorsModel} from "../models/GOWGeneratorsModel";
-import {getInstance} from "fsuite";
+import {getInstance} from "@flashist/flibs";
 import {GOWGeneratorVO} from "../data/GOWGeneratorVO";
 import {GOWTimeTools} from "../../time/tools/GOWTimeTools";
 

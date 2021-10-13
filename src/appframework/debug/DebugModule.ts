@@ -1,6 +1,6 @@
-import {Logger, ConsoleCustomLoggerItem} from "fcore";
-import {FApp} from "fsuite";
-import {FC} from "fconsole";
+import {Logger, ConsoleCustomLoggerItem} from "@flashist/fcore";
+import {FApp} from "@flashist/flibs";
+import {FC} from "@flashist/fconsole";
 
 import {BaseModule} from "../base/modules/BaseModule";
 

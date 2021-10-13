@@ -1,4 +1,4 @@
-import {NumberTools} from "fcore";
+import {NumberTools} from "@flashist/fcore";
 
 import {
     Align, AutosizeType,
@@ -12,7 +12,7 @@ import {
     Sprite,
     Texture,
     VAlign
-} from "fsuite";
+} from "@flashist/flibs";
 
 import {BaseView} from "../../../../../../appframework/base/views/BaseView";
 import {GOWGeneratorVO} from "../../../../../generators/data/GOWGeneratorVO";

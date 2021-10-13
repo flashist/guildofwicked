@@ -1,4 +1,4 @@
-import {serviceLocatorAdd} from "fsuite";
+import {serviceLocatorAdd} from "@flashist/flibs";
 
 import {BaseModule} from "../../appframework/base/modules/BaseModule";
 import {InitApplicationDataCommand} from "../../appframework/init/commands/InitApplicationDataCommand";

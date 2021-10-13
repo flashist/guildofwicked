@@ -1,4 +1,4 @@
-import {Point, DisplayObjectContainer} from "fsuite";
+import {Point, DisplayObjectContainer} from "@flashist/flibs";
 import {IGetSizable} from "../data/IGetSizable";
 
 export class GetSizeTools {

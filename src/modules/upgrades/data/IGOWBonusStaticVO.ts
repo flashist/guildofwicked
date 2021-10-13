@@ -1,5 +1,5 @@
 import {GOWBonusType} from "./GOWBonusType";
-import {IGenericObjectVO} from "fsuite";
+import {IGenericObjectVO} from "@flashist/flibs";
 
 export interface IGOWBonusStaticVO extends IGenericObjectVO {
     bonusType: GOWBonusType;

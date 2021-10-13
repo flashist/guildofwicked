@@ -1,5 +1,5 @@
-import {BaseObject} from "fcore";
-import {SoundsManagerEvent, getInstance, SoundsManager} from "fsuite";
+import {BaseObject} from "@flashist/fcore";
+import {SoundsManagerEvent, getInstance, SoundsManager} from "@flashist/flibs";
 
 import {StorageManager} from "../../storage/managers/StorageManager";
 import {SoundsSettings} from "../SoundsSettings";

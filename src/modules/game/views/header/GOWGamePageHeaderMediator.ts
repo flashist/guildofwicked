@@ -1,4 +1,4 @@
-import {getInstance, InteractiveEvent} from "fsuite";
+import {getInstance, InteractiveEvent} from "@flashist/flibs";
 
 import {BaseMediator} from "../../../../appframework/base/mediators/BaseMediator";
 import {GOWGamePageHeaderView} from "./GOWGamePageHeaderView";

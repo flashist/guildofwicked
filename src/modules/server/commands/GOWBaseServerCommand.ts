@@ -1,4 +1,4 @@
-import {getInstance} from "fsuite";
+import {getInstance} from "@flashist/flibs";
 
 import {BaseServerCommand} from "../../../appframework/server/commands/BaseServerCommand";
 import {IServerResponseVO} from "../../../appframework/server/data/IServerResponseVO";

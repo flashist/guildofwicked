@@ -1,4 +1,4 @@
-import {FContainer} from "fsuite";
+import {FContainer} from "@flashist/flibs";
 
 import {BaseManager} from "../../base/managers/BaseManager";
 

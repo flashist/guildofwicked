@@ -1,4 +1,4 @@
-import {Graphics} from "fsuite";
+import {Graphics} from "@flashist/flibs";
 
 import {BaseView} from "../../../../../../appframework/base/views/BaseView";
 import {GOWSettings} from "../../../../../../GOWSettings";

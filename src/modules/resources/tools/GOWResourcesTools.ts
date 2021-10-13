@@ -1,4 +1,4 @@
-import {getInstance} from "fsuite";
+import {getInstance} from "@flashist/flibs";
 
 import {IGOWResourceVO} from "../data/IGOWResourceVO";
 import {ICheckEnoughResourcesVO} from "../data/ICheckEnoughResourcesVO";

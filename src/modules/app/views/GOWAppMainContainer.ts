@@ -1,4 +1,4 @@
-import {FContainer, getInstance} from "fsuite";
+import {FContainer, getInstance} from "@flashist/flibs";
 
 import {AppMainContainer} from "../../../appframework/app/views/AppMainContainer";
 import {ContainersManager} from "../../../appframework/containers/managers/ContainersManager";

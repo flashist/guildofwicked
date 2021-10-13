@@ -1,4 +1,4 @@
-import {IGenericObjectVO} from "fsuite";
+import {IGenericObjectVO} from "@flashist/flibs";
 
 import {BaseModel} from "../../../appframework/base/models/BaseModel";
 import {IGOWUpgradeStaticVO} from "../data/IGOWUpgradeStaticVO";

@@ -1,4 +1,4 @@
-import {getInstance} from "fsuite";
+import {getInstance} from "@flashist/flibs";
 
 import {BaseManager} from "../../base/managers/BaseManager";
 import {AppModel} from "../models/AppModel";
